@@ -146,7 +146,7 @@ clock/
 - **Техническая документация дисплея ST7789P3:** [PDF](https://www.lcdwiki.com/res/E32R32P/ST7789P3_SPEC_V1.0.pdf)
 - **Репозиторий на GitHub:** [https://github.com/Interregional-cartographic-yacluster/clock](https://github.com/Interregional-cartographic-yacluster/clock)
 - **Официальный сайт МХ «КРЯК»:** [https://www.yacluster-kryak.ru](https://www.yacluster-kryak.ru)
-- **Сообщество ВКонтакте:** [https://vk.com/yacluster_kryak](https://vk.com/yacluster_kryak)
+- **Сообщество ВКонтакте:** [https://vk.ru/yacluster_kryak](https://vk.ru/yacluster_kryak)
 - **Архив проектов МХ «КРЯК»:** [https://www.yacluster-kryak.ru/наш-архив](https://www.yacluster-kryak.ru/наш-архив) (раздел «Приказы и доверенности» → «Поднаправление «Космическая систематика»)
 
 ---
