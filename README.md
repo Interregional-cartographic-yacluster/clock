@@ -170,6 +170,18 @@ clock/
 
 ## Диагностика
 
+### Ошибки `LV_MEM_SIZE_KILOBYTES` или `LV_ASSERT_HANDLER_INCLUDE`
+
+Эти параметры устарели в LVGL 9.6. В проекте используется `CONFIG_LV_MEM_SIZE=65536`, а устаревший assert-handler отключён. После обновления репозитория очистите прежнюю конфигурацию сборки:
+
+```bash
+idf.py fullclean
+idf.py build
+idf.py -p COM3 flash
+```
+
+Отключать `-Werror` или подавлять предупреждения компилятора не требуется.
+
 ### Прошивка зависает на `Connecting...`
 
 1. Удерживайте **BOOT**.
