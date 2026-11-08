@@ -28,6 +28,8 @@
 #include "driver/i2c.h"
 #include "lvgl.h"
 #include "esp_http_server.h"
+#include "lwip/sockets.h"
+#include "lwip/def.h"
 #include "city_database.h"
 
 #define LOGO_DATA_URI \
@@ -858,6 +860,77 @@ static void wifi_reconnect_cb(void *arg)
     if (!wifi_setup_mode && esp_wifi_connect() != ESP_OK) schedule_wifi_reconnect();
 }
 
+static void captive_dns_task(void *arg)
+{
+    (void)arg;
+    const int sock = socket(AF_INET, SOCK_DGRAM, IPPROTO_IP);
+    if (sock < 0) {
+        ESP_LOGE(TAG, "Cannot create captive portal DNS socket");
+        vTaskDelete(NULL);
+        return;
+    }
+
+    struct sockaddr_in listen_addr = {
+        .sin_family = AF_INET,
+        .sin_port = PP_HTONS(53),
+        .sin_addr.s_addr = PP_HTONL(INADDR_ANY),
+    };
+    if (bind(sock, (struct sockaddr *)&listen_addr, sizeof(listen_addr)) != 0) {
+        ESP_LOGE(TAG, "Cannot bind captive portal DNS socket");
+        close(sock);
+        vTaskDelete(NULL);
+        return;
+    }
+
+    uint8_t packet[512];
+    for (;;) {
+        struct sockaddr_in source_addr;
+        socklen_t source_len = sizeof(source_addr);
+        const int received = recvfrom(sock, packet, sizeof(packet) - 16, 0,
+                                      (struct sockaddr *)&source_addr, &source_len);
+        if (received < 12) continue;
+        if ((packet[2] & 0x80) != 0 || packet[4] != 0 || packet[5] != 1) continue;
+
+        size_t pos = 12;
+        while (pos < (size_t)received) {
+            const uint8_t label_len = packet[pos++];
+            if (label_len == 0) break;
+            if ((label_len & 0xC0) == 0xC0) {
+                if (pos < (size_t)received) pos++;
+                break;
+            }
+            if (label_len > 63 || pos + label_len >= (size_t)received) {
+                pos = (size_t)received;
+                break;
+            }
+            pos += label_len;
+        }
+        if (pos + 4 > (size_t)received) continue;
+
+        const size_t question_end = pos + 4;
+        const bool is_ipv4_query = packet[question_end - 4] == 0 && packet[question_end - 3] == 1;
+        const size_t response_len = question_end + (is_ipv4_query ? 16 : 0);
+        packet[2] = 0x81;
+        packet[3] = 0x80;
+        packet[6] = 0;
+        packet[7] = is_ipv4_query ? 1 : 0;
+        packet[8] = packet[9] = packet[10] = packet[11] = 0;
+        if (is_ipv4_query) {
+            const uint8_t answer[] = {
+                0xC0, 0x0C,             /* Name: the question name */
+                0x00, 0x01,             /* Type A */
+                0x00, 0x01,             /* Class IN */
+                0x00, 0x00, 0x00, 0x3C, /* TTL: 60 seconds */
+                0x00, 0x04,             /* IPv4 address length */
+                192, 168, 4, 1,
+            };
+            memcpy(packet + question_end, answer, sizeof(answer));
+        }
+        sendto(sock, packet, response_len, 0,
+               (struct sockaddr *)&source_addr, source_len);
+    }
+}
+
 static void start_wifi_setup(void)
 {
     if (wifi_setup_mode) return;
@@ -877,7 +950,10 @@ static void start_wifi_setup(void)
     ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_AP));
     ESP_ERROR_CHECK(esp_wifi_set_config(WIFI_IF_AP, &ap_config));
     ESP_ERROR_CHECK(esp_wifi_start());
-    ESP_LOGI(TAG, "Wi-Fi setup: connect to Chasy-Nastroika and open http://192.168.4.1");
+    if (xTaskCreate(captive_dns_task, "captive_dns", 3072, NULL, 3, NULL) != pdPASS) {
+        ESP_LOGE(TAG, "Cannot start captive portal DNS; open http://192.168.4.1 manually");
+    }
+    ESP_LOGI(TAG, "Wi-Fi setup: connect to Chasy-Nastroika; the setup page opens automatically");
 }
 
 static void wifi_setup_cb(void *arg)
@@ -1148,6 +1224,13 @@ static esp_err_t root_get_handler(httpd_req_t *req)
     httpd_resp_set_hdr(req, "Cache-Control", "no-store, no-cache, must-revalidate");
     httpd_resp_send(req, wifi_setup_mode ? WIFI_SETUP_PAGE : HTML_PAGE, HTTPD_RESP_USE_STRLEN);
     return ESP_OK;
+}
+
+static esp_err_t captive_portal_get_handler(httpd_req_t *req)
+{
+    if (wifi_setup_mode) return root_get_handler(req);
+    httpd_resp_send_err(req, HTTPD_404_NOT_FOUND, "Not found");
+    return ESP_FAIL;
 }
 
 static esp_err_t wifi_networks_get_handler(httpd_req_t *req)
@@ -1867,6 +1950,7 @@ static void start_webserver(void *pv_parameters)
     config.max_uri_handlers = 32;
     config.lru_purge_enable = true;
     config.stack_size = 8192;
+    config.uri_match_fn = httpd_uri_match_wildcard;
 
     if (httpd_start(&server, &config) == ESP_OK) {
         httpd_uri_t uri_get_root = {
@@ -2004,6 +2088,15 @@ static void start_webserver(void *pv_parameters)
             .user_ctx = NULL
         };
         httpd_register_uri_handler(server, &uri_post_sync);
+
+        /* Phone captive-portal probes use different paths; exact API routes win. */
+        httpd_uri_t uri_get_captive_portal = {
+            .uri = "/*",
+            .method = HTTP_GET,
+            .handler = captive_portal_get_handler,
+            .user_ctx = NULL
+        };
+        httpd_register_uri_handler(server, &uri_get_captive_portal);
 
         ESP_LOGI(TAG, "Web server started on port 80");
     } else {

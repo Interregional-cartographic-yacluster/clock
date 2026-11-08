@@ -15,6 +15,7 @@ idf_component_register(
         esp_timer
         esp_wifi
         lvgl
+        lwip
         nvs_flash
 )
 
