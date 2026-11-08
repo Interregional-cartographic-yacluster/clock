@@ -178,7 +178,11 @@ static uint32_t sync_interval_sec = SYNC_INTERVAL_DEFAULT_SEC;
 static const char *TAG = "CLOCK";
 static EventGroupHandle_t wifi_event_group;
 static esp_timer_handle_t wifi_reconnect_timer;
+static esp_timer_handle_t wifi_setup_timer;
 static uint32_t wifi_retry_count;
+static char wifi_ssid[33];
+static char wifi_password[64];
+static volatile bool wifi_setup_mode = false;
 static bool ntp_synced = false;
 static bool rtc_available = false;
 static volatile bool ntp_sync_running = false;
@@ -207,7 +211,7 @@ static int32_t alarm_last_key[MAX_ALARMS];
 /* One font is used for every text element on the physical display. */
 LV_FONT_DECLARE(My_montserrat_16);
 
-static const uint8_t wifi_connected_icon_data[] = {
+static const uint8_t wifi_disconnected_icon_data[] = {
     0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x01, 0x01, 0x01, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x46, 0x97, 0x00, 0x01, 0x01, 0x00, 0x00, 0x00, 0x00, 0x02, 0x04, 0x01, 0x00, 0x00, 0x00,
     0x01, 0x45, 0xff, 0xa9, 0x00, 0x02, 0x12, 0x12, 0x11, 0x05, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00,
@@ -230,11 +234,11 @@ static const lv_image_dsc_t wifi_connected_icon = {
     .header.cf = LV_COLOR_FORMAT_A8,
     .header.w = 16,
     .header.h = 16,
-    .data_size = sizeof(wifi_connected_icon_data),
-    .data = wifi_connected_icon_data,
+    .data_size = sizeof(wifi_disconnected_icon_data),
+    .data = wifi_disconnected_icon_data,
 };
 
-static const uint8_t wifi_disconnected_icon_data[] = {
+static const uint8_t wifi_connected_icon_data[] = {
     0x00, 0x00, 0x00, 0x01, 0x03, 0x04, 0x03, 0x02, 0x02, 0x03, 0x04, 0x03, 0x01, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00,
     0x01, 0x02, 0x00, 0x01, 0x3e, 0x81, 0xae, 0xc4, 0xc4, 0xae, 0x81, 0x3f, 0x01, 0x00, 0x02, 0x01,
@@ -257,8 +261,8 @@ static const lv_image_dsc_t wifi_disconnected_icon = {
     .header.cf = LV_COLOR_FORMAT_A8,
     .header.w = 16,
     .header.h = 16,
-    .data_size = sizeof(wifi_disconnected_icon_data),
-    .data = wifi_disconnected_icon_data,
+    .data_size = sizeof(wifi_connected_icon_data),
+    .data = wifi_connected_icon_data,
 };
 
 // ================================================
@@ -838,7 +842,7 @@ static void force_ntp_sync(void)
 // ================================================
 static void schedule_wifi_reconnect(void)
 {
-    if (esp_timer_is_active(wifi_reconnect_timer)) return;
+    if (wifi_setup_mode || esp_timer_is_active(wifi_reconnect_timer)) return;
 
     uint32_t delay_sec = 1U << (wifi_retry_count < 5 ? wifi_retry_count : 5);
     if (delay_sec > 30) delay_sec = 30;
@@ -851,7 +855,36 @@ static void schedule_wifi_reconnect(void)
 static void wifi_reconnect_cb(void *arg)
 {
     (void)arg;
-    if (esp_wifi_connect() != ESP_OK) schedule_wifi_reconnect();
+    if (!wifi_setup_mode && esp_wifi_connect() != ESP_OK) schedule_wifi_reconnect();
+}
+
+static void start_wifi_setup(void)
+{
+    if (wifi_setup_mode) return;
+    wifi_setup_mode = true;
+    xEventGroupClearBits(wifi_event_group, WIFI_CONNECTED_BIT);
+    if (esp_timer_is_active(wifi_reconnect_timer)) esp_timer_stop(wifi_reconnect_timer);
+    esp_wifi_stop();
+
+    wifi_config_t ap_config = {
+        .ap = {
+            .ssid = "Chasy-Nastroika",
+            .ssid_len = strlen("Chasy-Nastroika"),
+            .max_connection = 4,
+            .authmode = WIFI_AUTH_OPEN,
+        },
+    };
+    ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_AP));
+    ESP_ERROR_CHECK(esp_wifi_set_config(WIFI_IF_AP, &ap_config));
+    ESP_ERROR_CHECK(esp_wifi_start());
+    ESP_LOGI(TAG, "Wi-Fi setup: connect to Chasy-Nastroika and open http://192.168.4.1");
+}
+
+static void wifi_setup_cb(void *arg)
+{
+    (void)arg;
+    ESP_LOGW(TAG, "Wi-Fi connection was not established; opening simple setup");
+    start_wifi_setup();
 }
 
 static void wifi_event_handler(void *arg, esp_event_base_t event_base,
@@ -862,18 +895,38 @@ static void wifi_event_handler(void *arg, esp_event_base_t event_base,
     if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_START) {
         wifi_retry_count = 0;
         if (esp_wifi_connect() != ESP_OK) schedule_wifi_reconnect();
+        if (!esp_timer_is_active(wifi_setup_timer)) {
+            esp_timer_start_once(wifi_setup_timer, 45000000ULL);
+        }
     } else if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_DISCONNECTED) {
         xEventGroupClearBits(wifi_event_group, WIFI_CONNECTED_BIT);
         schedule_wifi_reconnect();
     } else if (event_base == IP_EVENT && event_id == IP_EVENT_STA_GOT_IP) {
         const ip_event_got_ip_t *event = (ip_event_got_ip_t *)event_data;
         wifi_retry_count = 0;
-        if (esp_timer_is_active(wifi_reconnect_timer)) {
-            esp_timer_stop(wifi_reconnect_timer);
-        }
+        if (esp_timer_is_active(wifi_reconnect_timer)) esp_timer_stop(wifi_reconnect_timer);
+        if (esp_timer_is_active(wifi_setup_timer)) esp_timer_stop(wifi_setup_timer);
         ESP_LOGI(TAG, "Got IP: " IPSTR, IP2STR(&event->ip_info.ip));
         xEventGroupSetBits(wifi_event_group, WIFI_CONNECTED_BIT);
     }
+}
+
+static void load_wifi_config(void)
+{
+    strlcpy(wifi_ssid, WIFI_SSID, sizeof(wifi_ssid));
+    strlcpy(wifi_password, WIFI_PASS, sizeof(wifi_password));
+
+    nvs_handle_t handle;
+    if (nvs_open("clock", NVS_READONLY, &handle) != ESP_OK) return;
+    size_t length = sizeof(wifi_ssid);
+    if (nvs_get_str(handle, "wifi_ssid", wifi_ssid, &length) != ESP_OK) {
+        strlcpy(wifi_ssid, WIFI_SSID, sizeof(wifi_ssid));
+    }
+    length = sizeof(wifi_password);
+    if (nvs_get_str(handle, "wifi_password", wifi_password, &length) != ESP_OK) {
+        strlcpy(wifi_password, WIFI_PASS, sizeof(wifi_password));
+    }
+    nvs_close(handle);
 }
 
 static void wifi_init(void)
@@ -886,23 +939,26 @@ static void wifi_init(void)
         nvs_ret = nvs_flash_init();
     }
     ESP_ERROR_CHECK(nvs_ret);
+    load_wifi_config();
 
     ESP_ERROR_CHECK(esp_netif_init());
     ESP_ERROR_CHECK(esp_event_loop_create_default());
-    if (WIFI_SSID[0] == '\0') {
-        ESP_LOGW(TAG, "Wi-Fi SSID is empty; web interface and NTP are disabled");
-        return;
-    }
     ESP_ERROR_CHECK(esp_netif_create_default_wifi_sta() != NULL ? ESP_OK : ESP_FAIL);
+    ESP_ERROR_CHECK(esp_netif_create_default_wifi_ap() != NULL ? ESP_OK : ESP_FAIL);
 
     wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
     ESP_ERROR_CHECK(esp_wifi_init(&cfg));
 
-    const esp_timer_create_args_t timer_args = {
+    const esp_timer_create_args_t reconnect_args = {
         .callback = wifi_reconnect_cb,
         .name = "wifi_reconnect",
     };
-    ESP_ERROR_CHECK(esp_timer_create(&timer_args, &wifi_reconnect_timer));
+    ESP_ERROR_CHECK(esp_timer_create(&reconnect_args, &wifi_reconnect_timer));
+    const esp_timer_create_args_t setup_args = {
+        .callback = wifi_setup_cb,
+        .name = "wifi_setup",
+    };
+    ESP_ERROR_CHECK(esp_timer_create(&setup_args, &wifi_setup_timer));
 
     esp_event_handler_instance_t instance_any_id;
     esp_event_handler_instance_t instance_got_ip;
@@ -911,14 +967,18 @@ static void wifi_init(void)
     ESP_ERROR_CHECK(esp_event_handler_instance_register(
         IP_EVENT, IP_EVENT_STA_GOT_IP, &wifi_event_handler, NULL, &instance_got_ip));
 
-    wifi_config_t wifi_config = {
-        .sta = {
-            .ssid = WIFI_SSID,
-            .password = WIFI_PASS,
-            .threshold.authmode = WIFI_PASS[0] == '\0' ? WIFI_AUTH_OPEN : WIFI_AUTH_WPA2_PSK,
-            .pmf_cfg = { .capable = true, .required = false },
-        }
-    };
+    if (wifi_ssid[0] == '\0') {
+        start_wifi_setup();
+        return;
+    }
+
+    wifi_config_t wifi_config = {0};
+    memcpy(wifi_config.sta.ssid, wifi_ssid, strnlen(wifi_ssid, sizeof(wifi_config.sta.ssid)));
+    memcpy(wifi_config.sta.password, wifi_password,
+           strnlen(wifi_password, sizeof(wifi_config.sta.password)));
+    wifi_config.sta.threshold.authmode = wifi_password[0] == '\0' ? WIFI_AUTH_OPEN : WIFI_AUTH_WPA2_PSK;
+    wifi_config.sta.pmf_cfg.capable = true;
+    wifi_config.sta.pmf_cfg.required = false;
 
     ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_STA));
     ESP_ERROR_CHECK(esp_wifi_set_config(WIFI_IF_STA, &wifi_config));
@@ -970,6 +1030,19 @@ static bool wifi_get_rssi(int8_t *rssi)
 
 static void update_display(void)
 {
+    if (wifi_setup_mode) {
+        set_label_text_if_changed(label_time, "Wi-Fi");
+        set_label_text_if_changed(label_date, "Chasy-Nastroika");
+        set_label_text_if_changed(label_city, "192.168.4.1");
+        set_label_text_if_changed(label_wifi, "--");
+        lv_obj_set_style_text_color(label_wifi, lv_color_hex(0x888888), 0);
+        lv_image_set_src(icon_wifi, &wifi_disconnected_icon);
+        lv_obj_set_style_image_recolor(icon_wifi, lv_color_hex(0x888888), 0);
+        lv_display_t *disp = lv_display_get_default();
+        if (disp) lv_refr_now(disp);
+        return;
+    }
+
     struct tm timeinfo;
     bool time_ok = false;
 
@@ -1049,11 +1122,70 @@ static void update_display(void)
 // ================================================
 static bool form_get_value(const char *body, const char *key, char *out, size_t out_size);
 
+static const char WIFI_SETUP_PAGE[] =
+    "<!doctype html><html lang=ru><head><meta charset=utf-8>"
+    "<meta name=viewport content='width=device-width,initial-scale=1'>"
+    "<title>Подключение часов к Wi-Fi</title><style>"
+    "*{box-sizing:border-box}body{margin:0;background:#101820;color:#17202a;font:20px Arial,sans-serif}"
+    "main{max-width:560px;margin:24px auto;background:white;border-radius:20px;padding:26px}"
+    "h1{font-size:30px;margin:0 0 12px}p{line-height:1.4;color:#52606d}"
+    "label{display:block;margin:20px 0 8px;font-weight:bold}input{width:100%;font-size:22px;padding:15px;border:2px solid #a9b4bd;border-radius:10px}"
+    "button{width:100%;margin-top:26px;padding:18px;border:0;border-radius:12px;background:#087f5b;color:white;font-size:24px;font-weight:bold}"
+    "small{display:block;margin-top:18px;color:#687680;line-height:1.4}</style></head><body><main>"
+    "<h1>Подключение часов</h1><p>Введите название домашнего Wi-Fi и пароль. Больше ничего настраивать не нужно.</p>"
+    "<form method=post action=/wifi><label for=ssid>Название Wi-Fi</label>"
+    "<input id=ssid name=ssid list=networks required maxlength=32 autocomplete=off>"
+    "<datalist id=networks></datalist><label for=password>Пароль Wi-Fi</label>"
+    "<input id=password name=password type=password maxlength=63 autocomplete=current-password>"
+    "<button type=submit>Подключить часы</button></form>"
+    "<small>Если сети нет в подсказках, впишите её название точно как на роутере. Часы перезапустятся и подключатся сами.</small>"
+    "</main><script>fetch('/wifi/networks').then(r=>r.json()).then(a=>{const d=document.getElementById('networks');"
+    "a.forEach(s=>{const o=document.createElement('option');o.value=s;d.appendChild(o)})}).catch(()=>{});</script></body></html>";
+
 static esp_err_t root_get_handler(httpd_req_t *req)
 {
     httpd_resp_set_type(req, "text/html; charset=utf-8");
     httpd_resp_set_hdr(req, "Cache-Control", "no-store, no-cache, must-revalidate");
-    httpd_resp_send(req, HTML_PAGE, HTTPD_RESP_USE_STRLEN);
+    httpd_resp_send(req, wifi_setup_mode ? WIFI_SETUP_PAGE : HTML_PAGE, HTTPD_RESP_USE_STRLEN);
+    return ESP_OK;
+}
+
+static esp_err_t wifi_networks_get_handler(httpd_req_t *req)
+{
+    wifi_ap_record_t records[20];
+    uint16_t count = sizeof(records) / sizeof(records[0]);
+    memset(records, 0, sizeof(records));
+    if (esp_wifi_scan_start(NULL, true) != ESP_OK ||
+        esp_wifi_scan_get_ap_records(&count, records) != ESP_OK) {
+        httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "Wi-Fi scan failed");
+        return ESP_FAIL;
+    }
+
+    char *json = malloc(6144);
+    if (!json) {
+        httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "Out of memory");
+        return ESP_FAIL;
+    }
+    size_t used = 0;
+    json[used++] = '[';
+    for (uint16_t i = 0; i < count && used + 220 < 6144; i++) {
+        if (records[i].ssid[0] == '\0') continue;
+        if (used > 1) json[used++] = ',';
+        json[used++] = '"';
+        for (size_t j = 0; j < sizeof(records[i].ssid) && records[i].ssid[j]; j++) {
+            const unsigned char c = records[i].ssid[j];
+            if (c < 0x20) continue;
+            if ((c == '"' || c == '\\') && used + 2 < 6144) json[used++] = '\\';
+            if (used + 2 < 6144) json[used++] = (char)c;
+        }
+        json[used++] = '"';
+    }
+    json[used++] = ']';
+    json[used] = '\0';
+    httpd_resp_set_type(req, "application/json; charset=utf-8");
+    httpd_resp_set_hdr(req, "Cache-Control", "no-store");
+    httpd_resp_send(req, json, (ssize_t)used);
+    free(json);
     return ESP_OK;
 }
 
@@ -1285,6 +1417,50 @@ static int receive_request_body(httpd_req_t *req, char *buffer, size_t buffer_si
     }
     buffer[received] = '\0';
     return (int)received;
+}
+
+static void delayed_restart_task(void *arg)
+{
+    (void)arg;
+    vTaskDelay(pdMS_TO_TICKS(1500));
+    esp_restart();
+}
+
+static esp_err_t wifi_post_handler(httpd_req_t *req)
+{
+    char content[512];
+    char ssid[sizeof(wifi_ssid)] = {0};
+    char password[sizeof(wifi_password)] = {0};
+    if (receive_request_body(req, content, sizeof(content)) <= 0 ||
+        !form_get_value(content, "ssid", ssid, sizeof(ssid)) || ssid[0] == '\0' ||
+        !form_get_value(content, "password", password, sizeof(password))) {
+        httpd_resp_send_err(req, HTTPD_400_BAD_REQUEST, "Введите название Wi-Fi");
+        return ESP_FAIL;
+    }
+
+    nvs_handle_t handle = 0;
+    esp_err_t err = nvs_open("clock", NVS_READWRITE, &handle);
+    if (err == ESP_OK) err = nvs_set_str(handle, "wifi_ssid", ssid);
+    if (err == ESP_OK) err = nvs_set_str(handle, "wifi_password", password);
+    if (err == ESP_OK) err = nvs_commit(handle);
+    if (handle) nvs_close(handle);
+    if (err != ESP_OK) {
+        httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "Не удалось сохранить настройки");
+        return ESP_FAIL;
+    }
+
+    if (xTaskCreate(delayed_restart_task, "wifi_restart", 2048, NULL, 5, NULL) != pdPASS) {
+        httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "Перезапустите часы кнопкой питания");
+        return ESP_FAIL;
+    }
+    httpd_resp_set_type(req, "text/html; charset=utf-8");
+    httpd_resp_send(req,
+        "<meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'>"
+        "<body style='font:22px Arial;max-width:560px;margin:40px auto;padding:20px'>"
+        "<h1>Готово!</h1><p>Часы перезапускаются и подключаются к домашнему Wi-Fi. "
+        "Теперь телефон можно подключить обратно к домашней сети.</p></body>",
+        HTTPD_RESP_USE_STRLEN);
+    return ESP_OK;
 }
 
 static esp_err_t city_add_post_handler(httpd_req_t *req)
@@ -1687,8 +1863,7 @@ static void start_webserver(void *pv_parameters)
     (void)pv_parameters;
     httpd_handle_t server = NULL;
     httpd_config_t config = HTTPD_DEFAULT_CONFIG();
-    /* Routes: root, status, time, cities, city, ntp x2, alarms x3, settime, sync. */
-    /* 12 routes are registered now; leave a wide reserve for future API endpoints. */
+    /* Keep reserve for the control panel, Wi-Fi setup and future API endpoints. */
     config.max_uri_handlers = 32;
     config.lru_purge_enable = true;
     config.stack_size = 8192;
@@ -1701,6 +1876,22 @@ static void start_webserver(void *pv_parameters)
             .user_ctx = NULL
         };
         httpd_register_uri_handler(server, &uri_get_root);
+
+        httpd_uri_t uri_get_wifi_networks = {
+            .uri = "/wifi/networks",
+            .method = HTTP_GET,
+            .handler = wifi_networks_get_handler,
+            .user_ctx = NULL
+        };
+        httpd_register_uri_handler(server, &uri_get_wifi_networks);
+
+        httpd_uri_t uri_post_wifi = {
+            .uri = "/wifi",
+            .method = HTTP_POST,
+            .handler = wifi_post_handler,
+            .user_ctx = NULL
+        };
+        httpd_register_uri_handler(server, &uri_post_wifi);
 
         httpd_uri_t uri_get_status = {
             .uri = "/status",
@@ -1824,10 +2015,10 @@ static void start_webserver(void *pv_parameters)
 static void network_task(void *arg)
 {
     (void)arg;
-    if (WIFI_SSID[0] != '\0') {
+    xTaskCreate(start_webserver, "webserver", 8192, NULL, 4, NULL);
+    if (!wifi_setup_mode) {
         xEventGroupWaitBits(wifi_event_group, WIFI_CONNECTED_BIT,
                             pdFALSE, pdTRUE, portMAX_DELAY);
-        xTaskCreate(start_webserver, "webserver", 8192, NULL, 4, NULL);
         run_ntp_sync(false);
     }
     vTaskDelete(NULL);
@@ -1884,12 +2075,22 @@ static void button_task(void *pv_parameters)
         if (xQueueReceive(button_evt_queue, &evt, portMAX_DELAY)) {
             vTaskDelay(pdMS_TO_TICKS(50));
             if (gpio_get_level(BUTTON_PIN) == 0) {
-                current_city_index = (current_city_index + 1) % CITY_COUNT;
-                save_current_city();
-                need_tz_update = true;
-                ESP_LOGI(TAG, "Switch to %s, %s requested",
-                         cities[current_city_index].city,
-                         cities[current_city_index].country);
+                const TickType_t pressed_at = xTaskGetTickCount();
+                while (gpio_get_level(BUTTON_PIN) == 0 &&
+                       xTaskGetTickCount() - pressed_at < pdMS_TO_TICKS(5000)) {
+                    vTaskDelay(pdMS_TO_TICKS(100));
+                }
+                if (gpio_get_level(BUTTON_PIN) == 0) {
+                    ESP_LOGI(TAG, "Long press: opening Wi-Fi setup");
+                    start_wifi_setup();
+                } else {
+                    current_city_index = (current_city_index + 1) % CITY_COUNT;
+                    save_current_city();
+                    need_tz_update = true;
+                    ESP_LOGI(TAG, "Switch to %s, %s requested",
+                             cities[current_city_index].city,
+                             cities[current_city_index].country);
+                }
             }
         }
     }
@@ -1898,7 +2099,7 @@ static void button_task(void *pv_parameters)
 static void button_init(void)
 {
     button_evt_queue = xQueueCreate(1, sizeof(uint32_t));
-    xTaskCreate(button_task, "button_task", 2048, NULL, 5, NULL);
+    xTaskCreate(button_task, "button_task", 4096, NULL, 5, NULL);
 
     gpio_config_t io_conf = {
         .pin_bit_mask = (1ULL << BUTTON_PIN),
