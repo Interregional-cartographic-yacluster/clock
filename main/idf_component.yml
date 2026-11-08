@@ -1,4 +1,4 @@
-description: Horizontal ESP32 clock with an ST7789 display and NTP synchronization
+description: ESP32 clock with ST7789, DS3231 RTC, NTP, alarms and a local web interface
 dependencies:
   idf:
     version: ">=5.1.0"
