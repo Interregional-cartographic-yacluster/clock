@@ -1,0 +1,11 @@
+City database source
+
+The offline city database is generated from the GeoNames cities15000 export:
+https://download.geonames.org/export/dump/cities15000.zip
+
+Country names are taken from:
+https://download.geonames.org/export/dump/countryInfo.txt
+
+GeoNames data is distributed under the Creative Commons Attribution 4.0
+License. The database contains cities with population 15,000 or more and
+uses the IANA timezone identifier supplied by GeoNames.

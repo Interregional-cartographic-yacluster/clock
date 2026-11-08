@@ -1,6 +1,8 @@
 description: ESP32 clock with ST7789, DS3231 RTC, NTP, alarms and a local web interface
 dependencies:
   idf:
-    version: ">=5.1.0"
+    version: ">=5.2.0"
+  espressif/esp_lvgl_port:
+    version: "^2.3.0"
   lvgl/lvgl:
     version: "^9.1.0"
