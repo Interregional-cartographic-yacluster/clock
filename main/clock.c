@@ -236,8 +236,8 @@ static const lv_image_dsc_t wifi_connected_icon = {
     .header.cf = LV_COLOR_FORMAT_A8,
     .header.w = 16,
     .header.h = 16,
-    .data_size = sizeof(wifi_disconnected_icon_data),
-    .data = wifi_disconnected_icon_data,
+    .data_size = sizeof(wifi_connected_icon_data),
+    .data = wifi_connected_icon_data,
 };
 
 static const uint8_t wifi_connected_icon_data[] = {
@@ -263,8 +263,8 @@ static const lv_image_dsc_t wifi_disconnected_icon = {
     .header.cf = LV_COLOR_FORMAT_A8,
     .header.w = 16,
     .header.h = 16,
-    .data_size = sizeof(wifi_connected_icon_data),
-    .data = wifi_connected_icon_data,
+    .data_size = sizeof(wifi_disconnected_icon_data),
+    .data = wifi_disconnected_icon_data,
 };
 
 // ================================================
