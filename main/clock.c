@@ -1413,7 +1413,7 @@ static esp_err_t ntp_post_handler(httpd_req_t *req)
         return ESP_FAIL;
     }
 
-    ntp_server_config_t new_cfg[MAX_NTP_SERVERS] = {{0}};
+    ntp_server_config_t new_cfg[MAX_NTP_SERVERS] = {0};
     for (uint8_t i = 0; i < (uint8_t)count; i++) {
         char key[24];
         snprintf(key, sizeof(key), "host%u", (unsigned)i);
