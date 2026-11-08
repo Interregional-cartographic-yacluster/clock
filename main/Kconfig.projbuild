@@ -4,15 +4,17 @@ menu "Clock configuration"
         string "Wi-Fi SSID"
         default ""
         help
-            Name of the 2.4 GHz Wi-Fi network. Leave empty to run without
-            network time synchronization.
+            Optional initial 2.4 GHz Wi-Fi network. If empty or unavailable,
+            the clock opens the Chasy-Nastroika setup network. Settings saved
+            from the phone are stored in NVS and take precedence.
 
     config CLOCK_WIFI_PASSWORD
         string "Wi-Fi password"
         default ""
         help
-            Password for the Wi-Fi network. Leave empty for an open network.
-            The values are stored in sdkconfig, which is excluded from Git.
+            Optional initial Wi-Fi password. Leave empty for an open network
+            or to configure the clock later from a phone. Runtime credentials
+            are stored in NVS; no password is added to the source code.
 
     config CLOCK_NTP_SERVER
         string "NTP server"
