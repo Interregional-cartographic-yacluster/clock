@@ -1,0 +1,46 @@
+menu "Clock configuration"
+
+    config CLOCK_WIFI_SSID
+        string "Wi-Fi SSID"
+        default ""
+        help
+            Name of the 2.4 GHz Wi-Fi network. Leave empty to run without
+            network time synchronization.
+
+    config CLOCK_WIFI_PASSWORD
+        string "Wi-Fi password"
+        default ""
+        help
+            Password for the Wi-Fi network. Leave empty for an open network.
+            The values are stored in sdkconfig, which is excluded from Git.
+
+    config CLOCK_NTP_SERVER
+        string "NTP server"
+        default "pool.ntp.org"
+        help
+            Host name of the server used to synchronize the clock.
+
+    config CLOCK_TIMEZONE
+        string "POSIX timezone"
+        default "MSK-3"
+        help
+            POSIX TZ value. MSK-3 means UTC+3 without daylight saving time.
+            Other examples: UTC0, EET-2EEST,M3.5.0/3,M10.5.0/4.
+
+    config CLOCK_LCD_SPI_CLOCK_HZ
+        int "Display SPI clock (Hz)"
+        default 40000000
+        range 1000000 80000000
+        help
+            Reduce this value to 10000000 or 20000000 if a long or unreliable
+            cable causes display artifacts.
+
+    config CLOCK_LCD_BUFFER_LINES
+        int "LVGL buffer height (lines)"
+        default 20
+        range 10 76
+        help
+            Two DMA buffers are allocated. Larger buffers can render faster but
+            use more RAM: 284 * lines * 2 bytes per buffer.
+
+endmenu
