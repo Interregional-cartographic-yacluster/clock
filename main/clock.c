@@ -941,8 +941,8 @@ static void start_wifi_setup(void)
 
     wifi_config_t ap_config = {
         .ap = {
-            .ssid = "Chasy-Nastroika",
-            .ssid_len = strlen("Chasy-Nastroika"),
+            .ssid = "Connecting the clock to Wi-Fi",
+            .ssid_len = strlen("Connecting the clock to Wi-Fi"),
             .max_connection = 4,
             .authmode = WIFI_AUTH_OPEN,
         },
@@ -953,7 +953,7 @@ static void start_wifi_setup(void)
     if (xTaskCreate(captive_dns_task, "captive_dns", 3072, NULL, 3, NULL) != pdPASS) {
         ESP_LOGE(TAG, "Cannot start captive portal DNS; open http://192.168.4.1 manually");
     }
-    ESP_LOGI(TAG, "Wi-Fi setup: connect to Chasy-Nastroika; the setup page opens automatically");
+    ESP_LOGI(TAG, "Wi-Fi setup: connect to Connecting the clock to Wi-Fi; the setup page opens automatically");
 }
 
 static void wifi_setup_cb(void *arg)
@@ -1108,7 +1108,7 @@ static void update_display(void)
 {
     if (wifi_setup_mode) {
         set_label_text_if_changed(label_time, "Wi-Fi");
-        set_label_text_if_changed(label_date, "Chasy-Nastroika");
+        set_label_text_if_changed(label_date, "Connecting the clock to Wi-Fi");
         set_label_text_if_changed(label_city, "192.168.4.1");
         set_label_text_if_changed(label_wifi, "--");
         lv_obj_set_style_text_color(label_wifi, lv_color_hex(0x888888), 0);
