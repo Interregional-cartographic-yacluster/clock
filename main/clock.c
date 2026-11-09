@@ -30,6 +30,7 @@
 #include "esp_http_server.h"
 #include "lwip/sockets.h"
 #include "lwip/def.h"
+#include "ping/ping_sock.h"
 #include "city_database.h"
 
 #define LOGO_DATA_URI \
@@ -94,7 +95,7 @@ static const char HTML_PAGE[] =
     "bel||'';document.querySelectorAll('#alarmDays input').forEach(x=>x.checked=(a.days&Number(x.dataset.day))!==0);toast('Будильник загружен в редактор')}function toggleAlarm(i,on){const a=alarms[i];const p=new URLSearchParams({index:i,hour:a.hour,minute:a.minute,days:a.days,enabled:on?1:0,label:a.label||'Будильник'});fetch('/alarms',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:p}).then(()=>loadAlarms()).catch(()=>toast('Ошибка изменения будильника'))}function deleteAlarm(i){fetch('/alarms?index='+i,{method:'DELETE'}).then(r=>r.text()).then(x=>{toast(x);loadAlarms()}).catch(()=>toast('Ошибка удаления будильника'))}function clearAlarmForm(){document.getElementById('alarmEditIndex').value=-1;document.getElementById('alarmTime').value='08:00';document.getElementById('alarmName').value='Подъём';document.querySelectorAll('#alarmDays input').forEach(x=>x.checked=Number(x.dataset.day)<=16)}function saveTime(){const d=document.getElementById('dateInput').value.s"
     "plit('-').map(Number);const t=document.getElementById('timeInput').value.split(':').map(Number);if(d.length!==3||t.length<2){toast('Укажите дату и время');return}const body=new URLSearchParams({year:d[0],month:d[1],day:d[2],hour:t[0],min:t[1],sec:0});fetch('/settime',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body}).then(r=>r.text()).then(x=>{toast(x);updateTimeInputs()}).catch(()=>toast('Ошибка соединения с ESP32'))}function updateTimeInputs(){fetch('/time').then(r=>r.json()).then(d=>{document.getElementById('dateInput').value=d.date.split('.').reverse().join('-');document.getElementById('timeInput').value=d.time.slice(0,5)}).catch(()=>{})}function pollTimeAfterSync(){let n=0;const timer=setInterval(()=>{n++;updateTimeInputs();loadSyncInfo();if(n>=30)clearInterval(timer)},1000)}function syncNow(){fetch('/sync',{method:'POST'}).then(r=>r.text()).then(x=>{toast(x);pollTimeAfterSync()}).catch(()=>toast('Ошибка соединения с ESP32'))}\nfunction formatSyncTim"
     "e(epoch){if(!epoch)return'—';const d=new Date(epoch*1000),now=new Date();const time=d.toLocaleTimeString('ru-RU');if(d.toDateString()===now.toDateString())return'сегодня, '+time;return d.toLocaleDateString('ru-RU')+', '+time}\nfunction formatCountdown(epoch){if(!epoch)return'—';let sec=Math.max(0,Math.floor(epoch-Date.now()/1000));if(sec===0)return'сейчас';const h=Math.floor(sec/3600),m=Math.floor((sec%3600)/60),s=sec%60;return`через ${h} ч ${String(m).padStart(2,'0')} мин ${String(s).padStart(2,'0')} сек`}\nlet syncInfo={last:0,next:0,source:''};\nfunction renderSyncInfo(){document.getElementById('lastSyncValue').textContent=formatSyncTime(syncInfo.last);document.getElementById('nextSyncValue').textContent=formatCountdown(syncInfo.next);document.getElementById('lastSyncMode').textContent=syncInfo.source==='manual'?'ручная':syncInfo.source==='automatic'?'автоматическая':'—'}\nfunction loadSyncInfo(){fetch('/syncinfo').then(r=>r.json()).then(x=>{syncInfo=x;renderSyncInfo()}).catch(()=>{})}\n"
-    "function updateStatus(){fetch('/status').then(r=>r.json()).then(x=>{const wifi=Boolean(x.wifi),rtc=Boolean(x.rtc),ntp=Boolean(x.ntp);document.getElementById('wifiStatus').textContent=wifi?(x.rssi_valid?'Wi-Fi · '+x.rssi+' ms':'Wi-Fi подключён'):'Wi-Fi не подключён';document.getElementById('wifiPill').classList.toggle('offline',!wifi);const title=document.querySelector('.status-card h2');if(title)title.textContent=!wifi?'Нет соединения':ntp?'Система в норме':'Ожидание NTP';document.getElementById('statusDetails').textContent=(rtc?'DS3231 обнаружен':'DS3231 не обнаружен')+' · '+(ntp?'NTP синхронизирован':'NTP ожидает синхронизации');document.getElementById('rtcMetric').textContent=rtc?'±2 ppm':'недоступен';document.getElementById('heapMetric').textContent=Math.round(x.heap/1024)+' KB';const rtcTag=document.getElementById('rtcDeviceTag');rtcTag.textContent=rtc?'готов':'не найден';rtcTag.classList.toggle('off',!rtc);}).catch(()=>{document.getElementById('wifiStatus').textContent='Нет связи с ESP32';document.getElementById('wifiPill').classList.add('offline');const title=document.querySelector('.status-card h2');if(title)title.textContent='Панель недоступна';})}let cityData={current:0,cities:[],results:[]};\nlet citySearchTimer=null;\nfun"
+    "function updateStatus(){fetch('/status').then(r=>r.json()).then(x=>{const wifi=Boolean(x.wifi),rtc=Boolean(x.rtc),ntp=Boolean(x.ntp);document.getElementById('wifiStatus').textContent=wifi?(x.latency_valid?'Wi-Fi · '+x.latency_ms+' ms':'Wi-Fi подключён'):'Wi-Fi не подключён';document.getElementById('wifiPill').classList.toggle('offline',!wifi);const title=document.querySelector('.status-card h2');if(title)title.textContent=!wifi?'Нет соединения':ntp?'Система в норме':'Ожидание NTP';document.getElementById('statusDetails').textContent=(rtc?'DS3231 обнаружен':'DS3231 не обнаружен')+' · '+(ntp?'NTP синхронизирован':'NTP ожидает синхронизации');document.getElementById('rtcMetric').textContent=rtc?'±2 ppm':'недоступен';document.getElementById('heapMetric').textContent=Math.round(x.heap/1024)+' KB';const rtcTag=document.getElementById('rtcDeviceTag');rtcTag.textContent=rtc?'готов':'не найден';rtcTag.classList.toggle('off',!rtc);}).catch(()=>{document.getElementById('wifiStatus').textContent='Нет связи с ESP32';document.getElementById('wifiPill').classList.add('offline');const title=document.querySelector('.status-card h2');if(title)title.textContent='Панель недоступна';})}let cityData={current:0,cities:[],results:[]};\nlet citySearchTimer=null;\nfun"
     "ction renderCities(data){cityData=data;const q=document.getElementById('cityQuick');const c=document.getElementById('cityInput');const opts=data.cities.map(x=>`<option value=\"${x.index}\">${x.city} · ${x.tz}</option>`).join('');q.innerHTML=opts;c.innerHTML=opts;q.value=data.current;c.value=data.current;const current=data.cities[data.current];if(current){document.getElementById('tzInput').innerHTML=`<option>${current.tz}</option>`;document.getElementById('timezoneMetric').textContent=current.tz}renderCityResults(data)}\nfunction renderCityResults(data){const q=(document.getElementById('citySearch')?.value||'').trim().toLowerCase();const local=data.cities.filter(x=>(x.city+' '+x.country+' '+x.tz).toLowerCase().includes(q));const db=data.results||[];let html=local.map(x=>`<div class=\"row\"><div class=\"row-main\"><div class=\"row-title\">${x.city}</div><div class=\"row-meta\">${x.country} · ${x.tz}</div></div><div class=\"row-actions\">${x.index===data.current?'<span class=\"tag\">текущий</span>':`<bu"
     "tton class=\"btn btn-soft\" onclick=\"setCity(${x.index})\">выбрать</button>`}${x.custom?`<button class=\"btn btn-danger\" onclick=\"deleteCity(${x.index})\">×</button>`:''}</div></div>`).join('');html+=db.map(x=>`<div class=\"row\"><div class=\"row-main\"><div class=\"row-title\">${x.city}</div><div class=\"row-meta\">${x.country} · ${x.tz}</div></div><div class=\"row-actions\"><span class=\"tag off\">база</span><button class=\"btn btn-soft\" onclick=\"setDatabaseCity(${x.db})\">выбрать</button></div></div>`).join('');document.getElementById('cityList').innerHTML=html||'<div class=\"empty\">Город не найден</div>'}\nfunction filterCities(){clearTimeout(citySearchTimer);const q=document.getElementById('citySearch').value.trim();if(!q){renderCityResults(cityData);return}citySearchTimer=setTimeout(()=>fetch('/cities?q='+encodeURIComponent(q)).then(r=>r.json()).then(data=>{cityData=data;renderCityResults(data)}).catch(()=>toast('Не удалось выполнить поиск')),220)}\nfunction loadCities(){fetch('/cities').then(r=>r.jso"
     "n()).then(renderCities).catch(()=>toast('Не удалось загрузить список городов'))}\nfunction setCity(index){fetch('/city',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:'index='+encodeURIComponent(index)}).then(r=>r.json()).then(data=>{toast('Выбран город: '+data.city+' · '+data.tz);loadCities();updateTimeInputs();}).catch(()=>toast('Не удалось сменить город'))}\nfunction setDatabaseCity(index){fetch('/city',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:'db='+encodeURIComponent(index)}).then(r=>r.json()).then(data=>{toast('Добавлен и выбран город: '+data.city+' · '+data.tz);loadCities();updateTimeInputs();}).catch(()=>toast('Не удалось выбрать город из базы'))}\nfunction addCity(){const p=new URLSearchParams({city:document.getElementById('newCityName').value,country:document.getElementById('newCityCountry').value,tz:document.getElementById('newCityTz').value});fetch('/city/add',{method:'POST',headers:{'Content-Type':'appli"
@@ -185,6 +186,9 @@ static uint32_t wifi_retry_count;
 static char wifi_ssid[33];
 static char wifi_password[64];
 static volatile bool wifi_setup_mode = false;
+static volatile int32_t wifi_latency_ms = -1;
+static esp_ip4_addr_t wifi_gateway_addr;
+static SemaphoreHandle_t wifi_ping_done;
 static bool ntp_synced = false;
 static bool rtc_available = false;
 static volatile bool ntp_sync_running = false;
@@ -935,6 +939,8 @@ static void start_wifi_setup(void)
 {
     if (wifi_setup_mode) return;
     wifi_setup_mode = true;
+    wifi_gateway_addr.addr = 0;
+    wifi_latency_ms = -1;
     xEventGroupClearBits(wifi_event_group, WIFI_CONNECTED_BIT);
     if (esp_timer_is_active(wifi_reconnect_timer)) esp_timer_stop(wifi_reconnect_timer);
     esp_wifi_stop();
@@ -976,6 +982,8 @@ static void wifi_event_handler(void *arg, esp_event_base_t event_base,
         }
     } else if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_DISCONNECTED) {
         xEventGroupClearBits(wifi_event_group, WIFI_CONNECTED_BIT);
+        wifi_gateway_addr.addr = 0;
+        wifi_latency_ms = -1;
         schedule_wifi_reconnect();
     } else if (event_base == IP_EVENT && event_id == IP_EVENT_STA_GOT_IP) {
         const ip_event_got_ip_t *event = (ip_event_got_ip_t *)event_data;
@@ -983,6 +991,8 @@ static void wifi_event_handler(void *arg, esp_event_base_t event_base,
         if (esp_timer_is_active(wifi_reconnect_timer)) esp_timer_stop(wifi_reconnect_timer);
         if (esp_timer_is_active(wifi_setup_timer)) esp_timer_stop(wifi_setup_timer);
         ESP_LOGI(TAG, "Got IP: " IPSTR, IP2STR(&event->ip_info.ip));
+        wifi_gateway_addr = event->ip_info.gw;
+        wifi_latency_ms = -1;
         xEventGroupSetBits(wifi_event_group, WIFI_CONNECTED_BIT);
     }
 }
@@ -1094,14 +1104,73 @@ static bool wifi_is_connected(void)
            (xEventGroupGetBits(wifi_event_group) & WIFI_CONNECTED_BIT) != 0;
 }
 
-static bool wifi_get_rssi(int8_t *rssi)
+static bool wifi_get_latency(int32_t *latency_ms)
 {
-    if (!rssi || !wifi_is_connected()) return false;
-
-    wifi_ap_record_t ap_info;
-    if (esp_wifi_sta_get_ap_info(&ap_info) != ESP_OK) return false;
-    *rssi = ap_info.rssi;
+    if (!latency_ms || !wifi_is_connected() || wifi_latency_ms < 0) return false;
+    *latency_ms = wifi_latency_ms;
     return true;
+}
+
+static void wifi_ping_success(esp_ping_handle_t handle, void *args)
+{
+    (void)args;
+    uint32_t elapsed_ms = 0;
+    if (esp_ping_get_profile(handle, ESP_PING_PROF_TIMEGAP,
+                             &elapsed_ms, sizeof(elapsed_ms)) == ESP_OK) {
+        wifi_latency_ms = (int32_t)elapsed_ms;
+    }
+}
+
+static void wifi_ping_timeout(esp_ping_handle_t handle, void *args)
+{
+    (void)handle;
+    (void)args;
+    wifi_latency_ms = -1;
+}
+
+static void wifi_ping_end(esp_ping_handle_t handle, void *args)
+{
+    (void)handle;
+    if (args) xSemaphoreGive((SemaphoreHandle_t)args);
+}
+
+static void wifi_latency_task(void *arg)
+{
+    (void)arg;
+    wifi_ping_done = xSemaphoreCreateBinary();
+    if (!wifi_ping_done) vTaskDelete(NULL);
+
+    for (;;) {
+        if (wifi_is_connected() && wifi_gateway_addr.addr != 0) {
+            esp_ping_config_t config = ESP_PING_DEFAULT_CONFIG();
+            config.count = 1;
+            config.timeout_ms = 1500;
+            config.data_size = 16;
+            config.target_addr.type = IPADDR_TYPE_V4;
+            config.target_addr.u_addr.ip4.addr = wifi_gateway_addr.addr;
+
+            esp_ping_callbacks_t callbacks = {
+                .cb_args = wifi_ping_done,
+                .on_ping_success = wifi_ping_success,
+                .on_ping_timeout = wifi_ping_timeout,
+                .on_ping_end = wifi_ping_end,
+            };
+            esp_ping_handle_t session = NULL;
+            if (esp_ping_new_session(&config, &callbacks, &session) == ESP_OK) {
+                xSemaphoreTake(wifi_ping_done, 0);
+                if (esp_ping_start(session) != ESP_OK ||
+                    xSemaphoreTake(wifi_ping_done, pdMS_TO_TICKS(2500)) != pdTRUE) {
+                    wifi_latency_ms = -1;
+                }
+                esp_ping_delete_session(session);
+            } else {
+                wifi_latency_ms = -1;
+            }
+        } else {
+            wifi_latency_ms = -1;
+        }
+        vTaskDelay(pdMS_TO_TICKS(5000));
+    }
 }
 
 static void update_display(void)
@@ -1164,11 +1233,11 @@ static void update_display(void)
     set_label_text_if_changed(label_city, city_country);
 
     const bool wifi_connected = wifi_is_connected();
-    int8_t rssi = 0;
-    const bool rssi_valid = wifi_get_rssi(&rssi);
-    char wifi_buf[8];
-    if (rssi_valid) {
-        snprintf(wifi_buf, sizeof(wifi_buf), "%d", rssi);
+    int32_t latency_ms = 0;
+    const bool latency_valid = wifi_get_latency(&latency_ms);
+    char wifi_buf[12];
+    if (latency_valid) {
+        snprintf(wifi_buf, sizeof(wifi_buf), "%ld ms", (long)latency_ms);
     } else {
         strlcpy(wifi_buf, "--", sizeof(wifi_buf));
     }
@@ -1274,13 +1343,13 @@ static esp_err_t wifi_networks_get_handler(httpd_req_t *req)
 
 static esp_err_t status_get_handler(httpd_req_t *req)
 {
-    int8_t rssi = 0;
-    const bool rssi_valid = wifi_get_rssi(&rssi);
-    char buf[192];
+    int32_t latency_ms = 0;
+    const bool latency_valid = wifi_get_latency(&latency_ms);
+    char buf[224];
     snprintf(buf, sizeof(buf),
-             "{\"wifi\":%s,\"rssi_valid\":%s,\"rssi\":%d,\"rtc\":%s,\"ntp\":%s,\"heap\":%lu}",
+             "{\"wifi\":%s,\"latency_valid\":%s,\"latency_ms\":%ld,\"rtc\":%s,\"ntp\":%s,\"heap\":%lu}",
              wifi_is_connected() ? "true" : "false",
-             rssi_valid ? "true" : "false", rssi,
+             latency_valid ? "true" : "false", (long)latency_ms,
              rtc_available ? "true" : "false",
              ntp_synced ? "true" : "false",
              (unsigned long)esp_get_free_heap_size());
@@ -2109,6 +2178,7 @@ static void network_task(void *arg)
 {
     (void)arg;
     xTaskCreate(start_webserver, "webserver", 8192, NULL, 4, NULL);
+    xTaskCreate(wifi_latency_task, "wifi_latency", 4096, NULL, 2, NULL);
     if (!wifi_setup_mode) {
         xEventGroupWaitBits(wifi_event_group, WIFI_CONNECTED_BIT,
                             pdFALSE, pdTRUE, portMAX_DELAY);
