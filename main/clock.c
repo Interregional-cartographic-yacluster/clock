@@ -88,7 +88,7 @@ static const char HTML_PAGE[] =
     "n class=\"btn btn-soft\" onclick=\"syncNow()\">Проверить сейчас</button></div></div></section>    <section class=\"panel\" id=\"alarms\"><div class=\"grid\"><div class=\"card\"><div class=\"section-head\"><div><h2>Будильники</h2><p class=\"card-sub\">До 8 событий. Срабатывание фиксируется в serial monitor.</p></div><button class=\"btn btn-orange\" onclick=\"clearAlarmForm()\">+ Новый</button></div><div class=\"list\" id=\"alarmList\"></div></div><div class=\"card\"><h2>Редактор будильника</h2><p class=\"card-sub\">Расписание сохраняется во flash-памяти ESP32</p><input id=\"alarmEditIndex\" type=\"hidden\" value=\"-1\"><div class=\"form-grid\"><div class=\"field\"><label>Время</label><input id=\"alarmTime\" type=\"time\" value=\"08:00\"></div><div class=\"field\"><label>Название</label><input id=\"alarmName\" value=\"Подъём\" maxlength=\"31\"></div></div><div class=\"field\" style=\"margin-top:14px\"><label>Дни недели</label><div id=\"alarmDays\" style=\"display:flex;gap:6px;flex-wrap:wrap;margin-top:8px\"><label class=\"tag\"><input type=\"checkbo"
     "x\" data-day=\"1\" checked> Пн</label><label class=\"tag\"><input type=\"checkbox\" data-day=\"2\" checked> Вт</label><label class=\"tag\"><input type=\"checkbox\" data-day=\"4\" checked> Ср</label><label class=\"tag\"><input type=\"checkbox\" data-day=\"8\" checked> Чт</label><label class=\"tag\"><input type=\"checkbox\" data-day=\"16\" checked> Пт</label><label class=\"tag off\"><input type=\"checkbox\" data-day=\"32\"> Сб</label><label class=\"tag off\"><input type=\"checkbox\" data-day=\"64\"> Вс</label></div></div><div class=\"actions\"><button class=\"btn btn-primary\" onclick=\"saveAlarm()\">Сохранить будильник</button><button class=\"btn btn-soft\" onclick=\"clearAlarmForm()\">Очистить</button></div></div></div></section>    <section class=\"panel\" id=\"device\"><div class=\"grid\"><div class=\"card\"><h2>Устройство</h2><p class=\"card-sub\">Диагностика и системные параметры</p><div class=\"list\"><div class=\"row\"><div><div class=\"row-title\">Плата</div><div class=\"row-meta\">ESP32-WROOM-32D · ESP-IDF</div></div><span class=\"tag\">онлайн</"
     "span></div><div class=\"row\"><div><div class=\"row-title\">Дисплей</div><div class=\"row-meta\">ST7789P3 · 284 × 76 · SPI</div></div><span class=\"tag\">готов</span></div><div class=\"row\"><div><div class=\"row-title\">RTC</div><div class=\"row-meta\">DS3231 · I2C 0x68</div></div><span class=\"tag\" id=\"rtcDeviceTag\">проверка</span></div><div class=\"row\"><div><div class=\"row-title\">Свободная память</div><div class=\"row-meta\">NVS configuration</div></div><strong id=\"heapMetric\">—</strong></div></div></div><div class=\"card\"><h2>Сетевые настройки</h2><p class=\"card-sub\">Скрытые параметры подключения</p><div class=\"field\"><label>Имя сети</label><input value=\"\" placeholder=\"Задаётся в menuconfig\" readonly type=\"text\"></div><div class=\"field\" style=\"margin-top:14px\"><label>Веб-сервер</label><select><option>Включён · порт 80</option><option>Выключен</option></select></div><div class=\"actions\"><button class=\"btn btn-primary\" onclick=\"toast('Настройки устройства сохранены')\">Сохранить настройки</button></div></div></div></section>    <div c"
-    "lass=\"footer-note\">© МХ «КРЯК», 2026</div>  </main></div><div class=\"toast\" id=\"toast\"></div><script>\nconst UI_LOCALES={ru:'ru-RU',en:'en-US',de:'de-DE',fr:'fr-FR',es:'es-ES',zh:'zh-CN'};\nconst I18N={\"en\":{\"Язык\":\"Language\",\"Горизонтальные часы — ESP32\":\"Horizontal clock — ESP32\",\"Горизонтальные\":\"Horizontal\",\"часы\":\"clock\",\"Обзор\":\"Overview\",\"Время и города\":\"Time and cities\",\"NTP-серверы\":\"NTP servers\",\"Будильники\":\"Alarms\",\"Устройство\":\"Device\",\"Локальная панель управления\":\"Local control panel\",\"Обзор устройства\":\"Device overview\",\"Wi-Fi: проверка...\":\"Wi-Fi: checking...\",\"Обновить\":\"Refresh\",\"ТЕКУЩЕЕ ВРЕМЯ\":\"CURRENT TIME\",\"Город и часовой пояс\":\"City and time zone\",\"Синхронизировать\":\"Synchronize\",\"Система в норме\":\"System is healthy\",\"Проверка состояния...\":\"Checking status...\",\"Источник времени\":\"Time source\",\"активен\":\"active\",\"Последняя синхронизация\":\"Last synchronization\",\"Следующая проверка\":\"Next check\",\"по расписанию\":\"scheduled\",\"Часовой пояс\":\"Time zone\",\"Точность RTC\":\"RTC accuracy\",\"проверка...\":\"checking...\",\"Время и часовой пояс\":\"Time and time zone\",\"Установка времени и выбор города\":\"Set time and select a city\",\"Дата\":\"Date\",\"Время\":\"Time\",\"Город\":\"City\",\"Сохранить время\":\"Save time\",\"Взять время из NTP\":\"Use NTP time\",\"Города и часовые пояса\":\"Cities and time zones\",\"Поиск по встроенным и добавленным городам\":\"Search built-in and added cities\",\"Поиск города\":\"City search\",\"Для пользовательского города укажите POSIX-строку часового пояса. Пример для Москвы:\":\"For a custom city, enter a POSIX time-zone string. Example for Moscow:\",\"Добавить свой город\":\"Add your city\",\"Страна\":\"Country\",\"Добавить город\":\"Add city\",\"Источники синхронизации\":\"Synchronization sources\",\"Настройки сохраняются во flash-памяти устройства\":\"Settings are stored in the device flash memory\",\"+ Добавить сервер\":\"+ Add server\",\"Таймаут, мс\":\"Timeout, ms\",\"Период, секунд\":\"Interval, seconds\",\"Активные серверы опрашиваются по порядку. При ручной синхронизации ESP32 последовательно пробует все включённые источники.\":\"Active servers are queried in order. During manual synchronization, ESP32 tries every enabled source.\",\"Сохранить настройки NTP\":\"Save NTP settings\",\"Проверить сейчас\":\"Check now\",\"До 8 событий. Срабатывание фиксируется в serial monitor.\":\"Up to 8 events. Triggering is recorded in the serial monitor.\",\"+ Новый\":\"+ New\",\"Редактор будильника\":\"Alarm editor\",\"Расписание сохраняется во flash-памяти ESP32\":\"The schedule is stored in ESP32 flash memory\",\"Название\":\"Name\",\"Дни недели\":\"Days of the week\",\"Пн\":\"Mon\",\"Вт\":\"Tue\",\"Ср\":\"Wed\",\"Чт\":\"Thu\",\"Пт\":\"Fri\",\"Сб\":\"Sat\",\"Вс\":\"Sun\",\"Сохранить будильник\":\"Save alarm\",\"Очистить\":\"Clear\",\"Диагностика и системные параметры\":\"Diagnostics and system parameters\",\"Плата\":\"Board\",\"онлайн\":\"online\",\"Дисплей\":\"Display\",\"готов\":\"ready\",\"проверка\":\"checking\",\"Свободная память\":\"Free memory\",\"Сетевые настройки\":\"Network settings\",\"Скрытые параметры подключения\":\"Hidden connection parameters\",\"Имя сети\":\"Network name\",\"Веб-сервер\":\"Web server\",\"Включён · порт 80\":\"Enabled · port 80\",\"Выключен\":\"Disabled\",\"Сохранить настройки\":\"Save settings\",\"Сервер\":\"Server\",\"приоритет\":\"priority\",\"Удалить\":\"Delete\",\"нет дней\":\"no days\",\"Будильник\":\"Alarm\",\"Изменить\":\"Edit\",\"Будильники ещё не добавлены\":\"No alarms yet\",\"Подъём\":\"Wake up\",\"текущий\":\"current\",\"выбрать\":\"select\",\"база\":\"database\",\"Город не найден\":\"City not found\",\"сегодня\":\"today\",\"сейчас\":\"now\",\"через\":\"in\",\"ч\":\"h\",\"мин\":\"min\",\"сек\":\"s\",\"ручная\":\"manual\",\"автоматическая\":\"automatic\",\"Wi-Fi подключён\":\"Wi-Fi connected\",\"Wi-Fi не подключён\":\"Wi-Fi disconnected\",\"Нет соединения\":\"No connection\",\"Ожидание NTP\":\"Waiting for NTP\",\"DS3231 обнаружен\":\"DS3231 detected\",\"DS3231 не обнаружен\":\"DS3231 not detected\",\"NTP синхронизирован\":\"NTP synchronized\",\"NTP ожидает синхронизации\":\"NTP waiting for synchronization\",\"недоступен\":\"unavailable\",\"не найден\":\"not found\",\"Нет связи с ESP32\":\"No connection to ESP32\",\"Панель недоступна\":\"Panel unavailable\",\"Выбран город\":\"City selected\",\"Добавлен и выбран город\":\"City added and selected\",\"Не удалось загрузить настройки NTP\":\"Failed to load NTP settings\",\"Достигнут лимит NTP-серверов\":\"NTP server limit reached\",\"Должен остаться хотя бы один сервер\":\"At least one server must remain\",\"Ошибка сохранения NTP\":\"NTP save error\",\"Укажите время и хотя бы один день\":\"Enter a time and select at least one day\",\"Ошибка сохранения будильника\":\"Alarm save error\",\"Не удалось загрузить будильники\":\"Failed to load alarms\",\"Будильник загружен в редактор\":\"Alarm loaded into the editor\",\"Ошибка изменения будильника\":\"Alarm update error\",\"Ошибка удаления будильника\":\"Alarm delete error\",\"Укажите дату и время\":\"Enter date and time\",\"Ошибка соединения с ESP32\":\"ESP32 connection error\",\"Не удалось выполнить поиск\":\"Search failed\",\"Не удалось загрузить список городов\":\"Failed to load the city list\",\"Не удалось сменить город\":\"Failed to change city\",\"Не удалось выбрать город из базы\":\"Failed to select a database city\",\"Не удалось добавить город\":\"Failed to add the city\",\"Не удалось удалить город\":\"Failed to delete the city\"},\"de\":{\"Язык\":\"Sprache\",\"Горизонтальные часы — ESP32\":\"Horizontale Uhr — ESP32\",\"Горизонтальные\":\"Horizontale\",\"часы\":\"Uhr\",\"Обзор\":\"Übersicht\",\"Время и города\":\"Zeit und Städte\",\"NTP-серверы\":\"NTP-Server\",\"Будильники\":\"Wecker\",\"Устройство\":\"Gerät\",\"Локальная панель управления\":\"Lokale Systemsteuerung\",\"Обзор устройства\":\"Geräteübersicht\",\"Wi-Fi: проверка...\":\"WLAN: Prüfung...\",\"Обновить\":\"Aktualisieren\",\"ТЕКУЩЕЕ ВРЕМЯ\":\"AKTUELLE ZEIT\",\"Город и часовой пояс\":\"Stadt und Zeitzone\",\"Синхронизировать\":\"Synchronisieren\",\"Система в норме\":\"System ist bereit\",\"Проверка состояния...\":\"Status wird geprüft...\",\"Источник времени\":\"Zeitquelle\",\"активен\":\"aktiv\",\"Последняя синхронизация\":\"Letzte Synchronisation\",\"Следующая проверка\":\"Nächste Prüfung\",\"по расписанию\":\"geplant\",\"Часовой пояс\":\"Zeitzone\",\"Точность RTC\":\"RTC-Genauigkeit\",\"проверка...\":\"Prüfung...\",\"Время и часовой пояс\":\"Zeit und Zeitzone\",\"Установка времени и выбор города\":\"Zeit einstellen und Stadt wählen\",\"Дата\":\"Datum\",\"Время\":\"Zeit\",\"Город\":\"Stadt\",\"Сохранить время\":\"Zeit speichern\",\"Взять время из NTP\":\"NTP-Zeit übernehmen\",\"Города и часовые пояса\":\"Städte und Zeitzonen\",\"Поиск по встроенным и добавленным городам\":\"Integrierte und hinzugefügte Städte suchen\",\"Поиск города\":\"Stadt suchen\",\"Добавить свой город\":\"Eigene Stadt hinzufügen\",\"Страна\":\"Land\",\"Добавить город\":\"Stadt hinzufügen\",\"Источники синхронизации\":\"Synchronisationsquellen\",\"Настройки сохраняются во flash-памяти устройства\":\"Einstellungen werden im Flash-Speicher gespeichert\",\"+ Добавить сервер\":\"+ Server hinzufügen\",\"Таймаут, мс\":\"Zeitüberschreitung, ms\",\"Период, секунд\":\"Intervall, Sekunden\",\"Сохранить настройки NTP\":\"NTP-Einstellungen speichern\",\"Проверить сейчас\":\"Jetzt prüfen\",\"+ Новый\":\"+ Neu\",\"Редактор будильника\":\"Wecker-Editor\",\"Название\":\"Name\",\"Дни недели\":\"Wochentage\",\"Пн\":\"Mo\",\"Вт\":\"Di\",\"Ср\":\"Mi\",\"Чт\":\"Do\",\"Пт\":\"Fr\",\"Сб\":\"Sa\",\"Вс\":\"So\",\"Сохранить будильник\":\"Wecker speichern\",\"Очистить\":\"Leeren\",\"Диагностика и системные параметры\":\"Diagnose und Systemparameter\",\"Плата\":\"Platine\",\"онлайн\":\"online\",\"Дисплей\":\"Display\",\"готов\":\"bereit\",\"проверка\":\"Prüfung\",\"Свободная память\":\"Freier Speicher\",\"Сетевые настройки\":\"Netzwerkeinstellungen\",\"Скрытые параметры подключения\":\"Verborgene Verbindungsparameter\",\"Имя сети\":\"Netzwerkname\",\"Веб-сервер\":\"Webserver\",\"Включён · порт 80\":\"Aktiviert · Port 80\",\"Выключен\":\"Deaktiviert\",\"Сохранить настройки\":\"Einstellungen speichern\",\"Сервер\":\"Server\",\"приоритет\":\"Priorität\",\"Удалить\":\"Löschen\",\"нет дней\":\"keine Tage\",\"Будильник\":\"Wecker\",\"Изменить\":\"Bearbeiten\",\"Будильники ещё не добавлены\":\"Noch keine Wecker\",\"Подъём\":\"Aufstehen\",\"текущий\":\"aktuell\",\"выбрать\":\"wählen\",\"база\":\"Datenbank\",\"Город не найден\":\"Stadt nicht gefunden\",\"сегодня\":\"heute\",\"сейчас\":\"jetzt\",\"через\":\"in\",\"ч\":\"Std.\",\"мин\":\"Min.\",\"сек\":\"Sek.\",\"ручная\":\"manuell\",\"автоматическая\":\"automatisch\",\"Wi-Fi подключён\":\"WLAN verbunden\",\"Wi-Fi не подключён\":\"WLAN getrennt\",\"Нет соединения\":\"Keine Verbindung\",\"Ожидание NTP\":\"Warten auf NTP\",\"DS3231 обнаружен\":\"DS3231 erkannt\",\"DS3231 не обнаружен\":\"DS3231 nicht erkannt\",\"NTP синхронизирован\":\"NTP synchronisiert\",\"NTP ожидает синхронизации\":\"NTP wartet auf Synchronisation\",\"недоступен\":\"nicht verfügbar\",\"не найден\":\"nicht gefunden\",\"Нет связи с ESP32\":\"Keine Verbindung zum ESP32\",\"Панель недоступна\":\"Panel nicht verfügbar\",\"Выбран город\":\"Stadt ausgewählt\",\"Добавлен и выбран город\":\"Stadt hinzugefügt und ausgewählt\"},\"fr\":{\"Язык\":\"Langue\",\"Горизонтальные часы — ESP32\":\"Horloge horizontale — ESP32\",\"Горизонтальные\":\"Horloge\",\"часы\":\"horizontale\",\"Обзор\":\"Aperçu\",\"Время и города\":\"Heure et villes\",\"NTP-серверы\":\"Serveurs NTP\",\"Будильники\":\"Alarmes\",\"Устройство\":\"Appareil\",\"Локальная панель управления\":\"Panneau de commande local\",\"Обзор устройства\":\"Aperçu de l’appareil\",\"Wi-Fi: проверка...\":\"Wi-Fi : vérification...\",\"Обновить\":\"Actualiser\",\"ТЕКУЩЕЕ ВРЕМЯ\":\"HEURE ACTUELLE\",\"Город и часовой пояс\":\"Ville et fuseau horaire\",\"Синхронизировать\":\"Synchroniser\",\"Система в норме\":\"Système opérationnel\",\"Проверка состояния...\":\"Vérification de l’état...\",\"Источник времени\":\"Source de temps\",\"активен\":\"actif\",\"Последняя синхронизация\":\"Dernière synchronisation\",\"Следующая проверка\":\"Prochaine vérification\",\"по расписанию\":\"planifiée\",\"Часовой пояс\":\"Fuseau horaire\",\"Точность RTC\":\"Précision RTC\",\"проверка...\":\"vérification...\",\"Время и часовой пояс\":\"Heure et fuseau horaire\",\"Установка времени и выбор города\":\"Régler l’heure et choisir une ville\",\"Дата\":\"Date\",\"Время\":\"Heure\",\"Город\":\"Ville\",\"Сохранить время\":\"Enregistrer l’heure\",\"Взять время из NTP\":\"Utiliser l’heure NTP\",\"Города и часовые пояса\":\"Villes et fuseaux horaires\",\"Поиск по встроенным и добавленным городам\":\"Rechercher les villes intégrées et ajoutées\",\"Поиск города\":\"Rechercher une ville\",\"Добавить свой город\":\"Ajouter votre ville\",\"Страна\":\"Pays\",\"Добавить город\":\"Ajouter une ville\",\"Источники синхронизации\":\"Sources de synchronisation\",\"Настройки сохраняются во flash-памяти устройства\":\"Les paramètres sont enregistrés dans la mémoire flash\",\"+ Добавить сервер\":\"+ Ajouter un serveur\",\"Таймаут, мс\":\"Délai, ms\",\"Период, секунд\":\"Intervalle, secondes\",\"Сохранить настройки NTP\":\"Enregistrer les paramètres NTP\",\"Проверить сейчас\":\"Vérifier maintenant\",\"+ Новый\":\"+ Nouveau\",\"Редактор будильника\":\"Éditeur d’alarme\",\"Название\":\"Nom\",\"Дни недели\":\"Jours de la semaine\",\"Пн\":\"Lun\",\"Вт\":\"Mar\",\"Ср\":\"Mer\",\"Чт\":\"Jeu\",\"Пт\":\"Ven\",\"Сб\":\"Sam\",\"Вс\":\"Dim\",\"Сохранить будильник\":\"Enregistrer l’alarme\",\"Очистить\":\"Effacer\",\"Диагностика и системные параметры\":\"Diagnostic et paramètres système\",\"Плата\":\"Carte\",\"онлайн\":\"en ligne\",\"Дисплей\":\"Écran\",\"готов\":\"prêt\",\"проверка\":\"vérification\",\"Свободная память\":\"Mémoire libre\",\"Сетевые настройки\":\"Paramètres réseau\",\"Скрытые параметры подключения\":\"Paramètres de connexion masqués\",\"Имя сети\":\"Nom du réseau\",\"Веб-сервер\":\"Serveur web\",\"Включён · порт 80\":\"Activé · port 80\",\"Выключен\":\"Désactivé\",\"Сохранить настройки\":\"Enregistrer les paramètres\",\"Сервер\":\"Serveur\",\"приоритет\":\"priorité\",\"Удалить\":\"Supprimer\",\"нет дней\":\"aucun jour\",\"Будильник\":\"Alarme\",\"Изменить\":\"Modifier\",\"Будильники ещё не добавлены\":\"Aucune alarme\",\"Подъём\":\"Réveil\",\"текущий\":\"actuelle\",\"выбрать\":\"choisir\",\"база\":\"base\",\"Город не найден\":\"Ville introuvable\",\"сегодня\":\"aujourd’hui\",\"сейчас\":\"maintenant\",\"через\":\"dans\",\"ч\":\"h\",\"мин\":\"min\",\"сек\":\"s\",\"ручная\":\"manuelle\",\"автоматическая\":\"automatique\",\"Wi-Fi подключён\":\"Wi-Fi connecté\",\"Wi-Fi не подключён\":\"Wi-Fi déconnecté\",\"Нет соединения\":\"Aucune connexion\",\"Ожидание NTP\":\"En attente NTP\",\"DS3231 обнаружен\":\"DS3231 détecté\",\"DS3231 не обнаружен\":\"DS3231 non détecté\",\"NTP синхронизирован\":\"NTP synchronisé\",\"NTP ожидает синхронизации\":\"NTP attend la synchronisation\",\"недоступен\":\"indisponible\",\"не найден\":\"introuvable\",\"Нет связи с ESP32\":\"Aucune connexion à l’ESP32\",\"Панель недоступна\":\"Panneau indisponible\",\"Выбран город\":\"Ville sélectionnée\",\"Добавлен и выбран город\":\"Ville ajoutée et sélectionnée\"},\"es\":{\"Язык\":\"Idioma\",\"Горизонтальные часы — ESP32\":\"Reloj horizontal — ESP32\",\"Горизонтальные\":\"Reloj\",\"часы\":\"horizontal\",\"Обзор\":\"Resumen\",\"Время и города\":\"Hora y ciudades\",\"NTP-серверы\":\"Servidores NTP\",\"Будильники\":\"Alarmas\",\"Устройство\":\"Dispositivo\",\"Локальная панель управления\":\"Panel de control local\",\"Обзор устройства\":\"Resumen del dispositivo\",\"Wi-Fi: проверка...\":\"Wi-Fi: comprobando...\",\"Обновить\":\"Actualizar\",\"ТЕКУЩЕЕ ВРЕМЯ\":\"HORA ACTUAL\",\"Город и часовой пояс\":\"Ciudad y zona horaria\",\"Синхронизировать\":\"Sincronizar\",\"Система в норме\":\"Sistema correcto\",\"Проверка состояния...\":\"Comprobando estado...\",\"Источник времени\":\"Fuente de hora\",\"активен\":\"activo\",\"Последняя синхронизация\":\"Última sincronización\",\"Следующая проверка\":\"Próxima comprobación\",\"по расписанию\":\"programada\",\"Часовой пояс\":\"Zona horaria\",\"Точность RTC\":\"Precisión RTC\",\"проверка...\":\"comprobando...\",\"Время и часовой пояс\":\"Hora y zona horaria\",\"Установка времени и выбор города\":\"Ajustar la hora y elegir ciudad\",\"Дата\":\"Fecha\",\"Время\":\"Hora\",\"Город\":\"Ciudad\",\"Сохранить время\":\"Guardar hora\",\"Взять время из NTP\":\"Usar hora NTP\",\"Города и часовые пояса\":\"Ciudades y zonas horarias\",\"Поиск по встроенным и добавленным городам\":\"Buscar ciudades integradas y añadidas\",\"Поиск города\":\"Buscar ciudad\",\"Добавить свой город\":\"Añadir tu ciudad\",\"Страна\":\"País\",\"Добавить город\":\"Añadir ciudad\",\"Источники синхронизации\":\"Fuentes de sincronización\",\"Настройки сохраняются во flash-памяти устройства\":\"Los ajustes se guardan en la memoria flash\",\"+ Добавить сервер\":\"+ Añadir servidor\",\"Таймаут, мс\":\"Tiempo de espera, ms\",\"Период, секунд\":\"Intervalo, segundos\",\"Сохранить настройки NTP\":\"Guardar ajustes NTP\",\"Проверить сейчас\":\"Comprobar ahora\",\"+ Новый\":\"+ Nueva\",\"Редактор будильника\":\"Editor de alarma\",\"Название\":\"Nombre\",\"Дни недели\":\"Días de la semana\",\"Пн\":\"Lun\",\"Вт\":\"Mar\",\"Ср\":\"Mié\",\"Чт\":\"Jue\",\"Пт\":\"Vie\",\"Сб\":\"Sáb\",\"Вс\":\"Dom\",\"Сохранить будильник\":\"Guardar alarma\",\"Очистить\":\"Limpiar\",\"Диагностика и системные параметры\":\"Diagnóstico y parámetros del sistema\",\"Плата\":\"Placa\",\"онлайн\":\"en línea\",\"Дисплей\":\"Pantalla\",\"готов\":\"listo\",\"проверка\":\"comprobando\",\"Свободная память\":\"Memoria libre\",\"Сетевые настройки\":\"Ajustes de red\",\"Скрытые параметры подключения\":\"Parámetros de conexión ocultos\",\"Имя сети\":\"Nombre de red\",\"Веб-сервер\":\"Servidor web\",\"Включён · порт 80\":\"Activado · puerto 80\",\"Выключен\":\"Desactivado\",\"Сохранить настройки\":\"Guardar ajustes\",\"Сервер\":\"Servidor\",\"приоритет\":\"prioridad\",\"Удалить\":\"Eliminar\",\"нет дней\":\"sin días\",\"Будильник\":\"Alarma\",\"Изменить\":\"Editar\",\"Будильники ещё не добавлены\":\"Aún no hay alarmas\",\"Подъём\":\"Despertar\",\"текущий\":\"actual\",\"выбрать\":\"elegir\",\"база\":\"base\",\"Город не найден\":\"Ciudad no encontrada\",\"сегодня\":\"hoy\",\"сейчас\":\"ahora\",\"через\":\"en\",\"ч\":\"h\",\"мин\":\"min\",\"сек\":\"s\",\"ручная\":\"manual\",\"автоматическая\":\"automática\",\"Wi-Fi подключён\":\"Wi-Fi conectado\",\"Wi-Fi не подключён\":\"Wi-Fi desconectado\",\"Нет соединения\":\"Sin conexión\",\"Ожидание NTP\":\"Esperando NTP\",\"DS3231 обнаружен\":\"DS3231 detectado\",\"DS3231 не обнаружен\":\"DS3231 no detectado\",\"NTP синхронизирован\":\"NTP sincronizado\",\"NTP ожидает синхронизации\":\"NTP espera sincronización\",\"недоступен\":\"no disponible\",\"не найден\":\"no encontrado\",\"Нет связи с ESP32\":\"Sin conexión con ESP32\",\"Панель недоступна\":\"Panel no disponible\",\"Выбран город\":\"Ciudad seleccionada\",\"Добавлен и выбран город\":\"Ciudad añadida y seleccionada\"},\"zh\":{\"Язык\":\"语言\",\"Горизонтальные часы — ESP32\":\"横式时钟 — ESP32\",\"Горизонтальные\":\"横式\",\"часы\":\"时钟\",\"Обзор\":\"概览\",\"Время и города\":\"时间和城市\",\"NTP-серверы\":\"NTP 服务器\",\"Будильники\":\"闹钟\",\"Устройство\":\"设备\",\"Локальная панель управления\":\"本地控制面板\",\"Обзор устройства\":\"设备概览\",\"Wi-Fi: проверка...\":\"Wi-Fi：检查中…\",\"Обновить\":\"刷新\",\"ТЕКУЩЕЕ ВРЕМЯ\":\"当前时间\",\"Город и часовой пояс\":\"城市和时区\",\"Синхронизировать\":\"同步\",\"Система в норме\":\"系统正常\",\"Проверка состояния...\":\"正在检查状态…\",\"Источник времени\":\"时间来源\",\"активен\":\"启用\",\"Последняя синхронизация\":\"上次同步\",\"Следующая проверка\":\"下次检查\",\"по расписанию\":\"按计划\",\"Часовой пояс\":\"时区\",\"Точность RTC\":\"RTC 精度\",\"проверка...\":\"检查中…\",\"Время и часовой пояс\":\"时间和时区\",\"Установка времени и выбор города\":\"设置时间并选择城市\",\"Дата\":\"日期\",\"Время\":\"时间\",\"Город\":\"城市\",\"Сохранить время\":\"保存时间\",\"Взять время из NTP\":\"使用 NTP 时间\",\"Города и часовые пояса\":\"城市和时区\",\"Поиск по встроенным и добавленным городам\":\"搜索内置和已添加的城市\",\"Поиск города\":\"搜索城市\",\"Добавить свой город\":\"添加自定义城市\",\"Страна\":\"国家\",\"Добавить город\":\"添加城市\",\"Источники синхронизации\":\"同步来源\",\"Настройки сохраняются во flash-памяти устройства\":\"设置保存在设备闪存中\",\"+ Добавить сервер\":\"+ 添加服务器\",\"Таймаут, мс\":\"超时，毫秒\",\"Период, секунд\":\"间隔，秒\",\"Сохранить настройки NTP\":\"保存 NTP 设置\",\"Проверить сейчас\":\"立即检查\",\"+ Новый\":\"+ 新建\",\"Редактор будильника\":\"闹钟编辑器\",\"Название\":\"名称\",\"Дни недели\":\"星期\",\"Пн\":\"周一\",\"Вт\":\"周二\",\"Ср\":\"周三\",\"Чт\":\"周四\",\"Пт\":\"周五\",\"Сб\":\"周六\",\"Вс\":\"周日\",\"Сохранить будильник\":\"保存闹钟\",\"Очистить\":\"清除\",\"Диагностика и системные параметры\":\"诊断和系统参数\",\"Плата\":\"开发板\",\"онлайн\":\"在线\",\"Дисплей\":\"显示屏\",\"готов\":\"就绪\",\"проверка\":\"检查中\",\"Свободная память\":\"可用内存\",\"Сетевые настройки\":\"网络设置\",\"Скрытые параметры подключения\":\"隐藏的连接参数\",\"Имя сети\":\"网络名称\",\"Веб-сервер\":\"Web 服务器\",\"Включён · порт 80\":\"已启用 · 端口 80\",\"Выключен\":\"已禁用\",\"Сохранить настройки\":\"保存设置\",\"Сервер\":\"服务器\",\"приоритет\":\"优先级\",\"Удалить\":\"删除\",\"нет дней\":\"无日期\",\"Будильник\":\"闹钟\",\"Изменить\":\"编辑\",\"Будильники ещё не добавлены\":\"尚未添加闹钟\",\"Подъём\":\"起床\",\"текущий\":\"当前\",\"выбрать\":\"选择\",\"база\":\"数据库\",\"Город не найден\":\"未找到城市\",\"сегодня\":\"今天\",\"сейчас\":\"现在\",\"через\":\"还有\",\"ч\":\"小时\",\"мин\":\"分钟\",\"сек\":\"秒\",\"ручная\":\"手动\",\"автоматическая\":\"自动\",\"Wi-Fi подключён\":\"Wi-Fi 已连接\",\"Wi-Fi не подключён\":\"Wi-Fi 未连接\",\"Нет соединения\":\"无连接\",\"Ожидание NTP\":\"等待 NTP\",\"DS3231 обнаружен\":\"检测到 DS3231\",\"DS3231 не обнаружен\":\"未检测到 DS3231\",\"NTP синхронизирован\":\"NTP 已同步\",\"NTP ожидает синхронизации\":\"NTP 等待同步\",\"недоступен\":\"不可用\",\"не найден\":\"未找到\",\"Нет связи с ESP32\":\"无法连接 ESP32\",\"Панель недоступна\":\"面板不可用\",\"Выбран город\":\"已选择城市\",\"Добавлен и выбран город\":\"已添加并选择城市\"}};\nlet uiLang='ru';\ntry{const saved=localStorage.getItem('clockLanguage');const browser=(navigator.language||'ru').slice(0,2);uiLang=UI_LOCALES[saved]?saved:(UI_LOCALES[browser]?browser:'ru')}catch(e){}\nfunction t(s){return (I18N[uiLang]&&I18N[uiLang][s])||s}\nconst i18nOriginal=new WeakMap();\nfunction localize(root){\n const scope=root&&root.nodeType?root:document;\n if(scope.nodeType===1){const source=i18nOriginal.get(scope)||scope.textContent.trim();if(source&&scope.children.length===0){i18nOriginal.set(scope,source);scope.textContent=t(source)}}\n if(scope.nodeType!==1&&scope.nodeType!==9&&scope.nodeType!==11)return;\n const walker=document.createTreeWalker(scope,NodeFilter.SHOW_TEXT);\n const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);\n nodes.forEach(node=>{const parent=node.parentElement;if(!parent||parent.closest('script,style'))return;const raw=node.nodeValue;if(!raw.trim())return;const source=i18nOriginal.get(node)||raw.trim();i18nOriginal.set(node,source);const leading=raw.match(/^\\s*/)[0],trailing=raw.match(/\\s*$/)[0];node.nodeValue=leading+t(source)+trailing});\n if(scope.querySelectorAll)scope.querySelectorAll('[placeholder],[title],[aria-label]').forEach(el=>['placeholder','title','aria-label'].forEach(attr=>{if(!el.hasAttribute(attr))return;const source=i18nOriginal.get(el)||el.getAttribute(attr);i18nOriginal.set(el,source);el.setAttribute(attr,t(source))}));\n document.documentElement.lang=uiLang;document.title=t('Горизонтальные часы — ESP32');\n const select=document.getElementById('languageSelect');if(select)select.value=uiLang;\n}\nfunction setLanguage(lang){if(!UI_LOCALES[lang])return;uiLang=lang;try{localStorage.setItem('clockLanguage',lang)}catch(e){}localize();renderNtp();renderAlarms();renderCityResults(cityData);renderSyncInfo();updateStatus()}\ndocument.getElementById('languageSelect').addEventListener('change',e=>setLanguage(e.target.value));\nnew MutationObserver(records=>records.forEach(record=>record.addedNodes.forEach(node=>localize(node)))).observe(document.body,{childList:true,subtree:true});\ndocument.getElementById('favicon').href=document.querySelector('.brand-logo').src;const titles={dashboard:'Обзор устройства',time:'Время и города',ntp:'NTP-серверы',alarms:'Будильники',device:'Устройство'};let ntps=[];let alarms=[];function toast(s){const toastEl=document.getElementById('toast');toastEl.textContent=t(s);toastEl.classList.add('show');setTimeout(()=>toastEl.classList.remove('show'),2600)}function renderNtp(){document.getElementById('ntpList').innerHTML=ntps.map((n,i)=>`<div class=\"row\"><div class=\"row-main\"><div class=\"field\"><label>Сервер ${i+1}</label><input value=\"${n.host}\" oninput=\"ntps[${i}].host=this.value\"></div><div class=\"row-meta\">приоритет ${i+1}</div></div><div class=\"row-actions\"><label class=\"switch\"><input type=\"checkbox\" ${n.enabled?'checked':''} onchange=\"ntps[${i}].enabled=this.checked\"><span class=\"slider\"></span></label><button class=\"btn btn-danger\" onclick=\"removeNtp(${i})\">Удалить</button></div></div>`).join('')}function loadNtp(){fetch('/ntp').then(r=>r.js"
+    "lass=\"footer-note\">© МХ «КРЯК», 2026</div>  </main></div><div class=\"toast\" id=\"toast\"></div><script>\nconst UI_LOCALES={ru:'ru-RU',en:'en-US',de:'de-DE',fr:'fr-FR',es:'es-ES',zh:'zh-CN'};\nconst I18N={\"en\":{\"Язык\":\"Language\",\"Горизонтальные часы — ESP32\":\"Horizontal clock — ESP32\",\"Горизонтальные\":\"Horizontal\",\"часы\":\"clock\",\"Обзор\":\"Overview\",\"Время и города\":\"Time and cities\",\"NTP-серверы\":\"NTP servers\",\"Будильники\":\"Alarms\",\"Устройство\":\"Device\",\"Локальная панель управления\":\"Local control panel\",\"Обзор устройства\":\"Device overview\",\"Wi-Fi: проверка...\":\"Wi-Fi: checking...\",\"Обновить\":\"Refresh\",\"ТЕКУЩЕЕ ВРЕМЯ\":\"CURRENT TIME\",\"Город и часовой пояс\":\"City and time zone\",\"Синхронизировать\":\"Synchronize\",\"Система в норме\":\"System is healthy\",\"Проверка состояния...\":\"Checking status...\",\"Источник времени\":\"Time source\",\"активен\":\"active\",\"Последняя синхронизация\":\"Last synchronization\",\"Следующая проверка\":\"Next check\",\"по расписанию\":\"scheduled\",\"Часовой пояс\":\"Time zone\",\"Точность RTC\":\"RTC accuracy\",\"проверка...\":\"checking...\",\"Время и часовой пояс\":\"Time and time zone\",\"Установка времени и выбор города\":\"Set time and select a city\",\"Дата\":\"Date\",\"Время\":\"Time\",\"Город\":\"City\",\"Сохранить время\":\"Save time\",\"Взять время из NTP\":\"Use NTP time\",\"Города и часовые пояса\":\"Cities and time zones\",\"Поиск по встроенным и добавленным городам\":\"Search built-in and added cities\",\"Поиск города\":\"City search\",\"Для пользовательского города укажите POSIX-строку часового пояса. Пример для Москвы:\":\"For a custom city, enter a POSIX time-zone string. Example for Moscow:\",\"Добавить свой город\":\"Add your city\",\"Страна\":\"Country\",\"Добавить город\":\"Add city\",\"Источники синхронизации\":\"Synchronization sources\",\"Настройки сохраняются во flash-памяти устройства\":\"Settings are stored in the device flash memory\",\"+ Добавить сервер\":\"+ Add server\",\"Таймаут, мс\":\"Timeout, ms\",\"Период, секунд\":\"Interval, seconds\",\"Активные серверы опрашиваются по порядку. При ручной синхронизации ESP32 последовательно пробует все включённые источники.\":\"Active servers are queried in order. During manual synchronization, ESP32 tries every enabled source.\",\"Сохранить настройки NTP\":\"Save NTP settings\",\"Проверить сейчас\":\"Check now\",\"До 8 событий. Срабатывание фиксируется в serial monitor.\":\"Up to 8 events. Triggering is recorded in the serial monitor.\",\"+ Новый\":\"+ New\",\"Редактор будильника\":\"Alarm editor\",\"Расписание сохраняется во flash-памяти ESP32\":\"The schedule is stored in ESP32 flash memory\",\"Название\":\"Name\",\"Дни недели\":\"Days of the week\",\"Пн\":\"Mon\",\"Вт\":\"Tue\",\"Ср\":\"Wed\",\"Чт\":\"Thu\",\"Пт\":\"Fri\",\"Сб\":\"Sat\",\"Вс\":\"Sun\",\"Сохранить будильник\":\"Save alarm\",\"Очистить\":\"Clear\",\"Диагностика и системные параметры\":\"Diagnostics and system parameters\",\"Плата\":\"Board\",\"онлайн\":\"online\",\"Дисплей\":\"Display\",\"готов\":\"ready\",\"проверка\":\"checking\",\"Свободная память\":\"Free memory\",\"Сетевые настройки\":\"Network settings\",\"Скрытые параметры подключения\":\"Hidden connection parameters\",\"Имя сети\":\"Network name\",\"Веб-сервер\":\"Web server\",\"Включён · порт 80\":\"Enabled · port 80\",\"Выключен\":\"Disabled\",\"Сохранить настройки\":\"Save settings\",\"Сервер\":\"Server\",\"приоритет\":\"priority\",\"Удалить\":\"Delete\",\"нет дней\":\"no days\",\"Будильник\":\"Alarm\",\"Изменить\":\"Edit\",\"Будильники ещё не добавлены\":\"No alarms yet\",\"Подъём\":\"Wake up\",\"текущий\":\"current\",\"выбрать\":\"select\",\"база\":\"database\",\"Город не найден\":\"City not found\",\"сегодня\":\"today\",\"сейчас\":\"now\",\"через\":\"in\",\"ч\":\"h\",\"мин\":\"min\",\"сек\":\"s\",\"ручная\":\"manual\",\"автоматическая\":\"automatic\",\"Wi-Fi подключён\":\"Wi-Fi connected\",\"Wi-Fi не подключён\":\"Wi-Fi disconnected\",\"Нет соединения\":\"No connection\",\"Ожидание NTP\":\"Waiting for NTP\",\"DS3231 обнаружен\":\"DS3231 detected\",\"DS3231 не обнаружен\":\"DS3231 not detected\",\"NTP синхронизирован\":\"NTP synchronized\",\"NTP ожидает синхронизации\":\"NTP waiting for synchronization\",\"недоступен\":\"unavailable\",\"не найден\":\"not found\",\"Нет связи с ESP32\":\"No connection to ESP32\",\"Панель недоступна\":\"Panel unavailable\",\"Выбран город\":\"City selected\",\"Добавлен и выбран город\":\"City added and selected\",\"Не удалось загрузить настройки NTP\":\"Failed to load NTP settings\",\"Достигнут лимит NTP-серверов\":\"NTP server limit reached\",\"Должен остаться хотя бы один сервер\":\"At least one server must remain\",\"Ошибка сохранения NTP\":\"NTP save error\",\"Укажите время и хотя бы один день\":\"Enter a time and select at least one day\",\"Ошибка сохранения будильника\":\"Alarm save error\",\"Не удалось загрузить будильники\":\"Failed to load alarms\",\"Будильник загружен в редактор\":\"Alarm loaded into the editor\",\"Ошибка изменения будильника\":\"Alarm update error\",\"Ошибка удаления будильника\":\"Alarm delete error\",\"Укажите дату и время\":\"Enter date and time\",\"Ошибка соединения с ESP32\":\"ESP32 connection error\",\"Не удалось выполнить поиск\":\"Search failed\",\"Не удалось загрузить список городов\":\"Failed to load the city list\",\"Не удалось сменить город\":\"Failed to change city\",\"Не удалось выбрать город из базы\":\"Failed to select a database city\",\"Не удалось добавить город\":\"Failed to add the city\",\"Не удалось удалить город\":\"Failed to delete the city\"},\"de\":{\"Язык\":\"Sprache\",\"Горизонтальные часы — ESP32\":\"Horizontale Uhr — ESP32\",\"Горизонтальные\":\"Horizontale\",\"часы\":\"Uhr\",\"Обзор\":\"Übersicht\",\"Время и города\":\"Zeit und Städte\",\"NTP-серверы\":\"NTP-Server\",\"Будильники\":\"Wecker\",\"Устройство\":\"Gerät\",\"Локальная панель управления\":\"Lokale Systemsteuerung\",\"Обзор устройства\":\"Geräteübersicht\",\"Wi-Fi: проверка...\":\"WLAN: Prüfung...\",\"Обновить\":\"Aktualisieren\",\"ТЕКУЩЕЕ ВРЕМЯ\":\"AKTUELLE ZEIT\",\"Город и часовой пояс\":\"Stadt und Zeitzone\",\"Синхронизировать\":\"Synchronisieren\",\"Система в норме\":\"System ist bereit\",\"Проверка состояния...\":\"Status wird geprüft...\",\"Источник времени\":\"Zeitquelle\",\"активен\":\"aktiv\",\"Последняя синхронизация\":\"Letzte Synchronisation\",\"Следующая проверка\":\"Nächste Prüfung\",\"по расписанию\":\"geplant\",\"Часовой пояс\":\"Zeitzone\",\"Точность RTC\":\"RTC-Genauigkeit\",\"проверка...\":\"Prüfung...\",\"Время и часовой пояс\":\"Zeit und Zeitzone\",\"Установка времени и выбор города\":\"Zeit einstellen und Stadt wählen\",\"Дата\":\"Datum\",\"Время\":\"Zeit\",\"Город\":\"Stadt\",\"Сохранить время\":\"Zeit speichern\",\"Взять время из NTP\":\"NTP-Zeit übernehmen\",\"Города и часовые пояса\":\"Städte und Zeitzonen\",\"Поиск по встроенным и добавленным городам\":\"Integrierte und hinzugefügte Städte suchen\",\"Поиск города\":\"Stadt suchen\",\"Добавить свой город\":\"Eigene Stadt hinzufügen\",\"Страна\":\"Land\",\"Добавить город\":\"Stadt hinzufügen\",\"Источники синхронизации\":\"Synchronisationsquellen\",\"Настройки сохраняются во flash-памяти устройства\":\"Einstellungen werden im Flash-Speicher gespeichert\",\"+ Добавить сервер\":\"+ Server hinzufügen\",\"Таймаут, мс\":\"Zeitüberschreitung, ms\",\"Период, секунд\":\"Intervall, Sekunden\",\"Сохранить настройки NTP\":\"NTP-Einstellungen speichern\",\"Проверить сейчас\":\"Jetzt prüfen\",\"+ Новый\":\"+ Neu\",\"Редактор будильника\":\"Wecker-Editor\",\"Название\":\"Name\",\"Дни недели\":\"Wochentage\",\"Пн\":\"Mo\",\"Вт\":\"Di\",\"Ср\":\"Mi\",\"Чт\":\"Do\",\"Пт\":\"Fr\",\"Сб\":\"Sa\",\"Вс\":\"So\",\"Сохранить будильник\":\"Wecker speichern\",\"Очистить\":\"Leeren\",\"Диагностика и системные параметры\":\"Diagnose und Systemparameter\",\"Плата\":\"Platine\",\"онлайн\":\"online\",\"Дисплей\":\"Display\",\"готов\":\"bereit\",\"проверка\":\"Prüfung\",\"Свободная память\":\"Freier Speicher\",\"Сетевые настройки\":\"Netzwerkeinstellungen\",\"Скрытые параметры подключения\":\"Verborgene Verbindungsparameter\",\"Имя сети\":\"Netzwerkname\",\"Веб-сервер\":\"Webserver\",\"Включён · порт 80\":\"Aktiviert · Port 80\",\"Выключен\":\"Deaktiviert\",\"Сохранить настройки\":\"Einstellungen speichern\",\"Сервер\":\"Server\",\"приоритет\":\"Priorität\",\"Удалить\":\"Löschen\",\"нет дней\":\"keine Tage\",\"Будильник\":\"Wecker\",\"Изменить\":\"Bearbeiten\",\"Будильники ещё не добавлены\":\"Noch keine Wecker\",\"Подъём\":\"Aufstehen\",\"текущий\":\"aktuell\",\"выбрать\":\"wählen\",\"база\":\"Datenbank\",\"Город не найден\":\"Stadt nicht gefunden\",\"сегодня\":\"heute\",\"сейчас\":\"jetzt\",\"через\":\"in\",\"ч\":\"Std.\",\"мин\":\"Min.\",\"сек\":\"Sek.\",\"ручная\":\"manuell\",\"автоматическая\":\"automatisch\",\"Wi-Fi подключён\":\"WLAN verbunden\",\"Wi-Fi не подключён\":\"WLAN getrennt\",\"Нет соединения\":\"Keine Verbindung\",\"Ожидание NTP\":\"Warten auf NTP\",\"DS3231 обнаружен\":\"DS3231 erkannt\",\"DS3231 не обнаружен\":\"DS3231 nicht erkannt\",\"NTP синхронизирован\":\"NTP synchronisiert\",\"NTP ожидает синхронизации\":\"NTP wartet auf Synchronisation\",\"недоступен\":\"nicht verfügbar\",\"не найден\":\"nicht gefunden\",\"Нет связи с ESP32\":\"Keine Verbindung zum ESP32\",\"Панель недоступна\":\"Panel nicht verfügbar\",\"Выбран город\":\"Stadt ausgewählt\",\"Добавлен и выбран город\":\"Stadt hinzugefügt und ausgewählt\"},\"fr\":{\"Язык\":\"Langue\",\"Горизонтальные часы — ESP32\":\"Horloge horizontale — ESP32\",\"Горизонтальные\":\"Horloge\",\"часы\":\"horizontale\",\"Обзор\":\"Aperçu\",\"Время и города\":\"Heure et villes\",\"NTP-серверы\":\"Serveurs NTP\",\"Будильники\":\"Alarmes\",\"Устройство\":\"Appareil\",\"Локальная панель управления\":\"Panneau de commande local\",\"Обзор устройства\":\"Aperçu de l’appareil\",\"Wi-Fi: проверка...\":\"Wi-Fi : vérification...\",\"Обновить\":\"Actualiser\",\"ТЕКУЩЕЕ ВРЕМЯ\":\"HEURE ACTUELLE\",\"Город и часовой пояс\":\"Ville et fuseau horaire\",\"Синхронизировать\":\"Synchroniser\",\"Система в норме\":\"Système opérationnel\",\"Проверка состояния...\":\"Vérification de l’état...\",\"Источник времени\":\"Source de temps\",\"активен\":\"actif\",\"Последняя синхронизация\":\"Dernière synchronisation\",\"Следующая проверка\":\"Prochaine vérification\",\"по расписанию\":\"planifiée\",\"Часовой пояс\":\"Fuseau horaire\",\"Точность RTC\":\"Précision RTC\",\"проверка...\":\"vérification...\",\"Время и часовой пояс\":\"Heure et fuseau horaire\",\"Установка времени и выбор города\":\"Régler l’heure et choisir une ville\",\"Дата\":\"Date\",\"Время\":\"Heure\",\"Город\":\"Ville\",\"Сохранить время\":\"Enregistrer l’heure\",\"Взять время из NTP\":\"Utiliser l’heure NTP\",\"Города и часовые пояса\":\"Villes et fuseaux horaires\",\"Поиск по встроенным и добавленным городам\":\"Rechercher les villes intégrées et ajoutées\",\"Поиск города\":\"Rechercher une ville\",\"Добавить свой город\":\"Ajouter votre ville\",\"Страна\":\"Pays\",\"Добавить город\":\"Ajouter une ville\",\"Источники синхронизации\":\"Sources de synchronisation\",\"Настройки сохраняются во flash-памяти устройства\":\"Les paramètres sont enregistrés dans la mémoire flash\",\"+ Добавить сервер\":\"+ Ajouter un serveur\",\"Таймаут, мс\":\"Délai, ms\",\"Период, секунд\":\"Intervalle, secondes\",\"Сохранить настройки NTP\":\"Enregistrer les paramètres NTP\",\"Проверить сейчас\":\"Vérifier maintenant\",\"+ Новый\":\"+ Nouveau\",\"Редактор будильника\":\"Éditeur d’alarme\",\"Название\":\"Nom\",\"Дни недели\":\"Jours de la semaine\",\"Пн\":\"Lun\",\"Вт\":\"Mar\",\"Ср\":\"Mer\",\"Чт\":\"Jeu\",\"Пт\":\"Ven\",\"Сб\":\"Sam\",\"Вс\":\"Dim\",\"Сохранить будильник\":\"Enregistrer l’alarme\",\"Очистить\":\"Effacer\",\"Диагностика и системные параметры\":\"Diagnostic et paramètres système\",\"Плата\":\"Carte\",\"онлайн\":\"en ligne\",\"Дисплей\":\"Écran\",\"готов\":\"prêt\",\"проверка\":\"vérification\",\"Свободная память\":\"Mémoire libre\",\"Сетевые настройки\":\"Paramètres réseau\",\"Скрытые параметры подключения\":\"Paramètres de connexion masqués\",\"Имя сети\":\"Nom du réseau\",\"Веб-сервер\":\"Serveur web\",\"Включён · порт 80\":\"Activé · port 80\",\"Выключен\":\"Désactivé\",\"Сохранить настройки\":\"Enregistrer les paramètres\",\"Сервер\":\"Serveur\",\"приоритет\":\"priorité\",\"Удалить\":\"Supprimer\",\"нет дней\":\"aucun jour\",\"Будильник\":\"Alarme\",\"Изменить\":\"Modifier\",\"Будильники ещё не добавлены\":\"Aucune alarme\",\"Подъём\":\"Réveil\",\"текущий\":\"actuelle\",\"выбрать\":\"choisir\",\"база\":\"base\",\"Город не найден\":\"Ville introuvable\",\"сегодня\":\"aujourd’hui\",\"сейчас\":\"maintenant\",\"через\":\"dans\",\"ч\":\"h\",\"мин\":\"min\",\"сек\":\"s\",\"ручная\":\"manuelle\",\"автоматическая\":\"automatique\",\"Wi-Fi подключён\":\"Wi-Fi connecté\",\"Wi-Fi не подключён\":\"Wi-Fi déconnecté\",\"Нет соединения\":\"Aucune connexion\",\"Ожидание NTP\":\"En attente NTP\",\"DS3231 обнаружен\":\"DS3231 détecté\",\"DS3231 не обнаружен\":\"DS3231 non détecté\",\"NTP синхронизирован\":\"NTP synchronisé\",\"NTP ожидает синхронизации\":\"NTP attend la synchronisation\",\"недоступен\":\"indisponible\",\"не найден\":\"introuvable\",\"Нет связи с ESP32\":\"Aucune connexion à l’ESP32\",\"Панель недоступна\":\"Panneau indisponible\",\"Выбран город\":\"Ville sélectionnée\",\"Добавлен и выбран город\":\"Ville ajoutée et sélectionnée\"},\"es\":{\"Язык\":\"Idioma\",\"Горизонтальные часы — ESP32\":\"Reloj horizontal — ESP32\",\"Горизонтальные\":\"Reloj\",\"часы\":\"horizontal\",\"Обзор\":\"Resumen\",\"Время и города\":\"Hora y ciudades\",\"NTP-серверы\":\"Servidores NTP\",\"Будильники\":\"Alarmas\",\"Устройство\":\"Dispositivo\",\"Локальная панель управления\":\"Panel de control local\",\"Обзор устройства\":\"Resumen del dispositivo\",\"Wi-Fi: проверка...\":\"Wi-Fi: comprobando...\",\"Обновить\":\"Actualizar\",\"ТЕКУЩЕЕ ВРЕМЯ\":\"HORA ACTUAL\",\"Город и часовой пояс\":\"Ciudad y zona horaria\",\"Синхронизировать\":\"Sincronizar\",\"Система в норме\":\"Sistema correcto\",\"Проверка состояния...\":\"Comprobando estado...\",\"Источник времени\":\"Fuente de hora\",\"активен\":\"activo\",\"Последняя синхронизация\":\"Última sincronización\",\"Следующая проверка\":\"Próxima comprobación\",\"по расписанию\":\"programada\",\"Часовой пояс\":\"Zona horaria\",\"Точность RTC\":\"Precisión RTC\",\"проверка...\":\"comprobando...\",\"Время и часовой пояс\":\"Hora y zona horaria\",\"Установка времени и выбор города\":\"Ajustar la hora y elegir ciudad\",\"Дата\":\"Fecha\",\"Время\":\"Hora\",\"Город\":\"Ciudad\",\"Сохранить время\":\"Guardar hora\",\"Взять время из NTP\":\"Usar hora NTP\",\"Города и часовые пояса\":\"Ciudades y zonas horarias\",\"Поиск по встроенным и добавленным городам\":\"Buscar ciudades integradas y añadidas\",\"Поиск города\":\"Buscar ciudad\",\"Добавить свой город\":\"Añadir tu ciudad\",\"Страна\":\"País\",\"Добавить город\":\"Añadir ciudad\",\"Источники синхронизации\":\"Fuentes de sincronización\",\"Настройки сохраняются во flash-памяти устройства\":\"Los ajustes se guardan en la memoria flash\",\"+ Добавить сервер\":\"+ Añadir servidor\",\"Таймаут, мс\":\"Tiempo de espera, ms\",\"Период, секунд\":\"Intervalo, segundos\",\"Сохранить настройки NTP\":\"Guardar ajustes NTP\",\"Проверить сейчас\":\"Comprobar ahora\",\"+ Новый\":\"+ Nueva\",\"Редактор будильника\":\"Editor de alarma\",\"Название\":\"Nombre\",\"Дни недели\":\"Días de la semana\",\"Пн\":\"Lun\",\"Вт\":\"Mar\",\"Ср\":\"Mié\",\"Чт\":\"Jue\",\"Пт\":\"Vie\",\"Сб\":\"Sáb\",\"Вс\":\"Dom\",\"Сохранить будильник\":\"Guardar alarma\",\"Очистить\":\"Limpiar\",\"Диагностика и системные параметры\":\"Diagnóstico y parámetros del sistema\",\"Плата\":\"Placa\",\"онлайн\":\"en línea\",\"Дисплей\":\"Pantalla\",\"готов\":\"listo\",\"проверка\":\"comprobando\",\"Свободная память\":\"Memoria libre\",\"Сетевые настройки\":\"Ajustes de red\",\"Скрытые параметры подключения\":\"Parámetros de conexión ocultos\",\"Имя сети\":\"Nombre de red\",\"Веб-сервер\":\"Servidor web\",\"Включён · порт 80\":\"Activado · puerto 80\",\"Выключен\":\"Desactivado\",\"Сохранить настройки\":\"Guardar ajustes\",\"Сервер\":\"Servidor\",\"приоритет\":\"prioridad\",\"Удалить\":\"Eliminar\",\"нет дней\":\"sin días\",\"Будильник\":\"Alarma\",\"Изменить\":\"Editar\",\"Будильники ещё не добавлены\":\"Aún no hay alarmas\",\"Подъём\":\"Despertar\",\"текущий\":\"actual\",\"выбрать\":\"elegir\",\"база\":\"base\",\"Город не найден\":\"Ciudad no encontrada\",\"сегодня\":\"hoy\",\"сейчас\":\"ahora\",\"через\":\"en\",\"ч\":\"h\",\"мин\":\"min\",\"сек\":\"s\",\"ручная\":\"manual\",\"автоматическая\":\"automática\",\"Wi-Fi подключён\":\"Wi-Fi conectado\",\"Wi-Fi не подключён\":\"Wi-Fi desconectado\",\"Нет соединения\":\"Sin conexión\",\"Ожидание NTP\":\"Esperando NTP\",\"DS3231 обнаружен\":\"DS3231 detectado\",\"DS3231 не обнаружен\":\"DS3231 no detectado\",\"NTP синхронизирован\":\"NTP sincronizado\",\"NTP ожидает синхронизации\":\"NTP espera sincronización\",\"недоступен\":\"no disponible\",\"не найден\":\"no encontrado\",\"Нет связи с ESP32\":\"Sin conexión con ESP32\",\"Панель недоступна\":\"Panel no disponible\",\"Выбран город\":\"Ciudad seleccionada\",\"Добавлен и выбран город\":\"Ciudad añadida y seleccionada\"},\"zh\":{\"Язык\":\"语言\",\"Горизонтальные часы — ESP32\":\"横式时钟 — ESP32\",\"Горизонтальные\":\"横式\",\"часы\":\"时钟\",\"Обзор\":\"概览\",\"Время и города\":\"时间和城市\",\"NTP-серверы\":\"NTP 服务器\",\"Будильники\":\"闹钟\",\"Устройство\":\"设备\",\"Локальная панель управления\":\"本地控制面板\",\"Обзор устройства\":\"设备概览\",\"Wi-Fi: проверка...\":\"Wi-Fi：检查中…\",\"Обновить\":\"刷新\",\"ТЕКУЩЕЕ ВРЕМЯ\":\"当前时间\",\"Город и часовой пояс\":\"城市和时区\",\"Синхронизировать\":\"同步\",\"Система в норме\":\"系统正常\",\"Проверка состояния...\":\"正在检查状态…\",\"Источник времени\":\"时间来源\",\"активен\":\"启用\",\"Последняя синхронизация\":\"上次同步\",\"Следующая проверка\":\"下次检查\",\"по расписанию\":\"按计划\",\"Часовой пояс\":\"时区\",\"Точность RTC\":\"RTC 精度\",\"проверка...\":\"检查中…\",\"Время и часовой пояс\":\"时间和时区\",\"Установка времени и выбор города\":\"设置时间并选择城市\",\"Дата\":\"日期\",\"Время\":\"时间\",\"Город\":\"城市\",\"Сохранить время\":\"保存时间\",\"Взять время из NTP\":\"使用 NTP 时间\",\"Города и часовые пояса\":\"城市和时区\",\"Поиск по встроенным и добавленным городам\":\"搜索内置和已添加的城市\",\"Поиск города\":\"搜索城市\",\"Добавить свой город\":\"添加自定义城市\",\"Страна\":\"国家\",\"Добавить город\":\"添加城市\",\"Источники синхронизации\":\"同步来源\",\"Настройки сохраняются во flash-памяти устройства\":\"设置保存在设备闪存中\",\"+ Добавить сервер\":\"+ 添加服务器\",\"Таймаут, мс\":\"超时，毫秒\",\"Период, секунд\":\"间隔，秒\",\"Сохранить настройки NTP\":\"保存 NTP 设置\",\"Проверить сейчас\":\"立即检查\",\"+ Новый\":\"+ 新建\",\"Редактор будильника\":\"闹钟编辑器\",\"Название\":\"名称\",\"Дни недели\":\"星期\",\"Пн\":\"周一\",\"Вт\":\"周二\",\"Ср\":\"周三\",\"Чт\":\"周四\",\"Пт\":\"周五\",\"Сб\":\"周六\",\"Вс\":\"周日\",\"Сохранить будильник\":\"保存闹钟\",\"Очистить\":\"清除\",\"Диагностика и системные параметры\":\"诊断和系统参数\",\"Плата\":\"开发板\",\"онлайн\":\"在线\",\"Дисплей\":\"显示屏\",\"готов\":\"就绪\",\"проверка\":\"检查中\",\"Свободная память\":\"可用内存\",\"Сетевые настройки\":\"网络设置\",\"Скрытые параметры подключения\":\"隐藏的连接参数\",\"Имя сети\":\"网络名称\",\"Веб-сервер\":\"Web 服务器\",\"Включён · порт 80\":\"已启用 · 端口 80\",\"Выключен\":\"已禁用\",\"Сохранить настройки\":\"保存设置\",\"Сервер\":\"服务器\",\"приоритет\":\"优先级\",\"Удалить\":\"删除\",\"нет дней\":\"无日期\",\"Будильник\":\"闹钟\",\"Изменить\":\"编辑\",\"Будильники ещё не добавлены\":\"尚未添加闹钟\",\"Подъём\":\"起床\",\"текущий\":\"当前\",\"выбрать\":\"选择\",\"база\":\"数据库\",\"Город не найден\":\"未找到城市\",\"сегодня\":\"今天\",\"сейчас\":\"现在\",\"через\":\"还有\",\"ч\":\"小时\",\"мин\":\"分钟\",\"сек\":\"秒\",\"ручная\":\"手动\",\"автоматическая\":\"自动\",\"Wi-Fi подключён\":\"Wi-Fi 已连接\",\"Wi-Fi не подключён\":\"Wi-Fi 未连接\",\"Нет соединения\":\"无连接\",\"Ожидание NTP\":\"等待 NTP\",\"DS3231 обнаружен\":\"检测到 DS3231\",\"DS3231 не обнаружен\":\"未检测到 DS3231\",\"NTP синхронизирован\":\"NTP 已同步\",\"NTP ожидает синхронизации\":\"NTP 等待同步\",\"недоступен\":\"不可用\",\"не найден\":\"未找到\",\"Нет связи с ESP32\":\"无法连接 ESP32\",\"Панель недоступна\":\"面板不可用\",\"Выбран город\":\"已选择城市\",\"Добавлен и выбран город\":\"已添加并选择城市\"}};\nlet uiLang='ru';\ntry{const saved=localStorage.getItem('clockLanguage');const browser=(navigator.language||'ru').slice(0,2);uiLang=UI_LOCALES[saved]?saved:(UI_LOCALES[browser]?browser:'ru')}catch(e){}\nfunction t(s){return (I18N[uiLang]&&I18N[uiLang][s])||s}\nconst i18nOriginal=new WeakMap();\nfunction localize(root){\n const scope=root&&root.nodeType?root:document;\n if(scope.nodeType===1){const source=i18nOriginal.get(scope)||scope.textContent.trim();if(source&&scope.children.length===0){i18nOriginal.set(scope,source);scope.textContent=t(source)}}\n if(scope.nodeType!==1&&scope.nodeType!==9&&scope.nodeType!==11)return;\n const walker=document.createTreeWalker(scope,NodeFilter.SHOW_TEXT);\n const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);\n nodes.forEach(node=>{const parent=node.parentElement;if(!parent||parent.closest('script,style'))return;const raw=node.nodeValue;if(!raw.trim())return;const source=i18nOriginal.get(node)||raw.trim();i18nOriginal.set(node,source);const leading=raw.match(/^\\s*/)[0],trailing=raw.match(/\\s*$/)[0];node.nodeValue=leading+t(source)+trailing});\n if(scope.querySelectorAll)scope.querySelectorAll('[placeholder],[title],[aria-label]').forEach(el=>['placeholder','title','aria-label'].forEach(attr=>{if(!el.hasAttribute(attr))return;const source=i18nOriginal.get(el)||el.getAttribute(attr);i18nOriginal.set(el,source);el.setAttribute(attr,t(source))}));\n document.documentElement.lang=uiLang;document.title=t('Горизонтальные часы — ESP32');\n const select=document.getElementById('languageSelect');if(select)select.value=uiLang;\n}\nfunction setLanguage(lang){if(!UI_LOCALES[lang])return;uiLang=lang;try{localStorage.setItem('clockLanguage',lang)}catch(e){}fetch('/language',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:'lang='+lang}).then(()=>loadCities()).catch(()=>{});localize();renderNtp();renderAlarms();renderCityResults(cityData);renderSyncInfo();updateStatus()}\ndocument.getElementById('languageSelect').addEventListener('change',e=>setLanguage(e.target.value));\nnew MutationObserver(records=>records.forEach(record=>record.addedNodes.forEach(node=>localize(node)))).observe(document.body,{childList:true,subtree:true});\ndocument.getElementById('favicon').href=document.querySelector('.brand-logo').src;const titles={dashboard:'Обзор устройства',time:'Время и города',ntp:'NTP-серверы',alarms:'Будильники',device:'Устройство'};let ntps=[];let alarms=[];function toast(s){const toastEl=document.getElementById('toast');toastEl.textContent=t(s);toastEl.classList.add('show');setTimeout(()=>toastEl.classList.remove('show'),2600)}function renderNtp(){document.getElementById('ntpList').innerHTML=ntps.map((n,i)=>`<div class=\"row\"><div class=\"row-main\"><div class=\"field\"><label>Сервер ${i+1}</label><input value=\"${n.host}\" oninput=\"ntps[${i}].host=this.value\"></div><div class=\"row-meta\">приоритет ${i+1}</div></div><div class=\"row-actions\"><label class=\"switch\"><input type=\"checkbox\" ${n.enabled?'checked':''} onchange=\"ntps[${i}].enabled=this.checked\"><span class=\"slider\"></span></label><button class=\"btn btn-danger\" onclick=\"removeNtp(${i})\">Удалить</button></div></div>`).join('')}function loadNtp(){fetch('/ntp').then(r=>r.js"
     "on()).then(d=>{ntps=d.servers||[];document.getElementById('ntpTimeout').value=d.timeout;document.getElementById('ntpInterval').value=d.interval;renderNtp()}).catch(()=>toast('Не удалось загрузить настройки NTP'))}function addNtp(){if(ntps.length>=32){toast('Достигнут лимит NTP-серверов');return}ntps.push({host:'pool.ntp.org',enabled:true});renderNtp()}function removeNtp(i){if(ntps.length<=1){toast('Должен остаться хотя бы один сервер');return}ntps.splice(i,1);renderNtp()}function saveNtp(){const p=new URLSearchParams({count:ntps.length,timeout:document.getElementById('ntpTimeout').value,interval:document.getElementById('ntpInterval').value});ntps.forEach((n,i)=>{p.append('host'+i,n.host.trim());p.append('enabled'+i,n.enabled?'1':'0')});fetch('/ntp',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:p}).then(r=>r.text()).then(x=>{toast(x);loadNtp()}).catch(()=>toast('Ошибка сохранения NTP'))}function daysLabel(mask){const names=['Пн','Вт','Ср','Чт','Пт','Сб"
     "','Вс'];return names.filter((x,i)=>(mask&(1<<i))!==0).join(' ')||'нет дней'}function renderAlarms(){document.getElementById('alarmList').innerHTML=alarms.length?alarms.map((a,i)=>`<div class=\"row\"><div><div class=\"alarm-time\">${String(a.hour).padStart(2,'0')}:${String(a.minute).padStart(2,'0')}</div><div class=\"row-title\">${a.label||'Будильник'}</div><div class=\"alarm-days\">${daysLabel(a.days)}</div></div><div class=\"row-actions\"><label class=\"switch\"><input type=\"checkbox\" ${a.enabled?'checked':''} onchange=\"toggleAlarm(${i},this.checked)\"><span class=\"slider\"></span></label><button class=\"btn btn-soft\" onclick=\"editAlarm(${i})\">Изменить</button><button class=\"btn btn-danger\" onclick=\"deleteAlarm(${i})\">×</button></div></div>`).join(''):'<div class=\"empty\">Будильники ещё не добавлены</div>';document.getElementById('alarmCount').textContent=alarms.length}function loadAlarms(){fetch('/alarms').then(r=>r.json()).then(d=>{alarms=d.alarms||[];renderAlarms()}).catch(()=>toast('Не удалось за"
     "грузить будильники'))}function alarmDays(){let m=0;document.querySelectorAll('#alarmDays input').forEach(x=>{if(x.checked)m|=Number(x.dataset.day)});return m}function saveAlarm(){const time=document.getElementById('alarmTime').value.split(':').map(Number);const days=alarmDays();if(time.length<2||days===0){toast('Укажите время и хотя бы один день');return}const p=new URLSearchParams({index:document.getElementById('alarmEditIndex').value,hour:time[0],minute:time[1],days,enabled:1,label:document.getElementById('alarmName').value});fetch('/alarms',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:p}).then(r=>r.text()).then(x=>{toast(x);clearAlarmForm();loadAlarms()}).catch(()=>toast('Ошибка сохранения будильника'))}function editAlarm(i){const a=alarms[i];document.getElementById('alarmEditIndex').value=i;document.getElementById('alarmTime').value=String(a.hour).padStart(2,'0')+':'+String(a.minute).padStart(2,'0');document.getElementById('alarmName').value=a.la"
@@ -279,6 +279,17 @@ static const lv_image_dsc_t wifi_disconnected_icon = {
 #define CITY_COUNTRY_MAX_LEN   96
 #define CITY_TZ_MAX_LEN        64
 
+typedef enum {
+    DISPLAY_LANG_RU = 0,
+    DISPLAY_LANG_EN,
+    DISPLAY_LANG_DE,
+    DISPLAY_LANG_FR,
+    DISPLAY_LANG_ES,
+    DISPLAY_LANG_ZH,
+} display_language_t;
+
+static display_language_t device_language = DISPLAY_LANG_RU;
+
 typedef struct {
     char city[CITY_NAME_MAX_LEN];
     char country[CITY_COUNTRY_MAX_LEN];
@@ -321,6 +332,7 @@ static const city_t default_cities[] = {
 };
 #define DEFAULT_CITY_COUNT (sizeof(default_cities) / sizeof(default_cities[0]))
 static city_t cities[MAX_CITIES];
+static uint32_t city_database_indexes[MAX_CITIES];
 static uint8_t city_count = 0;
 #define CITY_COUNT (city_count)
 static uint8_t current_city_index = 0;
@@ -332,6 +344,7 @@ static SemaphoreHandle_t i2c_mutex = NULL;
 
 static void init_cities(void)
 {
+    for (size_t i = 0; i < MAX_CITIES; i++) city_database_indexes[i] = UINT32_MAX;
     city_count = 0;
     for (size_t i = 0; i < DEFAULT_CITY_COUNT && i < MAX_CITIES; i++) {
         cities[city_count++] = default_cities[i];
@@ -361,6 +374,10 @@ static void init_cities(void)
         size = sizeof(item.tz_string);
         if (nvs_get_str(handle, key, item.tz_string, &size) != ESP_OK) continue;
 
+        snprintf(key, sizeof(key), "city_db_%u", (unsigned)i);
+        uint32_t db_index = UINT32_MAX;
+        nvs_get_u32(handle, key, &db_index);
+        city_database_indexes[city_count] = db_index;
         cities[city_count++] = item;
     }
     nvs_close(handle);
@@ -385,12 +402,20 @@ static void save_custom_cities(void)
             nvs_set_str(handle, key, item->country);
             snprintf(key, sizeof(key), "city_tz_%u", (unsigned)i);
             nvs_set_str(handle, key, item->tz_string);
+            snprintf(key, sizeof(key), "city_db_%u", (unsigned)i);
+            if (city_database_indexes[DEFAULT_CITY_COUNT + i] != UINT32_MAX) {
+                nvs_set_u32(handle, key, city_database_indexes[DEFAULT_CITY_COUNT + i]);
+            } else {
+                nvs_erase_key(handle, key);
+            }
         } else {
             snprintf(key, sizeof(key), "city_name_%u", (unsigned)i);
             nvs_erase_key(handle, key);
             snprintf(key, sizeof(key), "city_country_%u", (unsigned)i);
             nvs_erase_key(handle, key);
             snprintf(key, sizeof(key), "city_tz_%u", (unsigned)i);
+            nvs_erase_key(handle, key);
+            snprintf(key, sizeof(key), "city_db_%u", (unsigned)i);
             nvs_erase_key(handle, key);
         }
     }
@@ -1012,6 +1037,11 @@ static void load_wifi_config(void)
     if (nvs_get_str(handle, "wifi_password", wifi_password, &length) != ESP_OK) {
         strlcpy(wifi_password, WIFI_PASS, sizeof(wifi_password));
     }
+    uint8_t saved_language = DISPLAY_LANG_RU;
+    if (nvs_get_u8(handle, "display_lang", &saved_language) == ESP_OK &&
+        saved_language <= DISPLAY_LANG_ZH) {
+        device_language = (display_language_t)saved_language;
+    }
     nvs_close(handle);
 }
 
@@ -1221,6 +1251,91 @@ static void wifi_latency_task(void *arg)
     }
 }
 
+typedef struct {
+    const char *original;
+    const char *ru;
+    const char *en;
+    const char *de;
+    const char *fr;
+    const char *es;
+    const char *zh;
+} city_translation_t;
+
+static const city_translation_t city_translations[] = {
+    {"Курск", NULL, "Kursk", "Kursk", "Koursk", "Kursk", "库尔斯克"},
+    {"Киров", NULL, "Kirov", "Kirow", "Kirov", "Kirov", "基洛夫"},
+    {"Новгород", NULL, "Novgorod", "Nowgorod", "Novgorod", "Nóvgorod", "诺夫哥罗德"},
+    {"Н.Новгород", NULL, "Nizhny Novgorod", "Nischni Nowgorod", "Nijni Novgorod", "Nizhni Nóvgorod", "下诺夫哥罗德"},
+    {"Южно-Сахалинск", NULL, "Yuzhno-Sakhalinsk", "Juschno-Sachalinsk", "Ioujno-Sakhalinsk", "Yuzhno-Sakhalinsk", "南萨哈林斯克"},
+    {"Москва", NULL, "Moscow", "Moskau", "Moscou", "Moscú", "莫斯科"},
+    {"Санкт-Петербург", NULL, "Saint Petersburg", "Sankt Petersburg", "Saint-Pétersbourg", "San Petersburgo", "圣彼得堡"},
+    {"Владивосток", NULL, "Vladivostok", "Wladiwostok", "Vladivostok", "Vladivostok", "符拉迪沃斯托克"},
+    {"London", "Лондон", NULL, NULL, "Londres", "Londres", "伦敦"},
+    {"Paris", "Париж", NULL, NULL, NULL, "París", "巴黎"},
+    {"Berlin", "Берлин", NULL, NULL, NULL, "Berlín", "柏林"},
+    {"İstanbul", "Стамбул", "Istanbul", "Istanbul", "Istanbul", "Estambul", "伊斯坦布尔"},
+    {"New York", "Нью-Йорк", NULL, NULL, NULL, "Nueva York", "纽约"},
+    {"Chicago", "Чикаго", NULL, NULL, NULL, NULL, "芝加哥"},
+    {"Los Angeles", "Лос-Анджелес", NULL, NULL, NULL, "Los Ángeles", "洛杉矶"},
+    {"San Jose", "Сан-Хосе", NULL, NULL, NULL, "San José", "圣何塞"},
+    {"Toronto", "Торонто", NULL, NULL, NULL, NULL, "多伦多"},
+    {"São Paulo", "Сан-Паулу", "Sao Paulo", "São Paulo", "São Paulo", "São Paulo", "圣保罗"},
+    {"Buenos Aires", "Буэнос-Айрес", NULL, NULL, NULL, NULL, "布宜诺斯艾利斯"},
+    {"Reykjavík", "Рейкьявик", "Reykjavik", "Reykjavík", "Reykjavik", "Reikiavik", "雷克雅未克"},
+    {"دبي", "Дубай", "Dubai", "Dubai", "Dubaï", "Dubái", "迪拜"},
+    {"दिल्ली", "Дели", "Delhi", "Delhi", "Delhi", "Delhi", "德里"},
+    {"กรุงเทพมหานคร", "Бангкок", "Bangkok", "Bangkok", "Bangkok", "Bangkok", "曼谷"},
+    {"新加坡", "Сингапур", "Singapore", "Singapur", "Singapour", "Singapur", NULL},
+    {"北京", "Пекин", "Beijing", "Peking", "Pékin", "Pekín", NULL},
+    {"東京", "Токио", "Tokyo", "Tokio", "Tokyo", "Tokio", "东京"},
+    {"서울", "Сеул", "Seoul", "Seoul", "Séoul", "Seúl", "首尔"},
+    {"Sydney", "Сидней", NULL, NULL, NULL, "Sídney", "悉尼"},
+    {"Auckland", "Окленд", NULL, NULL, NULL, NULL, "奥克兰"},
+    {"Santiago", "Сантьяго", NULL, NULL, NULL, NULL, "圣地亚哥"},
+};
+
+static const char *device_language_code(void)
+{
+    static const char *const codes[] = {"ru", "en", "de", "fr", "es", "zh"};
+    return codes[device_language <= DISPLAY_LANG_ZH ? device_language : DISPLAY_LANG_RU];
+}
+
+static void city_localized_name(size_t index, char *out, size_t out_size)
+{
+    if (!out || out_size == 0) return;
+    if (index >= CITY_COUNT) {
+        strlcpy(out, "", out_size);
+        return;
+    }
+
+    if (index < DEFAULT_CITY_COUNT) {
+        for (size_t i = 0; i < sizeof(city_translations) / sizeof(city_translations[0]); i++) {
+            if (strcmp(cities[index].city, city_translations[i].original) != 0) continue;
+            const char *translated = NULL;
+            switch (device_language) {
+                case DISPLAY_LANG_RU: translated = city_translations[i].ru; break;
+                case DISPLAY_LANG_EN: translated = city_translations[i].en; break;
+                case DISPLAY_LANG_DE: translated = city_translations[i].de; break;
+                case DISPLAY_LANG_FR: translated = city_translations[i].fr; break;
+                case DISPLAY_LANG_ES: translated = city_translations[i].es; break;
+                case DISPLAY_LANG_ZH: translated = city_translations[i].zh; break;
+            }
+            strlcpy(out, translated ? translated : city_translations[i].original, out_size);
+            return;
+        }
+    }
+
+    const uint32_t db_index = city_database_indexes[index];
+    if (db_index != UINT32_MAX) {
+        city_db_record_t record;
+        if (city_database_get_localized(db_index, device_language_code(), &record)) {
+            strlcpy(out, record.name, out_size);
+            return;
+        }
+    }
+    strlcpy(out, cities[index].city, out_size);
+}
+
 static void update_display(void)
 {
     if (wifi_setup_mode) {
@@ -1274,10 +1389,11 @@ static void update_display(void)
     country_for_display(cities[current_city_index].country,
                         country_display, sizeof(country_display));
 
+    char localized_city[CITY_NAME_MAX_LEN];
+    city_localized_name(current_city_index, localized_city, sizeof(localized_city));
     char city_country[CITY_NAME_MAX_LEN + CITY_COUNTRY_MAX_LEN + 3];
     snprintf(city_country, sizeof(city_country), "%s, %s",
-             cities[current_city_index].city,
-             country_display);
+             localized_city, country_display);
     set_label_text_if_changed(label_city, city_country);
 
     const bool wifi_connected = wifi_is_connected();
@@ -1393,17 +1509,53 @@ static esp_err_t status_get_handler(httpd_req_t *req)
 {
     int32_t latency_ms = 0;
     const bool latency_valid = wifi_get_latency(&latency_ms);
-    char buf[224];
+    char buf[256];
     snprintf(buf, sizeof(buf),
-             "{\"wifi\":%s,\"latency_valid\":%s,\"latency_ms\":%ld,\"rtc\":%s,\"ntp\":%s,\"heap\":%lu}",
+             "{\"wifi\":%s,\"latency_valid\":%s,\"latency_ms\":%ld,\"rtc\":%s,\"ntp\":%s,\"heap\":%lu,\"language\":%u}",
              wifi_is_connected() ? "true" : "false",
              latency_valid ? "true" : "false", (long)latency_ms,
              rtc_available ? "true" : "false",
              ntp_synced ? "true" : "false",
-             (unsigned long)esp_get_free_heap_size());
+             (unsigned long)esp_get_free_heap_size(), (unsigned)device_language);
     httpd_resp_set_type(req, "application/json; charset=utf-8");
     httpd_resp_set_hdr(req, "Cache-Control", "no-store");
     httpd_resp_send(req, buf, HTTPD_RESP_USE_STRLEN);
+    return ESP_OK;
+}
+
+static esp_err_t language_post_handler(httpd_req_t *req)
+{
+    char content[64];
+    char language[4];
+    if (receive_request_body(req, content, sizeof(content)) <= 0 ||
+        !form_get_value(content, "lang", language, sizeof(language))) {
+        httpd_resp_send_err(req, HTTPD_400_BAD_REQUEST, "Invalid language");
+        return ESP_FAIL;
+    }
+
+    display_language_t selected = DISPLAY_LANG_RU;
+    if (strcmp(language, "en") == 0) selected = DISPLAY_LANG_EN;
+    else if (strcmp(language, "de") == 0) selected = DISPLAY_LANG_DE;
+    else if (strcmp(language, "fr") == 0) selected = DISPLAY_LANG_FR;
+    else if (strcmp(language, "es") == 0) selected = DISPLAY_LANG_ES;
+    else if (strcmp(language, "zh") == 0) selected = DISPLAY_LANG_ZH;
+    else if (strcmp(language, "ru") != 0) {
+        httpd_resp_send_err(req, HTTPD_400_BAD_REQUEST, "Unsupported language");
+        return ESP_FAIL;
+    }
+
+    nvs_handle_t handle = 0;
+    esp_err_t err = nvs_open("clock", NVS_READWRITE, &handle);
+    if (err == ESP_OK) err = nvs_set_u8(handle, "display_lang", (uint8_t)selected);
+    if (err == ESP_OK) err = nvs_commit(handle);
+    if (handle) nvs_close(handle);
+    if (err != ESP_OK) {
+        httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "Cannot save language");
+        return ESP_FAIL;
+    }
+    device_language = selected;
+    httpd_resp_set_type(req, "text/plain; charset=utf-8");
+    httpd_resp_send(req, "Language saved", HTTPD_RESP_USE_STRLEN);
     return ESP_OK;
 }
 
@@ -1437,10 +1589,12 @@ static esp_err_t cities_get_handler(httpd_req_t *req)
 
     int used = snprintf(buf, 12288, "{\"current\":%u,\"cities\":[", current_city_index);
     for (size_t i = 0; i < CITY_COUNT && used < 12288; i++) {
+        char localized_city[CITY_NAME_MAX_LEN];
+        city_localized_name(i, localized_city, sizeof(localized_city));
         used += snprintf(buf + used, 12288 - (size_t)used,
                          "%s{\"index\":%u,\"city\":\"%s\",\"country\":\"%s\",\"tz\":\"%s\",\"custom\":%s}",
                          i == 0 ? "" : ",", (unsigned)i,
-                         cities[i].city, cities[i].country, cities[i].tz_string,
+                         localized_city, cities[i].country, cities[i].tz_string,
                          i >= DEFAULT_CITY_COUNT ? "true" : "false");
     }
 
@@ -1448,10 +1602,15 @@ static esp_err_t cities_get_handler(httpd_req_t *req)
     ESP_LOGI(TAG, "GET /cities search='%s' found=%lu", search, (unsigned long)found);
     if (used < 12288) used += snprintf(buf + used, 12288 - (size_t)used, "],\"results\":[");
     for (uint32_t i = 0; i < found && used < 12288; i++) {
+        city_db_record_t localized;
+        const char *display_name = matches[i].name;
+        if (city_database_get_localized(match_indexes[i], device_language_code(), &localized)) {
+            display_name = localized.name;
+        }
         used += snprintf(buf + used, 12288 - (size_t)used,
                          "%s{\"db\":%lu,\"city\":\"%s\",\"country\":\"%s\",\"tz\":\"%s\"}",
                          i == 0 ? "" : ",", (unsigned long)match_indexes[i],
-                         matches[i].name, matches[i].country, matches[i].timezone);
+                         display_name, matches[i].country, matches[i].timezone);
     }
     if (used < 12288) snprintf(buf + used, 12288 - (size_t)used, "]}");
 
@@ -1507,16 +1666,20 @@ static esp_err_t city_post_handler(httpd_req_t *req)
             strlcpy(item.country, record.country, sizeof(item.country));
             strlcpy(item.tz_string, record.timezone, sizeof(item.tz_string));
             cities[city_count] = item;
+            city_database_indexes[city_count] = db_index;
             existing = city_count++;
         }
+        city_database_indexes[existing] = db_index;
         current_city_index = (uint8_t)existing;
         city_state_save_pending = true;
         need_tz_update = true;
 
+        char localized_city[CITY_NAME_MAX_LEN];
+        city_localized_name(existing, localized_city, sizeof(localized_city));
         char response[512];
         snprintf(response, sizeof(response),
                  "{\"current\":%u,\"city\":\"%s\",\"country\":\"%s\",\"tz\":\"%s\"}",
-                 (unsigned)existing, cities[existing].city,
+                 (unsigned)existing, localized_city,
                  cities[existing].country, cities[existing].tz_string);
         httpd_resp_set_type(req, "application/json; charset=utf-8");
         httpd_resp_send(req, response, HTTPD_RESP_USE_STRLEN);
@@ -1538,10 +1701,12 @@ static esp_err_t city_post_handler(httpd_req_t *req)
     city_state_save_pending = true;
     need_tz_update = true;
 
+    char localized_city[CITY_NAME_MAX_LEN];
+    city_localized_name(index, localized_city, sizeof(localized_city));
     char response[512];
     snprintf(response, sizeof(response),
              "{\"current\":%u,\"city\":\"%s\",\"country\":\"%s\",\"tz\":\"%s\"}",
-             (unsigned)index, cities[index].city, cities[index].country,
+             (unsigned)index, localized_city, cities[index].country,
              cities[index].tz_string);
 
     httpd_resp_set_type(req, "application/json; charset=utf-8");
@@ -1684,6 +1849,7 @@ static esp_err_t city_add_post_handler(httpd_req_t *req)
         return ESP_FAIL;
     }
 
+    city_database_indexes[city_count] = UINT32_MAX;
     cities[city_count++] = item;
     save_custom_cities();
     ESP_LOGI(TAG, "City added: %s, %s, TZ=%s", item.city, item.country, item.tz_string);
@@ -1707,8 +1873,12 @@ static esp_err_t city_delete_handler(httpd_req_t *req)
         return ESP_FAIL;
     }
 
-    for (int i = index; i < city_count - 1; i++) cities[i] = cities[i + 1];
+    for (int i = index; i < city_count - 1; i++) {
+        cities[i] = cities[i + 1];
+        city_database_indexes[i] = city_database_indexes[i + 1];
+    }
     city_count--;
+    city_database_indexes[city_count] = UINT32_MAX;
     if (current_city_index == index) {
         current_city_index = 0;
         need_tz_update = true;
@@ -2101,6 +2271,14 @@ static void start_webserver(void *pv_parameters)
             .user_ctx = NULL
         };
         httpd_register_uri_handler(server, &uri_get_status);
+
+        httpd_uri_t uri_post_language = {
+            .uri = "/language",
+            .method = HTTP_POST,
+            .handler = language_post_handler,
+            .user_ctx = NULL
+        };
+        httpd_register_uri_handler(server, &uri_post_language);
 
         httpd_uri_t uri_get_time = {
             .uri = "/time",
