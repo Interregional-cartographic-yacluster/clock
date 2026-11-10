@@ -5,7 +5,7 @@ menu "Clock configuration"
         default ""
         help
             Optional initial 2.4 GHz Wi-Fi network. If empty or unavailable,
-            the clock opens the Connecting the clock to Wi-Fi setup network. Settings saved
+            the clock opens a localized setup network. Settings saved
             from the phone are stored in NVS and take precedence.
 
     config CLOCK_WIFI_PASSWORD
