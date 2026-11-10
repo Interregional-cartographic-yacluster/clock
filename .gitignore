@@ -4,6 +4,10 @@ managed_components/
 sdkconfig
 sdkconfig.old
 
+# Python caches
+__pycache__/
+*.py[cod]
+
 # IDE and OS files
 .vscode/
 .idea/
