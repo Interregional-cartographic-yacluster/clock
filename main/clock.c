@@ -1057,11 +1057,7 @@ static void wifi_event_handler(void *arg, esp_event_base_t event_base,
             esp_wifi_disconnect();
             return;
         }
-        esp_netif_ip_info_t current_ip = {0};
-        if (wifi_sta_netif && esp_netif_get_ip_info(wifi_sta_netif, &current_ip) == ESP_OK &&
-            current_ip.ip.addr != 0) {
-            wifi_connection_ready(&current_ip);
-        }
+        /* The netif layer emits IP_EVENT_STA_GOT_IP after applying the address. */
     } else if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_DISCONNECTED) {
         xEventGroupClearBits(wifi_event_group, WIFI_CONNECTED_BIT);
         wifi_gateway_addr.addr = 0;
@@ -1396,7 +1392,7 @@ static void update_display(void)
         set_label_text_if_changed(label_date, "Connecting the clock to Wi-Fi");
         set_label_text_if_changed(label_city, "");
         set_label_text_if_changed(label_wifi, "");
-        lv_obj_add_flag(icon_wifi, LV_OBJ_FLAG_HIDDEN);
+        lv_obj_set_hidden(icon_wifi, true);
         lv_obj_set_style_text_color(label_wifi, lv_color_hex(0x888888), 0);
         lv_image_set_src(icon_wifi, &wifi_disconnected_icon);
         lv_obj_set_style_image_recolor(icon_wifi, lv_color_hex(0x888888), 0);
@@ -1405,7 +1401,7 @@ static void update_display(void)
         return;
     }
 
-    lv_obj_clear_flag(icon_wifi, LV_OBJ_FLAG_HIDDEN);
+    lv_obj_set_hidden(icon_wifi, false);
 
     struct tm timeinfo;
     bool time_ok = false;
