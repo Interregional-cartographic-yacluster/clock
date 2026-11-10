@@ -16,6 +16,34 @@ menu "Clock configuration"
             or to configure the clock later from a phone. Runtime credentials
             are stored in NVS; no password is added to the source code.
 
+    config CLOCK_WIFI_STATIC_IP
+        bool "Use a static station IP address"
+        default y
+        help
+            Keeps the control panel address unchanged. The default values are
+            intended for a 192.168.1.0/24 network. Choose an unused address
+            outside the router DHCP pool or reserve it in the router.
+
+    config CLOCK_WIFI_STATIC_IP_ADDRESS
+        string "Static station IP address"
+        depends on CLOCK_WIFI_STATIC_IP
+        default "192.168.1.51"
+
+    config CLOCK_WIFI_STATIC_GATEWAY
+        string "Static IP gateway"
+        depends on CLOCK_WIFI_STATIC_IP
+        default "192.168.1.1"
+
+    config CLOCK_WIFI_STATIC_NETMASK
+        string "Static IP netmask"
+        depends on CLOCK_WIFI_STATIC_IP
+        default "255.255.255.0"
+
+    config CLOCK_WIFI_STATIC_DNS
+        string "Static IP DNS server"
+        depends on CLOCK_WIFI_STATIC_IP
+        default "192.168.1.1"
+
     config CLOCK_NTP_SERVER
         string "NTP server"
         default "pool.ntp.org"

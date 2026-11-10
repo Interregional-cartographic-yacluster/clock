@@ -1016,6 +1016,7 @@ static void wifi_event_handler(void *arg, esp_event_base_t event_base,
         if (esp_timer_is_active(wifi_reconnect_timer)) esp_timer_stop(wifi_reconnect_timer);
         if (esp_timer_is_active(wifi_setup_timer)) esp_timer_stop(wifi_setup_timer);
         ESP_LOGI(TAG, "Got IP: " IPSTR, IP2STR(&event->ip_info.ip));
+        ESP_LOGI(TAG, "Web panel: http://" IPSTR "/", IP2STR(&event->ip_info.ip));
         wifi_gateway_addr = event->ip_info.gw;
         wifi_latency_ms = -1;
         xEventGroupSetBits(wifi_event_group, WIFI_CONNECTED_BIT);
@@ -1059,8 +1060,29 @@ static void wifi_init(void)
 
     ESP_ERROR_CHECK(esp_netif_init());
     ESP_ERROR_CHECK(esp_event_loop_create_default());
-    ESP_ERROR_CHECK(esp_netif_create_default_wifi_sta() != NULL ? ESP_OK : ESP_FAIL);
+    esp_netif_t *sta_netif = esp_netif_create_default_wifi_sta();
+    ESP_ERROR_CHECK(sta_netif != NULL ? ESP_OK : ESP_FAIL);
     ESP_ERROR_CHECK(esp_netif_create_default_wifi_ap() != NULL ? ESP_OK : ESP_FAIL);
+
+#if CONFIG_CLOCK_WIFI_STATIC_IP
+    esp_netif_ip_info_t static_ip = {0};
+    esp_ip4_addr_t dns_address = {0};
+    ESP_ERROR_CHECK(esp_netif_str_to_ip4(CONFIG_CLOCK_WIFI_STATIC_IP_ADDRESS, &static_ip.ip));
+    ESP_ERROR_CHECK(esp_netif_str_to_ip4(CONFIG_CLOCK_WIFI_STATIC_NETMASK, &static_ip.netmask));
+    ESP_ERROR_CHECK(esp_netif_str_to_ip4(CONFIG_CLOCK_WIFI_STATIC_GATEWAY, &static_ip.gw));
+    ESP_ERROR_CHECK(esp_netif_str_to_ip4(CONFIG_CLOCK_WIFI_STATIC_DNS, &dns_address));
+    esp_err_t dhcp_stop_result = esp_netif_dhcpc_stop(sta_netif);
+    if (dhcp_stop_result != ESP_OK && dhcp_stop_result != ESP_ERR_ESP_NETIF_DHCP_ALREADY_STOPPED) {
+        ESP_ERROR_CHECK(dhcp_stop_result);
+    }
+    ESP_ERROR_CHECK(esp_netif_set_ip_info(sta_netif, &static_ip));
+    const esp_netif_dns_info_t dns_info = {
+        .ip.u_addr.ip4 = dns_address,
+        .ip.type = ESP_IPADDR_TYPE_V4,
+    };
+    ESP_ERROR_CHECK(esp_netif_set_dns_info(sta_netif, ESP_NETIF_DNS_MAIN, &dns_info));
+    ESP_LOGI(TAG, "Using static IP: " IPSTR, IP2STR(&static_ip.ip));
+#endif
 
     wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
     ESP_ERROR_CHECK(esp_wifi_init(&cfg));
