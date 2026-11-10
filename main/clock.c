@@ -1375,10 +1375,11 @@ static void city_localized_name(size_t index, char *out, size_t out_size)
 static void update_display(void)
 {
     if (wifi_setup_mode) {
-        set_label_text_if_changed(label_time, "Setup");
+        set_label_text_if_changed(label_time, "");
         set_label_text_if_changed(label_date, "Connecting the clock to Wi-Fi");
-        set_label_text_if_changed(label_city, "192.168.4.1");
-        set_label_text_if_changed(label_wifi, "--");
+        set_label_text_if_changed(label_city, "");
+        set_label_text_if_changed(label_wifi, "");
+        lv_obj_add_flag(icon_wifi, LV_OBJ_FLAG_HIDDEN);
         lv_obj_set_style_text_color(label_wifi, lv_color_hex(0x888888), 0);
         lv_image_set_src(icon_wifi, &wifi_disconnected_icon);
         lv_obj_set_style_image_recolor(icon_wifi, lv_color_hex(0x888888), 0);
@@ -1386,6 +1387,8 @@ static void update_display(void)
         if (disp) lv_refr_now(disp);
         return;
     }
+
+    lv_obj_clear_flag(icon_wifi, LV_OBJ_FLAG_HIDDEN);
 
     struct tm timeinfo;
     bool time_ok = false;
