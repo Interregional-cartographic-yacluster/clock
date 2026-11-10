@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1980" viewBox="0 0 2400 1980">
 <title>ESP32 TM1640 HH:MM:SS schematic</title>
-<desc>Pictorial crossing-free wiring diagram with ESP32, TM1640 and 52 LEDs</desc>
+<desc>Pictorial crossing-free wiring diagram with ESP32, TM1640 and 46 LEDs</desc>
 <rect width="100%" height="100%" fill="#ffffff"/>
 <rect x="18" y="18" width="2364" height="1944" rx="0" stroke="#526079" fill="none" stroke-width="2"/>
 <text x="45" y="58" font-family="DejaVu Sans,Arial,sans-serif" font-size="30" font-weight="700" text-anchor="start" fill="#172033">ESP32 + TM1640 — монтажная схема HH:MM:SS</text>
-<text x="45" y="86" font-family="DejaVu Sans,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="start" fill="#526079">Без 74HCT245 · 52 LED · цветные провода без перекрёстков · соединения через одноимённые клеммы</text>
+<text x="45" y="86" font-family="DejaVu Sans,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="start" fill="#526079">Без 74HCT245 и DP · 46 LED · цветные провода без перекрёстков · соединения через одноимённые клеммы</text>
 <rect x="80" y="180" width="350" height="340" rx="12" stroke="#152d46" fill="#245b8a" stroke-width="4"/>
 <rect x="145" y="260" width="210" height="110" rx="5" stroke="#495057" fill="#dee2e6" stroke-width="3"/>
 <text x="250" y="315" font-family="DejaVu Sans,Arial,sans-serif" font-size="26" font-weight="700" text-anchor="middle" fill="#172033">ESP32</text>
@@ -19,9 +19,6 @@
 <line x1="430" y1="380" x2="452" y2="380" stroke="#6c757d" stroke-width="4"/>
 <circle cx="430" cy="380" r="6" stroke="#d4af37" fill="#f8e71c" stroke-width="2"/>
 <text x="414" y="384" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="700" text-anchor="end" fill="#ffffff">GPIO32</text>
-<line x1="430" y1="440" x2="452" y2="440" stroke="#6c757d" stroke-width="4"/>
-<circle cx="430" cy="440" r="6" stroke="#d4af37" fill="#f8e71c" stroke-width="2"/>
-<text x="414" y="444" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="700" text-anchor="end" fill="#ffffff">GPIO33</text>
 <line x1="200" y1="180" x2="200" y2="158" stroke="#6c757d" stroke-width="4"/>
 <text x="218" y="170" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="400" text-anchor="start" fill="#ffffff">5V</text>
 <line x1="200" y1="520" x2="200" y2="542" stroke="#6c757d" stroke-width="4"/>
@@ -126,19 +123,6 @@
 <line x1="670" y1="401" x2="690" y2="401" stroke="#172033" stroke-width="3"/>
 <line x1="675" y1="408" x2="685" y2="408" stroke="#172033" stroke-width="3"/>
 <text x="700" y="384" font-family="DejaVu Sans,Arial,sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#526079">COLON_BTN</text>
-<line x1="452" y1="440" x2="560" y2="440" stroke="#f08c00" stroke-width="4"/>
-<line x1="560" y1="440" x2="560" y2="440" stroke="#f08c00" stroke-width="4"/>
-<line x1="560" y1="440" x2="584" y2="440" stroke="#6c757d" stroke-width="3"/>
-<rect x="584" y="422" width="36" height="36" rx="5" stroke="#343a40" fill="#adb5bd" stroke-width="2"/>
-<circle cx="602" cy="426" r="11" stroke="#343a40" fill="#e03131" stroke-width="2"/>
-<line x1="620" y1="440" x2="644" y2="440" stroke="#6c757d" stroke-width="3"/>
-<text x="602" y="404" font-family="DejaVu Sans,Arial,sans-serif" font-size="12" font-weight="700" text-anchor="middle" fill="#172033">SW2</text>
-<line x1="644" y1="440" x2="680" y2="440" stroke="#212529" stroke-width="4"/>
-<line x1="680" y1="440" x2="680" y2="454" stroke="#172033" stroke-width="3"/>
-<line x1="665" y1="454" x2="695" y2="454" stroke="#172033" stroke-width="3"/>
-<line x1="670" y1="461" x2="690" y2="461" stroke="#172033" stroke-width="3"/>
-<line x1="675" y1="468" x2="685" y2="468" stroke="#172033" stroke-width="3"/>
-<text x="700" y="444" font-family="DejaVu Sans,Arial,sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#526079">DP_BTN</text>
 <circle cx="2220" cy="110" r="6" stroke="#e03131" fill="#e03131" stroke-width="1"/>
 <line x1="2220" y1="110" x2="2220" y2="135" stroke="#e03131" stroke-width="4"/>
 <line x1="2220" y1="135" x2="2220" y2="150" stroke="#6c757d" stroke-width="3"/>
@@ -257,19 +241,7 @@
 <circle cx="2177" cy="450" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
 <text x="2210.0" y="454" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG7</text>
 <text x="2168" y="432" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="400" text-anchor="start" fill="#526079">SEG7_DRV</text>
-<line x1="1322" y1="490" x2="2183" y2="490" stroke="#087f5b" stroke-width="3"/>
-<line x1="2183" y1="490" x2="2200" y2="490" stroke="#6c757d" stroke-width="3"/>
-<rect x="2200" y="480" width="50" height="20" rx="8" stroke="#6b4f2c" fill="#e9c46a" stroke-width="2"/>
-<rect x="2209" y="481" width="4" height="18" rx="0" stroke="#f8e71c" fill="#f8e71c" stroke-width="0"/>
-<rect x="2218" y="481" width="4" height="18" rx="0" stroke="#7048e8" fill="#7048e8" stroke-width="0"/>
-<rect x="2228" y="481" width="4" height="18" rx="0" stroke="#7a3e00" fill="#7a3e00" stroke-width="0"/>
-<rect x="2238" y="481" width="4" height="18" rx="0" stroke="#b7791f" fill="#b7791f" stroke-width="0"/>
-<line x1="2250" y1="490" x2="2267" y2="490" stroke="#6c757d" stroke-width="3"/>
-<text x="2225" y="472" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">R8 330 Ω</text>
-<rect x="2273" y="476" width="74" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="2282" cy="490" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="2315.0" y="494" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG8</text>
-<text x="2273" y="472" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="400" text-anchor="start" fill="#526079">SEG8_DRV</text>
+<text x="1332" y="494" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="400" text-anchor="start" fill="#526079">NC · без DP</text>
 <rect x="1400" y="516" width="92" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="1409" cy="530" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
 <text x="1451.0" y="534" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">GRID1</text>
@@ -394,19 +366,7 @@
 <text x="81.0" y="1677" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG7</text>
 <line x1="112" y1="1673" x2="156" y2="1673" stroke="#d6336c" stroke-width="3"/>
 <line x1="174" y1="1673" x2="255" y2="1673" stroke="#2f9e44" stroke-width="3"/>
-<rect x="138" y="1709" width="54" height="10" rx="3" stroke="#e03131" fill="#e03131" stroke-width="1"/>
-<polygon points="141,1709 141.0,1707.0 141.81778016906236,1699.2354286469244 144.21539030917347,1692.0 148.02943725152286,1685.7867965644036 153.0,1681.019237886467 158.7883429175395,1678.0222252113279 165.0,1677.0 171.2116570824605,1678.0222252113279 177.0,1681.0192378864667 181.97056274847714,1685.7867965644036 185.78460969082653,1692.0 188.18221983093764,1699.2354286469244 189.0,1707.0 189,1709" stroke="#e03131" fill="#e03131" stroke-width="2"/>
-<line x1="156" y1="1719" x2="156" y2="1743" stroke="#6c757d" stroke-width="3"/>
-<line x1="174" y1="1719" x2="174" y2="1743" stroke="#6c757d" stroke-width="3"/>
-<text x="151" y="1735" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
-<text x="179" y="1735" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="165" y="1700" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D8·DP</text>
-<rect x="40" y="1729" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="49" cy="1743" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="81.0" y="1747" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG8</text>
-<line x1="112" y1="1743" x2="156" y2="1743" stroke="#087f5b" stroke-width="3"/>
-<line x1="174" y1="1743" x2="255" y2="1743" stroke="#2f9e44" stroke-width="3"/>
-<line x1="255" y1="1253" x2="255" y2="1743" stroke="#2f9e44" stroke-width="4"/>
+<line x1="255" y1="1253" x2="255" y2="1673" stroke="#2f9e44" stroke-width="4"/>
 <circle cx="255" cy="1253" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
 <circle cx="255" cy="1323" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
 <circle cx="255" cy="1393" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
@@ -414,8 +374,7 @@
 <circle cx="255" cy="1533" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
 <circle cx="255" cy="1603" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
 <circle cx="255" cy="1673" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<circle cx="255" cy="1743" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<line x1="255" y1="1743" x2="255" y2="1775" stroke="#2f9e44" stroke-width="4"/>
+<line x1="255" y1="1673" x2="255" y2="1775" stroke="#2f9e44" stroke-width="4"/>
 <line x1="255" y1="1775" x2="215" y2="1775" stroke="#2f9e44" stroke-width="4"/>
 <rect x="120" y="1761" width="95" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="129" cy="1775" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
@@ -430,7 +389,7 @@
 <line x1="469" y1="1229" x2="469" y2="1253" stroke="#6c757d" stroke-width="3"/>
 <text x="446" y="1245" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
 <text x="474" y="1245" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="460" y="1210" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D9·a</text>
+<text x="460" y="1210" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D8·a</text>
 <rect x="335" y="1239" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="344" cy="1253" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
 <text x="376.0" y="1257" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG1</text>
@@ -442,7 +401,7 @@
 <line x1="469" y1="1299" x2="469" y2="1323" stroke="#6c757d" stroke-width="3"/>
 <text x="446" y="1315" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
 <text x="474" y="1315" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="460" y="1280" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D10·b</text>
+<text x="460" y="1280" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D9·b</text>
 <rect x="335" y="1309" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="344" cy="1323" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
 <text x="376.0" y="1327" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG2</text>
@@ -454,7 +413,7 @@
 <line x1="469" y1="1369" x2="469" y2="1393" stroke="#6c757d" stroke-width="3"/>
 <text x="446" y="1385" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
 <text x="474" y="1385" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="460" y="1350" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D11·c</text>
+<text x="460" y="1350" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D10·c</text>
 <rect x="335" y="1379" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="344" cy="1393" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
 <text x="376.0" y="1397" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG3</text>
@@ -466,7 +425,7 @@
 <line x1="469" y1="1439" x2="469" y2="1463" stroke="#6c757d" stroke-width="3"/>
 <text x="446" y="1455" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
 <text x="474" y="1455" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="460" y="1420" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D12·d</text>
+<text x="460" y="1420" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D11·d</text>
 <rect x="335" y="1449" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="344" cy="1463" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
 <text x="376.0" y="1467" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG4</text>
@@ -478,7 +437,7 @@
 <line x1="469" y1="1509" x2="469" y2="1533" stroke="#6c757d" stroke-width="3"/>
 <text x="446" y="1525" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
 <text x="474" y="1525" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="460" y="1490" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D13·e</text>
+<text x="460" y="1490" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D12·e</text>
 <rect x="335" y="1519" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="344" cy="1533" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
 <text x="376.0" y="1537" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG5</text>
@@ -490,7 +449,7 @@
 <line x1="469" y1="1579" x2="469" y2="1603" stroke="#6c757d" stroke-width="3"/>
 <text x="446" y="1595" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
 <text x="474" y="1595" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="460" y="1560" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D14·f</text>
+<text x="460" y="1560" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D13·f</text>
 <rect x="335" y="1589" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="344" cy="1603" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
 <text x="376.0" y="1607" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG6</text>
@@ -502,25 +461,13 @@
 <line x1="469" y1="1649" x2="469" y2="1673" stroke="#6c757d" stroke-width="3"/>
 <text x="446" y="1665" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
 <text x="474" y="1665" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="460" y="1630" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D15·g</text>
+<text x="460" y="1630" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D14·g</text>
 <rect x="335" y="1659" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="344" cy="1673" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
 <text x="376.0" y="1677" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG7</text>
 <line x1="407" y1="1673" x2="451" y2="1673" stroke="#d6336c" stroke-width="3"/>
 <line x1="469" y1="1673" x2="550" y2="1673" stroke="#2f9e44" stroke-width="3"/>
-<rect x="433" y="1709" width="54" height="10" rx="3" stroke="#e03131" fill="#e03131" stroke-width="1"/>
-<polygon points="436,1709 436.0,1707.0 436.81778016906236,1699.2354286469244 439.2153903091735,1692.0 443.02943725152284,1685.7867965644036 448.0,1681.019237886467 453.7883429175395,1678.0222252113279 460.0,1677.0 466.2116570824605,1678.0222252113279 472.0,1681.0192378864667 476.97056274847716,1685.7867965644036 480.7846096908265,1692.0 483.18221983093764,1699.2354286469244 484.0,1707.0 484,1709" stroke="#e03131" fill="#e03131" stroke-width="2"/>
-<line x1="451" y1="1719" x2="451" y2="1743" stroke="#6c757d" stroke-width="3"/>
-<line x1="469" y1="1719" x2="469" y2="1743" stroke="#6c757d" stroke-width="3"/>
-<text x="446" y="1735" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
-<text x="474" y="1735" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="460" y="1700" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D16·DP</text>
-<rect x="335" y="1729" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="344" cy="1743" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="376.0" y="1747" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG8</text>
-<line x1="407" y1="1743" x2="451" y2="1743" stroke="#087f5b" stroke-width="3"/>
-<line x1="469" y1="1743" x2="550" y2="1743" stroke="#2f9e44" stroke-width="3"/>
-<line x1="550" y1="1253" x2="550" y2="1743" stroke="#2f9e44" stroke-width="4"/>
+<line x1="550" y1="1253" x2="550" y2="1673" stroke="#2f9e44" stroke-width="4"/>
 <circle cx="550" cy="1253" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
 <circle cx="550" cy="1323" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
 <circle cx="550" cy="1393" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
@@ -528,8 +475,7 @@
 <circle cx="550" cy="1533" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
 <circle cx="550" cy="1603" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
 <circle cx="550" cy="1673" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<circle cx="550" cy="1743" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<line x1="550" y1="1743" x2="550" y2="1775" stroke="#2f9e44" stroke-width="4"/>
+<line x1="550" y1="1673" x2="550" y2="1775" stroke="#2f9e44" stroke-width="4"/>
 <line x1="550" y1="1775" x2="510" y2="1775" stroke="#2f9e44" stroke-width="4"/>
 <rect x="415" y="1761" width="95" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="424" cy="1775" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
@@ -544,7 +490,7 @@
 <line x1="764" y1="1229" x2="764" y2="1253" stroke="#6c757d" stroke-width="3"/>
 <text x="741" y="1245" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
 <text x="769" y="1245" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="755" y="1210" font-family="DejaVu Sans,Arial,sans-serif" font-size="7.5" font-weight="700" text-anchor="middle" fill="#ffffff">D17·upper</text>
+<text x="755" y="1210" font-family="DejaVu Sans,Arial,sans-serif" font-size="7.5" font-weight="700" text-anchor="middle" fill="#ffffff">D15·upper</text>
 <rect x="630" y="1239" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="639" cy="1253" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
 <text x="671.0" y="1257" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG1</text>
@@ -556,7 +502,7 @@
 <line x1="764" y1="1299" x2="764" y2="1323" stroke="#6c757d" stroke-width="3"/>
 <text x="741" y="1315" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
 <text x="769" y="1315" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="755" y="1280" font-family="DejaVu Sans,Arial,sans-serif" font-size="7.5" font-weight="700" text-anchor="middle" fill="#ffffff">D18·lower</text>
+<text x="755" y="1280" font-family="DejaVu Sans,Arial,sans-serif" font-size="7.5" font-weight="700" text-anchor="middle" fill="#ffffff">D16·lower</text>
 <rect x="630" y="1309" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="639" cy="1323" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
 <text x="671.0" y="1327" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG2</text>
@@ -582,7 +528,7 @@
 <line x1="1059" y1="1229" x2="1059" y2="1253" stroke="#6c757d" stroke-width="3"/>
 <text x="1036" y="1245" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
 <text x="1064" y="1245" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="1050" y="1210" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D19·a</text>
+<text x="1050" y="1210" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D17·a</text>
 <rect x="925" y="1239" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="934" cy="1253" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
 <text x="966.0" y="1257" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG1</text>
@@ -594,7 +540,7 @@
 <line x1="1059" y1="1299" x2="1059" y2="1323" stroke="#6c757d" stroke-width="3"/>
 <text x="1036" y="1315" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
 <text x="1064" y="1315" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="1050" y="1280" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D20·b</text>
+<text x="1050" y="1280" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D18·b</text>
 <rect x="925" y="1309" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="934" cy="1323" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
 <text x="966.0" y="1327" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG2</text>
@@ -606,7 +552,7 @@
 <line x1="1059" y1="1369" x2="1059" y2="1393" stroke="#6c757d" stroke-width="3"/>
 <text x="1036" y="1385" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
 <text x="1064" y="1385" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="1050" y="1350" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D21·c</text>
+<text x="1050" y="1350" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D19·c</text>
 <rect x="925" y="1379" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="934" cy="1393" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
 <text x="966.0" y="1397" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG3</text>
@@ -618,7 +564,7 @@
 <line x1="1059" y1="1439" x2="1059" y2="1463" stroke="#6c757d" stroke-width="3"/>
 <text x="1036" y="1455" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
 <text x="1064" y="1455" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="1050" y="1420" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D22·d</text>
+<text x="1050" y="1420" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D20·d</text>
 <rect x="925" y="1449" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="934" cy="1463" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
 <text x="966.0" y="1467" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG4</text>
@@ -630,7 +576,7 @@
 <line x1="1059" y1="1509" x2="1059" y2="1533" stroke="#6c757d" stroke-width="3"/>
 <text x="1036" y="1525" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
 <text x="1064" y="1525" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="1050" y="1490" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D23·e</text>
+<text x="1050" y="1490" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D21·e</text>
 <rect x="925" y="1519" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="934" cy="1533" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
 <text x="966.0" y="1537" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG5</text>
@@ -642,7 +588,7 @@
 <line x1="1059" y1="1579" x2="1059" y2="1603" stroke="#6c757d" stroke-width="3"/>
 <text x="1036" y="1595" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
 <text x="1064" y="1595" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="1050" y="1560" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D24·f</text>
+<text x="1050" y="1560" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D22·f</text>
 <rect x="925" y="1589" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="934" cy="1603" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
 <text x="966.0" y="1607" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG6</text>
@@ -654,25 +600,13 @@
 <line x1="1059" y1="1649" x2="1059" y2="1673" stroke="#6c757d" stroke-width="3"/>
 <text x="1036" y="1665" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
 <text x="1064" y="1665" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="1050" y="1630" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D25·g</text>
+<text x="1050" y="1630" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D23·g</text>
 <rect x="925" y="1659" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="934" cy="1673" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
 <text x="966.0" y="1677" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG7</text>
 <line x1="997" y1="1673" x2="1041" y2="1673" stroke="#d6336c" stroke-width="3"/>
 <line x1="1059" y1="1673" x2="1140" y2="1673" stroke="#2f9e44" stroke-width="3"/>
-<rect x="1023" y="1709" width="54" height="10" rx="3" stroke="#e03131" fill="#e03131" stroke-width="1"/>
-<polygon points="1026,1709 1026.0,1707.0 1026.8177801690624,1699.2354286469244 1029.2153903091735,1692.0 1033.029437251523,1685.7867965644036 1038.0,1681.019237886467 1043.7883429175395,1678.0222252113279 1050.0,1677.0 1056.2116570824605,1678.0222252113279 1062.0,1681.0192378864667 1066.970562748477,1685.7867965644036 1070.7846096908265,1692.0 1073.1822198309376,1699.2354286469244 1074.0,1707.0 1074,1709" stroke="#e03131" fill="#e03131" stroke-width="2"/>
-<line x1="1041" y1="1719" x2="1041" y2="1743" stroke="#6c757d" stroke-width="3"/>
-<line x1="1059" y1="1719" x2="1059" y2="1743" stroke="#6c757d" stroke-width="3"/>
-<text x="1036" y="1735" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
-<text x="1064" y="1735" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="1050" y="1700" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D26·DP</text>
-<rect x="925" y="1729" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="934" cy="1743" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="966.0" y="1747" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG8</text>
-<line x1="997" y1="1743" x2="1041" y2="1743" stroke="#087f5b" stroke-width="3"/>
-<line x1="1059" y1="1743" x2="1140" y2="1743" stroke="#2f9e44" stroke-width="3"/>
-<line x1="1140" y1="1253" x2="1140" y2="1743" stroke="#2f9e44" stroke-width="4"/>
+<line x1="1140" y1="1253" x2="1140" y2="1673" stroke="#2f9e44" stroke-width="4"/>
 <circle cx="1140" cy="1253" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
 <circle cx="1140" cy="1323" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
 <circle cx="1140" cy="1393" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
@@ -680,8 +614,7 @@
 <circle cx="1140" cy="1533" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
 <circle cx="1140" cy="1603" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
 <circle cx="1140" cy="1673" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<circle cx="1140" cy="1743" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<line x1="1140" y1="1743" x2="1140" y2="1775" stroke="#2f9e44" stroke-width="4"/>
+<line x1="1140" y1="1673" x2="1140" y2="1775" stroke="#2f9e44" stroke-width="4"/>
 <line x1="1140" y1="1775" x2="1100" y2="1775" stroke="#2f9e44" stroke-width="4"/>
 <rect x="1005" y="1761" width="95" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="1014" cy="1775" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
@@ -696,7 +629,7 @@
 <line x1="1354" y1="1229" x2="1354" y2="1253" stroke="#6c757d" stroke-width="3"/>
 <text x="1331" y="1245" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
 <text x="1359" y="1245" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="1345" y="1210" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D27·a</text>
+<text x="1345" y="1210" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D24·a</text>
 <rect x="1220" y="1239" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="1229" cy="1253" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
 <text x="1261.0" y="1257" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG1</text>
@@ -708,7 +641,7 @@
 <line x1="1354" y1="1299" x2="1354" y2="1323" stroke="#6c757d" stroke-width="3"/>
 <text x="1331" y="1315" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
 <text x="1359" y="1315" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="1345" y="1280" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D28·b</text>
+<text x="1345" y="1280" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D25·b</text>
 <rect x="1220" y="1309" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="1229" cy="1323" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
 <text x="1261.0" y="1327" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG2</text>
@@ -720,7 +653,7 @@
 <line x1="1354" y1="1369" x2="1354" y2="1393" stroke="#6c757d" stroke-width="3"/>
 <text x="1331" y="1385" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
 <text x="1359" y="1385" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="1345" y="1350" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D29·c</text>
+<text x="1345" y="1350" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D26·c</text>
 <rect x="1220" y="1379" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="1229" cy="1393" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
 <text x="1261.0" y="1397" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG3</text>
@@ -732,7 +665,7 @@
 <line x1="1354" y1="1439" x2="1354" y2="1463" stroke="#6c757d" stroke-width="3"/>
 <text x="1331" y="1455" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
 <text x="1359" y="1455" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="1345" y="1420" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D30·d</text>
+<text x="1345" y="1420" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D27·d</text>
 <rect x="1220" y="1449" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="1229" cy="1463" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
 <text x="1261.0" y="1467" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG4</text>
@@ -744,7 +677,7 @@
 <line x1="1354" y1="1509" x2="1354" y2="1533" stroke="#6c757d" stroke-width="3"/>
 <text x="1331" y="1525" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
 <text x="1359" y="1525" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="1345" y="1490" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D31·e</text>
+<text x="1345" y="1490" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D28·e</text>
 <rect x="1220" y="1519" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="1229" cy="1533" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
 <text x="1261.0" y="1537" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG5</text>
@@ -756,7 +689,7 @@
 <line x1="1354" y1="1579" x2="1354" y2="1603" stroke="#6c757d" stroke-width="3"/>
 <text x="1331" y="1595" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
 <text x="1359" y="1595" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="1345" y="1560" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D32·f</text>
+<text x="1345" y="1560" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D29·f</text>
 <rect x="1220" y="1589" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="1229" cy="1603" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
 <text x="1261.0" y="1607" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG6</text>
@@ -768,25 +701,13 @@
 <line x1="1354" y1="1649" x2="1354" y2="1673" stroke="#6c757d" stroke-width="3"/>
 <text x="1331" y="1665" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
 <text x="1359" y="1665" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="1345" y="1630" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D33·g</text>
+<text x="1345" y="1630" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D30·g</text>
 <rect x="1220" y="1659" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="1229" cy="1673" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
 <text x="1261.0" y="1677" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG7</text>
 <line x1="1292" y1="1673" x2="1336" y2="1673" stroke="#d6336c" stroke-width="3"/>
 <line x1="1354" y1="1673" x2="1435" y2="1673" stroke="#2f9e44" stroke-width="3"/>
-<rect x="1318" y="1709" width="54" height="10" rx="3" stroke="#e03131" fill="#e03131" stroke-width="1"/>
-<polygon points="1321,1709 1321.0,1707.0 1321.8177801690624,1699.2354286469244 1324.2153903091735,1692.0 1328.029437251523,1685.7867965644036 1333.0,1681.019237886467 1338.7883429175395,1678.0222252113279 1345.0,1677.0 1351.2116570824605,1678.0222252113279 1357.0,1681.0192378864667 1361.970562748477,1685.7867965644036 1365.7846096908265,1692.0 1368.1822198309376,1699.2354286469244 1369.0,1707.0 1369,1709" stroke="#e03131" fill="#e03131" stroke-width="2"/>
-<line x1="1336" y1="1719" x2="1336" y2="1743" stroke="#6c757d" stroke-width="3"/>
-<line x1="1354" y1="1719" x2="1354" y2="1743" stroke="#6c757d" stroke-width="3"/>
-<text x="1331" y="1735" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
-<text x="1359" y="1735" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="1345" y="1700" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D34·DP</text>
-<rect x="1220" y="1729" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="1229" cy="1743" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="1261.0" y="1747" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG8</text>
-<line x1="1292" y1="1743" x2="1336" y2="1743" stroke="#087f5b" stroke-width="3"/>
-<line x1="1354" y1="1743" x2="1435" y2="1743" stroke="#2f9e44" stroke-width="3"/>
-<line x1="1435" y1="1253" x2="1435" y2="1743" stroke="#2f9e44" stroke-width="4"/>
+<line x1="1435" y1="1253" x2="1435" y2="1673" stroke="#2f9e44" stroke-width="4"/>
 <circle cx="1435" cy="1253" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
 <circle cx="1435" cy="1323" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
 <circle cx="1435" cy="1393" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
@@ -794,8 +715,7 @@
 <circle cx="1435" cy="1533" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
 <circle cx="1435" cy="1603" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
 <circle cx="1435" cy="1673" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<circle cx="1435" cy="1743" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<line x1="1435" y1="1743" x2="1435" y2="1775" stroke="#2f9e44" stroke-width="4"/>
+<line x1="1435" y1="1673" x2="1435" y2="1775" stroke="#2f9e44" stroke-width="4"/>
 <line x1="1435" y1="1775" x2="1395" y2="1775" stroke="#2f9e44" stroke-width="4"/>
 <rect x="1300" y="1761" width="95" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="1309" cy="1775" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
@@ -810,7 +730,7 @@
 <line x1="1649" y1="1229" x2="1649" y2="1253" stroke="#6c757d" stroke-width="3"/>
 <text x="1626" y="1245" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
 <text x="1654" y="1245" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="1640" y="1210" font-family="DejaVu Sans,Arial,sans-serif" font-size="7.5" font-weight="700" text-anchor="middle" fill="#ffffff">D35·upper</text>
+<text x="1640" y="1210" font-family="DejaVu Sans,Arial,sans-serif" font-size="7.5" font-weight="700" text-anchor="middle" fill="#ffffff">D31·upper</text>
 <rect x="1515" y="1239" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="1524" cy="1253" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
 <text x="1556.0" y="1257" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG1</text>
@@ -822,7 +742,7 @@
 <line x1="1649" y1="1299" x2="1649" y2="1323" stroke="#6c757d" stroke-width="3"/>
 <text x="1626" y="1315" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
 <text x="1654" y="1315" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="1640" y="1280" font-family="DejaVu Sans,Arial,sans-serif" font-size="7.5" font-weight="700" text-anchor="middle" fill="#ffffff">D36·lower</text>
+<text x="1640" y="1280" font-family="DejaVu Sans,Arial,sans-serif" font-size="7.5" font-weight="700" text-anchor="middle" fill="#ffffff">D32·lower</text>
 <rect x="1515" y="1309" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="1524" cy="1323" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
 <text x="1556.0" y="1327" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG2</text>
@@ -848,7 +768,7 @@
 <line x1="1944" y1="1229" x2="1944" y2="1253" stroke="#6c757d" stroke-width="3"/>
 <text x="1921" y="1245" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
 <text x="1949" y="1245" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="1935" y="1210" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D37·a</text>
+<text x="1935" y="1210" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D33·a</text>
 <rect x="1810" y="1239" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="1819" cy="1253" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
 <text x="1851.0" y="1257" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG1</text>
@@ -860,7 +780,7 @@
 <line x1="1944" y1="1299" x2="1944" y2="1323" stroke="#6c757d" stroke-width="3"/>
 <text x="1921" y="1315" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
 <text x="1949" y="1315" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="1935" y="1280" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D38·b</text>
+<text x="1935" y="1280" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D34·b</text>
 <rect x="1810" y="1309" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="1819" cy="1323" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
 <text x="1851.0" y="1327" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG2</text>
@@ -872,7 +792,7 @@
 <line x1="1944" y1="1369" x2="1944" y2="1393" stroke="#6c757d" stroke-width="3"/>
 <text x="1921" y="1385" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
 <text x="1949" y="1385" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="1935" y="1350" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D39·c</text>
+<text x="1935" y="1350" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D35·c</text>
 <rect x="1810" y="1379" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="1819" cy="1393" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
 <text x="1851.0" y="1397" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG3</text>
@@ -884,7 +804,7 @@
 <line x1="1944" y1="1439" x2="1944" y2="1463" stroke="#6c757d" stroke-width="3"/>
 <text x="1921" y="1455" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
 <text x="1949" y="1455" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="1935" y="1420" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D40·d</text>
+<text x="1935" y="1420" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D36·d</text>
 <rect x="1810" y="1449" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="1819" cy="1463" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
 <text x="1851.0" y="1467" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG4</text>
@@ -896,7 +816,7 @@
 <line x1="1944" y1="1509" x2="1944" y2="1533" stroke="#6c757d" stroke-width="3"/>
 <text x="1921" y="1525" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
 <text x="1949" y="1525" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="1935" y="1490" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D41·e</text>
+<text x="1935" y="1490" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D37·e</text>
 <rect x="1810" y="1519" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="1819" cy="1533" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
 <text x="1851.0" y="1537" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG5</text>
@@ -908,7 +828,7 @@
 <line x1="1944" y1="1579" x2="1944" y2="1603" stroke="#6c757d" stroke-width="3"/>
 <text x="1921" y="1595" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
 <text x="1949" y="1595" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="1935" y="1560" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D42·f</text>
+<text x="1935" y="1560" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D38·f</text>
 <rect x="1810" y="1589" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="1819" cy="1603" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
 <text x="1851.0" y="1607" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG6</text>
@@ -920,25 +840,13 @@
 <line x1="1944" y1="1649" x2="1944" y2="1673" stroke="#6c757d" stroke-width="3"/>
 <text x="1921" y="1665" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
 <text x="1949" y="1665" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="1935" y="1630" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D43·g</text>
+<text x="1935" y="1630" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D39·g</text>
 <rect x="1810" y="1659" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="1819" cy="1673" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
 <text x="1851.0" y="1677" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG7</text>
 <line x1="1882" y1="1673" x2="1926" y2="1673" stroke="#d6336c" stroke-width="3"/>
 <line x1="1944" y1="1673" x2="2025" y2="1673" stroke="#2f9e44" stroke-width="3"/>
-<rect x="1908" y="1709" width="54" height="10" rx="3" stroke="#e03131" fill="#e03131" stroke-width="1"/>
-<polygon points="1911,1709 1911.0,1707.0 1911.8177801690624,1699.2354286469244 1914.2153903091735,1692.0 1918.029437251523,1685.7867965644036 1923.0,1681.019237886467 1928.7883429175395,1678.0222252113279 1935.0,1677.0 1941.2116570824605,1678.0222252113279 1947.0,1681.0192378864667 1951.970562748477,1685.7867965644036 1955.7846096908265,1692.0 1958.1822198309376,1699.2354286469244 1959.0,1707.0 1959,1709" stroke="#e03131" fill="#e03131" stroke-width="2"/>
-<line x1="1926" y1="1719" x2="1926" y2="1743" stroke="#6c757d" stroke-width="3"/>
-<line x1="1944" y1="1719" x2="1944" y2="1743" stroke="#6c757d" stroke-width="3"/>
-<text x="1921" y="1735" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
-<text x="1949" y="1735" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="1935" y="1700" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D44·DP</text>
-<rect x="1810" y="1729" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="1819" cy="1743" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="1851.0" y="1747" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG8</text>
-<line x1="1882" y1="1743" x2="1926" y2="1743" stroke="#087f5b" stroke-width="3"/>
-<line x1="1944" y1="1743" x2="2025" y2="1743" stroke="#2f9e44" stroke-width="3"/>
-<line x1="2025" y1="1253" x2="2025" y2="1743" stroke="#2f9e44" stroke-width="4"/>
+<line x1="2025" y1="1253" x2="2025" y2="1673" stroke="#2f9e44" stroke-width="4"/>
 <circle cx="2025" cy="1253" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
 <circle cx="2025" cy="1323" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
 <circle cx="2025" cy="1393" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
@@ -946,8 +854,7 @@
 <circle cx="2025" cy="1533" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
 <circle cx="2025" cy="1603" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
 <circle cx="2025" cy="1673" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<circle cx="2025" cy="1743" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<line x1="2025" y1="1743" x2="2025" y2="1775" stroke="#2f9e44" stroke-width="4"/>
+<line x1="2025" y1="1673" x2="2025" y2="1775" stroke="#2f9e44" stroke-width="4"/>
 <line x1="2025" y1="1775" x2="1985" y2="1775" stroke="#2f9e44" stroke-width="4"/>
 <rect x="1890" y="1761" width="95" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="1899" cy="1775" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
@@ -962,7 +869,7 @@
 <line x1="2239" y1="1229" x2="2239" y2="1253" stroke="#6c757d" stroke-width="3"/>
 <text x="2216" y="1245" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
 <text x="2244" y="1245" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="2230" y="1210" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D45·a</text>
+<text x="2230" y="1210" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D40·a</text>
 <rect x="2105" y="1239" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="2114" cy="1253" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
 <text x="2146.0" y="1257" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG1</text>
@@ -974,7 +881,7 @@
 <line x1="2239" y1="1299" x2="2239" y2="1323" stroke="#6c757d" stroke-width="3"/>
 <text x="2216" y="1315" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
 <text x="2244" y="1315" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="2230" y="1280" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D46·b</text>
+<text x="2230" y="1280" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D41·b</text>
 <rect x="2105" y="1309" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="2114" cy="1323" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
 <text x="2146.0" y="1327" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG2</text>
@@ -986,7 +893,7 @@
 <line x1="2239" y1="1369" x2="2239" y2="1393" stroke="#6c757d" stroke-width="3"/>
 <text x="2216" y="1385" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
 <text x="2244" y="1385" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="2230" y="1350" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D47·c</text>
+<text x="2230" y="1350" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D42·c</text>
 <rect x="2105" y="1379" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="2114" cy="1393" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
 <text x="2146.0" y="1397" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG3</text>
@@ -998,7 +905,7 @@
 <line x1="2239" y1="1439" x2="2239" y2="1463" stroke="#6c757d" stroke-width="3"/>
 <text x="2216" y="1455" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
 <text x="2244" y="1455" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="2230" y="1420" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D48·d</text>
+<text x="2230" y="1420" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D43·d</text>
 <rect x="2105" y="1449" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="2114" cy="1463" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
 <text x="2146.0" y="1467" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG4</text>
@@ -1010,7 +917,7 @@
 <line x1="2239" y1="1509" x2="2239" y2="1533" stroke="#6c757d" stroke-width="3"/>
 <text x="2216" y="1525" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
 <text x="2244" y="1525" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="2230" y="1490" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D49·e</text>
+<text x="2230" y="1490" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D44·e</text>
 <rect x="2105" y="1519" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="2114" cy="1533" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
 <text x="2146.0" y="1537" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG5</text>
@@ -1022,7 +929,7 @@
 <line x1="2239" y1="1579" x2="2239" y2="1603" stroke="#6c757d" stroke-width="3"/>
 <text x="2216" y="1595" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
 <text x="2244" y="1595" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="2230" y="1560" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D50·f</text>
+<text x="2230" y="1560" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D45·f</text>
 <rect x="2105" y="1589" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="2114" cy="1603" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
 <text x="2146.0" y="1607" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG6</text>
@@ -1034,25 +941,13 @@
 <line x1="2239" y1="1649" x2="2239" y2="1673" stroke="#6c757d" stroke-width="3"/>
 <text x="2216" y="1665" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
 <text x="2244" y="1665" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="2230" y="1630" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D51·g</text>
+<text x="2230" y="1630" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D46·g</text>
 <rect x="2105" y="1659" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="2114" cy="1673" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
 <text x="2146.0" y="1677" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG7</text>
 <line x1="2177" y1="1673" x2="2221" y2="1673" stroke="#d6336c" stroke-width="3"/>
 <line x1="2239" y1="1673" x2="2320" y2="1673" stroke="#2f9e44" stroke-width="3"/>
-<rect x="2203" y="1709" width="54" height="10" rx="3" stroke="#e03131" fill="#e03131" stroke-width="1"/>
-<polygon points="2206,1709 2206.0,1707.0 2206.817780169062,1699.2354286469244 2209.2153903091735,1692.0 2213.0294372515227,1685.7867965644036 2218.0,1681.019237886467 2223.7883429175395,1678.0222252113279 2230.0,1677.0 2236.2116570824605,1678.0222252113279 2242.0,1681.0192378864667 2246.9705627484773,1685.7867965644036 2250.7846096908265,1692.0 2253.182219830938,1699.2354286469244 2254.0,1707.0 2254,1709" stroke="#e03131" fill="#e03131" stroke-width="2"/>
-<line x1="2221" y1="1719" x2="2221" y2="1743" stroke="#6c757d" stroke-width="3"/>
-<line x1="2239" y1="1719" x2="2239" y2="1743" stroke="#6c757d" stroke-width="3"/>
-<text x="2216" y="1735" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
-<text x="2244" y="1735" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="2230" y="1700" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D52·DP</text>
-<rect x="2105" y="1729" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="2114" cy="1743" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="2146.0" y="1747" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG8</text>
-<line x1="2177" y1="1743" x2="2221" y2="1743" stroke="#087f5b" stroke-width="3"/>
-<line x1="2239" y1="1743" x2="2320" y2="1743" stroke="#2f9e44" stroke-width="3"/>
-<line x1="2320" y1="1253" x2="2320" y2="1743" stroke="#2f9e44" stroke-width="4"/>
+<line x1="2320" y1="1253" x2="2320" y2="1673" stroke="#2f9e44" stroke-width="4"/>
 <circle cx="2320" cy="1253" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
 <circle cx="2320" cy="1323" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
 <circle cx="2320" cy="1393" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
@@ -1060,8 +955,7 @@
 <circle cx="2320" cy="1533" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
 <circle cx="2320" cy="1603" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
 <circle cx="2320" cy="1673" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<circle cx="2320" cy="1743" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<line x1="2320" y1="1743" x2="2320" y2="1775" stroke="#2f9e44" stroke-width="4"/>
+<line x1="2320" y1="1673" x2="2320" y2="1775" stroke="#2f9e44" stroke-width="4"/>
 <line x1="2320" y1="1775" x2="2280" y2="1775" stroke="#2f9e44" stroke-width="4"/>
 <rect x="2185" y="1761" width="95" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="2194" cy="1775" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>

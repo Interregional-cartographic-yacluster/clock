@@ -72,7 +72,7 @@ def build_scene(Scene, leds, groups, group_titles):
     s = Scene()
     s.rect(18, 18, 2364, 1944, "muted", "none", 2)
     s.text(45, 58, "ESP32 + TM1640 — монтажная схема HH:MM:SS", 30, "ink", bold=True)
-    s.text(45, 86, "Без 74HCT245 · 52 LED · цветные провода без перекрёстков · соединения через одноимённые клеммы", 16, "muted")
+    s.text(45, 86, "Без 74HCT245 и DP · 46 LED · цветные провода без перекрёстков · соединения через одноимённые клеммы", 16, "muted")
 
     # ESP32 module: power is routed above/below, signals leave from the right.
     s.rect(80, 180, 350, 340, "#152d46", "#245b8a", 4, 12)
@@ -81,7 +81,7 @@ def build_scene(Scene, leds, groups, group_titles):
     s.text(250, 345, "WROOM-32D", 14, "ink", "middle")
     s.text(250, 215, "U1", 18, "paper", "middle", True)
     esp_gpio = {}
-    for i, (pin, net) in enumerate((("25", "TM_CLK"), ("26", "TM_DIN"), ("32", "COLON_BTN"), ("33", "DP_BTN"))):
+    for i, (pin, net) in enumerate((("25", "TM_CLK"), ("26", "TM_DIN"), ("32", "COLON_BTN"))):
         y = 260 + i * 60
         s.line(430, y, 452, y, "#6c757d", 4)
         s.circle(430, y, 6, "#d4af37", "#f8e71c", 2)
@@ -124,8 +124,8 @@ def build_scene(Scene, leds, groups, group_titles):
     wire(s, [(x, y), (740, y), (740, 320), (878, 320)], "#7048e8", 5)
     s.text(755, 311, "GPIO26 → DIN", 12, "accent")
 
-    # Two buttons use local ground symbols, avoiding any long crossing returns.
-    for pin, by, refdes, net in (("32", 380, "SW1", "COLON_BTN"), ("33", 440, "SW2", "DP_BTN")):
+    # The colon button uses a local ground symbol; no DP button is present.
+    for pin, by, refdes, net in (("32", 380, "SW1", "COLON_BTN"),):
         x, y, _ = esp_gpio[pin]
         wire(s, [(x, y), (560, y), (560, by)], "#f08c00", 4)
         button(s, 602, by, refdes)
@@ -140,13 +140,14 @@ def build_scene(Scene, leds, groups, group_titles):
     # SEG resistors and labeled harness terminals; all wires are parallel.
     s.text(1390, 150, "Резисторы и клеммы жгута", 17, "ink", bold=True)
     seg_colors = ("#e03131", "#f08c00", "#e3b505", "#2f9e44", "#1971c2", "#7048e8", "#d6336c", "#087f5b")
-    for i in range(8):
+    for i in range(7):
         y = 210 + i * 40
         rx = 1490 + i * 105
         wire(s, [(1322, y), (rx - 42, y)], seg_colors[i], 3)
         resistor(s, rx, y, f"R{i + 1}")
         terminal(s, rx + 48, y, f"SEG{i + 1}", 74)
         s.text(rx + 48, y - 18, f"SEG{i + 1}_DRV", 9, "muted")
+    s.text(1332, 494, "NC · без DP", 11, "muted")
     for i in range(8):
         y = 530 + i * 40
         terminal(s, 1400, y, f"GRID{i + 1}", 92)

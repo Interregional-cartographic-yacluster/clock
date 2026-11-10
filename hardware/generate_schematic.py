@@ -43,7 +43,7 @@ pdfmetrics.registerFont(TTFont("DV", FONT))
 pdfmetrics.registerFont(TTFont("DVB", FONT_BOLD))
 
 W, H = 2400, 1980
-SEGMENTS = ("a", "b", "c", "d", "e", "f", "g", "DP")
+SEGMENTS = ("a", "b", "c", "d", "e", "f", "g")
 GROUPS = ("H1", "H2", "C1", "M1", "M2", "C2", "S1", "S2")
 GROUP_TITLES = {
     "H1": "Часы — десятки", "H2": "Часы — единицы",
@@ -66,12 +66,12 @@ for grid, group in enumerate(GROUPS, 1):
     for name, seg in items:
         LEDS.append({"ref": f"D{ref}", "group": group, "grid": grid, "name": name, "seg": seg})
         ref += 1
-assert len(LEDS) == 52
+assert len(LEDS) == 46
 
 TM_LEFT = [("VDD", "17"), ("GND", "6"), ("DIN", "7"), ("SCLK", "8")]
 TM_RIGHT = [(f"SEG{i}", str(i + 8)) for i in range(1, 9)] + [(f"GRID{i}", str(17 + i)) for i in range(1, 9)] + [("GRID9", "26"), ("GRID10", "27"), ("GRID11", "28"), ("GRID12", "1"), ("GRID13", "2"), ("GRID14", "3"), ("GRID15", "4"), ("GRID16", "5")]
 ESP_LEFT = [("5V", "5V"), ("GND", "GND")]
-ESP_RIGHT = [("GPIO25", "25"), ("GPIO26", "26"), ("GPIO32", "32"), ("GPIO33", "33")]
+ESP_RIGHT = [("GPIO25", "25"), ("GPIO26", "26"), ("GPIO32", "32")]
 
 
 class Scene:
@@ -112,7 +112,7 @@ def rgb(value):
 def write_svg(scene, path):
     out = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">',
            '<title>ESP32 TM1640 HH:MM:SS schematic</title>',
-           '<desc>Pictorial crossing-free wiring diagram with ESP32, TM1640 and 52 LEDs</desc>',
+           '<desc>Pictorial crossing-free wiring diagram with ESP32, TM1640 and 46 LEDs</desc>',
            '<rect width="100%" height="100%" fill="#ffffff"/>']
     for kind, p in scene.items:
         if kind == "line":
@@ -267,17 +267,16 @@ def generate_kicad():
             nets.append((refdes, pin_name, number, net))
 
     add("clock:ESP32_MODULE", "U1", "ESP32-WROOM-32D", 60, 60,
-        {"5V": "+5V", "GND": "GND", "25": "TM_CLK", "26": "TM_DIN", "32": "COLON_BTN", "33": "DP_BTN"})
+        {"5V": "+5V", "GND": "GND", "25": "TM_CLK", "26": "TM_DIN", "32": "COLON_BTN"})
     add("clock:TM1640", "U2", "TM1640", 250, 110,
-        {"VDD": "+5V", "GND": "GND", "DIN": "TM_DIN", "SCLK": "TM_CLK", **{f"SEG{i}": f"SEG{i}_DRV" for i in range(1, 9)}, **{f"GRID{i}": f"GRID{i}" for i in range(1, 9)}},
-        nc={f"GRID{i}" for i in range(9, 17)})
+        {"VDD": "+5V", "GND": "GND", "DIN": "TM_DIN", "SCLK": "TM_CLK", **{f"SEG{i}": f"SEG{i}_DRV" for i in range(1, 8)}, **{f"GRID{i}": f"GRID{i}" for i in range(1, 9)}},
+        nc={f"GRID{i}" for i in range(9, 17)} | {"SEG8"})
     add("clock:CONN2", "J1", "+5V input", 30, 110, {"1": "+5V", "2": "GND"})
     add("clock:C", "C1", "100nF", 315, 55, {"1": "+5V", "2": "GND"})
     add("clock:C", "C2", "47-100uF", 315, 75, {"1": "+5V", "2": "GND"})
     add("clock:SW", "SW1", "Colon mode", 330, 100, {"1": "COLON_BTN", "2": "GND"})
-    add("clock:SW", "SW2", "Decimal points", 330, 120, {"1": "DP_BTN", "2": "GND"})
 
-    for i in range(8):
+    for i in range(7):
         # Driver and LED sides are distinct nets joined only through the resistor.
         add("clock:R", f"R{i + 1}", "330R", 40 + i * 45, 270,
             {"1": f"SEG{i + 1}_DRV", "2": f"SEG{i + 1}"})
@@ -294,11 +293,11 @@ def generate_kicad():
     notes = [
         (35, 25, "CONTROL AND POWER"),
         (35, 250, "SEG CURRENT-LIMITING RESISTORS"),
-        (35, 295, "52-LED DISPLAY: H1 H2 C1 M1 M2 C2 S1 S2"),
+        (35, 295, "46-LED DISPLAY, NO DP: H1 H2 C1 M1 M2 C2 S1 S2"),
         (35, 455, "All cathodes connect to their assigned GRID. Never connect a digit common cathode directly to GND."),
         (35, 465, "+5V: U1 5V and U2 VDD. Common GND. C1/C2 next to U2. Direct 3.3V control per user request."),
-        (35, 475, "SEG1...8 = a,b,c,d,e,f,g,DP. Colon RAM values: 0x03 ON, 0x00 OFF."),
-        (35, 485, "TM1640 GRID9...16 are intentionally not connected. No 74HCT245 is used in this variant."),
+        (35, 475, "SEG1...7 = a,b,c,d,e,f,g. Colon RAM values: 0x03 ON, 0x00 OFF. DP is omitted."),
+        (35, 485, "TM1640 SEG8 and GRID9...16 are not connected. No 74HCT245 is used in this variant."),
     ]
     for x, y, value in notes: out.append(f'  (text {q(value)} (at {x} {y} 0) {effects(2.5, "left bottom")} (uuid {uid("note-" + value)}))')
     out.append(")")
