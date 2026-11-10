@@ -28,10 +28,10 @@ def terminal(s, x, y, value, width=86):
 def resistor(s, x, y, refdes):
     s.line(x - 42, y, x - 25, y, "#6c757d", 3)
     s.rect(x - 25, y - 10, 50, 20, "#6b4f2c", "#e9c46a", 2, 8)
-    for dx, color in ((-14, "#f8e71c"), (-5, "#7048e8"), (5, "#7a3e00"), (15, "#b7791f")):
+    for dx, color in ((-14, "#2f9e44"), (-5, "#7a3e00"), (5, "#7a3e00"), (15, "#b7791f")):
         s.rect(x + dx - 2, y - 9, 4, 18, color, color, 0)
     s.line(x + 25, y, x + 42, y, "#6c757d", 3)
-    s.text(x, y - 18, f"{refdes} 330 Ω", 11, "ink", "middle", True)
+    s.text(x, y - 18, f"{refdes} ОМЛТ 510 Ω", 11, "ink", "middle", True)
 
 
 def capacitor(s, x, y, refdes, value):

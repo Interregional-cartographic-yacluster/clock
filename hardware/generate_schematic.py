@@ -224,7 +224,7 @@ def generate_kicad():
     specs = [
         ("clock:ESP32_MODULE", "U", "ESP32-WROOM-32D", ESP_LEFT, ESP_RIGHT, 40, None, None),
         ("clock:TM1640", "U", "TM1640", TM_LEFT, TM_RIGHT, 55, None, None),
-        ("clock:R", "R", "330R", [], [], 10, None, "R"),
+        ("clock:R", "R", "OMLT 510R", [], [], 10, None, "R"),
         ("clock:LED", "D", "LED", [], [], 10, None, "LED"),
         ("clock:C", "C", "C", [], [], 10, None, "C"),
         ("clock:SW", "SW", "SW_PUSH", [], [], 10, None, "SW"),
@@ -278,7 +278,7 @@ def generate_kicad():
 
     for i in range(7):
         # Driver and LED sides are distinct nets joined only through the resistor.
-        add("clock:R", f"R{i + 1}", "330R", 40 + i * 45, 270,
+        add("clock:R", f"R{i + 1}", "OMLT 510R", 40 + i * 45, 270,
             {"1": f"SEG{i + 1}_DRV", "2": f"SEG{i + 1}"})
 
     positions = {}

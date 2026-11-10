@@ -153,12 +153,12 @@
 <line x1="1322" y1="210" x2="1448" y2="210" stroke="#e03131" stroke-width="3"/>
 <line x1="1448" y1="210" x2="1465" y2="210" stroke="#6c757d" stroke-width="3"/>
 <rect x="1465" y="200" width="50" height="20" rx="8" stroke="#6b4f2c" fill="#e9c46a" stroke-width="2"/>
-<rect x="1474" y="201" width="4" height="18" rx="0" stroke="#f8e71c" fill="#f8e71c" stroke-width="0"/>
-<rect x="1483" y="201" width="4" height="18" rx="0" stroke="#7048e8" fill="#7048e8" stroke-width="0"/>
+<rect x="1474" y="201" width="4" height="18" rx="0" stroke="#2f9e44" fill="#2f9e44" stroke-width="0"/>
+<rect x="1483" y="201" width="4" height="18" rx="0" stroke="#7a3e00" fill="#7a3e00" stroke-width="0"/>
 <rect x="1493" y="201" width="4" height="18" rx="0" stroke="#7a3e00" fill="#7a3e00" stroke-width="0"/>
 <rect x="1503" y="201" width="4" height="18" rx="0" stroke="#b7791f" fill="#b7791f" stroke-width="0"/>
 <line x1="1515" y1="210" x2="1532" y2="210" stroke="#6c757d" stroke-width="3"/>
-<text x="1490" y="192" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">R1 330 Ω</text>
+<text x="1490" y="192" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">R1 ОМЛТ 510 Ω</text>
 <rect x="1538" y="196" width="74" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="1547" cy="210" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
 <text x="1580.0" y="214" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG1</text>
@@ -166,12 +166,12 @@
 <line x1="1322" y1="250" x2="1553" y2="250" stroke="#f08c00" stroke-width="3"/>
 <line x1="1553" y1="250" x2="1570" y2="250" stroke="#6c757d" stroke-width="3"/>
 <rect x="1570" y="240" width="50" height="20" rx="8" stroke="#6b4f2c" fill="#e9c46a" stroke-width="2"/>
-<rect x="1579" y="241" width="4" height="18" rx="0" stroke="#f8e71c" fill="#f8e71c" stroke-width="0"/>
-<rect x="1588" y="241" width="4" height="18" rx="0" stroke="#7048e8" fill="#7048e8" stroke-width="0"/>
+<rect x="1579" y="241" width="4" height="18" rx="0" stroke="#2f9e44" fill="#2f9e44" stroke-width="0"/>
+<rect x="1588" y="241" width="4" height="18" rx="0" stroke="#7a3e00" fill="#7a3e00" stroke-width="0"/>
 <rect x="1598" y="241" width="4" height="18" rx="0" stroke="#7a3e00" fill="#7a3e00" stroke-width="0"/>
 <rect x="1608" y="241" width="4" height="18" rx="0" stroke="#b7791f" fill="#b7791f" stroke-width="0"/>
 <line x1="1620" y1="250" x2="1637" y2="250" stroke="#6c757d" stroke-width="3"/>
-<text x="1595" y="232" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">R2 330 Ω</text>
+<text x="1595" y="232" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">R2 ОМЛТ 510 Ω</text>
 <rect x="1643" y="236" width="74" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="1652" cy="250" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
 <text x="1685.0" y="254" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG2</text>
@@ -179,12 +179,12 @@
 <line x1="1322" y1="290" x2="1658" y2="290" stroke="#e3b505" stroke-width="3"/>
 <line x1="1658" y1="290" x2="1675" y2="290" stroke="#6c757d" stroke-width="3"/>
 <rect x="1675" y="280" width="50" height="20" rx="8" stroke="#6b4f2c" fill="#e9c46a" stroke-width="2"/>
-<rect x="1684" y="281" width="4" height="18" rx="0" stroke="#f8e71c" fill="#f8e71c" stroke-width="0"/>
-<rect x="1693" y="281" width="4" height="18" rx="0" stroke="#7048e8" fill="#7048e8" stroke-width="0"/>
+<rect x="1684" y="281" width="4" height="18" rx="0" stroke="#2f9e44" fill="#2f9e44" stroke-width="0"/>
+<rect x="1693" y="281" width="4" height="18" rx="0" stroke="#7a3e00" fill="#7a3e00" stroke-width="0"/>
 <rect x="1703" y="281" width="4" height="18" rx="0" stroke="#7a3e00" fill="#7a3e00" stroke-width="0"/>
 <rect x="1713" y="281" width="4" height="18" rx="0" stroke="#b7791f" fill="#b7791f" stroke-width="0"/>
 <line x1="1725" y1="290" x2="1742" y2="290" stroke="#6c757d" stroke-width="3"/>
-<text x="1700" y="272" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">R3 330 Ω</text>
+<text x="1700" y="272" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">R3 ОМЛТ 510 Ω</text>
 <rect x="1748" y="276" width="74" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="1757" cy="290" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
 <text x="1790.0" y="294" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG3</text>
@@ -192,12 +192,12 @@
 <line x1="1322" y1="330" x2="1763" y2="330" stroke="#2f9e44" stroke-width="3"/>
 <line x1="1763" y1="330" x2="1780" y2="330" stroke="#6c757d" stroke-width="3"/>
 <rect x="1780" y="320" width="50" height="20" rx="8" stroke="#6b4f2c" fill="#e9c46a" stroke-width="2"/>
-<rect x="1789" y="321" width="4" height="18" rx="0" stroke="#f8e71c" fill="#f8e71c" stroke-width="0"/>
-<rect x="1798" y="321" width="4" height="18" rx="0" stroke="#7048e8" fill="#7048e8" stroke-width="0"/>
+<rect x="1789" y="321" width="4" height="18" rx="0" stroke="#2f9e44" fill="#2f9e44" stroke-width="0"/>
+<rect x="1798" y="321" width="4" height="18" rx="0" stroke="#7a3e00" fill="#7a3e00" stroke-width="0"/>
 <rect x="1808" y="321" width="4" height="18" rx="0" stroke="#7a3e00" fill="#7a3e00" stroke-width="0"/>
 <rect x="1818" y="321" width="4" height="18" rx="0" stroke="#b7791f" fill="#b7791f" stroke-width="0"/>
 <line x1="1830" y1="330" x2="1847" y2="330" stroke="#6c757d" stroke-width="3"/>
-<text x="1805" y="312" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">R4 330 Ω</text>
+<text x="1805" y="312" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">R4 ОМЛТ 510 Ω</text>
 <rect x="1853" y="316" width="74" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="1862" cy="330" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
 <text x="1895.0" y="334" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG4</text>
@@ -205,12 +205,12 @@
 <line x1="1322" y1="370" x2="1868" y2="370" stroke="#1971c2" stroke-width="3"/>
 <line x1="1868" y1="370" x2="1885" y2="370" stroke="#6c757d" stroke-width="3"/>
 <rect x="1885" y="360" width="50" height="20" rx="8" stroke="#6b4f2c" fill="#e9c46a" stroke-width="2"/>
-<rect x="1894" y="361" width="4" height="18" rx="0" stroke="#f8e71c" fill="#f8e71c" stroke-width="0"/>
-<rect x="1903" y="361" width="4" height="18" rx="0" stroke="#7048e8" fill="#7048e8" stroke-width="0"/>
+<rect x="1894" y="361" width="4" height="18" rx="0" stroke="#2f9e44" fill="#2f9e44" stroke-width="0"/>
+<rect x="1903" y="361" width="4" height="18" rx="0" stroke="#7a3e00" fill="#7a3e00" stroke-width="0"/>
 <rect x="1913" y="361" width="4" height="18" rx="0" stroke="#7a3e00" fill="#7a3e00" stroke-width="0"/>
 <rect x="1923" y="361" width="4" height="18" rx="0" stroke="#b7791f" fill="#b7791f" stroke-width="0"/>
 <line x1="1935" y1="370" x2="1952" y2="370" stroke="#6c757d" stroke-width="3"/>
-<text x="1910" y="352" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">R5 330 Ω</text>
+<text x="1910" y="352" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">R5 ОМЛТ 510 Ω</text>
 <rect x="1958" y="356" width="74" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="1967" cy="370" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
 <text x="2000.0" y="374" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG5</text>
@@ -218,12 +218,12 @@
 <line x1="1322" y1="410" x2="1973" y2="410" stroke="#7048e8" stroke-width="3"/>
 <line x1="1973" y1="410" x2="1990" y2="410" stroke="#6c757d" stroke-width="3"/>
 <rect x="1990" y="400" width="50" height="20" rx="8" stroke="#6b4f2c" fill="#e9c46a" stroke-width="2"/>
-<rect x="1999" y="401" width="4" height="18" rx="0" stroke="#f8e71c" fill="#f8e71c" stroke-width="0"/>
-<rect x="2008" y="401" width="4" height="18" rx="0" stroke="#7048e8" fill="#7048e8" stroke-width="0"/>
+<rect x="1999" y="401" width="4" height="18" rx="0" stroke="#2f9e44" fill="#2f9e44" stroke-width="0"/>
+<rect x="2008" y="401" width="4" height="18" rx="0" stroke="#7a3e00" fill="#7a3e00" stroke-width="0"/>
 <rect x="2018" y="401" width="4" height="18" rx="0" stroke="#7a3e00" fill="#7a3e00" stroke-width="0"/>
 <rect x="2028" y="401" width="4" height="18" rx="0" stroke="#b7791f" fill="#b7791f" stroke-width="0"/>
 <line x1="2040" y1="410" x2="2057" y2="410" stroke="#6c757d" stroke-width="3"/>
-<text x="2015" y="392" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">R6 330 Ω</text>
+<text x="2015" y="392" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">R6 ОМЛТ 510 Ω</text>
 <rect x="2063" y="396" width="74" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="2072" cy="410" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
 <text x="2105.0" y="414" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG6</text>
@@ -231,12 +231,12 @@
 <line x1="1322" y1="450" x2="2078" y2="450" stroke="#d6336c" stroke-width="3"/>
 <line x1="2078" y1="450" x2="2095" y2="450" stroke="#6c757d" stroke-width="3"/>
 <rect x="2095" y="440" width="50" height="20" rx="8" stroke="#6b4f2c" fill="#e9c46a" stroke-width="2"/>
-<rect x="2104" y="441" width="4" height="18" rx="0" stroke="#f8e71c" fill="#f8e71c" stroke-width="0"/>
-<rect x="2113" y="441" width="4" height="18" rx="0" stroke="#7048e8" fill="#7048e8" stroke-width="0"/>
+<rect x="2104" y="441" width="4" height="18" rx="0" stroke="#2f9e44" fill="#2f9e44" stroke-width="0"/>
+<rect x="2113" y="441" width="4" height="18" rx="0" stroke="#7a3e00" fill="#7a3e00" stroke-width="0"/>
 <rect x="2123" y="441" width="4" height="18" rx="0" stroke="#7a3e00" fill="#7a3e00" stroke-width="0"/>
 <rect x="2133" y="441" width="4" height="18" rx="0" stroke="#b7791f" fill="#b7791f" stroke-width="0"/>
 <line x1="2145" y1="450" x2="2162" y2="450" stroke="#6c757d" stroke-width="3"/>
-<text x="2120" y="432" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">R7 330 Ω</text>
+<text x="2120" y="432" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">R7 ОМЛТ 510 Ω</text>
 <rect x="2168" y="436" width="74" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="2177" cy="450" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
 <text x="2210.0" y="454" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG7</text>
