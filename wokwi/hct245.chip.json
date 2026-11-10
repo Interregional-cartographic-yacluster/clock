@@ -1,0 +1,26 @@
+{
+  "name": "74HCT245 octal bus transceiver",
+  "author": "Clock project",
+  "pins": [
+    "DIR",
+    "A1",
+    "A2",
+    "A3",
+    "A4",
+    "A5",
+    "A6",
+    "A7",
+    "A8",
+    "GND",
+    "B8",
+    "B7",
+    "B6",
+    "B5",
+    "B4",
+    "B3",
+    "B2",
+    "B1",
+    "OE",
+    "VCC"
+  ]
+}
