@@ -42,8 +42,8 @@ FONT_BOLD = find_font(False)
 pdfmetrics.registerFont(TTFont("DV", FONT))
 pdfmetrics.registerFont(TTFont("DVB", FONT_BOLD))
 
-W, H = 1800, 1320
-SEGMENTS = ("a", "b", "c", "d", "e", "f", "g", "DP")
+W, H = 2400, 1980
+SEGMENTS = ("a", "b", "c", "d", "e", "f", "g")
 GROUPS = ("H1", "H2", "C1", "M1", "M2", "C2", "S1", "S2")
 GROUP_TITLES = {
     "H1": "Часы — десятки", "H2": "Часы — единицы",
@@ -66,14 +66,12 @@ for grid, group in enumerate(GROUPS, 1):
     for name, seg in items:
         LEDS.append({"ref": f"D{ref}", "group": group, "grid": grid, "name": name, "seg": seg})
         ref += 1
-assert len(LEDS) == 52
+assert len(LEDS) == 46
 
 TM_LEFT = [("VDD", "17"), ("GND", "6"), ("DIN", "7"), ("SCLK", "8")]
 TM_RIGHT = [(f"SEG{i}", str(i + 8)) for i in range(1, 9)] + [(f"GRID{i}", str(17 + i)) for i in range(1, 9)] + [("GRID9", "26"), ("GRID10", "27"), ("GRID11", "28"), ("GRID12", "1"), ("GRID13", "2"), ("GRID14", "3"), ("GRID15", "4"), ("GRID16", "5")]
-HCT_LEFT = [("DIR", "1"), ("OE", "19")] + [(f"A{i}", str(i + 1)) for i in range(1, 9)] + [("GND", "10")]
-HCT_RIGHT = [("VCC", "20")] + [(f"B{i}", str(19 - i)) for i in range(1, 9)]
 ESP_LEFT = [("5V", "5V"), ("GND", "GND")]
-ESP_RIGHT = [("GPIO25", "25"), ("GPIO26", "26"), ("GPIO32", "32"), ("GPIO33", "33")]
+ESP_RIGHT = [("GPIO25", "25"), ("GPIO26", "26"), ("GPIO32", "32")]
 
 
 class Scene:
@@ -114,7 +112,7 @@ def rgb(value):
 def write_svg(scene, path):
     out = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">',
            '<title>ESP32 TM1640 HH:MM:SS schematic</title>',
-           '<desc>Vector electrical schematic with 52 LEDs, 74HCT245 and TM1640</desc>',
+           '<desc>Pictorial crossing-free wiring diagram with ESP32, TM1640 and 46 LEDs</desc>',
            '<rect width="100%" height="100%" fill="#ffffff"/>']
     for kind, p in scene.items:
         if kind == "line":
@@ -171,118 +169,7 @@ def write_pdf(scene, path):
     c.showPage(); c.save()
 
 
-def ic(scene, x, y, w, h, refdes, value, left, right):
-    scene.rect(x, y, w, h, "ink", "box", 2, 8)
-    scene.text(x + w / 2, y + 25, f"{refdes}  {value}", 18, "ink", "middle", True)
-    usable = h - 60
-    result = {}
-    for side, pins in (("left", left), ("right", right)):
-        for i, (name, number) in enumerate(pins):
-            py = y + 45 + (usable * i / max(1, len(pins) - 1))
-            if side == "left":
-                px = x; scene.line(px - 12, py, px, py, "wire", 1.6)
-                scene.text(px + 8, py + 4, f"{name} · {number}", 11, "ink")
-            else:
-                px = x + w; scene.line(px, py, px + 12, py, "wire", 1.6)
-                scene.text(px - 8, py + 4, f"{number} · {name}", 11, "ink", "end")
-            result[name] = (px, py, side)
-    return result
-
-
-def led(scene, x, y, refdes, name, seg, grid):
-    # Standard diode/LED symbol, anode left, cathode right.
-    scene.line(x - 30, y, x - 10, y, "wire", 1.4)
-    scene.polygon([(x - 10, y - 8), (x - 10, y + 8), (x + 5, y)], "led", "none", 1.8)
-    scene.line(x + 7, y - 9, x + 7, y + 9, "led", 1.8)
-    scene.line(x + 7, y, x + 28, y, "wire", 1.4)
-    scene.line(x, y - 8, x + 8, y - 17, "led", 1.2)
-    scene.polygon([(x + 8, y - 17), (x + 3, y - 16), (x + 7, y - 12)], "led", "led", 1)
-    scene.text(x - 34, y - 7, f"{refdes} {name}", 10, "muted", "end")
-    scene.text(x - 34, y + 14, f"SEG{seg}", 10, "blue", "end")
-    scene.text(x + 32, y + 4, f"GRID{grid}", 10, "accent")
-
-
-def resistor(scene, x, y, refdes, seg):
-    scene.line(x - 45, y, x - 30, y, "wire", 1.6)
-    pts = [(x - 30, y)]
-    for i in range(8): pts.append((x - 25 + i * 7, y + (-7 if i % 2 == 0 else 7)))
-    pts.extend([(x + 30, y), (x + 45, y)])
-    for a, b in zip(pts, pts[1:]): scene.line(*a, *b, "ink", 1.6)
-    scene.text(x, y - 20, f"{refdes}  330 Ω", 13, "ink", "middle", True)
-    scene.text(x, y + 28, f"SEG{seg}_DRV → SEG{seg} / {SEGMENTS[seg - 1]}", 12, "blue", "middle")
-
-
-def build_scene():
-    s = Scene()
-    s.rect(18, 18, W - 36, H - 36, "muted", "none", 2)
-    s.text(45, 58, "ESP32 + TM1640 — табло HH:MM:SS", 30, "ink", bold=True)
-    s.text(45, 84, "Принципиальная схема · 52 LED · общий катод · SEG1…8 = a…g,DP", 16, "muted")
-    s.text(W - 45, 58, "Ревизия 1 · 2026-11-08", 14, "muted", "end")
-
-    s.text(45, 122, "1. Управление и питание", 21, "accent", bold=True)
-    esp = ic(s, 150, 145, 200, 155, "U1", "ESP32 module", ESP_LEFT, ESP_RIGHT)
-    hct = ic(s, 530, 140, 260, 210, "U2", "74HCT245", HCT_LEFT, HCT_RIGHT)
-    tm = ic(s, 1030, 140, 290, 330, "U3", "TM1640 SOP28", TM_LEFT, TM_RIGHT)
-    s.text(60, 175, "J1", 15, "ink", bold=True); s.text(60, 197, "+5V input", 13, "power")
-    s.line(90, 205, 138, 205, "power", 2); s.label(138, 205, "+5V", "left", "power")
-    s.text(60, 240, "GND", 13, "muted"); s.line(90, 245, 138, 245, "wire", 1.6); s.label(138, 245, "GND", "left")
-
-    # Net labels make the drawing compact while retaining every electrical connection.
-    for name, net in (("5V", "+5V"), ("GND", "GND"), ("GPIO25", "CLK_3V3"), ("GPIO26", "DIN_3V3"), ("GPIO32", "COLON_BTN"), ("GPIO33", "DP_BTN")):
-        x, y, side = esp[name]; s.label(x, y, net, side, "power" if net == "+5V" else "blue")
-    for name in hct:
-        net = {"DIR": "+5V", "OE": "GND", "GND": "GND", "VCC": "+5V", "A1": "CLK_3V3", "A2": "DIN_3V3", "B1": "CLK_5V", "B2": "DIN_5V"}.get(name)
-        if net is None and name.startswith("A"): net = "GND"
-        x, y, side = hct[name]
-        if net: s.label(x, y, net, side, "power" if net == "+5V" else "blue")
-        else: s.text(x + (16 if side == "left" else -16), y + 4, "NC", 11, "muted", "start" if side == "left" else "end")
-    for name in tm:
-        net = {"VDD": "+5V", "GND": "GND", "DIN": "DIN_5V", "SCLK": "CLK_5V"}.get(name)
-        if name.startswith("SEG"): net = name + "_DRV"
-        if name.startswith("GRID") and int(name[4:]) <= 8: net = name
-        x, y, side = tm[name]
-        if net: s.label(x, y, net, side, "power" if net == "+5V" else "blue")
-        else: s.text(x + 16, y + 4, "NC", 11, "muted")
-    s.text(530, 380, "3,3 В → 5 В · DIR=1, OE=0 · A3…A8 → GND", 14, "gold", bold=True)
-
-    # Decoupling and buttons.
-    s.text(1610, 150, "Развязка U3", 15, "ink", bold=True)
-    for y, refdes, value in ((190, "C1", "100 nF"), (240, "C2", "47–100 µF")):
-        s.text(1580, y + 4, refdes, 12, "ink", "end"); s.text(1670, y + 4, value, 12, "ink")
-        s.line(1600, y, 1620, y, "wire"); s.line(1620, y - 9, 1620, y + 9, "ink", 2); s.line(1628, y - 9, 1628, y + 9, "ink", 2); s.line(1628, y, 1650, y, "wire")
-        s.label(1600, y, "+5V", "left", "power"); s.label(1650, y, "GND", "right")
-    for y, refdes, net in ((320, "SW1", "COLON_BTN"), (370, "SW2", "DP_BTN")):
-        s.text(1580, y + 4, refdes, 12, "ink", "end")
-        s.line(1600, y, 1620, y, "wire"); s.circle(1622, y, 3, "ink", "paper", 1); s.circle(1650, y, 3, "ink", "paper", 1); s.line(1624, y - 2, 1647, y - 12, "ink", 2); s.line(1652, y, 1672, y, "wire")
-        s.label(1600, y, net, "left"); s.label(1672, y, "GND", "right")
-        s.text(1710, y + 4, "GPIO32" if refdes == "SW1" else "GPIO33", 12, "muted")
-
-    s.text(45, 515, "2. Светодиодное табло — каждый LED имеет собственное обозначение", 21, "accent", bold=True)
-    group_w = 215
-    for i, group in enumerate(GROUPS):
-        gx = 35 + i * group_w
-        grid = i + 1
-        s.rect(gx, 540, 200, 470, "muted", "light", 1.5, 6)
-        s.text(gx + 100, 568, f"{group} · GRID{grid}", 17, "ink", "middle", True)
-        s.text(gx + 100, 590, GROUP_TITLES[group], 11, "muted", "middle")
-        group_leds = [d for d in LEDS if d["group"] == group]
-        for j, d in enumerate(group_leds):
-            led(s, gx + 100, 625 + j * 43, d["ref"], d["name"], d["seg"], grid)
-        if group.startswith("C"):
-            s.text(gx + 100, 870, "Верхняя точка: SEG1", 12, "blue", "middle")
-            s.text(gx + 100, 895, "Нижняя точка: SEG2", 12, "blue", "middle")
-            s.text(gx + 100, 930, "RAM = 0x03 / 0x00", 12, "muted", "middle")
-        else:
-            s.text(gx + 100, 985, f"RAM[{i}]", 12, "muted", "middle")
-
-    s.text(45, 1055, "3. Токоограничивающие резисторы — по одному на общую SEG-линию", 20, "accent", bold=True)
-    for i in range(8): resistor(s, 145 + i * 215, 1110, f"R{i + 1}", i + 1)
-    s.line(45, 1170, W - 45, 1170, "muted", 1)
-    s.text(45, 1202, "Питание: +5 В на ESP32 5V, U2 VCC и U3 VDD; GND общий. Катоды LED подключаются только к GRID, не напрямую к GND.", 15, "power", bold=True)
-    s.text(45, 1232, "Коды цифр: 0=3F  1=06  2=5B  3=4F  4=66  5=6D  6=7D  7=07  8=7F  9=6F; DP добавляет 0x80.", 14, "muted")
-    s.text(45, 1262, "Для реальной платы используйте 74HCT245/74HCT125, не 74HC245. Сопротивление 220–330 Ω подобрать по яркости и току.", 14, "muted")
-    s.text(W - 45, 1295, "PDF/SVG и KiCad созданы из одного описания цепей", 12, "muted", "end")
-    return s
+from wiring_scene import build_scene
 
 
 # --------------------------- KiCad generator ---------------------------
@@ -336,9 +223,8 @@ def generate_kicad():
     definitions = {}
     specs = [
         ("clock:ESP32_MODULE", "U", "ESP32-WROOM-32D", ESP_LEFT, ESP_RIGHT, 40, None, None),
-        ("clock:74HCT245", "U", "74HCT245", HCT_LEFT, HCT_RIGHT, 45, None, None),
         ("clock:TM1640", "U", "TM1640", TM_LEFT, TM_RIGHT, 55, None, None),
-        ("clock:R", "R", "330R", [], [], 10, None, "R"),
+        ("clock:R", "R", "OMLT 510R", [], [], 10, None, "R"),
         ("clock:LED", "D", "LED", [], [], 10, None, "LED"),
         ("clock:C", "C", "C", [], [], 10, None, "C"),
         ("clock:SW", "SW", "SW_PUSH", [], [], 10, None, "SW"),
@@ -381,22 +267,18 @@ def generate_kicad():
             nets.append((refdes, pin_name, number, net))
 
     add("clock:ESP32_MODULE", "U1", "ESP32-WROOM-32D", 60, 60,
-        {"5V": "+5V", "GND": "GND", "25": "CLK_3V3", "26": "DIN_3V3", "32": "COLON_BTN", "33": "DP_BTN"})
-    add("clock:74HCT245", "U2", "74HCT245", 150, 90,
-        {"DIR": "+5V", "OE": "GND", "GND": "GND", "VCC": "+5V", "A1": "CLK_3V3", "A2": "DIN_3V3", "B1": "CLK_5V", "B2": "DIN_5V", **{f"A{i}": "GND" for i in range(3, 9)}},
-        nc={f"B{i}" for i in range(3, 9)})
-    add("clock:TM1640", "U3", "TM1640", 250, 110,
-        {"VDD": "+5V", "GND": "GND", "DIN": "DIN_5V", "SCLK": "CLK_5V", **{f"SEG{i}": f"SEG{i}_DRV" for i in range(1, 9)}, **{f"GRID{i}": f"GRID{i}" for i in range(1, 9)}},
-        nc={f"GRID{i}" for i in range(9, 17)})
+        {"5V": "+5V", "GND": "GND", "25": "TM_CLK", "26": "TM_DIN", "32": "COLON_BTN"})
+    add("clock:TM1640", "U2", "TM1640", 250, 110,
+        {"VDD": "+5V", "GND": "GND", "DIN": "TM_DIN", "SCLK": "TM_CLK", **{f"SEG{i}": f"SEG{i}_DRV" for i in range(1, 8)}, **{f"GRID{i}": f"GRID{i}" for i in range(1, 9)}},
+        nc={f"GRID{i}" for i in range(9, 17)} | {"SEG8"})
     add("clock:CONN2", "J1", "+5V input", 30, 110, {"1": "+5V", "2": "GND"})
     add("clock:C", "C1", "100nF", 315, 55, {"1": "+5V", "2": "GND"})
     add("clock:C", "C2", "47-100uF", 315, 75, {"1": "+5V", "2": "GND"})
     add("clock:SW", "SW1", "Colon mode", 330, 100, {"1": "COLON_BTN", "2": "GND"})
-    add("clock:SW", "SW2", "Decimal points", 330, 120, {"1": "DP_BTN", "2": "GND"})
 
-    for i in range(8):
+    for i in range(7):
         # Driver and LED sides are distinct nets joined only through the resistor.
-        add("clock:R", f"R{i + 1}", "330R", 40 + i * 45, 270,
+        add("clock:R", f"R{i + 1}", "OMLT 510R", 40 + i * 45, 270,
             {"1": f"SEG{i + 1}_DRV", "2": f"SEG{i + 1}"})
 
     positions = {}
@@ -411,11 +293,11 @@ def generate_kicad():
     notes = [
         (35, 25, "CONTROL AND POWER"),
         (35, 250, "SEG CURRENT-LIMITING RESISTORS"),
-        (35, 295, "52-LED DISPLAY: H1 H2 C1 M1 M2 C2 S1 S2"),
+        (35, 295, "46-LED DISPLAY, NO DP: H1 H2 C1 M1 M2 C2 S1 S2"),
         (35, 455, "All cathodes connect to their assigned GRID. Never connect a digit common cathode directly to GND."),
-        (35, 465, "+5V: U1 5V, U2 VCC/DIR, U3 VDD. Common GND. C1/C2 next to U3."),
-        (35, 475, "SEG1...8 = a,b,c,d,e,f,g,DP. Colon RAM values: 0x03 ON, 0x00 OFF."),
-        (35, 485, "TM1640 GRID9...16 and 74HCT245 B3...B8 are intentionally not connected."),
+        (35, 465, "+5V: U1 5V and U2 VDD. Common GND. C1/C2 next to U2. Direct 3.3V control per user request."),
+        (35, 475, "SEG1...7 = a,b,c,d,e,f,g. Colon RAM values: 0x03 ON, 0x00 OFF. DP is omitted."),
+        (35, 485, "TM1640 SEG8 and GRID9...16 are not connected. No 74HCT245 is used in this variant."),
     ]
     for x, y, value in notes: out.append(f'  (text {q(value)} (at {x} {y} 0) {effects(2.5, "left bottom")} (uuid {uid("note-" + value)}))')
     out.append(")")
@@ -430,11 +312,11 @@ def generate_kicad():
     }
     (KICAD / "ESP32_TM1640_Clock.kicad_pro").write_text(json.dumps(project, indent=2) + "\n", encoding="utf-8")
     with (ROOT / "bom.csv").open("w", newline="", encoding="utf-8-sig") as f:
-        writer = csv.writer(f, delimiter=";")
+        writer = csv.writer(f, delimiter=";", lineterminator="\n")
         writer.writerow(["Reference", "Value / function", "Quantity"])
         for refdes, value in components: writer.writerow([refdes, value, 1])
     with (ROOT / "connections.csv").open("w", newline="", encoding="utf-8-sig") as f:
-        writer = csv.writer(f, delimiter=";")
+        writer = csv.writer(f, delimiter=";", lineterminator="\n")
         writer.writerow(["Component", "Pin name", "Pin number", "Net"])
         writer.writerows(nets)
     return sch, components, nets
@@ -457,7 +339,7 @@ def check_sexpr(text):
 
 
 if __name__ == "__main__":
-    scene = build_scene()
+    scene = build_scene(Scene, LEDS, GROUPS, GROUP_TITLES)
     write_svg(scene, ROOT / "ESP32_TM1640_HHMMSS.svg")
     write_pdf(scene, ROOT / "ESP32_TM1640_HHMMSS.pdf")
     sch, components, nets = generate_kicad()
