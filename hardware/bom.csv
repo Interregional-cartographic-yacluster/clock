@@ -1,7 +1,6 @@
 ﻿Reference;Value / function;Quantity
 U1;ESP32-WROOM-32D;1
-U2;74HCT245;1
-U3;TM1640;1
+U2;TM1640;1
 J1;+5V input;1
 C1;100nF;1
 C2;47-100uF;1
