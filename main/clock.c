@@ -1076,7 +1076,7 @@ static void wifi_init(void)
         ESP_ERROR_CHECK(dhcp_stop_result);
     }
     ESP_ERROR_CHECK(esp_netif_set_ip_info(sta_netif, &static_ip));
-    const esp_netif_dns_info_t dns_info = {
+    esp_netif_dns_info_t dns_info = {
         .ip.u_addr.ip4 = dns_address,
         .ip.type = ESP_IPADDR_TYPE_V4,
     };
