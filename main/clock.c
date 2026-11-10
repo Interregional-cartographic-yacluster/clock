@@ -28,6 +28,7 @@
 #include "driver/i2c.h"
 #include "lvgl.h"
 #include "esp_http_server.h"
+#include "mdns.h"
 #include "lwip/sockets.h"
 #include "lwip/def.h"
 #include "ping/ping_sock.h"
@@ -189,6 +190,7 @@ static volatile bool wifi_setup_mode = false;
 static volatile int32_t wifi_latency_ms = -1;
 static esp_ip4_addr_t wifi_gateway_addr;
 static SemaphoreHandle_t wifi_ping_done;
+static bool mdns_started = false;
 static bool ntp_synced = false;
 static bool rtc_available = false;
 static volatile bool ntp_sync_running = false;
@@ -994,6 +996,24 @@ static void wifi_setup_cb(void *arg)
     start_wifi_setup();
 }
 
+static void start_clock_mdns(void)
+{
+    if (mdns_started) return;
+    if (mdns_init() != ESP_OK) {
+        ESP_LOGW(TAG, "mDNS initialization failed");
+        return;
+    }
+    if (mdns_hostname_set("clock") != ESP_OK ||
+        mdns_instance_name_set("Clock settings") != ESP_OK ||
+        mdns_service_add(NULL, "_http", "_tcp", 80, NULL, 0) != ESP_OK) {
+        ESP_LOGW(TAG, "mDNS service registration failed");
+        mdns_free();
+        return;
+    }
+    mdns_started = true;
+    ESP_LOGI(TAG, "Permanent panel name: http://clock.local/");
+}
+
 static void wifi_connection_ready(const esp_netif_ip_info_t *ip_info)
 {
     wifi_retry_count = 0;
@@ -1001,6 +1021,7 @@ static void wifi_connection_ready(const esp_netif_ip_info_t *ip_info)
     if (esp_timer_is_active(wifi_setup_timer)) esp_timer_stop(wifi_setup_timer);
     ESP_LOGI(TAG, "Got IP: " IPSTR, IP2STR(&ip_info->ip));
     ESP_LOGI(TAG, "Web panel: http://" IPSTR "/", IP2STR(&ip_info->ip));
+    start_clock_mdns();
     wifi_gateway_addr = ip_info->gw;
     wifi_latency_ms = -1;
     xEventGroupSetBits(wifi_event_group, WIFI_CONNECTED_BIT);
@@ -1113,10 +1134,49 @@ static void wifi_init(void)
 // ================================================
 //  НАЗВАНИЕ СТРАНЫ НА ДИСПЛЕЕ
 // ================================================
+typedef struct {
+    const char *original;
+    const char *english;
+    const char *names[6]; /* RU, EN, DE, FR, ES, ZH */
+} country_translation_t;
+
+static const country_translation_t country_translations[] = {
+    {"Россия", "Russia", {"Россия", "Russia", "Russland", "Russie", "Rusia", "俄罗斯"}},
+    {"United Kingdom", NULL, {"Великобритания", "United Kingdom", "Vereinigtes Königreich", "Royaume-Uni", "Reino Unido", "英国"}},
+    {"France", NULL, {"Франция", "France", "Frankreich", "France", "Francia", "法国"}},
+    {"Deutschland", "Germany", {"Германия", "Germany", "Deutschland", "Allemagne", "Alemania", "德国"}},
+    {"Türkiye", "Turkey", {"Турция", "Turkey", "Türkei", "Turquie", "Turquía", "土耳其"}},
+    {"United States", NULL, {"США", "United States", "Vereinigte Staaten", "États-Unis", "Estados Unidos", "美国"}},
+    {"Canada", NULL, {"Канада", "Canada", "Kanada", "Canada", "Canadá", "加拿大"}},
+    {"Brasil", "Brazil", {"Бразилия", "Brazil", "Brasilien", "Brésil", "Brasil", "巴西"}},
+    {"Argentina", NULL, {"Аргентина", "Argentina", "Argentinien", "Argentine", "Argentina", "阿根廷"}},
+    {"Ísland", "Iceland", {"Исландия", "Iceland", "Island", "Islande", "Islandia", "冰岛"}},
+    {"الإمارات العربية المتحدة", "United Arab Emirates", {"ОАЭ", "United Arab Emirates", "Vereinigte Arabische Emirate", "Émirats arabes unis", "Emiratos Árabes Unidos", "阿拉伯联合酋长国"}},
+    {"भारत", "India", {"Индия", "India", "Indien", "Inde", "India", "印度"}},
+    {"ประเทศไทย", "Thailand", {"Таиланд", "Thailand", "Thailand", "Thaïlande", "Tailandia", "泰国"}},
+    {"新加坡", "Singapore", {"Сингапур", "Singapore", "Singapur", "Singapour", "Singapur", "新加坡"}},
+    {"中国", "China", {"Китай", "China", "China", "Chine", "China", "中国"}},
+    {"日本", "Japan", {"Япония", "Japan", "Japan", "Japon", "Japón", "日本"}},
+    {"대한민국", "South Korea", {"Южная Корея", "South Korea", "Südkorea", "Corée du Sud", "Corea del Sur", "韩国"}},
+    {"Australia", NULL, {"Австралия", "Australia", "Australien", "Australie", "Australia", "澳大利亚"}},
+    {"New Zealand", NULL, {"Новая Зеландия", "New Zealand", "Neuseeland", "Nouvelle-Zélande", "Nueva Zelanda", "新西兰"}},
+    {"Chile", NULL, {"Чили", "Chile", "Chile", "Chili", "Chile", "智利"}},
+    {"UTC", NULL, {"UTC", "UTC", "UTC", "UTC", "UTC", "UTC"}},
+};
+
 static void country_for_display(const char *country, char *out, size_t out_size)
 {
     if (out == NULL || out_size == 0) return;
-    strlcpy(out, country != NULL ? country : "", out_size);
+    if (!country) country = "";
+    for (size_t i = 0; i < sizeof(country_translations) / sizeof(country_translations[0]); i++) {
+        const country_translation_t *item = &country_translations[i];
+        if (strcmp(country, item->original) != 0 &&
+            (!item->english || strcmp(country, item->english) != 0)) continue;
+        const display_language_t language = device_language <= DISPLAY_LANG_ZH ? device_language : DISPLAY_LANG_EN;
+        strlcpy(out, item->names[language], out_size);
+        return;
+    }
+    strlcpy(out, country, out_size);
 }
 
 // ================================================
@@ -1129,58 +1189,19 @@ static void set_label_text_if_changed(lv_obj_t *label, const char *text)
     }
 }
 
-static const char *weekday_for_city(int wday)
+static const char *weekday_for_user(int wday)
 {
-    static const char *const en[] = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
-    static const char *const ru[] = {"Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"};
-    static const char *const fr[] = {"dim.", "lun.", "mar.", "mer.", "jeu.", "ven.", "sam."};
-    static const char *const de[] = {"So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"};
-    static const char *const es[] = {"dom", "lun", "mar", "mié", "jue", "vie", "sáb"};
-    static const char *const pt[] = {"dom", "seg", "ter", "qua", "qui", "sex", "sáb"};
-    static const char *const it[] = {"dom", "lun", "mar", "mer", "gio", "ven", "sab"};
-    static const char *const tr[] = {"Paz", "Pzt", "Sal", "Çar", "Per", "Cum", "Cmt"};
-    static const char *const is[] = {"Sun", "Mán", "Þri", "Mið", "Fim", "Fös", "Lau"};
-    static const char *const ar[] = {"الأحد", "الاثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت"};
-    static const char *const hi[] = {"रवि", "सोम", "मंगल", "बुध", "गुरु", "शुक्र", "शनि"};
-    static const char *const th[] = {"อา.", "จ.", "อ.", "พ.", "พฤ.", "ศ.", "ส."};
-    static const char *const zh[] = {"日", "一", "二", "三", "四", "五", "六"};
-    static const char *const ja[] = {"日", "月", "火", "水", "木", "金", "土"};
-    static const char *const ko[] = {"일", "월", "화", "수", "목", "금", "토"};
-    static const char *const nl[] = {"zo", "ma", "di", "wo", "do", "vr", "za"};
-    static const char *const pl[] = {"Nd", "Pn", "Wt", "Śr", "Cz", "Pt", "So"};
-    static const char *const cs[] = {"Ne", "Po", "Út", "St", "Čt", "Pá", "So"};
-    static const char *const uk[] = {"Нд", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"};
-    static const char *const el[] = {"Κυρ", "Δευ", "Τρι", "Τετ", "Πεμ", "Παρ", "Σαβ"};
-    static const char *const fi[] = {"su", "ma", "ti", "ke", "to", "pe", "la"};
-    static const char *const sv[] = {"sön", "mån", "tis", "ons", "tor", "fre", "lör"};
-    static const char *const da[] = {"søn", "man", "tir", "ons", "tor", "fre", "lør"};
-
+    static const char *const names[6][7] = {
+        {"Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"},
+        {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"},
+        {"So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"},
+        {"dim.", "lun.", "mar.", "mer.", "jeu.", "ven.", "sam."},
+        {"dom", "lun", "mar", "mié", "jue", "vie", "sáb"},
+        {"日", "一", "二", "三", "四", "五", "六"},
+    };
     if (wday < 0 || wday >= 7) return "";
-    const char *country = cities[current_city_index].country;
-    const char *const *names = en;
-    if (strstr(country, "Россия") || strstr(country, "Russia")) names = ru;
-    else if (strstr(country, "France") || strstr(country, "Belgique") || strstr(country, "Monaco")) names = fr;
-    else if (strstr(country, "Deutschland") || strstr(country, "Germany") || strstr(country, "Österreich") || strstr(country, "Schweiz")) names = de;
-    else if (strstr(country, "España") || strstr(country, "Spain") || strstr(country, "Argentina") || strstr(country, "Chile") || strstr(country, "México") || strstr(country, "Colombia") || strstr(country, "Perú")) names = es;
-    else if (strstr(country, "Brasil") || strstr(country, "Brazil") || strstr(country, "Portugal")) names = pt;
-    else if (strstr(country, "Italia") || strstr(country, "Italy")) names = it;
-    else if (strstr(country, "Türkiye") || strstr(country, "Turkey")) names = tr;
-    else if (strstr(country, "Ísland") || strstr(country, "Iceland")) names = is;
-    else if (strstr(country, "الإمارات") || strstr(country, "السعودية") || strstr(country, "مصر") || strstr(country, "قطر") || strstr(country, "المغرب")) names = ar;
-    else if (strstr(country, "भारत") || strstr(country, "India")) names = hi;
-    else if (strstr(country, "ประเทศไทย") || strstr(country, "Thailand")) names = th;
-    else if (strstr(country, "中国") || strstr(country, "新加坡") || strstr(country, "China") || strstr(country, "Singapore") || strstr(country, "Taiwan") || strstr(country, "香港")) names = zh;
-    else if (strstr(country, "日本") || strstr(country, "Japan")) names = ja;
-    else if (strstr(country, "대한민국") || strstr(country, "Korea")) names = ko;
-    else if (strstr(country, "Nederland") || strstr(country, "Netherlands") || strstr(country, "België")) names = nl;
-    else if (strstr(country, "Polska") || strstr(country, "Poland")) names = pl;
-    else if (strstr(country, "Česko") || strstr(country, "Czech")) names = cs;
-    else if (strstr(country, "Україна") || strstr(country, "Ukraine")) names = uk;
-    else if (strstr(country, "Ελλάδα") || strstr(country, "Greece")) names = el;
-    else if (strstr(country, "Suomi") || strstr(country, "Finland")) names = fi;
-    else if (strstr(country, "Sverige") || strstr(country, "Sweden")) names = sv;
-    else if (strstr(country, "Danmark") || strstr(country, "Denmark") || strstr(country, "Norge") || strstr(country, "Norway")) names = da;
-    return names[wday];
+    const display_language_t language = device_language <= DISPLAY_LANG_ZH ? device_language : DISPLAY_LANG_EN;
+    return names[language][wday];
 }
 
 static bool wifi_is_connected(void)
@@ -1385,7 +1406,7 @@ static void update_display(void)
     if (time_ok) {
         strftime(time_buf, sizeof(time_buf), "%H:%M:%S", &timeinfo);
         snprintf(date_buf, sizeof(date_buf), "%s, %02d.%02d.%04d",
-                 weekday_for_city(timeinfo.tm_wday), timeinfo.tm_mday,
+                 weekday_for_user(timeinfo.tm_wday), timeinfo.tm_mday,
                  timeinfo.tm_mon + 1, timeinfo.tm_year + 1900);
     } else {
         snprintf(time_buf, sizeof(time_buf), "--:--:--");
@@ -1601,11 +1622,13 @@ static esp_err_t cities_get_handler(httpd_req_t *req)
     int used = snprintf(buf, 12288, "{\"current\":%u,\"cities\":[", current_city_index);
     for (size_t i = 0; i < CITY_COUNT && used < 12288; i++) {
         char localized_city[CITY_NAME_MAX_LEN];
+        char localized_country[CITY_COUNTRY_MAX_LEN];
         city_localized_name(i, localized_city, sizeof(localized_city));
+        country_for_display(cities[i].country, localized_country, sizeof(localized_country));
         used += snprintf(buf + used, 12288 - (size_t)used,
                          "%s{\"index\":%u,\"city\":\"%s\",\"country\":\"%s\",\"tz\":\"%s\",\"custom\":%s}",
                          i == 0 ? "" : ",", (unsigned)i,
-                         localized_city, cities[i].country, cities[i].tz_string,
+                         localized_city, localized_country, cities[i].tz_string,
                          i >= DEFAULT_CITY_COUNT ? "true" : "false");
     }
 
@@ -1618,10 +1641,12 @@ static esp_err_t cities_get_handler(httpd_req_t *req)
         if (city_database_get_localized(match_indexes[i], device_language_code(), &localized)) {
             display_name = localized.name;
         }
+        char localized_country[CITY_COUNTRY_MAX_LEN];
+        country_for_display(matches[i].country, localized_country, sizeof(localized_country));
         used += snprintf(buf + used, 12288 - (size_t)used,
                          "%s{\"db\":%lu,\"city\":\"%s\",\"country\":\"%s\",\"tz\":\"%s\"}",
                          i == 0 ? "" : ",", (unsigned long)match_indexes[i],
-                         display_name, matches[i].country, matches[i].timezone);
+                         display_name, localized_country, matches[i].timezone);
     }
     if (used < 12288) snprintf(buf + used, 12288 - (size_t)used, "]}");
 
@@ -1686,12 +1711,14 @@ static esp_err_t city_post_handler(httpd_req_t *req)
         need_tz_update = true;
 
         char localized_city[CITY_NAME_MAX_LEN];
+        char localized_country[CITY_COUNTRY_MAX_LEN];
         city_localized_name(existing, localized_city, sizeof(localized_city));
+        country_for_display(cities[existing].country, localized_country, sizeof(localized_country));
         char response[512];
         snprintf(response, sizeof(response),
                  "{\"current\":%u,\"city\":\"%s\",\"country\":\"%s\",\"tz\":\"%s\"}",
                  (unsigned)existing, localized_city,
-                 cities[existing].country, cities[existing].tz_string);
+                 localized_country, cities[existing].tz_string);
         httpd_resp_set_type(req, "application/json; charset=utf-8");
         httpd_resp_send(req, response, HTTPD_RESP_USE_STRLEN);
         return ESP_OK;
@@ -1713,11 +1740,13 @@ static esp_err_t city_post_handler(httpd_req_t *req)
     need_tz_update = true;
 
     char localized_city[CITY_NAME_MAX_LEN];
+    char localized_country[CITY_COUNTRY_MAX_LEN];
     city_localized_name(index, localized_city, sizeof(localized_city));
+    country_for_display(cities[index].country, localized_country, sizeof(localized_country));
     char response[512];
     snprintf(response, sizeof(response),
              "{\"current\":%u,\"city\":\"%s\",\"country\":\"%s\",\"tz\":\"%s\"}",
-             (unsigned)index, localized_city, cities[index].country,
+             (unsigned)index, localized_city, localized_country,
              cities[index].tz_string);
 
     httpd_resp_set_type(req, "application/json; charset=utf-8");
@@ -2121,7 +2150,7 @@ static esp_err_t time_get_handler(httpd_req_t *req)
              "{\"time\":\"%02d:%02d:%02d\",\"date\":\"%02d.%02d.%04d\",\"weekday\":\"%s\"}",
              timeinfo.tm_hour, timeinfo.tm_min, timeinfo.tm_sec,
              timeinfo.tm_mday, timeinfo.tm_mon + 1, timeinfo.tm_year + 1900,
-             weekday_for_city(timeinfo.tm_wday));
+             weekday_for_user(timeinfo.tm_wday));
 
     httpd_resp_set_type(req, "application/json; charset=utf-8");
     httpd_resp_send(req, buf, HTTPD_RESP_USE_STRLEN);
