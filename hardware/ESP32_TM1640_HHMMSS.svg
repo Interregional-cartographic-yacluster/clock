@@ -162,7 +162,7 @@
 <rect x="1538" y="196" width="74" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="1547" cy="210" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
 <text x="1580.0" y="214" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG1</text>
-<text x="1538" y="192" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="400" text-anchor="start" fill="#526079">SEG1_DRV</text>
+<text x="1335" y="202" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="400" text-anchor="start" fill="#526079">SEG1_DRV</text>
 <line x1="1322" y1="250" x2="1553" y2="250" stroke="#f08c00" stroke-width="3"/>
 <line x1="1553" y1="250" x2="1570" y2="250" stroke="#6c757d" stroke-width="3"/>
 <rect x="1570" y="240" width="50" height="20" rx="8" stroke="#6b4f2c" fill="#e9c46a" stroke-width="2"/>
@@ -175,7 +175,7 @@
 <rect x="1643" y="236" width="74" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="1652" cy="250" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
 <text x="1685.0" y="254" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG2</text>
-<text x="1643" y="232" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="400" text-anchor="start" fill="#526079">SEG2_DRV</text>
+<text x="1335" y="242" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="400" text-anchor="start" fill="#526079">SEG2_DRV</text>
 <line x1="1322" y1="290" x2="1658" y2="290" stroke="#e3b505" stroke-width="3"/>
 <line x1="1658" y1="290" x2="1675" y2="290" stroke="#6c757d" stroke-width="3"/>
 <rect x="1675" y="280" width="50" height="20" rx="8" stroke="#6b4f2c" fill="#e9c46a" stroke-width="2"/>
@@ -188,7 +188,7 @@
 <rect x="1748" y="276" width="74" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="1757" cy="290" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
 <text x="1790.0" y="294" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG3</text>
-<text x="1748" y="272" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="400" text-anchor="start" fill="#526079">SEG3_DRV</text>
+<text x="1335" y="282" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="400" text-anchor="start" fill="#526079">SEG3_DRV</text>
 <line x1="1322" y1="330" x2="1763" y2="330" stroke="#2f9e44" stroke-width="3"/>
 <line x1="1763" y1="330" x2="1780" y2="330" stroke="#6c757d" stroke-width="3"/>
 <rect x="1780" y="320" width="50" height="20" rx="8" stroke="#6b4f2c" fill="#e9c46a" stroke-width="2"/>
@@ -201,7 +201,7 @@
 <rect x="1853" y="316" width="74" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="1862" cy="330" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
 <text x="1895.0" y="334" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG4</text>
-<text x="1853" y="312" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="400" text-anchor="start" fill="#526079">SEG4_DRV</text>
+<text x="1335" y="322" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="400" text-anchor="start" fill="#526079">SEG4_DRV</text>
 <line x1="1322" y1="370" x2="1868" y2="370" stroke="#1971c2" stroke-width="3"/>
 <line x1="1868" y1="370" x2="1885" y2="370" stroke="#6c757d" stroke-width="3"/>
 <rect x="1885" y="360" width="50" height="20" rx="8" stroke="#6b4f2c" fill="#e9c46a" stroke-width="2"/>
@@ -214,7 +214,7 @@
 <rect x="1958" y="356" width="74" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="1967" cy="370" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
 <text x="2000.0" y="374" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG5</text>
-<text x="1958" y="352" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="400" text-anchor="start" fill="#526079">SEG5_DRV</text>
+<text x="1335" y="362" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="400" text-anchor="start" fill="#526079">SEG5_DRV</text>
 <line x1="1322" y1="410" x2="1973" y2="410" stroke="#7048e8" stroke-width="3"/>
 <line x1="1973" y1="410" x2="1990" y2="410" stroke="#6c757d" stroke-width="3"/>
 <rect x="1990" y="400" width="50" height="20" rx="8" stroke="#6b4f2c" fill="#e9c46a" stroke-width="2"/>
@@ -227,7 +227,7 @@
 <rect x="2063" y="396" width="74" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="2072" cy="410" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
 <text x="2105.0" y="414" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG6</text>
-<text x="2063" y="392" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="400" text-anchor="start" fill="#526079">SEG6_DRV</text>
+<text x="1335" y="402" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="400" text-anchor="start" fill="#526079">SEG6_DRV</text>
 <line x1="1322" y1="450" x2="2078" y2="450" stroke="#d6336c" stroke-width="3"/>
 <line x1="2078" y1="450" x2="2095" y2="450" stroke="#6c757d" stroke-width="3"/>
 <rect x="2095" y="440" width="50" height="20" rx="8" stroke="#6b4f2c" fill="#e9c46a" stroke-width="2"/>
@@ -240,7 +240,7 @@
 <rect x="2168" y="436" width="74" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="2177" cy="450" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
 <text x="2210.0" y="454" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG7</text>
-<text x="2168" y="432" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="400" text-anchor="start" fill="#526079">SEG7_DRV</text>
+<text x="1335" y="442" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="400" text-anchor="start" fill="#526079">SEG7_DRV</text>
 <text x="1332" y="494" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="400" text-anchor="start" fill="#526079">NC · без DP</text>
 <rect x="1400" y="516" width="92" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
 <circle cx="1409" cy="530" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>

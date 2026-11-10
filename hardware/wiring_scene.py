@@ -146,7 +146,7 @@ def build_scene(Scene, leds, groups, group_titles):
         wire(s, [(1322, y), (rx - 42, y)], seg_colors[i], 3)
         resistor(s, rx, y, f"R{i + 1}")
         terminal(s, rx + 48, y, f"SEG{i + 1}", 74)
-        s.text(rx + 48, y - 18, f"SEG{i + 1}_DRV", 9, "muted")
+        s.text(1335, y - 8, f"SEG{i + 1}_DRV", 9, "muted")
     s.text(1332, 494, "NC · без DP", 11, "muted")
     for i in range(8):
         y = 530 + i * 40
