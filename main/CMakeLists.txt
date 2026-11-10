@@ -16,6 +16,7 @@ idf_component_register(
         esp_wifi
         lvgl
         lwip
+        mdns
         nvs_flash
 )
 
