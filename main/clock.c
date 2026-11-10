@@ -14,7 +14,6 @@
 #include "esp_system.h"
 #include "esp_wifi.h"
 #include "esp_event.h"
-#include "esp_check.h"
 #include "esp_log.h"
 #include "nvs_flash.h"
 #include "esp_netif.h"
@@ -181,7 +180,6 @@ static uint32_t sync_interval_sec = SYNC_INTERVAL_DEFAULT_SEC;
 
 static const char *TAG = "CLOCK";
 static EventGroupHandle_t wifi_event_group;
-static esp_netif_t *wifi_sta_netif;
 static esp_timer_handle_t wifi_reconnect_timer;
 static esp_timer_handle_t wifi_setup_timer;
 static uint32_t wifi_retry_count;
@@ -996,37 +994,6 @@ static void wifi_setup_cb(void *arg)
     start_wifi_setup();
 }
 
-static esp_err_t wifi_configure_static_ip(void)
-{
-#if CONFIG_CLOCK_WIFI_STATIC_IP
-    esp_netif_ip_info_t static_ip = {0};
-    esp_ip4_addr_t dns_address = {0};
-    ESP_RETURN_ON_ERROR(esp_netif_str_to_ip4(CONFIG_CLOCK_WIFI_STATIC_IP_ADDRESS, &static_ip.ip),
-                        TAG, "Invalid static IP address");
-    ESP_RETURN_ON_ERROR(esp_netif_str_to_ip4(CONFIG_CLOCK_WIFI_STATIC_NETMASK, &static_ip.netmask),
-                        TAG, "Invalid static netmask");
-    ESP_RETURN_ON_ERROR(esp_netif_str_to_ip4(CONFIG_CLOCK_WIFI_STATIC_GATEWAY, &static_ip.gw),
-                        TAG, "Invalid static gateway");
-    ESP_RETURN_ON_ERROR(esp_netif_str_to_ip4(CONFIG_CLOCK_WIFI_STATIC_DNS, &dns_address),
-                        TAG, "Invalid static DNS server");
-
-    esp_err_t dhcp_stop_result = esp_netif_dhcpc_stop(wifi_sta_netif);
-    if (dhcp_stop_result != ESP_OK && dhcp_stop_result != ESP_ERR_ESP_NETIF_DHCP_ALREADY_STOPPED) {
-        return dhcp_stop_result;
-    }
-    ESP_RETURN_ON_ERROR(esp_netif_set_ip_info(wifi_sta_netif, &static_ip),
-                        TAG, "Cannot set static IP");
-    esp_netif_dns_info_t dns_info = {
-        .ip.u_addr.ip4 = dns_address,
-        .ip.type = ESP_IPADDR_TYPE_V4,
-    };
-    ESP_RETURN_ON_ERROR(esp_netif_set_dns_info(wifi_sta_netif, ESP_NETIF_DNS_MAIN, &dns_info),
-                        TAG, "Cannot set static DNS");
-    ESP_LOGI(TAG, "Using static IP: " IPSTR, IP2STR(&static_ip.ip));
-#endif
-    return ESP_OK;
-}
-
 static void wifi_connection_ready(const esp_netif_ip_info_t *ip_info)
 {
     wifi_retry_count = 0;
@@ -1050,14 +1017,6 @@ static void wifi_event_handler(void *arg, esp_event_base_t event_base,
         if (!esp_timer_is_active(wifi_setup_timer)) {
             esp_timer_start_once(wifi_setup_timer, 45000000ULL);
         }
-    } else if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_CONNECTED) {
-        /* ESP-IDF's Wi-Fi static-IP example applies the address at this event. */
-        if (wifi_configure_static_ip() != ESP_OK) {
-            ESP_LOGE(TAG, "Static IP configuration failed");
-            esp_wifi_disconnect();
-            return;
-        }
-        /* The netif layer emits IP_EVENT_STA_GOT_IP after applying the address. */
     } else if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_DISCONNECTED) {
         xEventGroupClearBits(wifi_event_group, WIFI_CONNECTED_BIT);
         wifi_gateway_addr.addr = 0;
@@ -1107,7 +1066,6 @@ static void wifi_init(void)
     ESP_ERROR_CHECK(esp_netif_init());
     ESP_ERROR_CHECK(esp_event_loop_create_default());
     esp_netif_t *sta_netif = esp_netif_create_default_wifi_sta();
-    wifi_sta_netif = sta_netif;
     ESP_ERROR_CHECK(sta_netif != NULL ? ESP_OK : ESP_FAIL);
     ESP_ERROR_CHECK(esp_netif_create_default_wifi_ap() != NULL ? ESP_OK : ESP_FAIL);
 
