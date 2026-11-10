@@ -291,6 +291,68 @@ bool city_database_get(uint32_t index, city_db_record_t *record)
     return true;
 }
 
+static bool alias_is_ascii(const char *text, size_t length)
+{
+    for (size_t i = 0; i < length; i++) {
+        if ((unsigned char)text[i] < 0x20 || (unsigned char)text[i] >= 0x7F) return false;
+    }
+    return true;
+}
+
+static bool alias_has_cyrillic(const char *text, size_t length)
+{
+    for (size_t i = 0; i + 1 < length; i++) {
+        if ((unsigned char)text[i] == 0xD0 || (unsigned char)text[i] == 0xD1) return true;
+    }
+    return false;
+}
+
+static bool alias_has_han(const char *text, size_t length)
+{
+    for (size_t i = 0; i < length; i++) {
+        if ((unsigned char)text[i] >= 0xE4 && (unsigned char)text[i] <= 0xE9) return true;
+    }
+    return false;
+}
+
+bool city_database_get_localized(uint32_t index, const char *language, city_db_record_t *record)
+{
+    if (record == NULL || partition == NULL || index >= record_count) return false;
+
+    uint8_t raw[CITY_DB_RECORD_RAW_MAX];
+    size_t record_size = 0;
+    if (!read_record_raw(index, raw, sizeof(raw), &record_size)) return false;
+    city_db_full_record_t full;
+    if (!decode_raw_record(raw, record_size, &full)) return false;
+
+    memcpy(record->name, full.name, sizeof(record->name));
+    memcpy(record->country, full.country, sizeof(record->country));
+    memcpy(record->timezone, full.timezone, sizeof(record->timezone));
+
+    const bool want_ru = language && strcmp(language, "ru") == 0;
+    const bool want_en = language && strcmp(language, "en") == 0;
+    const bool want_zh = language && strcmp(language, "zh") == 0;
+    if (want_en && alias_is_ascii(full.name, strlen(full.name))) return true;
+    const char *cursor = full.aliases;
+    while (*cursor) {
+        const char *end = strchr(cursor, '|');
+        size_t length = end ? (size_t)(end - cursor) : strlen(cursor);
+        bool matches = false;
+        if (want_ru) matches = alias_has_cyrillic(cursor, length);
+        else if (want_en) matches = alias_is_ascii(cursor, length);
+        else if (want_zh) matches = alias_has_han(cursor, length);
+        else matches = alias_is_ascii(cursor, length) && !alias_is_ascii(full.name, strlen(full.name));
+        if (matches && length > 0 && length < CITY_DB_NAME_MAX) {
+            memcpy(record->name, cursor, length);
+            record->name[length] = '\0';
+            break;
+        }
+        if (!end) break;
+        cursor = end + 1;
+    }
+    return true;
+}
+
 uint32_t city_database_search(const char *query,
                               uint32_t limit,
                               city_db_record_t *records,
