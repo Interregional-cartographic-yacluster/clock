@@ -6,3 +6,5 @@ dependencies:
     version: "^2.3.0"
   lvgl/lvgl:
     version: "^9.1.0"
+  espressif/mdns:
+    version: "^1.8.0"
