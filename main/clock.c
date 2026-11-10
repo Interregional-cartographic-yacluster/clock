@@ -1364,12 +1364,29 @@ static void city_localized_name(size_t index, char *out, size_t out_size)
     strlcpy(out, cities[index].city, out_size);
 }
 
+static void setup_display_lines(const char **connection, const char **instruction)
+{
+    static const char *const lines[6][2] = {
+        {"Подключение часов к Wi-Fi", "Выберите эту сеть на телефоне"},
+        {"Connection the clock to Wi-Fi", "Select this network on your phone"},
+        {"Uhr mit WLAN verbinden", "Wählen Sie dieses Netz am Telefon"},
+        {"Connecter l’horloge au Wi-Fi", "Choisissez ce réseau sur votre mobile"},
+        {"Conectar el reloj al Wi-Fi", "Selecciona esta red en el móvil"},
+        {"将时钟连接到 Wi-Fi", "在手机上选择此网络"},
+    };
+    const display_language_t language = device_language <= DISPLAY_LANG_ZH ? device_language : DISPLAY_LANG_EN;
+    *connection = lines[language][0];
+    *instruction = lines[language][1];
+}
+
 static void update_display(void)
 {
     if (wifi_setup_mode) {
+        const char *connection, *instruction;
+        setup_display_lines(&connection, &instruction);
         set_label_text_if_changed(label_time, "");
-        set_label_text_if_changed(label_date, "Connecting the clock to Wi-Fi");
-        set_label_text_if_changed(label_city, "");
+        set_label_text_if_changed(label_date, connection);
+        set_label_text_if_changed(label_city, instruction);
         set_label_text_if_changed(label_wifi, "");
         lv_obj_set_hidden(icon_wifi, true);
         lv_obj_set_style_text_color(label_wifi, lv_color_hex(0x888888), 0);
@@ -1466,23 +1483,48 @@ static int receive_request_body(httpd_req_t *req, char *buffer, size_t buffer_si
 static const char WIFI_SETUP_PAGE[] =
     "<!doctype html><html lang=ru><head><meta charset=utf-8>"
     "<meta name=viewport content='width=device-width,initial-scale=1'>"
-    "<title>Подключение часов к Wi-Fi</title><style>"
-    "*{box-sizing:border-box}body{margin:0;background:#101820;color:#17202a;font:20px Arial,sans-serif}"
-    "main{max-width:560px;margin:24px auto;background:white;border-radius:20px;padding:26px}"
-    "h1{font-size:30px;margin:0 0 12px}p{line-height:1.4;color:#52606d}"
-    "label{display:block;margin:20px 0 8px;font-weight:bold}input{width:100%;font-size:22px;padding:15px;border:2px solid #a9b4bd;border-radius:10px}"
-    "button{width:100%;margin-top:26px;padding:18px;border:0;border-radius:12px;background:#087f5b;color:white;font-size:24px;font-weight:bold}"
-    "small{display:block;margin-top:18px;color:#687680;line-height:1.4}</style></head><body><main>"
-    "<h1>Подключение часов</h1><p>Введите название домашнего Wi-Fi и пароль. Больше ничего настраивать не нужно.</p>"
-    "<form method=post action=/wifi><label for=ssid>Название Wi-Fi</label>"
-    "<input id=ssid name=ssid list=networks required maxlength=32 autocomplete=off>"
-    "<datalist id=networks></datalist><label for=password>Пароль Wi-Fi</label>"
+    "<meta name=theme-color content='#8f7ed6'><title>Wi-Fi</title><style>"
+    ":root{--purple:#8f7ed6;--purple-dark:#6f5bc1;--purple-soft:#f0eeff;--orange:#f5a623;"
+    "--ink:#25233a;--muted:#74718a;--line:#ebe9f5;--bg:#f6f5fb;--shadow:0 18px 45px rgba(61,45,128,.13)}"
+    "*{box-sizing:border-box}body{margin:0;background:linear-gradient(135deg,#eeeaff,#faf9fd 45%,var(--bg));"
+    "color:var(--ink);font-family:Montserrat,'Segoe UI',Arial,sans-serif;min-height:100vh;padding:22px}"
+    "main{max-width:560px;margin:20px auto;background:#fff;border:1px solid var(--line);border-radius:24px;"
+    "overflow:hidden;box-shadow:var(--shadow)}.hero{padding:28px;background:linear-gradient(135deg,var(--purple),#a192e7);color:#fff}"
+    ".eyebrow{font-size:11px;letter-spacing:.15em;text-transform:uppercase;font-weight:800;opacity:.75}"
+    "h1{font-size:28px;line-height:1.2;margin:10px 0}.hero p{margin:0;line-height:1.5;opacity:.85}"
+    "form{padding:26px}.lang{width:100%;padding:11px;border:1px solid var(--line);background:var(--purple-soft);"
+    "color:var(--purple-dark);border-radius:11px;font-weight:700}label{display:block;margin:20px 0 7px;font-size:12px;font-weight:800;color:var(--muted)}"
+    "input{width:100%;font-size:20px;padding:14px;border:1px solid var(--line);background:#fbfaff;color:var(--ink);border-radius:11px;outline:0}"
+    "input:focus{border-color:var(--purple);box-shadow:0 0 0 3px rgba(143,126,214,.15)}"
+    "button{width:100%;margin-top:26px;padding:16px;border:0;border-radius:12px;background:var(--purple);"
+    "color:#fff;font-size:18px;font-weight:800;cursor:pointer}button:hover{background:var(--purple-dark)}"
+    "small{display:block;margin-top:18px;color:var(--muted);line-height:1.5}.badge{display:inline-block;background:var(--orange);"
+    "padding:5px 9px;border-radius:999px;font-size:11px;font-weight:800;margin-bottom:12px}"
+    "@media(max-width:600px){body{padding:10px}main{margin:6px auto}.hero,form{padding:22px}}</style></head><body><main>"
+    "<div class=hero><div class=badge>ESP32</div><div class=eyebrow>Clock system</div><h1 id=title></h1><p id=intro></p></div>"
+    "<form method=post action=/wifi><select id=language class=lang aria-label=Language>"
+    "<option value=ru>Русский</option><option value=en>English</option><option value=de>Deutsch</option>"
+    "<option value=fr>Français</option><option value=es>Español</option><option value=zh>中文</option></select>"
+    "<label for=ssid id=ssidLabel></label><input id=ssid name=ssid list=networks required maxlength=32 autocomplete=off>"
+    "<datalist id=networks></datalist><label for=password id=passwordLabel></label>"
     "<input id=password name=password type=password maxlength=63 autocomplete=current-password>"
-    "<button type=submit>Подключить часы</button></form>"
-    "<small>Если сети нет в подсказках, впишите её название точно как на роутере. Часы перезапустятся и подключатся сами.</small>"
-    "</main><script>fetch('/wifi/networks').then(r=>r.json()).then(a=>{const d=document.getElementById('networks');"
-    "a.forEach(s=>{const o=document.createElement('option');o.value=s;d.appendChild(o)})}).catch(()=>{});</script></body></html>";
-
+    "<button type=submit id=connect></button><small id=note></small></form></main><script>"
+    "const T={"
+    "ru:{title:'Подключение часов к Wi-Fi',intro:'Введите название домашней сети и пароль.',ssid:'Название Wi-Fi',password:'Пароль Wi-Fi',connect:'Подключить часы',note:'Если сети нет в подсказках, введите её название точно как на роутере. Часы перезапустятся и подключатся сами.'},"
+    "en:{title:'Connect the clock to Wi-Fi',intro:'Enter your home network name and password.',ssid:'Wi-Fi name',password:'Wi-Fi password',connect:'Connect the clock',note:'If your network is not listed, enter its name exactly as shown on the router. The clock will restart and connect automatically.'},"
+    "de:{title:'Uhr mit WLAN verbinden',intro:'Geben Sie den Namen und das Passwort Ihres Heimnetzwerks ein.',ssid:'WLAN-Name',password:'WLAN-Passwort',connect:'Uhr verbinden',note:'Falls Ihr Netzwerk nicht aufgeführt ist, geben Sie den Namen genau wie auf dem Router ein. Die Uhr startet neu und verbindet sich automatisch.'},"
+    "fr:{title:'Connecter l’horloge au Wi-Fi',intro:'Saisissez le nom et le mot de passe de votre réseau domestique.',ssid:'Nom du Wi-Fi',password:'Mot de passe Wi-Fi',connect:'Connecter l’horloge',note:'Si votre réseau n’est pas dans la liste, saisissez son nom exactement comme sur le routeur. L’horloge redémarrera et se connectera automatiquement.'},"
+    "es:{title:'Conectar el reloj al Wi-Fi',intro:'Introduce el nombre y la contraseña de tu red doméstica.',ssid:'Nombre del Wi-Fi',password:'Contraseña del Wi-Fi',connect:'Conectar el reloj',note:'Si tu red no aparece, escribe su nombre exactamente como figura en el router. El reloj se reiniciará y se conectará automáticamente.'},"
+    "zh:{title:'将时钟连接到 Wi-Fi',intro:'输入家庭网络的名称和密码。',ssid:'Wi-Fi 名称',password:'Wi-Fi 密码',connect:'连接时钟',note:'如果列表中没有您的网络，请准确输入路由器上的名称。时钟将重新启动并自动连接。'}};"
+    "const $=id=>document.getElementById(id);let lang=(navigator.language||'ru').slice(0,2);"
+    "try{lang=localStorage.getItem('clockLanguage')||lang}catch(e){}if(!T[lang])lang='ru';"
+    "function apply(l,sync){lang=T[l]?l:'ru';const t=T[lang];document.documentElement.lang=lang;document.title=t.title;"
+    "$('language').value=lang;$('title').textContent=t.title;$('intro').textContent=t.intro;$('ssidLabel').textContent=t.ssid;"
+    "$('passwordLabel').textContent=t.password;$('connect').textContent=t.connect;$('note').textContent=t.note;"
+    "try{localStorage.setItem('clockLanguage',lang)}catch(e){}if(sync)fetch('/language',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:'lang='+lang}).catch(()=>{});}"
+    "$('language').addEventListener('change',e=>apply(e.target.value,true));apply(lang,true);"
+    "fetch('/wifi/networks').then(r=>r.json()).then(a=>{const d=$('networks');a.forEach(s=>{const o=document.createElement('option');o.value=s;d.appendChild(o)})}).catch(()=>{});"
+    "</script></body></html>";
 static esp_err_t root_get_handler(httpd_req_t *req)
 {
     httpd_resp_set_type(req, "text/html; charset=utf-8");
