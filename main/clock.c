@@ -1430,6 +1430,7 @@ static void update_display(void)
 //  ВЕБ-СЕРВЕР
 // ================================================
 static bool form_get_value(const char *body, const char *key, char *out, size_t out_size);
+static int receive_request_body(httpd_req_t *req, char *buffer, size_t buffer_size);
 
 static const char WIFI_SETUP_PAGE[] =
     "<!doctype html><html lang=ru><head><meta charset=utf-8>"
