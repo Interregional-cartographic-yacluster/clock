@@ -1,967 +1,546 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1980" viewBox="0 0 2400 1980">
-<title>ESP32 TM1640 HH:MM:SS schematic</title>
-<desc>Pictorial crossing-free wiring diagram with ESP32, TM1640 and 46 LEDs</desc>
-<rect width="100%" height="100%" fill="#ffffff"/>
-<rect x="18" y="18" width="2364" height="1944" rx="0" stroke="#526079" fill="none" stroke-width="2"/>
-<text x="45" y="58" font-family="DejaVu Sans,Arial,sans-serif" font-size="30" font-weight="700" text-anchor="start" fill="#172033">ESP32 + TM1640 — монтажная схема HH:MM:SS</text>
-<text x="45" y="86" font-family="DejaVu Sans,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="start" fill="#526079">Без 74HCT245 и DP · 46 LED · цветные провода без перекрёстков · соединения через одноимённые клеммы</text>
-<rect x="80" y="180" width="350" height="340" rx="12" stroke="#152d46" fill="#245b8a" stroke-width="4"/>
-<rect x="145" y="260" width="210" height="110" rx="5" stroke="#495057" fill="#dee2e6" stroke-width="3"/>
-<text x="250" y="315" font-family="DejaVu Sans,Arial,sans-serif" font-size="26" font-weight="700" text-anchor="middle" fill="#172033">ESP32</text>
-<text x="250" y="345" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="middle" fill="#172033">WROOM-32D</text>
-<text x="250" y="215" font-family="DejaVu Sans,Arial,sans-serif" font-size="18" font-weight="700" text-anchor="middle" fill="#ffffff">U1</text>
-<line x1="430" y1="260" x2="452" y2="260" stroke="#6c757d" stroke-width="4"/>
-<circle cx="430" cy="260" r="6" stroke="#d4af37" fill="#f8e71c" stroke-width="2"/>
-<text x="414" y="264" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="700" text-anchor="end" fill="#ffffff">GPIO25</text>
-<line x1="430" y1="320" x2="452" y2="320" stroke="#6c757d" stroke-width="4"/>
-<circle cx="430" cy="320" r="6" stroke="#d4af37" fill="#f8e71c" stroke-width="2"/>
-<text x="414" y="324" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="700" text-anchor="end" fill="#ffffff">GPIO26</text>
-<line x1="430" y1="380" x2="452" y2="380" stroke="#6c757d" stroke-width="4"/>
-<circle cx="430" cy="380" r="6" stroke="#d4af37" fill="#f8e71c" stroke-width="2"/>
-<text x="414" y="384" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="700" text-anchor="end" fill="#ffffff">GPIO32</text>
-<line x1="200" y1="180" x2="200" y2="158" stroke="#6c757d" stroke-width="4"/>
-<text x="218" y="170" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="400" text-anchor="start" fill="#ffffff">5V</text>
-<line x1="200" y1="520" x2="200" y2="542" stroke="#6c757d" stroke-width="4"/>
-<text x="218" y="535" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="400" text-anchor="start" fill="#ffffff">GND</text>
-<rect x="900" y="140" width="400" height="740" rx="12" stroke="#28342b" fill="#40634b" stroke-width="4"/>
-<rect x="1000" y="280" width="200" height="200" rx="5" stroke="#101010" fill="#212529" stroke-width="3"/>
-<text x="1100" y="365" font-family="DejaVu Sans,Arial,sans-serif" font-size="24" font-weight="700" text-anchor="middle" fill="#ffffff">TM1640</text>
-<text x="1100" y="395" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="middle" fill="#ffffff">SOP28</text>
-<text x="1100" y="175" font-family="DejaVu Sans,Arial,sans-serif" font-size="18" font-weight="700" text-anchor="middle" fill="#ffffff">U2 · драйвер</text>
-<line x1="1050" y1="140" x2="1050" y2="118" stroke="#6c757d" stroke-width="4"/>
-<text x="1070" y="132" font-family="DejaVu Sans,Arial,sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#ffffff">VDD · 17</text>
-<line x1="1050" y1="880" x2="1050" y2="902" stroke="#6c757d" stroke-width="4"/>
-<text x="1070" y="895" font-family="DejaVu Sans,Arial,sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#ffffff">GND · 6</text>
-<line x1="878" y1="260" x2="900" y2="260" stroke="#6c757d" stroke-width="4"/>
-<circle cx="900" cy="260" r="6" stroke="#d4af37" fill="#f8e71c" stroke-width="2"/>
-<text x="920" y="264" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="700" text-anchor="start" fill="#ffffff">SCLK · 8</text>
-<line x1="878" y1="320" x2="900" y2="320" stroke="#6c757d" stroke-width="4"/>
-<circle cx="900" cy="320" r="6" stroke="#d4af37" fill="#f8e71c" stroke-width="2"/>
-<text x="920" y="324" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="700" text-anchor="start" fill="#ffffff">DIN · 7</text>
-<line x1="1300" y1="210" x2="1322" y2="210" stroke="#6c757d" stroke-width="3"/>
-<circle cx="1300" cy="210" r="5" stroke="#d4af37" fill="#f8e71c" stroke-width="1"/>
-<text x="1282" y="214" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="end" fill="#ffffff">SEG1 · 9</text>
-<line x1="1300" y1="250" x2="1322" y2="250" stroke="#6c757d" stroke-width="3"/>
-<circle cx="1300" cy="250" r="5" stroke="#d4af37" fill="#f8e71c" stroke-width="1"/>
-<text x="1282" y="254" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="end" fill="#ffffff">SEG2 · 10</text>
-<line x1="1300" y1="290" x2="1322" y2="290" stroke="#6c757d" stroke-width="3"/>
-<circle cx="1300" cy="290" r="5" stroke="#d4af37" fill="#f8e71c" stroke-width="1"/>
-<text x="1282" y="294" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="end" fill="#ffffff">SEG3 · 11</text>
-<line x1="1300" y1="330" x2="1322" y2="330" stroke="#6c757d" stroke-width="3"/>
-<circle cx="1300" cy="330" r="5" stroke="#d4af37" fill="#f8e71c" stroke-width="1"/>
-<text x="1282" y="334" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="end" fill="#ffffff">SEG4 · 12</text>
-<line x1="1300" y1="370" x2="1322" y2="370" stroke="#6c757d" stroke-width="3"/>
-<circle cx="1300" cy="370" r="5" stroke="#d4af37" fill="#f8e71c" stroke-width="1"/>
-<text x="1282" y="374" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="end" fill="#ffffff">SEG5 · 13</text>
-<line x1="1300" y1="410" x2="1322" y2="410" stroke="#6c757d" stroke-width="3"/>
-<circle cx="1300" cy="410" r="5" stroke="#d4af37" fill="#f8e71c" stroke-width="1"/>
-<text x="1282" y="414" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="end" fill="#ffffff">SEG6 · 14</text>
-<line x1="1300" y1="450" x2="1322" y2="450" stroke="#6c757d" stroke-width="3"/>
-<circle cx="1300" cy="450" r="5" stroke="#d4af37" fill="#f8e71c" stroke-width="1"/>
-<text x="1282" y="454" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="end" fill="#ffffff">SEG7 · 15</text>
-<line x1="1300" y1="490" x2="1322" y2="490" stroke="#6c757d" stroke-width="3"/>
-<circle cx="1300" cy="490" r="5" stroke="#d4af37" fill="#f8e71c" stroke-width="1"/>
-<text x="1282" y="494" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="end" fill="#ffffff">SEG8 · 16</text>
-<line x1="1300" y1="530" x2="1322" y2="530" stroke="#6c757d" stroke-width="3"/>
-<circle cx="1300" cy="530" r="5" stroke="#d4af37" fill="#f8e71c" stroke-width="1"/>
-<text x="1282" y="534" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="end" fill="#ffffff">GRID1 · 18</text>
-<line x1="1300" y1="570" x2="1322" y2="570" stroke="#6c757d" stroke-width="3"/>
-<circle cx="1300" cy="570" r="5" stroke="#d4af37" fill="#f8e71c" stroke-width="1"/>
-<text x="1282" y="574" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="end" fill="#ffffff">GRID2 · 19</text>
-<line x1="1300" y1="610" x2="1322" y2="610" stroke="#6c757d" stroke-width="3"/>
-<circle cx="1300" cy="610" r="5" stroke="#d4af37" fill="#f8e71c" stroke-width="1"/>
-<text x="1282" y="614" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="end" fill="#ffffff">GRID3 · 20</text>
-<line x1="1300" y1="650" x2="1322" y2="650" stroke="#6c757d" stroke-width="3"/>
-<circle cx="1300" cy="650" r="5" stroke="#d4af37" fill="#f8e71c" stroke-width="1"/>
-<text x="1282" y="654" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="end" fill="#ffffff">GRID4 · 21</text>
-<line x1="1300" y1="690" x2="1322" y2="690" stroke="#6c757d" stroke-width="3"/>
-<circle cx="1300" cy="690" r="5" stroke="#d4af37" fill="#f8e71c" stroke-width="1"/>
-<text x="1282" y="694" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="end" fill="#ffffff">GRID5 · 22</text>
-<line x1="1300" y1="730" x2="1322" y2="730" stroke="#6c757d" stroke-width="3"/>
-<circle cx="1300" cy="730" r="5" stroke="#d4af37" fill="#f8e71c" stroke-width="1"/>
-<text x="1282" y="734" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="end" fill="#ffffff">GRID6 · 23</text>
-<line x1="1300" y1="770" x2="1322" y2="770" stroke="#6c757d" stroke-width="3"/>
-<circle cx="1300" cy="770" r="5" stroke="#d4af37" fill="#f8e71c" stroke-width="1"/>
-<text x="1282" y="774" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="end" fill="#ffffff">GRID7 · 24</text>
-<line x1="1300" y1="810" x2="1322" y2="810" stroke="#6c757d" stroke-width="3"/>
-<circle cx="1300" cy="810" r="5" stroke="#d4af37" fill="#f8e71c" stroke-width="1"/>
-<text x="1282" y="814" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="end" fill="#ffffff">GRID8 · 25</text>
-<rect x="55" y="96" width="90" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="64" cy="110" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="105.0" y="114" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">+5V</text>
-<rect x="55" y="936" width="90" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="64" cy="950" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="105.0" y="954" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">GND</text>
-<line x1="145" y1="110" x2="2320" y2="110" stroke="#e03131" stroke-width="6"/>
-<line x1="200" y1="110" x2="200" y2="158" stroke="#e03131" stroke-width="5"/>
-<circle cx="200" cy="110" r="6" stroke="#e03131" fill="#e03131" stroke-width="1"/>
-<line x1="1050" y1="110" x2="1050" y2="118" stroke="#e03131" stroke-width="5"/>
-<circle cx="1050" cy="110" r="6" stroke="#e03131" fill="#e03131" stroke-width="1"/>
-<line x1="145" y1="950" x2="1050" y2="950" stroke="#212529" stroke-width="6"/>
-<line x1="200" y1="542" x2="200" y2="950" stroke="#212529" stroke-width="5"/>
-<circle cx="200" cy="950" r="6" stroke="#212529" fill="#212529" stroke-width="1"/>
-<line x1="1050" y1="902" x2="1050" y2="950" stroke="#212529" stroke-width="5"/>
-<circle cx="1050" cy="950" r="6" stroke="#212529" fill="#212529" stroke-width="1"/>
-<line x1="452" y1="260" x2="650" y2="260" stroke="#1971c2" stroke-width="5"/>
-<line x1="650" y1="260" x2="650" y2="260" stroke="#1971c2" stroke-width="5"/>
-<line x1="650" y1="260" x2="878" y2="260" stroke="#1971c2" stroke-width="5"/>
-<text x="675" y="251" font-family="DejaVu Sans,Arial,sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#1769aa">GPIO25 → SCLK</text>
-<line x1="452" y1="320" x2="740" y2="320" stroke="#7048e8" stroke-width="5"/>
-<line x1="740" y1="320" x2="740" y2="320" stroke="#7048e8" stroke-width="5"/>
-<line x1="740" y1="320" x2="878" y2="320" stroke="#7048e8" stroke-width="5"/>
-<text x="755" y="311" font-family="DejaVu Sans,Arial,sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#7048e8">GPIO26 → DIN</text>
-<line x1="452" y1="380" x2="560" y2="380" stroke="#f08c00" stroke-width="4"/>
-<line x1="560" y1="380" x2="560" y2="380" stroke="#f08c00" stroke-width="4"/>
-<line x1="560" y1="380" x2="584" y2="380" stroke="#6c757d" stroke-width="3"/>
-<rect x="584" y="362" width="36" height="36" rx="5" stroke="#343a40" fill="#adb5bd" stroke-width="2"/>
-<circle cx="602" cy="366" r="11" stroke="#343a40" fill="#e03131" stroke-width="2"/>
-<line x1="620" y1="380" x2="644" y2="380" stroke="#6c757d" stroke-width="3"/>
-<text x="602" y="344" font-family="DejaVu Sans,Arial,sans-serif" font-size="12" font-weight="700" text-anchor="middle" fill="#172033">SW1</text>
-<line x1="644" y1="380" x2="680" y2="380" stroke="#212529" stroke-width="4"/>
-<line x1="680" y1="380" x2="680" y2="394" stroke="#172033" stroke-width="3"/>
-<line x1="665" y1="394" x2="695" y2="394" stroke="#172033" stroke-width="3"/>
-<line x1="670" y1="401" x2="690" y2="401" stroke="#172033" stroke-width="3"/>
-<line x1="675" y1="408" x2="685" y2="408" stroke="#172033" stroke-width="3"/>
-<text x="700" y="384" font-family="DejaVu Sans,Arial,sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#526079">COLON_BTN</text>
-<circle cx="2220" cy="110" r="6" stroke="#e03131" fill="#e03131" stroke-width="1"/>
-<line x1="2220" y1="110" x2="2220" y2="135" stroke="#e03131" stroke-width="4"/>
-<line x1="2220" y1="135" x2="2220" y2="150" stroke="#6c757d" stroke-width="3"/>
-<rect x="2202" y="150" width="36" height="48" rx="8" stroke="#163c5e" fill="#1971c2" stroke-width="2"/>
-<circle cx="2220" cy="152" r="16" stroke="#163c5e" fill="#74c0fc" stroke-width="2"/>
-<text x="2220" y="175" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="middle" fill="#ffffff">+</text>
-<text x="2220" y="218" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">C1 100 nF</text>
-<line x1="2220" y1="198" x2="2220" y2="208" stroke="#6c757d" stroke-width="3"/>
-<line x1="2220" y1="208" x2="2220" y2="238" stroke="#212529" stroke-width="3"/>
-<line x1="2220" y1="238" x2="2220" y2="252" stroke="#172033" stroke-width="3"/>
-<line x1="2205" y1="252" x2="2235" y2="252" stroke="#172033" stroke-width="3"/>
-<line x1="2210" y1="259" x2="2230" y2="259" stroke="#172033" stroke-width="3"/>
-<line x1="2215" y1="266" x2="2225" y2="266" stroke="#172033" stroke-width="3"/>
-<circle cx="2320" cy="110" r="6" stroke="#e03131" fill="#e03131" stroke-width="1"/>
-<line x1="2320" y1="110" x2="2320" y2="135" stroke="#e03131" stroke-width="4"/>
-<line x1="2320" y1="135" x2="2320" y2="150" stroke="#6c757d" stroke-width="3"/>
-<rect x="2302" y="150" width="36" height="48" rx="8" stroke="#163c5e" fill="#1971c2" stroke-width="2"/>
-<circle cx="2320" cy="152" r="16" stroke="#163c5e" fill="#74c0fc" stroke-width="2"/>
-<text x="2320" y="175" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="middle" fill="#ffffff">+</text>
-<text x="2320" y="218" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">C2 47–100 µF</text>
-<line x1="2320" y1="198" x2="2320" y2="208" stroke="#6c757d" stroke-width="3"/>
-<line x1="2320" y1="208" x2="2320" y2="238" stroke="#212529" stroke-width="3"/>
-<line x1="2320" y1="238" x2="2320" y2="252" stroke="#172033" stroke-width="3"/>
-<line x1="2305" y1="252" x2="2335" y2="252" stroke="#172033" stroke-width="3"/>
-<line x1="2310" y1="259" x2="2330" y2="259" stroke="#172033" stroke-width="3"/>
-<line x1="2315" y1="266" x2="2325" y2="266" stroke="#172033" stroke-width="3"/>
-<text x="1390" y="150" font-family="DejaVu Sans,Arial,sans-serif" font-size="17" font-weight="700" text-anchor="start" fill="#172033">Резисторы и клеммы жгута</text>
-<line x1="1322" y1="210" x2="1448" y2="210" stroke="#e03131" stroke-width="3"/>
-<line x1="1448" y1="210" x2="1465" y2="210" stroke="#6c757d" stroke-width="3"/>
-<rect x="1465" y="200" width="50" height="20" rx="8" stroke="#6b4f2c" fill="#e9c46a" stroke-width="2"/>
-<rect x="1474" y="201" width="4" height="18" rx="0" stroke="#2f9e44" fill="#2f9e44" stroke-width="0"/>
-<rect x="1483" y="201" width="4" height="18" rx="0" stroke="#7a3e00" fill="#7a3e00" stroke-width="0"/>
-<rect x="1493" y="201" width="4" height="18" rx="0" stroke="#7a3e00" fill="#7a3e00" stroke-width="0"/>
-<rect x="1503" y="201" width="4" height="18" rx="0" stroke="#b7791f" fill="#b7791f" stroke-width="0"/>
-<line x1="1515" y1="210" x2="1532" y2="210" stroke="#6c757d" stroke-width="3"/>
-<text x="1490" y="192" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">R1 ОМЛТ 510 Ω</text>
-<rect x="1538" y="196" width="74" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="1547" cy="210" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="1580.0" y="214" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG1</text>
-<text x="1335" y="202" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="400" text-anchor="start" fill="#526079">SEG1_DRV</text>
-<line x1="1322" y1="250" x2="1553" y2="250" stroke="#f08c00" stroke-width="3"/>
-<line x1="1553" y1="250" x2="1570" y2="250" stroke="#6c757d" stroke-width="3"/>
-<rect x="1570" y="240" width="50" height="20" rx="8" stroke="#6b4f2c" fill="#e9c46a" stroke-width="2"/>
-<rect x="1579" y="241" width="4" height="18" rx="0" stroke="#2f9e44" fill="#2f9e44" stroke-width="0"/>
-<rect x="1588" y="241" width="4" height="18" rx="0" stroke="#7a3e00" fill="#7a3e00" stroke-width="0"/>
-<rect x="1598" y="241" width="4" height="18" rx="0" stroke="#7a3e00" fill="#7a3e00" stroke-width="0"/>
-<rect x="1608" y="241" width="4" height="18" rx="0" stroke="#b7791f" fill="#b7791f" stroke-width="0"/>
-<line x1="1620" y1="250" x2="1637" y2="250" stroke="#6c757d" stroke-width="3"/>
-<text x="1595" y="232" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">R2 ОМЛТ 510 Ω</text>
-<rect x="1643" y="236" width="74" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="1652" cy="250" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="1685.0" y="254" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG2</text>
-<text x="1335" y="242" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="400" text-anchor="start" fill="#526079">SEG2_DRV</text>
-<line x1="1322" y1="290" x2="1658" y2="290" stroke="#e3b505" stroke-width="3"/>
-<line x1="1658" y1="290" x2="1675" y2="290" stroke="#6c757d" stroke-width="3"/>
-<rect x="1675" y="280" width="50" height="20" rx="8" stroke="#6b4f2c" fill="#e9c46a" stroke-width="2"/>
-<rect x="1684" y="281" width="4" height="18" rx="0" stroke="#2f9e44" fill="#2f9e44" stroke-width="0"/>
-<rect x="1693" y="281" width="4" height="18" rx="0" stroke="#7a3e00" fill="#7a3e00" stroke-width="0"/>
-<rect x="1703" y="281" width="4" height="18" rx="0" stroke="#7a3e00" fill="#7a3e00" stroke-width="0"/>
-<rect x="1713" y="281" width="4" height="18" rx="0" stroke="#b7791f" fill="#b7791f" stroke-width="0"/>
-<line x1="1725" y1="290" x2="1742" y2="290" stroke="#6c757d" stroke-width="3"/>
-<text x="1700" y="272" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">R3 ОМЛТ 510 Ω</text>
-<rect x="1748" y="276" width="74" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="1757" cy="290" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="1790.0" y="294" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG3</text>
-<text x="1335" y="282" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="400" text-anchor="start" fill="#526079">SEG3_DRV</text>
-<line x1="1322" y1="330" x2="1763" y2="330" stroke="#2f9e44" stroke-width="3"/>
-<line x1="1763" y1="330" x2="1780" y2="330" stroke="#6c757d" stroke-width="3"/>
-<rect x="1780" y="320" width="50" height="20" rx="8" stroke="#6b4f2c" fill="#e9c46a" stroke-width="2"/>
-<rect x="1789" y="321" width="4" height="18" rx="0" stroke="#2f9e44" fill="#2f9e44" stroke-width="0"/>
-<rect x="1798" y="321" width="4" height="18" rx="0" stroke="#7a3e00" fill="#7a3e00" stroke-width="0"/>
-<rect x="1808" y="321" width="4" height="18" rx="0" stroke="#7a3e00" fill="#7a3e00" stroke-width="0"/>
-<rect x="1818" y="321" width="4" height="18" rx="0" stroke="#b7791f" fill="#b7791f" stroke-width="0"/>
-<line x1="1830" y1="330" x2="1847" y2="330" stroke="#6c757d" stroke-width="3"/>
-<text x="1805" y="312" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">R4 ОМЛТ 510 Ω</text>
-<rect x="1853" y="316" width="74" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="1862" cy="330" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="1895.0" y="334" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG4</text>
-<text x="1335" y="322" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="400" text-anchor="start" fill="#526079">SEG4_DRV</text>
-<line x1="1322" y1="370" x2="1868" y2="370" stroke="#1971c2" stroke-width="3"/>
-<line x1="1868" y1="370" x2="1885" y2="370" stroke="#6c757d" stroke-width="3"/>
-<rect x="1885" y="360" width="50" height="20" rx="8" stroke="#6b4f2c" fill="#e9c46a" stroke-width="2"/>
-<rect x="1894" y="361" width="4" height="18" rx="0" stroke="#2f9e44" fill="#2f9e44" stroke-width="0"/>
-<rect x="1903" y="361" width="4" height="18" rx="0" stroke="#7a3e00" fill="#7a3e00" stroke-width="0"/>
-<rect x="1913" y="361" width="4" height="18" rx="0" stroke="#7a3e00" fill="#7a3e00" stroke-width="0"/>
-<rect x="1923" y="361" width="4" height="18" rx="0" stroke="#b7791f" fill="#b7791f" stroke-width="0"/>
-<line x1="1935" y1="370" x2="1952" y2="370" stroke="#6c757d" stroke-width="3"/>
-<text x="1910" y="352" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">R5 ОМЛТ 510 Ω</text>
-<rect x="1958" y="356" width="74" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="1967" cy="370" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="2000.0" y="374" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG5</text>
-<text x="1335" y="362" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="400" text-anchor="start" fill="#526079">SEG5_DRV</text>
-<line x1="1322" y1="410" x2="1973" y2="410" stroke="#7048e8" stroke-width="3"/>
-<line x1="1973" y1="410" x2="1990" y2="410" stroke="#6c757d" stroke-width="3"/>
-<rect x="1990" y="400" width="50" height="20" rx="8" stroke="#6b4f2c" fill="#e9c46a" stroke-width="2"/>
-<rect x="1999" y="401" width="4" height="18" rx="0" stroke="#2f9e44" fill="#2f9e44" stroke-width="0"/>
-<rect x="2008" y="401" width="4" height="18" rx="0" stroke="#7a3e00" fill="#7a3e00" stroke-width="0"/>
-<rect x="2018" y="401" width="4" height="18" rx="0" stroke="#7a3e00" fill="#7a3e00" stroke-width="0"/>
-<rect x="2028" y="401" width="4" height="18" rx="0" stroke="#b7791f" fill="#b7791f" stroke-width="0"/>
-<line x1="2040" y1="410" x2="2057" y2="410" stroke="#6c757d" stroke-width="3"/>
-<text x="2015" y="392" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">R6 ОМЛТ 510 Ω</text>
-<rect x="2063" y="396" width="74" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="2072" cy="410" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="2105.0" y="414" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG6</text>
-<text x="1335" y="402" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="400" text-anchor="start" fill="#526079">SEG6_DRV</text>
-<line x1="1322" y1="450" x2="2078" y2="450" stroke="#d6336c" stroke-width="3"/>
-<line x1="2078" y1="450" x2="2095" y2="450" stroke="#6c757d" stroke-width="3"/>
-<rect x="2095" y="440" width="50" height="20" rx="8" stroke="#6b4f2c" fill="#e9c46a" stroke-width="2"/>
-<rect x="2104" y="441" width="4" height="18" rx="0" stroke="#2f9e44" fill="#2f9e44" stroke-width="0"/>
-<rect x="2113" y="441" width="4" height="18" rx="0" stroke="#7a3e00" fill="#7a3e00" stroke-width="0"/>
-<rect x="2123" y="441" width="4" height="18" rx="0" stroke="#7a3e00" fill="#7a3e00" stroke-width="0"/>
-<rect x="2133" y="441" width="4" height="18" rx="0" stroke="#b7791f" fill="#b7791f" stroke-width="0"/>
-<line x1="2145" y1="450" x2="2162" y2="450" stroke="#6c757d" stroke-width="3"/>
-<text x="2120" y="432" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">R7 ОМЛТ 510 Ω</text>
-<rect x="2168" y="436" width="74" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="2177" cy="450" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="2210.0" y="454" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG7</text>
-<text x="1335" y="442" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="400" text-anchor="start" fill="#526079">SEG7_DRV</text>
-<text x="1332" y="494" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="400" text-anchor="start" fill="#526079">NC · без DP</text>
-<rect x="1400" y="516" width="92" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="1409" cy="530" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="1451.0" y="534" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">GRID1</text>
-<line x1="1322" y1="530" x2="1400" y2="530" stroke="#2f9e44" stroke-width="3"/>
-<rect x="1400" y="556" width="92" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="1409" cy="570" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="1451.0" y="574" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">GRID2</text>
-<line x1="1322" y1="570" x2="1400" y2="570" stroke="#2f9e44" stroke-width="3"/>
-<rect x="1400" y="596" width="92" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="1409" cy="610" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="1451.0" y="614" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">GRID3</text>
-<line x1="1322" y1="610" x2="1400" y2="610" stroke="#2f9e44" stroke-width="3"/>
-<rect x="1400" y="636" width="92" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="1409" cy="650" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="1451.0" y="654" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">GRID4</text>
-<line x1="1322" y1="650" x2="1400" y2="650" stroke="#2f9e44" stroke-width="3"/>
-<rect x="1400" y="676" width="92" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="1409" cy="690" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="1451.0" y="694" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">GRID5</text>
-<line x1="1322" y1="690" x2="1400" y2="690" stroke="#2f9e44" stroke-width="3"/>
-<rect x="1400" y="716" width="92" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="1409" cy="730" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="1451.0" y="734" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">GRID6</text>
-<line x1="1322" y1="730" x2="1400" y2="730" stroke="#2f9e44" stroke-width="3"/>
-<rect x="1400" y="756" width="92" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="1409" cy="770" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="1451.0" y="774" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">GRID7</text>
-<line x1="1322" y1="770" x2="1400" y2="770" stroke="#2f9e44" stroke-width="3"/>
-<rect x="1400" y="796" width="92" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="1409" cy="810" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="1451.0" y="814" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">GRID8</text>
-<line x1="1322" y1="810" x2="1400" y2="810" stroke="#2f9e44" stroke-width="3"/>
-<text x="1390" y="865" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="700" text-anchor="start" fill="#d6336c">Прямое управление 3,3 → 5 В выполнено по требованию.</text>
-<text x="1390" y="895" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="400" text-anchor="start" fill="#d6336c">Для TM1640 при VDD=5 В оно не гарантировано datasheet.</text>
-<text x="1390" y="925" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="400" text-anchor="start" fill="#526079">Одноимённые клеммы соединить отдельными проводами жгута.</text>
-<text x="45" y="1040" font-family="DejaVu Sans,Arial,sans-serif" font-size="23" font-weight="700" text-anchor="start" fill="#7048e8">Светодиодные модули — короткие провода без пересечений</text>
-<text x="45" y="1080" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" fill="#526079">A — анод к SEG через соответствующий резистор; K — катод к общему GRID модуля. Точки на проводах обозначают реальное объединение катодов.</text>
-<rect x="30" y="1120" width="275" height="700" rx="8" stroke="#526079" fill="#f5f7fb" stroke-width="2"/>
-<text x="167" y="1154" font-family="DejaVu Sans,Arial,sans-serif" font-size="17" font-weight="700" text-anchor="middle" fill="#172033">H1 · GRID1</text>
-<text x="167" y="1177" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="400" text-anchor="middle" fill="#526079">Часы — десятки</text>
-<rect x="138" y="1219" width="54" height="10" rx="3" stroke="#e03131" fill="#e03131" stroke-width="1"/>
-<polygon points="141,1219 141.0,1217.0 141.81778016906236,1209.2354286469244 144.21539030917347,1202.0 148.02943725152286,1195.7867965644036 153.0,1191.019237886467 158.7883429175395,1188.0222252113279 165.0,1187.0 171.2116570824605,1188.0222252113279 177.0,1191.0192378864667 181.97056274847714,1195.7867965644036 185.78460969082653,1202.0 188.18221983093764,1209.2354286469244 189.0,1217.0 189,1219" stroke="#e03131" fill="#e03131" stroke-width="2"/>
-<line x1="156" y1="1229" x2="156" y2="1253" stroke="#6c757d" stroke-width="3"/>
-<line x1="174" y1="1229" x2="174" y2="1253" stroke="#6c757d" stroke-width="3"/>
-<text x="151" y="1245" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
-<text x="179" y="1245" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="165" y="1210" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D1·a</text>
-<rect x="40" y="1239" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="49" cy="1253" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="81.0" y="1257" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG1</text>
-<line x1="112" y1="1253" x2="156" y2="1253" stroke="#e03131" stroke-width="3"/>
-<line x1="174" y1="1253" x2="255" y2="1253" stroke="#2f9e44" stroke-width="3"/>
-<rect x="138" y="1289" width="54" height="10" rx="3" stroke="#e03131" fill="#e03131" stroke-width="1"/>
-<polygon points="141,1289 141.0,1287.0 141.81778016906236,1279.2354286469244 144.21539030917347,1272.0 148.02943725152286,1265.7867965644036 153.0,1261.019237886467 158.7883429175395,1258.0222252113279 165.0,1257.0 171.2116570824605,1258.0222252113279 177.0,1261.0192378864667 181.97056274847714,1265.7867965644036 185.78460969082653,1272.0 188.18221983093764,1279.2354286469244 189.0,1287.0 189,1289" stroke="#e03131" fill="#e03131" stroke-width="2"/>
-<line x1="156" y1="1299" x2="156" y2="1323" stroke="#6c757d" stroke-width="3"/>
-<line x1="174" y1="1299" x2="174" y2="1323" stroke="#6c757d" stroke-width="3"/>
-<text x="151" y="1315" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
-<text x="179" y="1315" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="165" y="1280" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D2·b</text>
-<rect x="40" y="1309" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="49" cy="1323" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="81.0" y="1327" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG2</text>
-<line x1="112" y1="1323" x2="156" y2="1323" stroke="#f08c00" stroke-width="3"/>
-<line x1="174" y1="1323" x2="255" y2="1323" stroke="#2f9e44" stroke-width="3"/>
-<rect x="138" y="1359" width="54" height="10" rx="3" stroke="#e03131" fill="#e03131" stroke-width="1"/>
-<polygon points="141,1359 141.0,1357.0 141.81778016906236,1349.2354286469244 144.21539030917347,1342.0 148.02943725152286,1335.7867965644036 153.0,1331.019237886467 158.7883429175395,1328.0222252113279 165.0,1327.0 171.2116570824605,1328.0222252113279 177.0,1331.0192378864667 181.97056274847714,1335.7867965644036 185.78460969082653,1342.0 188.18221983093764,1349.2354286469244 189.0,1357.0 189,1359" stroke="#e03131" fill="#e03131" stroke-width="2"/>
-<line x1="156" y1="1369" x2="156" y2="1393" stroke="#6c757d" stroke-width="3"/>
-<line x1="174" y1="1369" x2="174" y2="1393" stroke="#6c757d" stroke-width="3"/>
-<text x="151" y="1385" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
-<text x="179" y="1385" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="165" y="1350" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D3·c</text>
-<rect x="40" y="1379" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="49" cy="1393" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="81.0" y="1397" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG3</text>
-<line x1="112" y1="1393" x2="156" y2="1393" stroke="#e3b505" stroke-width="3"/>
-<line x1="174" y1="1393" x2="255" y2="1393" stroke="#2f9e44" stroke-width="3"/>
-<rect x="138" y="1429" width="54" height="10" rx="3" stroke="#e03131" fill="#e03131" stroke-width="1"/>
-<polygon points="141,1429 141.0,1427.0 141.81778016906236,1419.2354286469244 144.21539030917347,1412.0 148.02943725152286,1405.7867965644036 153.0,1401.019237886467 158.7883429175395,1398.0222252113279 165.0,1397.0 171.2116570824605,1398.0222252113279 177.0,1401.0192378864667 181.97056274847714,1405.7867965644036 185.78460969082653,1412.0 188.18221983093764,1419.2354286469244 189.0,1427.0 189,1429" stroke="#e03131" fill="#e03131" stroke-width="2"/>
-<line x1="156" y1="1439" x2="156" y2="1463" stroke="#6c757d" stroke-width="3"/>
-<line x1="174" y1="1439" x2="174" y2="1463" stroke="#6c757d" stroke-width="3"/>
-<text x="151" y="1455" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
-<text x="179" y="1455" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="165" y="1420" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D4·d</text>
-<rect x="40" y="1449" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="49" cy="1463" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="81.0" y="1467" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG4</text>
-<line x1="112" y1="1463" x2="156" y2="1463" stroke="#2f9e44" stroke-width="3"/>
-<line x1="174" y1="1463" x2="255" y2="1463" stroke="#2f9e44" stroke-width="3"/>
-<rect x="138" y="1499" width="54" height="10" rx="3" stroke="#e03131" fill="#e03131" stroke-width="1"/>
-<polygon points="141,1499 141.0,1497.0 141.81778016906236,1489.2354286469244 144.21539030917347,1482.0 148.02943725152286,1475.7867965644036 153.0,1471.019237886467 158.7883429175395,1468.0222252113279 165.0,1467.0 171.2116570824605,1468.0222252113279 177.0,1471.0192378864667 181.97056274847714,1475.7867965644036 185.78460969082653,1482.0 188.18221983093764,1489.2354286469244 189.0,1497.0 189,1499" stroke="#e03131" fill="#e03131" stroke-width="2"/>
-<line x1="156" y1="1509" x2="156" y2="1533" stroke="#6c757d" stroke-width="3"/>
-<line x1="174" y1="1509" x2="174" y2="1533" stroke="#6c757d" stroke-width="3"/>
-<text x="151" y="1525" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
-<text x="179" y="1525" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="165" y="1490" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D5·e</text>
-<rect x="40" y="1519" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="49" cy="1533" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="81.0" y="1537" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG5</text>
-<line x1="112" y1="1533" x2="156" y2="1533" stroke="#1971c2" stroke-width="3"/>
-<line x1="174" y1="1533" x2="255" y2="1533" stroke="#2f9e44" stroke-width="3"/>
-<rect x="138" y="1569" width="54" height="10" rx="3" stroke="#e03131" fill="#e03131" stroke-width="1"/>
-<polygon points="141,1569 141.0,1567.0 141.81778016906236,1559.2354286469244 144.21539030917347,1552.0 148.02943725152286,1545.7867965644036 153.0,1541.019237886467 158.7883429175395,1538.0222252113279 165.0,1537.0 171.2116570824605,1538.0222252113279 177.0,1541.0192378864667 181.97056274847714,1545.7867965644036 185.78460969082653,1552.0 188.18221983093764,1559.2354286469244 189.0,1567.0 189,1569" stroke="#e03131" fill="#e03131" stroke-width="2"/>
-<line x1="156" y1="1579" x2="156" y2="1603" stroke="#6c757d" stroke-width="3"/>
-<line x1="174" y1="1579" x2="174" y2="1603" stroke="#6c757d" stroke-width="3"/>
-<text x="151" y="1595" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
-<text x="179" y="1595" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="165" y="1560" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D6·f</text>
-<rect x="40" y="1589" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="49" cy="1603" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="81.0" y="1607" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG6</text>
-<line x1="112" y1="1603" x2="156" y2="1603" stroke="#7048e8" stroke-width="3"/>
-<line x1="174" y1="1603" x2="255" y2="1603" stroke="#2f9e44" stroke-width="3"/>
-<rect x="138" y="1639" width="54" height="10" rx="3" stroke="#e03131" fill="#e03131" stroke-width="1"/>
-<polygon points="141,1639 141.0,1637.0 141.81778016906236,1629.2354286469244 144.21539030917347,1622.0 148.02943725152286,1615.7867965644036 153.0,1611.019237886467 158.7883429175395,1608.0222252113279 165.0,1607.0 171.2116570824605,1608.0222252113279 177.0,1611.0192378864667 181.97056274847714,1615.7867965644036 185.78460969082653,1622.0 188.18221983093764,1629.2354286469244 189.0,1637.0 189,1639" stroke="#e03131" fill="#e03131" stroke-width="2"/>
-<line x1="156" y1="1649" x2="156" y2="1673" stroke="#6c757d" stroke-width="3"/>
-<line x1="174" y1="1649" x2="174" y2="1673" stroke="#6c757d" stroke-width="3"/>
-<text x="151" y="1665" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
-<text x="179" y="1665" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="165" y="1630" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D7·g</text>
-<rect x="40" y="1659" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="49" cy="1673" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="81.0" y="1677" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG7</text>
-<line x1="112" y1="1673" x2="156" y2="1673" stroke="#d6336c" stroke-width="3"/>
-<line x1="174" y1="1673" x2="255" y2="1673" stroke="#2f9e44" stroke-width="3"/>
-<line x1="255" y1="1253" x2="255" y2="1673" stroke="#2f9e44" stroke-width="4"/>
-<circle cx="255" cy="1253" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<circle cx="255" cy="1323" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<circle cx="255" cy="1393" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<circle cx="255" cy="1463" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<circle cx="255" cy="1533" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<circle cx="255" cy="1603" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<circle cx="255" cy="1673" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<line x1="255" y1="1673" x2="255" y2="1775" stroke="#2f9e44" stroke-width="4"/>
-<line x1="255" y1="1775" x2="215" y2="1775" stroke="#2f9e44" stroke-width="4"/>
-<rect x="120" y="1761" width="95" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="129" cy="1775" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="172.5" y="1779" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">GRID1</text>
-<text x="167" y="1800" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="400" text-anchor="middle" fill="#526079">RAM[0]</text>
-<rect x="325" y="1120" width="275" height="700" rx="8" stroke="#526079" fill="#f5f7fb" stroke-width="2"/>
-<text x="462" y="1154" font-family="DejaVu Sans,Arial,sans-serif" font-size="17" font-weight="700" text-anchor="middle" fill="#172033">H2 · GRID2</text>
-<text x="462" y="1177" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="400" text-anchor="middle" fill="#526079">Часы — единицы</text>
-<rect x="433" y="1219" width="54" height="10" rx="3" stroke="#e03131" fill="#e03131" stroke-width="1"/>
-<polygon points="436,1219 436.0,1217.0 436.81778016906236,1209.2354286469244 439.2153903091735,1202.0 443.02943725152284,1195.7867965644036 448.0,1191.019237886467 453.7883429175395,1188.0222252113279 460.0,1187.0 466.2116570824605,1188.0222252113279 472.0,1191.0192378864667 476.97056274847716,1195.7867965644036 480.7846096908265,1202.0 483.18221983093764,1209.2354286469244 484.0,1217.0 484,1219" stroke="#e03131" fill="#e03131" stroke-width="2"/>
-<line x1="451" y1="1229" x2="451" y2="1253" stroke="#6c757d" stroke-width="3"/>
-<line x1="469" y1="1229" x2="469" y2="1253" stroke="#6c757d" stroke-width="3"/>
-<text x="446" y="1245" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
-<text x="474" y="1245" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="460" y="1210" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D8·a</text>
-<rect x="335" y="1239" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="344" cy="1253" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="376.0" y="1257" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG1</text>
-<line x1="407" y1="1253" x2="451" y2="1253" stroke="#e03131" stroke-width="3"/>
-<line x1="469" y1="1253" x2="550" y2="1253" stroke="#2f9e44" stroke-width="3"/>
-<rect x="433" y="1289" width="54" height="10" rx="3" stroke="#e03131" fill="#e03131" stroke-width="1"/>
-<polygon points="436,1289 436.0,1287.0 436.81778016906236,1279.2354286469244 439.2153903091735,1272.0 443.02943725152284,1265.7867965644036 448.0,1261.019237886467 453.7883429175395,1258.0222252113279 460.0,1257.0 466.2116570824605,1258.0222252113279 472.0,1261.0192378864667 476.97056274847716,1265.7867965644036 480.7846096908265,1272.0 483.18221983093764,1279.2354286469244 484.0,1287.0 484,1289" stroke="#e03131" fill="#e03131" stroke-width="2"/>
-<line x1="451" y1="1299" x2="451" y2="1323" stroke="#6c757d" stroke-width="3"/>
-<line x1="469" y1="1299" x2="469" y2="1323" stroke="#6c757d" stroke-width="3"/>
-<text x="446" y="1315" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
-<text x="474" y="1315" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="460" y="1280" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D9·b</text>
-<rect x="335" y="1309" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="344" cy="1323" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="376.0" y="1327" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG2</text>
-<line x1="407" y1="1323" x2="451" y2="1323" stroke="#f08c00" stroke-width="3"/>
-<line x1="469" y1="1323" x2="550" y2="1323" stroke="#2f9e44" stroke-width="3"/>
-<rect x="433" y="1359" width="54" height="10" rx="3" stroke="#e03131" fill="#e03131" stroke-width="1"/>
-<polygon points="436,1359 436.0,1357.0 436.81778016906236,1349.2354286469244 439.2153903091735,1342.0 443.02943725152284,1335.7867965644036 448.0,1331.019237886467 453.7883429175395,1328.0222252113279 460.0,1327.0 466.2116570824605,1328.0222252113279 472.0,1331.0192378864667 476.97056274847716,1335.7867965644036 480.7846096908265,1342.0 483.18221983093764,1349.2354286469244 484.0,1357.0 484,1359" stroke="#e03131" fill="#e03131" stroke-width="2"/>
-<line x1="451" y1="1369" x2="451" y2="1393" stroke="#6c757d" stroke-width="3"/>
-<line x1="469" y1="1369" x2="469" y2="1393" stroke="#6c757d" stroke-width="3"/>
-<text x="446" y="1385" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
-<text x="474" y="1385" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="460" y="1350" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D10·c</text>
-<rect x="335" y="1379" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="344" cy="1393" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="376.0" y="1397" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG3</text>
-<line x1="407" y1="1393" x2="451" y2="1393" stroke="#e3b505" stroke-width="3"/>
-<line x1="469" y1="1393" x2="550" y2="1393" stroke="#2f9e44" stroke-width="3"/>
-<rect x="433" y="1429" width="54" height="10" rx="3" stroke="#e03131" fill="#e03131" stroke-width="1"/>
-<polygon points="436,1429 436.0,1427.0 436.81778016906236,1419.2354286469244 439.2153903091735,1412.0 443.02943725152284,1405.7867965644036 448.0,1401.019237886467 453.7883429175395,1398.0222252113279 460.0,1397.0 466.2116570824605,1398.0222252113279 472.0,1401.0192378864667 476.97056274847716,1405.7867965644036 480.7846096908265,1412.0 483.18221983093764,1419.2354286469244 484.0,1427.0 484,1429" stroke="#e03131" fill="#e03131" stroke-width="2"/>
-<line x1="451" y1="1439" x2="451" y2="1463" stroke="#6c757d" stroke-width="3"/>
-<line x1="469" y1="1439" x2="469" y2="1463" stroke="#6c757d" stroke-width="3"/>
-<text x="446" y="1455" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
-<text x="474" y="1455" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="460" y="1420" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D11·d</text>
-<rect x="335" y="1449" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="344" cy="1463" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="376.0" y="1467" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG4</text>
-<line x1="407" y1="1463" x2="451" y2="1463" stroke="#2f9e44" stroke-width="3"/>
-<line x1="469" y1="1463" x2="550" y2="1463" stroke="#2f9e44" stroke-width="3"/>
-<rect x="433" y="1499" width="54" height="10" rx="3" stroke="#e03131" fill="#e03131" stroke-width="1"/>
-<polygon points="436,1499 436.0,1497.0 436.81778016906236,1489.2354286469244 439.2153903091735,1482.0 443.02943725152284,1475.7867965644036 448.0,1471.019237886467 453.7883429175395,1468.0222252113279 460.0,1467.0 466.2116570824605,1468.0222252113279 472.0,1471.0192378864667 476.97056274847716,1475.7867965644036 480.7846096908265,1482.0 483.18221983093764,1489.2354286469244 484.0,1497.0 484,1499" stroke="#e03131" fill="#e03131" stroke-width="2"/>
-<line x1="451" y1="1509" x2="451" y2="1533" stroke="#6c757d" stroke-width="3"/>
-<line x1="469" y1="1509" x2="469" y2="1533" stroke="#6c757d" stroke-width="3"/>
-<text x="446" y="1525" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
-<text x="474" y="1525" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="460" y="1490" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D12·e</text>
-<rect x="335" y="1519" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="344" cy="1533" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="376.0" y="1537" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG5</text>
-<line x1="407" y1="1533" x2="451" y2="1533" stroke="#1971c2" stroke-width="3"/>
-<line x1="469" y1="1533" x2="550" y2="1533" stroke="#2f9e44" stroke-width="3"/>
-<rect x="433" y="1569" width="54" height="10" rx="3" stroke="#e03131" fill="#e03131" stroke-width="1"/>
-<polygon points="436,1569 436.0,1567.0 436.81778016906236,1559.2354286469244 439.2153903091735,1552.0 443.02943725152284,1545.7867965644036 448.0,1541.019237886467 453.7883429175395,1538.0222252113279 460.0,1537.0 466.2116570824605,1538.0222252113279 472.0,1541.0192378864667 476.97056274847716,1545.7867965644036 480.7846096908265,1552.0 483.18221983093764,1559.2354286469244 484.0,1567.0 484,1569" stroke="#e03131" fill="#e03131" stroke-width="2"/>
-<line x1="451" y1="1579" x2="451" y2="1603" stroke="#6c757d" stroke-width="3"/>
-<line x1="469" y1="1579" x2="469" y2="1603" stroke="#6c757d" stroke-width="3"/>
-<text x="446" y="1595" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
-<text x="474" y="1595" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="460" y="1560" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D13·f</text>
-<rect x="335" y="1589" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="344" cy="1603" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="376.0" y="1607" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG6</text>
-<line x1="407" y1="1603" x2="451" y2="1603" stroke="#7048e8" stroke-width="3"/>
-<line x1="469" y1="1603" x2="550" y2="1603" stroke="#2f9e44" stroke-width="3"/>
-<rect x="433" y="1639" width="54" height="10" rx="3" stroke="#e03131" fill="#e03131" stroke-width="1"/>
-<polygon points="436,1639 436.0,1637.0 436.81778016906236,1629.2354286469244 439.2153903091735,1622.0 443.02943725152284,1615.7867965644036 448.0,1611.019237886467 453.7883429175395,1608.0222252113279 460.0,1607.0 466.2116570824605,1608.0222252113279 472.0,1611.0192378864667 476.97056274847716,1615.7867965644036 480.7846096908265,1622.0 483.18221983093764,1629.2354286469244 484.0,1637.0 484,1639" stroke="#e03131" fill="#e03131" stroke-width="2"/>
-<line x1="451" y1="1649" x2="451" y2="1673" stroke="#6c757d" stroke-width="3"/>
-<line x1="469" y1="1649" x2="469" y2="1673" stroke="#6c757d" stroke-width="3"/>
-<text x="446" y="1665" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
-<text x="474" y="1665" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="460" y="1630" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D14·g</text>
-<rect x="335" y="1659" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="344" cy="1673" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="376.0" y="1677" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG7</text>
-<line x1="407" y1="1673" x2="451" y2="1673" stroke="#d6336c" stroke-width="3"/>
-<line x1="469" y1="1673" x2="550" y2="1673" stroke="#2f9e44" stroke-width="3"/>
-<line x1="550" y1="1253" x2="550" y2="1673" stroke="#2f9e44" stroke-width="4"/>
-<circle cx="550" cy="1253" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<circle cx="550" cy="1323" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<circle cx="550" cy="1393" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<circle cx="550" cy="1463" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<circle cx="550" cy="1533" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<circle cx="550" cy="1603" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<circle cx="550" cy="1673" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<line x1="550" y1="1673" x2="550" y2="1775" stroke="#2f9e44" stroke-width="4"/>
-<line x1="550" y1="1775" x2="510" y2="1775" stroke="#2f9e44" stroke-width="4"/>
-<rect x="415" y="1761" width="95" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="424" cy="1775" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="467.5" y="1779" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">GRID2</text>
-<text x="462" y="1800" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="400" text-anchor="middle" fill="#526079">RAM[1]</text>
-<rect x="620" y="1120" width="275" height="700" rx="8" stroke="#526079" fill="#f5f7fb" stroke-width="2"/>
-<text x="757" y="1154" font-family="DejaVu Sans,Arial,sans-serif" font-size="17" font-weight="700" text-anchor="middle" fill="#172033">C1 · GRID3</text>
-<text x="757" y="1177" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="400" text-anchor="middle" fill="#526079">Двоеточие 1</text>
-<rect x="728" y="1219" width="54" height="10" rx="3" stroke="#f08c00" fill="#f08c00" stroke-width="1"/>
-<polygon points="731,1219 731.0,1217.0 731.8177801690624,1209.2354286469244 734.2153903091735,1202.0 738.0294372515228,1195.7867965644036 743.0,1191.019237886467 748.7883429175395,1188.0222252113279 755.0,1187.0 761.2116570824605,1188.0222252113279 767.0,1191.0192378864667 771.9705627484772,1195.7867965644036 775.7846096908265,1202.0 778.1822198309376,1209.2354286469244 779.0,1217.0 779,1219" stroke="#f08c00" fill="#f08c00" stroke-width="2"/>
-<line x1="746" y1="1229" x2="746" y2="1253" stroke="#6c757d" stroke-width="3"/>
-<line x1="764" y1="1229" x2="764" y2="1253" stroke="#6c757d" stroke-width="3"/>
-<text x="741" y="1245" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
-<text x="769" y="1245" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="755" y="1210" font-family="DejaVu Sans,Arial,sans-serif" font-size="7.5" font-weight="700" text-anchor="middle" fill="#ffffff">D15·upper</text>
-<rect x="630" y="1239" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="639" cy="1253" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="671.0" y="1257" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG1</text>
-<line x1="702" y1="1253" x2="746" y2="1253" stroke="#e03131" stroke-width="3"/>
-<line x1="764" y1="1253" x2="845" y2="1253" stroke="#2f9e44" stroke-width="3"/>
-<rect x="728" y="1289" width="54" height="10" rx="3" stroke="#f08c00" fill="#f08c00" stroke-width="1"/>
-<polygon points="731,1289 731.0,1287.0 731.8177801690624,1279.2354286469244 734.2153903091735,1272.0 738.0294372515228,1265.7867965644036 743.0,1261.019237886467 748.7883429175395,1258.0222252113279 755.0,1257.0 761.2116570824605,1258.0222252113279 767.0,1261.0192378864667 771.9705627484772,1265.7867965644036 775.7846096908265,1272.0 778.1822198309376,1279.2354286469244 779.0,1287.0 779,1289" stroke="#f08c00" fill="#f08c00" stroke-width="2"/>
-<line x1="746" y1="1299" x2="746" y2="1323" stroke="#6c757d" stroke-width="3"/>
-<line x1="764" y1="1299" x2="764" y2="1323" stroke="#6c757d" stroke-width="3"/>
-<text x="741" y="1315" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
-<text x="769" y="1315" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="755" y="1280" font-family="DejaVu Sans,Arial,sans-serif" font-size="7.5" font-weight="700" text-anchor="middle" fill="#ffffff">D16·lower</text>
-<rect x="630" y="1309" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="639" cy="1323" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="671.0" y="1327" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG2</text>
-<line x1="702" y1="1323" x2="746" y2="1323" stroke="#f08c00" stroke-width="3"/>
-<line x1="764" y1="1323" x2="845" y2="1323" stroke="#2f9e44" stroke-width="3"/>
-<line x1="845" y1="1253" x2="845" y2="1323" stroke="#2f9e44" stroke-width="4"/>
-<circle cx="845" cy="1253" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<circle cx="845" cy="1323" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<line x1="845" y1="1323" x2="845" y2="1775" stroke="#2f9e44" stroke-width="4"/>
-<line x1="845" y1="1775" x2="805" y2="1775" stroke="#2f9e44" stroke-width="4"/>
-<rect x="710" y="1761" width="95" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="719" cy="1775" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="762.5" y="1779" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">GRID3</text>
-<text x="757" y="1460" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="400" text-anchor="middle" fill="#1769aa">upper → SEG1</text>
-<text x="757" y="1485" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="400" text-anchor="middle" fill="#1769aa">lower → SEG2</text>
-<text x="757" y="1520" font-family="DejaVu Sans,Arial,sans-serif" font-size="12" font-weight="400" text-anchor="middle" fill="#526079">RAM: 0x03 / 0x00</text>
-<rect x="915" y="1120" width="275" height="700" rx="8" stroke="#526079" fill="#f5f7fb" stroke-width="2"/>
-<text x="1052" y="1154" font-family="DejaVu Sans,Arial,sans-serif" font-size="17" font-weight="700" text-anchor="middle" fill="#172033">M1 · GRID4</text>
-<text x="1052" y="1177" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="400" text-anchor="middle" fill="#526079">Минуты — десятки</text>
-<rect x="1023" y="1219" width="54" height="10" rx="3" stroke="#e03131" fill="#e03131" stroke-width="1"/>
-<polygon points="1026,1219 1026.0,1217.0 1026.8177801690624,1209.2354286469244 1029.2153903091735,1202.0 1033.029437251523,1195.7867965644036 1038.0,1191.019237886467 1043.7883429175395,1188.0222252113279 1050.0,1187.0 1056.2116570824605,1188.0222252113279 1062.0,1191.0192378864667 1066.970562748477,1195.7867965644036 1070.7846096908265,1202.0 1073.1822198309376,1209.2354286469244 1074.0,1217.0 1074,1219" stroke="#e03131" fill="#e03131" stroke-width="2"/>
-<line x1="1041" y1="1229" x2="1041" y2="1253" stroke="#6c757d" stroke-width="3"/>
-<line x1="1059" y1="1229" x2="1059" y2="1253" stroke="#6c757d" stroke-width="3"/>
-<text x="1036" y="1245" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
-<text x="1064" y="1245" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="1050" y="1210" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D17·a</text>
-<rect x="925" y="1239" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="934" cy="1253" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="966.0" y="1257" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG1</text>
-<line x1="997" y1="1253" x2="1041" y2="1253" stroke="#e03131" stroke-width="3"/>
-<line x1="1059" y1="1253" x2="1140" y2="1253" stroke="#2f9e44" stroke-width="3"/>
-<rect x="1023" y="1289" width="54" height="10" rx="3" stroke="#e03131" fill="#e03131" stroke-width="1"/>
-<polygon points="1026,1289 1026.0,1287.0 1026.8177801690624,1279.2354286469244 1029.2153903091735,1272.0 1033.029437251523,1265.7867965644036 1038.0,1261.019237886467 1043.7883429175395,1258.0222252113279 1050.0,1257.0 1056.2116570824605,1258.0222252113279 1062.0,1261.0192378864667 1066.970562748477,1265.7867965644036 1070.7846096908265,1272.0 1073.1822198309376,1279.2354286469244 1074.0,1287.0 1074,1289" stroke="#e03131" fill="#e03131" stroke-width="2"/>
-<line x1="1041" y1="1299" x2="1041" y2="1323" stroke="#6c757d" stroke-width="3"/>
-<line x1="1059" y1="1299" x2="1059" y2="1323" stroke="#6c757d" stroke-width="3"/>
-<text x="1036" y="1315" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
-<text x="1064" y="1315" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="1050" y="1280" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D18·b</text>
-<rect x="925" y="1309" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="934" cy="1323" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="966.0" y="1327" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG2</text>
-<line x1="997" y1="1323" x2="1041" y2="1323" stroke="#f08c00" stroke-width="3"/>
-<line x1="1059" y1="1323" x2="1140" y2="1323" stroke="#2f9e44" stroke-width="3"/>
-<rect x="1023" y="1359" width="54" height="10" rx="3" stroke="#e03131" fill="#e03131" stroke-width="1"/>
-<polygon points="1026,1359 1026.0,1357.0 1026.8177801690624,1349.2354286469244 1029.2153903091735,1342.0 1033.029437251523,1335.7867965644036 1038.0,1331.019237886467 1043.7883429175395,1328.0222252113279 1050.0,1327.0 1056.2116570824605,1328.0222252113279 1062.0,1331.0192378864667 1066.970562748477,1335.7867965644036 1070.7846096908265,1342.0 1073.1822198309376,1349.2354286469244 1074.0,1357.0 1074,1359" stroke="#e03131" fill="#e03131" stroke-width="2"/>
-<line x1="1041" y1="1369" x2="1041" y2="1393" stroke="#6c757d" stroke-width="3"/>
-<line x1="1059" y1="1369" x2="1059" y2="1393" stroke="#6c757d" stroke-width="3"/>
-<text x="1036" y="1385" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
-<text x="1064" y="1385" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="1050" y="1350" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D19·c</text>
-<rect x="925" y="1379" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="934" cy="1393" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="966.0" y="1397" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG3</text>
-<line x1="997" y1="1393" x2="1041" y2="1393" stroke="#e3b505" stroke-width="3"/>
-<line x1="1059" y1="1393" x2="1140" y2="1393" stroke="#2f9e44" stroke-width="3"/>
-<rect x="1023" y="1429" width="54" height="10" rx="3" stroke="#e03131" fill="#e03131" stroke-width="1"/>
-<polygon points="1026,1429 1026.0,1427.0 1026.8177801690624,1419.2354286469244 1029.2153903091735,1412.0 1033.029437251523,1405.7867965644036 1038.0,1401.019237886467 1043.7883429175395,1398.0222252113279 1050.0,1397.0 1056.2116570824605,1398.0222252113279 1062.0,1401.0192378864667 1066.970562748477,1405.7867965644036 1070.7846096908265,1412.0 1073.1822198309376,1419.2354286469244 1074.0,1427.0 1074,1429" stroke="#e03131" fill="#e03131" stroke-width="2"/>
-<line x1="1041" y1="1439" x2="1041" y2="1463" stroke="#6c757d" stroke-width="3"/>
-<line x1="1059" y1="1439" x2="1059" y2="1463" stroke="#6c757d" stroke-width="3"/>
-<text x="1036" y="1455" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
-<text x="1064" y="1455" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="1050" y="1420" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D20·d</text>
-<rect x="925" y="1449" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="934" cy="1463" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="966.0" y="1467" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG4</text>
-<line x1="997" y1="1463" x2="1041" y2="1463" stroke="#2f9e44" stroke-width="3"/>
-<line x1="1059" y1="1463" x2="1140" y2="1463" stroke="#2f9e44" stroke-width="3"/>
-<rect x="1023" y="1499" width="54" height="10" rx="3" stroke="#e03131" fill="#e03131" stroke-width="1"/>
-<polygon points="1026,1499 1026.0,1497.0 1026.8177801690624,1489.2354286469244 1029.2153903091735,1482.0 1033.029437251523,1475.7867965644036 1038.0,1471.019237886467 1043.7883429175395,1468.0222252113279 1050.0,1467.0 1056.2116570824605,1468.0222252113279 1062.0,1471.0192378864667 1066.970562748477,1475.7867965644036 1070.7846096908265,1482.0 1073.1822198309376,1489.2354286469244 1074.0,1497.0 1074,1499" stroke="#e03131" fill="#e03131" stroke-width="2"/>
-<line x1="1041" y1="1509" x2="1041" y2="1533" stroke="#6c757d" stroke-width="3"/>
-<line x1="1059" y1="1509" x2="1059" y2="1533" stroke="#6c757d" stroke-width="3"/>
-<text x="1036" y="1525" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
-<text x="1064" y="1525" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="1050" y="1490" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D21·e</text>
-<rect x="925" y="1519" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="934" cy="1533" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="966.0" y="1537" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG5</text>
-<line x1="997" y1="1533" x2="1041" y2="1533" stroke="#1971c2" stroke-width="3"/>
-<line x1="1059" y1="1533" x2="1140" y2="1533" stroke="#2f9e44" stroke-width="3"/>
-<rect x="1023" y="1569" width="54" height="10" rx="3" stroke="#e03131" fill="#e03131" stroke-width="1"/>
-<polygon points="1026,1569 1026.0,1567.0 1026.8177801690624,1559.2354286469244 1029.2153903091735,1552.0 1033.029437251523,1545.7867965644036 1038.0,1541.019237886467 1043.7883429175395,1538.0222252113279 1050.0,1537.0 1056.2116570824605,1538.0222252113279 1062.0,1541.0192378864667 1066.970562748477,1545.7867965644036 1070.7846096908265,1552.0 1073.1822198309376,1559.2354286469244 1074.0,1567.0 1074,1569" stroke="#e03131" fill="#e03131" stroke-width="2"/>
-<line x1="1041" y1="1579" x2="1041" y2="1603" stroke="#6c757d" stroke-width="3"/>
-<line x1="1059" y1="1579" x2="1059" y2="1603" stroke="#6c757d" stroke-width="3"/>
-<text x="1036" y="1595" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
-<text x="1064" y="1595" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="1050" y="1560" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D22·f</text>
-<rect x="925" y="1589" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="934" cy="1603" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="966.0" y="1607" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG6</text>
-<line x1="997" y1="1603" x2="1041" y2="1603" stroke="#7048e8" stroke-width="3"/>
-<line x1="1059" y1="1603" x2="1140" y2="1603" stroke="#2f9e44" stroke-width="3"/>
-<rect x="1023" y="1639" width="54" height="10" rx="3" stroke="#e03131" fill="#e03131" stroke-width="1"/>
-<polygon points="1026,1639 1026.0,1637.0 1026.8177801690624,1629.2354286469244 1029.2153903091735,1622.0 1033.029437251523,1615.7867965644036 1038.0,1611.019237886467 1043.7883429175395,1608.0222252113279 1050.0,1607.0 1056.2116570824605,1608.0222252113279 1062.0,1611.0192378864667 1066.970562748477,1615.7867965644036 1070.7846096908265,1622.0 1073.1822198309376,1629.2354286469244 1074.0,1637.0 1074,1639" stroke="#e03131" fill="#e03131" stroke-width="2"/>
-<line x1="1041" y1="1649" x2="1041" y2="1673" stroke="#6c757d" stroke-width="3"/>
-<line x1="1059" y1="1649" x2="1059" y2="1673" stroke="#6c757d" stroke-width="3"/>
-<text x="1036" y="1665" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
-<text x="1064" y="1665" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="1050" y="1630" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D23·g</text>
-<rect x="925" y="1659" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="934" cy="1673" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="966.0" y="1677" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG7</text>
-<line x1="997" y1="1673" x2="1041" y2="1673" stroke="#d6336c" stroke-width="3"/>
-<line x1="1059" y1="1673" x2="1140" y2="1673" stroke="#2f9e44" stroke-width="3"/>
-<line x1="1140" y1="1253" x2="1140" y2="1673" stroke="#2f9e44" stroke-width="4"/>
-<circle cx="1140" cy="1253" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<circle cx="1140" cy="1323" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<circle cx="1140" cy="1393" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<circle cx="1140" cy="1463" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<circle cx="1140" cy="1533" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<circle cx="1140" cy="1603" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<circle cx="1140" cy="1673" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<line x1="1140" y1="1673" x2="1140" y2="1775" stroke="#2f9e44" stroke-width="4"/>
-<line x1="1140" y1="1775" x2="1100" y2="1775" stroke="#2f9e44" stroke-width="4"/>
-<rect x="1005" y="1761" width="95" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="1014" cy="1775" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="1057.5" y="1779" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">GRID4</text>
-<text x="1052" y="1800" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="400" text-anchor="middle" fill="#526079">RAM[3]</text>
-<rect x="1210" y="1120" width="275" height="700" rx="8" stroke="#526079" fill="#f5f7fb" stroke-width="2"/>
-<text x="1347" y="1154" font-family="DejaVu Sans,Arial,sans-serif" font-size="17" font-weight="700" text-anchor="middle" fill="#172033">M2 · GRID5</text>
-<text x="1347" y="1177" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="400" text-anchor="middle" fill="#526079">Минуты — единицы</text>
-<rect x="1318" y="1219" width="54" height="10" rx="3" stroke="#e03131" fill="#e03131" stroke-width="1"/>
-<polygon points="1321,1219 1321.0,1217.0 1321.8177801690624,1209.2354286469244 1324.2153903091735,1202.0 1328.029437251523,1195.7867965644036 1333.0,1191.019237886467 1338.7883429175395,1188.0222252113279 1345.0,1187.0 1351.2116570824605,1188.0222252113279 1357.0,1191.0192378864667 1361.970562748477,1195.7867965644036 1365.7846096908265,1202.0 1368.1822198309376,1209.2354286469244 1369.0,1217.0 1369,1219" stroke="#e03131" fill="#e03131" stroke-width="2"/>
-<line x1="1336" y1="1229" x2="1336" y2="1253" stroke="#6c757d" stroke-width="3"/>
-<line x1="1354" y1="1229" x2="1354" y2="1253" stroke="#6c757d" stroke-width="3"/>
-<text x="1331" y="1245" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
-<text x="1359" y="1245" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="1345" y="1210" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D24·a</text>
-<rect x="1220" y="1239" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="1229" cy="1253" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="1261.0" y="1257" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG1</text>
-<line x1="1292" y1="1253" x2="1336" y2="1253" stroke="#e03131" stroke-width="3"/>
-<line x1="1354" y1="1253" x2="1435" y2="1253" stroke="#2f9e44" stroke-width="3"/>
-<rect x="1318" y="1289" width="54" height="10" rx="3" stroke="#e03131" fill="#e03131" stroke-width="1"/>
-<polygon points="1321,1289 1321.0,1287.0 1321.8177801690624,1279.2354286469244 1324.2153903091735,1272.0 1328.029437251523,1265.7867965644036 1333.0,1261.019237886467 1338.7883429175395,1258.0222252113279 1345.0,1257.0 1351.2116570824605,1258.0222252113279 1357.0,1261.0192378864667 1361.970562748477,1265.7867965644036 1365.7846096908265,1272.0 1368.1822198309376,1279.2354286469244 1369.0,1287.0 1369,1289" stroke="#e03131" fill="#e03131" stroke-width="2"/>
-<line x1="1336" y1="1299" x2="1336" y2="1323" stroke="#6c757d" stroke-width="3"/>
-<line x1="1354" y1="1299" x2="1354" y2="1323" stroke="#6c757d" stroke-width="3"/>
-<text x="1331" y="1315" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
-<text x="1359" y="1315" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="1345" y="1280" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D25·b</text>
-<rect x="1220" y="1309" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="1229" cy="1323" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="1261.0" y="1327" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG2</text>
-<line x1="1292" y1="1323" x2="1336" y2="1323" stroke="#f08c00" stroke-width="3"/>
-<line x1="1354" y1="1323" x2="1435" y2="1323" stroke="#2f9e44" stroke-width="3"/>
-<rect x="1318" y="1359" width="54" height="10" rx="3" stroke="#e03131" fill="#e03131" stroke-width="1"/>
-<polygon points="1321,1359 1321.0,1357.0 1321.8177801690624,1349.2354286469244 1324.2153903091735,1342.0 1328.029437251523,1335.7867965644036 1333.0,1331.019237886467 1338.7883429175395,1328.0222252113279 1345.0,1327.0 1351.2116570824605,1328.0222252113279 1357.0,1331.0192378864667 1361.970562748477,1335.7867965644036 1365.7846096908265,1342.0 1368.1822198309376,1349.2354286469244 1369.0,1357.0 1369,1359" stroke="#e03131" fill="#e03131" stroke-width="2"/>
-<line x1="1336" y1="1369" x2="1336" y2="1393" stroke="#6c757d" stroke-width="3"/>
-<line x1="1354" y1="1369" x2="1354" y2="1393" stroke="#6c757d" stroke-width="3"/>
-<text x="1331" y="1385" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
-<text x="1359" y="1385" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="1345" y="1350" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D26·c</text>
-<rect x="1220" y="1379" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="1229" cy="1393" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="1261.0" y="1397" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG3</text>
-<line x1="1292" y1="1393" x2="1336" y2="1393" stroke="#e3b505" stroke-width="3"/>
-<line x1="1354" y1="1393" x2="1435" y2="1393" stroke="#2f9e44" stroke-width="3"/>
-<rect x="1318" y="1429" width="54" height="10" rx="3" stroke="#e03131" fill="#e03131" stroke-width="1"/>
-<polygon points="1321,1429 1321.0,1427.0 1321.8177801690624,1419.2354286469244 1324.2153903091735,1412.0 1328.029437251523,1405.7867965644036 1333.0,1401.019237886467 1338.7883429175395,1398.0222252113279 1345.0,1397.0 1351.2116570824605,1398.0222252113279 1357.0,1401.0192378864667 1361.970562748477,1405.7867965644036 1365.7846096908265,1412.0 1368.1822198309376,1419.2354286469244 1369.0,1427.0 1369,1429" stroke="#e03131" fill="#e03131" stroke-width="2"/>
-<line x1="1336" y1="1439" x2="1336" y2="1463" stroke="#6c757d" stroke-width="3"/>
-<line x1="1354" y1="1439" x2="1354" y2="1463" stroke="#6c757d" stroke-width="3"/>
-<text x="1331" y="1455" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
-<text x="1359" y="1455" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="1345" y="1420" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D27·d</text>
-<rect x="1220" y="1449" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="1229" cy="1463" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="1261.0" y="1467" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG4</text>
-<line x1="1292" y1="1463" x2="1336" y2="1463" stroke="#2f9e44" stroke-width="3"/>
-<line x1="1354" y1="1463" x2="1435" y2="1463" stroke="#2f9e44" stroke-width="3"/>
-<rect x="1318" y="1499" width="54" height="10" rx="3" stroke="#e03131" fill="#e03131" stroke-width="1"/>
-<polygon points="1321,1499 1321.0,1497.0 1321.8177801690624,1489.2354286469244 1324.2153903091735,1482.0 1328.029437251523,1475.7867965644036 1333.0,1471.019237886467 1338.7883429175395,1468.0222252113279 1345.0,1467.0 1351.2116570824605,1468.0222252113279 1357.0,1471.0192378864667 1361.970562748477,1475.7867965644036 1365.7846096908265,1482.0 1368.1822198309376,1489.2354286469244 1369.0,1497.0 1369,1499" stroke="#e03131" fill="#e03131" stroke-width="2"/>
-<line x1="1336" y1="1509" x2="1336" y2="1533" stroke="#6c757d" stroke-width="3"/>
-<line x1="1354" y1="1509" x2="1354" y2="1533" stroke="#6c757d" stroke-width="3"/>
-<text x="1331" y="1525" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
-<text x="1359" y="1525" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="1345" y="1490" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D28·e</text>
-<rect x="1220" y="1519" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="1229" cy="1533" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="1261.0" y="1537" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG5</text>
-<line x1="1292" y1="1533" x2="1336" y2="1533" stroke="#1971c2" stroke-width="3"/>
-<line x1="1354" y1="1533" x2="1435" y2="1533" stroke="#2f9e44" stroke-width="3"/>
-<rect x="1318" y="1569" width="54" height="10" rx="3" stroke="#e03131" fill="#e03131" stroke-width="1"/>
-<polygon points="1321,1569 1321.0,1567.0 1321.8177801690624,1559.2354286469244 1324.2153903091735,1552.0 1328.029437251523,1545.7867965644036 1333.0,1541.019237886467 1338.7883429175395,1538.0222252113279 1345.0,1537.0 1351.2116570824605,1538.0222252113279 1357.0,1541.0192378864667 1361.970562748477,1545.7867965644036 1365.7846096908265,1552.0 1368.1822198309376,1559.2354286469244 1369.0,1567.0 1369,1569" stroke="#e03131" fill="#e03131" stroke-width="2"/>
-<line x1="1336" y1="1579" x2="1336" y2="1603" stroke="#6c757d" stroke-width="3"/>
-<line x1="1354" y1="1579" x2="1354" y2="1603" stroke="#6c757d" stroke-width="3"/>
-<text x="1331" y="1595" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
-<text x="1359" y="1595" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="1345" y="1560" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D29·f</text>
-<rect x="1220" y="1589" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="1229" cy="1603" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="1261.0" y="1607" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG6</text>
-<line x1="1292" y1="1603" x2="1336" y2="1603" stroke="#7048e8" stroke-width="3"/>
-<line x1="1354" y1="1603" x2="1435" y2="1603" stroke="#2f9e44" stroke-width="3"/>
-<rect x="1318" y="1639" width="54" height="10" rx="3" stroke="#e03131" fill="#e03131" stroke-width="1"/>
-<polygon points="1321,1639 1321.0,1637.0 1321.8177801690624,1629.2354286469244 1324.2153903091735,1622.0 1328.029437251523,1615.7867965644036 1333.0,1611.019237886467 1338.7883429175395,1608.0222252113279 1345.0,1607.0 1351.2116570824605,1608.0222252113279 1357.0,1611.0192378864667 1361.970562748477,1615.7867965644036 1365.7846096908265,1622.0 1368.1822198309376,1629.2354286469244 1369.0,1637.0 1369,1639" stroke="#e03131" fill="#e03131" stroke-width="2"/>
-<line x1="1336" y1="1649" x2="1336" y2="1673" stroke="#6c757d" stroke-width="3"/>
-<line x1="1354" y1="1649" x2="1354" y2="1673" stroke="#6c757d" stroke-width="3"/>
-<text x="1331" y="1665" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
-<text x="1359" y="1665" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="1345" y="1630" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D30·g</text>
-<rect x="1220" y="1659" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="1229" cy="1673" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="1261.0" y="1677" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG7</text>
-<line x1="1292" y1="1673" x2="1336" y2="1673" stroke="#d6336c" stroke-width="3"/>
-<line x1="1354" y1="1673" x2="1435" y2="1673" stroke="#2f9e44" stroke-width="3"/>
-<line x1="1435" y1="1253" x2="1435" y2="1673" stroke="#2f9e44" stroke-width="4"/>
-<circle cx="1435" cy="1253" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<circle cx="1435" cy="1323" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<circle cx="1435" cy="1393" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<circle cx="1435" cy="1463" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<circle cx="1435" cy="1533" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<circle cx="1435" cy="1603" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<circle cx="1435" cy="1673" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<line x1="1435" y1="1673" x2="1435" y2="1775" stroke="#2f9e44" stroke-width="4"/>
-<line x1="1435" y1="1775" x2="1395" y2="1775" stroke="#2f9e44" stroke-width="4"/>
-<rect x="1300" y="1761" width="95" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="1309" cy="1775" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="1352.5" y="1779" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">GRID5</text>
-<text x="1347" y="1800" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="400" text-anchor="middle" fill="#526079">RAM[4]</text>
-<rect x="1505" y="1120" width="275" height="700" rx="8" stroke="#526079" fill="#f5f7fb" stroke-width="2"/>
-<text x="1642" y="1154" font-family="DejaVu Sans,Arial,sans-serif" font-size="17" font-weight="700" text-anchor="middle" fill="#172033">C2 · GRID6</text>
-<text x="1642" y="1177" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="400" text-anchor="middle" fill="#526079">Двоеточие 2</text>
-<rect x="1613" y="1219" width="54" height="10" rx="3" stroke="#f08c00" fill="#f08c00" stroke-width="1"/>
-<polygon points="1616,1219 1616.0,1217.0 1616.8177801690624,1209.2354286469244 1619.2153903091735,1202.0 1623.029437251523,1195.7867965644036 1628.0,1191.019237886467 1633.7883429175395,1188.0222252113279 1640.0,1187.0 1646.2116570824605,1188.0222252113279 1652.0,1191.0192378864667 1656.970562748477,1195.7867965644036 1660.7846096908265,1202.0 1663.1822198309376,1209.2354286469244 1664.0,1217.0 1664,1219" stroke="#f08c00" fill="#f08c00" stroke-width="2"/>
-<line x1="1631" y1="1229" x2="1631" y2="1253" stroke="#6c757d" stroke-width="3"/>
-<line x1="1649" y1="1229" x2="1649" y2="1253" stroke="#6c757d" stroke-width="3"/>
-<text x="1626" y="1245" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
-<text x="1654" y="1245" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="1640" y="1210" font-family="DejaVu Sans,Arial,sans-serif" font-size="7.5" font-weight="700" text-anchor="middle" fill="#ffffff">D31·upper</text>
-<rect x="1515" y="1239" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="1524" cy="1253" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="1556.0" y="1257" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG1</text>
-<line x1="1587" y1="1253" x2="1631" y2="1253" stroke="#e03131" stroke-width="3"/>
-<line x1="1649" y1="1253" x2="1730" y2="1253" stroke="#2f9e44" stroke-width="3"/>
-<rect x="1613" y="1289" width="54" height="10" rx="3" stroke="#f08c00" fill="#f08c00" stroke-width="1"/>
-<polygon points="1616,1289 1616.0,1287.0 1616.8177801690624,1279.2354286469244 1619.2153903091735,1272.0 1623.029437251523,1265.7867965644036 1628.0,1261.019237886467 1633.7883429175395,1258.0222252113279 1640.0,1257.0 1646.2116570824605,1258.0222252113279 1652.0,1261.0192378864667 1656.970562748477,1265.7867965644036 1660.7846096908265,1272.0 1663.1822198309376,1279.2354286469244 1664.0,1287.0 1664,1289" stroke="#f08c00" fill="#f08c00" stroke-width="2"/>
-<line x1="1631" y1="1299" x2="1631" y2="1323" stroke="#6c757d" stroke-width="3"/>
-<line x1="1649" y1="1299" x2="1649" y2="1323" stroke="#6c757d" stroke-width="3"/>
-<text x="1626" y="1315" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
-<text x="1654" y="1315" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="1640" y="1280" font-family="DejaVu Sans,Arial,sans-serif" font-size="7.5" font-weight="700" text-anchor="middle" fill="#ffffff">D32·lower</text>
-<rect x="1515" y="1309" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="1524" cy="1323" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="1556.0" y="1327" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG2</text>
-<line x1="1587" y1="1323" x2="1631" y2="1323" stroke="#f08c00" stroke-width="3"/>
-<line x1="1649" y1="1323" x2="1730" y2="1323" stroke="#2f9e44" stroke-width="3"/>
-<line x1="1730" y1="1253" x2="1730" y2="1323" stroke="#2f9e44" stroke-width="4"/>
-<circle cx="1730" cy="1253" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<circle cx="1730" cy="1323" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<line x1="1730" y1="1323" x2="1730" y2="1775" stroke="#2f9e44" stroke-width="4"/>
-<line x1="1730" y1="1775" x2="1690" y2="1775" stroke="#2f9e44" stroke-width="4"/>
-<rect x="1595" y="1761" width="95" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="1604" cy="1775" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="1647.5" y="1779" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">GRID6</text>
-<text x="1642" y="1460" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="400" text-anchor="middle" fill="#1769aa">upper → SEG1</text>
-<text x="1642" y="1485" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="400" text-anchor="middle" fill="#1769aa">lower → SEG2</text>
-<text x="1642" y="1520" font-family="DejaVu Sans,Arial,sans-serif" font-size="12" font-weight="400" text-anchor="middle" fill="#526079">RAM: 0x03 / 0x00</text>
-<rect x="1800" y="1120" width="275" height="700" rx="8" stroke="#526079" fill="#f5f7fb" stroke-width="2"/>
-<text x="1937" y="1154" font-family="DejaVu Sans,Arial,sans-serif" font-size="17" font-weight="700" text-anchor="middle" fill="#172033">S1 · GRID7</text>
-<text x="1937" y="1177" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="400" text-anchor="middle" fill="#526079">Секунды — десятки</text>
-<rect x="1908" y="1219" width="54" height="10" rx="3" stroke="#e03131" fill="#e03131" stroke-width="1"/>
-<polygon points="1911,1219 1911.0,1217.0 1911.8177801690624,1209.2354286469244 1914.2153903091735,1202.0 1918.029437251523,1195.7867965644036 1923.0,1191.019237886467 1928.7883429175395,1188.0222252113279 1935.0,1187.0 1941.2116570824605,1188.0222252113279 1947.0,1191.0192378864667 1951.970562748477,1195.7867965644036 1955.7846096908265,1202.0 1958.1822198309376,1209.2354286469244 1959.0,1217.0 1959,1219" stroke="#e03131" fill="#e03131" stroke-width="2"/>
-<line x1="1926" y1="1229" x2="1926" y2="1253" stroke="#6c757d" stroke-width="3"/>
-<line x1="1944" y1="1229" x2="1944" y2="1253" stroke="#6c757d" stroke-width="3"/>
-<text x="1921" y="1245" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
-<text x="1949" y="1245" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="1935" y="1210" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D33·a</text>
-<rect x="1810" y="1239" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="1819" cy="1253" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="1851.0" y="1257" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG1</text>
-<line x1="1882" y1="1253" x2="1926" y2="1253" stroke="#e03131" stroke-width="3"/>
-<line x1="1944" y1="1253" x2="2025" y2="1253" stroke="#2f9e44" stroke-width="3"/>
-<rect x="1908" y="1289" width="54" height="10" rx="3" stroke="#e03131" fill="#e03131" stroke-width="1"/>
-<polygon points="1911,1289 1911.0,1287.0 1911.8177801690624,1279.2354286469244 1914.2153903091735,1272.0 1918.029437251523,1265.7867965644036 1923.0,1261.019237886467 1928.7883429175395,1258.0222252113279 1935.0,1257.0 1941.2116570824605,1258.0222252113279 1947.0,1261.0192378864667 1951.970562748477,1265.7867965644036 1955.7846096908265,1272.0 1958.1822198309376,1279.2354286469244 1959.0,1287.0 1959,1289" stroke="#e03131" fill="#e03131" stroke-width="2"/>
-<line x1="1926" y1="1299" x2="1926" y2="1323" stroke="#6c757d" stroke-width="3"/>
-<line x1="1944" y1="1299" x2="1944" y2="1323" stroke="#6c757d" stroke-width="3"/>
-<text x="1921" y="1315" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
-<text x="1949" y="1315" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="1935" y="1280" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D34·b</text>
-<rect x="1810" y="1309" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="1819" cy="1323" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="1851.0" y="1327" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG2</text>
-<line x1="1882" y1="1323" x2="1926" y2="1323" stroke="#f08c00" stroke-width="3"/>
-<line x1="1944" y1="1323" x2="2025" y2="1323" stroke="#2f9e44" stroke-width="3"/>
-<rect x="1908" y="1359" width="54" height="10" rx="3" stroke="#e03131" fill="#e03131" stroke-width="1"/>
-<polygon points="1911,1359 1911.0,1357.0 1911.8177801690624,1349.2354286469244 1914.2153903091735,1342.0 1918.029437251523,1335.7867965644036 1923.0,1331.019237886467 1928.7883429175395,1328.0222252113279 1935.0,1327.0 1941.2116570824605,1328.0222252113279 1947.0,1331.0192378864667 1951.970562748477,1335.7867965644036 1955.7846096908265,1342.0 1958.1822198309376,1349.2354286469244 1959.0,1357.0 1959,1359" stroke="#e03131" fill="#e03131" stroke-width="2"/>
-<line x1="1926" y1="1369" x2="1926" y2="1393" stroke="#6c757d" stroke-width="3"/>
-<line x1="1944" y1="1369" x2="1944" y2="1393" stroke="#6c757d" stroke-width="3"/>
-<text x="1921" y="1385" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
-<text x="1949" y="1385" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="1935" y="1350" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D35·c</text>
-<rect x="1810" y="1379" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="1819" cy="1393" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="1851.0" y="1397" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG3</text>
-<line x1="1882" y1="1393" x2="1926" y2="1393" stroke="#e3b505" stroke-width="3"/>
-<line x1="1944" y1="1393" x2="2025" y2="1393" stroke="#2f9e44" stroke-width="3"/>
-<rect x="1908" y="1429" width="54" height="10" rx="3" stroke="#e03131" fill="#e03131" stroke-width="1"/>
-<polygon points="1911,1429 1911.0,1427.0 1911.8177801690624,1419.2354286469244 1914.2153903091735,1412.0 1918.029437251523,1405.7867965644036 1923.0,1401.019237886467 1928.7883429175395,1398.0222252113279 1935.0,1397.0 1941.2116570824605,1398.0222252113279 1947.0,1401.0192378864667 1951.970562748477,1405.7867965644036 1955.7846096908265,1412.0 1958.1822198309376,1419.2354286469244 1959.0,1427.0 1959,1429" stroke="#e03131" fill="#e03131" stroke-width="2"/>
-<line x1="1926" y1="1439" x2="1926" y2="1463" stroke="#6c757d" stroke-width="3"/>
-<line x1="1944" y1="1439" x2="1944" y2="1463" stroke="#6c757d" stroke-width="3"/>
-<text x="1921" y="1455" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
-<text x="1949" y="1455" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="1935" y="1420" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D36·d</text>
-<rect x="1810" y="1449" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="1819" cy="1463" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="1851.0" y="1467" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG4</text>
-<line x1="1882" y1="1463" x2="1926" y2="1463" stroke="#2f9e44" stroke-width="3"/>
-<line x1="1944" y1="1463" x2="2025" y2="1463" stroke="#2f9e44" stroke-width="3"/>
-<rect x="1908" y="1499" width="54" height="10" rx="3" stroke="#e03131" fill="#e03131" stroke-width="1"/>
-<polygon points="1911,1499 1911.0,1497.0 1911.8177801690624,1489.2354286469244 1914.2153903091735,1482.0 1918.029437251523,1475.7867965644036 1923.0,1471.019237886467 1928.7883429175395,1468.0222252113279 1935.0,1467.0 1941.2116570824605,1468.0222252113279 1947.0,1471.0192378864667 1951.970562748477,1475.7867965644036 1955.7846096908265,1482.0 1958.1822198309376,1489.2354286469244 1959.0,1497.0 1959,1499" stroke="#e03131" fill="#e03131" stroke-width="2"/>
-<line x1="1926" y1="1509" x2="1926" y2="1533" stroke="#6c757d" stroke-width="3"/>
-<line x1="1944" y1="1509" x2="1944" y2="1533" stroke="#6c757d" stroke-width="3"/>
-<text x="1921" y="1525" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
-<text x="1949" y="1525" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="1935" y="1490" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D37·e</text>
-<rect x="1810" y="1519" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="1819" cy="1533" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="1851.0" y="1537" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG5</text>
-<line x1="1882" y1="1533" x2="1926" y2="1533" stroke="#1971c2" stroke-width="3"/>
-<line x1="1944" y1="1533" x2="2025" y2="1533" stroke="#2f9e44" stroke-width="3"/>
-<rect x="1908" y="1569" width="54" height="10" rx="3" stroke="#e03131" fill="#e03131" stroke-width="1"/>
-<polygon points="1911,1569 1911.0,1567.0 1911.8177801690624,1559.2354286469244 1914.2153903091735,1552.0 1918.029437251523,1545.7867965644036 1923.0,1541.019237886467 1928.7883429175395,1538.0222252113279 1935.0,1537.0 1941.2116570824605,1538.0222252113279 1947.0,1541.0192378864667 1951.970562748477,1545.7867965644036 1955.7846096908265,1552.0 1958.1822198309376,1559.2354286469244 1959.0,1567.0 1959,1569" stroke="#e03131" fill="#e03131" stroke-width="2"/>
-<line x1="1926" y1="1579" x2="1926" y2="1603" stroke="#6c757d" stroke-width="3"/>
-<line x1="1944" y1="1579" x2="1944" y2="1603" stroke="#6c757d" stroke-width="3"/>
-<text x="1921" y="1595" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
-<text x="1949" y="1595" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="1935" y="1560" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D38·f</text>
-<rect x="1810" y="1589" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="1819" cy="1603" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="1851.0" y="1607" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG6</text>
-<line x1="1882" y1="1603" x2="1926" y2="1603" stroke="#7048e8" stroke-width="3"/>
-<line x1="1944" y1="1603" x2="2025" y2="1603" stroke="#2f9e44" stroke-width="3"/>
-<rect x="1908" y="1639" width="54" height="10" rx="3" stroke="#e03131" fill="#e03131" stroke-width="1"/>
-<polygon points="1911,1639 1911.0,1637.0 1911.8177801690624,1629.2354286469244 1914.2153903091735,1622.0 1918.029437251523,1615.7867965644036 1923.0,1611.019237886467 1928.7883429175395,1608.0222252113279 1935.0,1607.0 1941.2116570824605,1608.0222252113279 1947.0,1611.0192378864667 1951.970562748477,1615.7867965644036 1955.7846096908265,1622.0 1958.1822198309376,1629.2354286469244 1959.0,1637.0 1959,1639" stroke="#e03131" fill="#e03131" stroke-width="2"/>
-<line x1="1926" y1="1649" x2="1926" y2="1673" stroke="#6c757d" stroke-width="3"/>
-<line x1="1944" y1="1649" x2="1944" y2="1673" stroke="#6c757d" stroke-width="3"/>
-<text x="1921" y="1665" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
-<text x="1949" y="1665" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="1935" y="1630" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D39·g</text>
-<rect x="1810" y="1659" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="1819" cy="1673" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="1851.0" y="1677" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG7</text>
-<line x1="1882" y1="1673" x2="1926" y2="1673" stroke="#d6336c" stroke-width="3"/>
-<line x1="1944" y1="1673" x2="2025" y2="1673" stroke="#2f9e44" stroke-width="3"/>
-<line x1="2025" y1="1253" x2="2025" y2="1673" stroke="#2f9e44" stroke-width="4"/>
-<circle cx="2025" cy="1253" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<circle cx="2025" cy="1323" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<circle cx="2025" cy="1393" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<circle cx="2025" cy="1463" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<circle cx="2025" cy="1533" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<circle cx="2025" cy="1603" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<circle cx="2025" cy="1673" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<line x1="2025" y1="1673" x2="2025" y2="1775" stroke="#2f9e44" stroke-width="4"/>
-<line x1="2025" y1="1775" x2="1985" y2="1775" stroke="#2f9e44" stroke-width="4"/>
-<rect x="1890" y="1761" width="95" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="1899" cy="1775" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="1942.5" y="1779" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">GRID7</text>
-<text x="1937" y="1800" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="400" text-anchor="middle" fill="#526079">RAM[6]</text>
-<rect x="2095" y="1120" width="275" height="700" rx="8" stroke="#526079" fill="#f5f7fb" stroke-width="2"/>
-<text x="2232" y="1154" font-family="DejaVu Sans,Arial,sans-serif" font-size="17" font-weight="700" text-anchor="middle" fill="#172033">S2 · GRID8</text>
-<text x="2232" y="1177" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="400" text-anchor="middle" fill="#526079">Секунды — единицы</text>
-<rect x="2203" y="1219" width="54" height="10" rx="3" stroke="#e03131" fill="#e03131" stroke-width="1"/>
-<polygon points="2206,1219 2206.0,1217.0 2206.817780169062,1209.2354286469244 2209.2153903091735,1202.0 2213.0294372515227,1195.7867965644036 2218.0,1191.019237886467 2223.7883429175395,1188.0222252113279 2230.0,1187.0 2236.2116570824605,1188.0222252113279 2242.0,1191.0192378864667 2246.9705627484773,1195.7867965644036 2250.7846096908265,1202.0 2253.182219830938,1209.2354286469244 2254.0,1217.0 2254,1219" stroke="#e03131" fill="#e03131" stroke-width="2"/>
-<line x1="2221" y1="1229" x2="2221" y2="1253" stroke="#6c757d" stroke-width="3"/>
-<line x1="2239" y1="1229" x2="2239" y2="1253" stroke="#6c757d" stroke-width="3"/>
-<text x="2216" y="1245" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
-<text x="2244" y="1245" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="2230" y="1210" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D40·a</text>
-<rect x="2105" y="1239" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="2114" cy="1253" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="2146.0" y="1257" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG1</text>
-<line x1="2177" y1="1253" x2="2221" y2="1253" stroke="#e03131" stroke-width="3"/>
-<line x1="2239" y1="1253" x2="2320" y2="1253" stroke="#2f9e44" stroke-width="3"/>
-<rect x="2203" y="1289" width="54" height="10" rx="3" stroke="#e03131" fill="#e03131" stroke-width="1"/>
-<polygon points="2206,1289 2206.0,1287.0 2206.817780169062,1279.2354286469244 2209.2153903091735,1272.0 2213.0294372515227,1265.7867965644036 2218.0,1261.019237886467 2223.7883429175395,1258.0222252113279 2230.0,1257.0 2236.2116570824605,1258.0222252113279 2242.0,1261.0192378864667 2246.9705627484773,1265.7867965644036 2250.7846096908265,1272.0 2253.182219830938,1279.2354286469244 2254.0,1287.0 2254,1289" stroke="#e03131" fill="#e03131" stroke-width="2"/>
-<line x1="2221" y1="1299" x2="2221" y2="1323" stroke="#6c757d" stroke-width="3"/>
-<line x1="2239" y1="1299" x2="2239" y2="1323" stroke="#6c757d" stroke-width="3"/>
-<text x="2216" y="1315" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
-<text x="2244" y="1315" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="2230" y="1280" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D41·b</text>
-<rect x="2105" y="1309" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="2114" cy="1323" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="2146.0" y="1327" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG2</text>
-<line x1="2177" y1="1323" x2="2221" y2="1323" stroke="#f08c00" stroke-width="3"/>
-<line x1="2239" y1="1323" x2="2320" y2="1323" stroke="#2f9e44" stroke-width="3"/>
-<rect x="2203" y="1359" width="54" height="10" rx="3" stroke="#e03131" fill="#e03131" stroke-width="1"/>
-<polygon points="2206,1359 2206.0,1357.0 2206.817780169062,1349.2354286469244 2209.2153903091735,1342.0 2213.0294372515227,1335.7867965644036 2218.0,1331.019237886467 2223.7883429175395,1328.0222252113279 2230.0,1327.0 2236.2116570824605,1328.0222252113279 2242.0,1331.0192378864667 2246.9705627484773,1335.7867965644036 2250.7846096908265,1342.0 2253.182219830938,1349.2354286469244 2254.0,1357.0 2254,1359" stroke="#e03131" fill="#e03131" stroke-width="2"/>
-<line x1="2221" y1="1369" x2="2221" y2="1393" stroke="#6c757d" stroke-width="3"/>
-<line x1="2239" y1="1369" x2="2239" y2="1393" stroke="#6c757d" stroke-width="3"/>
-<text x="2216" y="1385" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
-<text x="2244" y="1385" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="2230" y="1350" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D42·c</text>
-<rect x="2105" y="1379" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="2114" cy="1393" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="2146.0" y="1397" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG3</text>
-<line x1="2177" y1="1393" x2="2221" y2="1393" stroke="#e3b505" stroke-width="3"/>
-<line x1="2239" y1="1393" x2="2320" y2="1393" stroke="#2f9e44" stroke-width="3"/>
-<rect x="2203" y="1429" width="54" height="10" rx="3" stroke="#e03131" fill="#e03131" stroke-width="1"/>
-<polygon points="2206,1429 2206.0,1427.0 2206.817780169062,1419.2354286469244 2209.2153903091735,1412.0 2213.0294372515227,1405.7867965644036 2218.0,1401.019237886467 2223.7883429175395,1398.0222252113279 2230.0,1397.0 2236.2116570824605,1398.0222252113279 2242.0,1401.0192378864667 2246.9705627484773,1405.7867965644036 2250.7846096908265,1412.0 2253.182219830938,1419.2354286469244 2254.0,1427.0 2254,1429" stroke="#e03131" fill="#e03131" stroke-width="2"/>
-<line x1="2221" y1="1439" x2="2221" y2="1463" stroke="#6c757d" stroke-width="3"/>
-<line x1="2239" y1="1439" x2="2239" y2="1463" stroke="#6c757d" stroke-width="3"/>
-<text x="2216" y="1455" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
-<text x="2244" y="1455" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="2230" y="1420" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D43·d</text>
-<rect x="2105" y="1449" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="2114" cy="1463" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="2146.0" y="1467" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG4</text>
-<line x1="2177" y1="1463" x2="2221" y2="1463" stroke="#2f9e44" stroke-width="3"/>
-<line x1="2239" y1="1463" x2="2320" y2="1463" stroke="#2f9e44" stroke-width="3"/>
-<rect x="2203" y="1499" width="54" height="10" rx="3" stroke="#e03131" fill="#e03131" stroke-width="1"/>
-<polygon points="2206,1499 2206.0,1497.0 2206.817780169062,1489.2354286469244 2209.2153903091735,1482.0 2213.0294372515227,1475.7867965644036 2218.0,1471.019237886467 2223.7883429175395,1468.0222252113279 2230.0,1467.0 2236.2116570824605,1468.0222252113279 2242.0,1471.0192378864667 2246.9705627484773,1475.7867965644036 2250.7846096908265,1482.0 2253.182219830938,1489.2354286469244 2254.0,1497.0 2254,1499" stroke="#e03131" fill="#e03131" stroke-width="2"/>
-<line x1="2221" y1="1509" x2="2221" y2="1533" stroke="#6c757d" stroke-width="3"/>
-<line x1="2239" y1="1509" x2="2239" y2="1533" stroke="#6c757d" stroke-width="3"/>
-<text x="2216" y="1525" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
-<text x="2244" y="1525" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="2230" y="1490" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D44·e</text>
-<rect x="2105" y="1519" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="2114" cy="1533" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="2146.0" y="1537" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG5</text>
-<line x1="2177" y1="1533" x2="2221" y2="1533" stroke="#1971c2" stroke-width="3"/>
-<line x1="2239" y1="1533" x2="2320" y2="1533" stroke="#2f9e44" stroke-width="3"/>
-<rect x="2203" y="1569" width="54" height="10" rx="3" stroke="#e03131" fill="#e03131" stroke-width="1"/>
-<polygon points="2206,1569 2206.0,1567.0 2206.817780169062,1559.2354286469244 2209.2153903091735,1552.0 2213.0294372515227,1545.7867965644036 2218.0,1541.019237886467 2223.7883429175395,1538.0222252113279 2230.0,1537.0 2236.2116570824605,1538.0222252113279 2242.0,1541.0192378864667 2246.9705627484773,1545.7867965644036 2250.7846096908265,1552.0 2253.182219830938,1559.2354286469244 2254.0,1567.0 2254,1569" stroke="#e03131" fill="#e03131" stroke-width="2"/>
-<line x1="2221" y1="1579" x2="2221" y2="1603" stroke="#6c757d" stroke-width="3"/>
-<line x1="2239" y1="1579" x2="2239" y2="1603" stroke="#6c757d" stroke-width="3"/>
-<text x="2216" y="1595" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
-<text x="2244" y="1595" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="2230" y="1560" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D45·f</text>
-<rect x="2105" y="1589" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="2114" cy="1603" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="2146.0" y="1607" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG6</text>
-<line x1="2177" y1="1603" x2="2221" y2="1603" stroke="#7048e8" stroke-width="3"/>
-<line x1="2239" y1="1603" x2="2320" y2="1603" stroke="#2f9e44" stroke-width="3"/>
-<rect x="2203" y="1639" width="54" height="10" rx="3" stroke="#e03131" fill="#e03131" stroke-width="1"/>
-<polygon points="2206,1639 2206.0,1637.0 2206.817780169062,1629.2354286469244 2209.2153903091735,1622.0 2213.0294372515227,1615.7867965644036 2218.0,1611.019237886467 2223.7883429175395,1608.0222252113279 2230.0,1607.0 2236.2116570824605,1608.0222252113279 2242.0,1611.0192378864667 2246.9705627484773,1615.7867965644036 2250.7846096908265,1622.0 2253.182219830938,1629.2354286469244 2254.0,1637.0 2254,1639" stroke="#e03131" fill="#e03131" stroke-width="2"/>
-<line x1="2221" y1="1649" x2="2221" y2="1673" stroke="#6c757d" stroke-width="3"/>
-<line x1="2239" y1="1649" x2="2239" y2="1673" stroke="#6c757d" stroke-width="3"/>
-<text x="2216" y="1665" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="end" fill="#172033">A</text>
-<text x="2244" y="1665" font-family="DejaVu Sans,Arial,sans-serif" font-size="10" font-weight="700" text-anchor="start" fill="#172033">K</text>
-<text x="2230" y="1630" font-family="DejaVu Sans,Arial,sans-serif" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">D46·g</text>
-<rect x="2105" y="1659" width="72" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="2114" cy="1673" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="2146.0" y="1677" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">SEG7</text>
-<line x1="2177" y1="1673" x2="2221" y2="1673" stroke="#d6336c" stroke-width="3"/>
-<line x1="2239" y1="1673" x2="2320" y2="1673" stroke="#2f9e44" stroke-width="3"/>
-<line x1="2320" y1="1253" x2="2320" y2="1673" stroke="#2f9e44" stroke-width="4"/>
-<circle cx="2320" cy="1253" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<circle cx="2320" cy="1323" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<circle cx="2320" cy="1393" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<circle cx="2320" cy="1463" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<circle cx="2320" cy="1533" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<circle cx="2320" cy="1603" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<circle cx="2320" cy="1673" r="6" stroke="#2f9e44" fill="#2f9e44" stroke-width="1"/>
-<line x1="2320" y1="1673" x2="2320" y2="1775" stroke="#2f9e44" stroke-width="4"/>
-<line x1="2320" y1="1775" x2="2280" y2="1775" stroke="#2f9e44" stroke-width="4"/>
-<rect x="2185" y="1761" width="95" height="28" rx="4" stroke="#176b4d" fill="#b7e4c7" stroke-width="2"/>
-<circle cx="2194" cy="1775" r="4" stroke="#176b4d" fill="#f8f9fa" stroke-width="1"/>
-<text x="2237.5" y="1779" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#172033">GRID8</text>
-<text x="2232" y="1800" font-family="DejaVu Sans,Arial,sans-serif" font-size="11" font-weight="400" text-anchor="middle" fill="#526079">RAM[7]</text>
-<text x="45" y="1870" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#d6336c">Монтаж: +5 В на ESP32 5V и TM1640 VDD; GND общий. Катоды не подключать напрямую к GND.</text>
-<text x="45" y="1900" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" fill="#526079">Цвета SEG повторяются во всех модулях. Одноимённые клеммы — одна цепь; пересекать провода на реальной плате не требуется при использовании жгута/разъёмов.</text>
-<text x="45" y="1930" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" fill="#d6336c">Внимание: прямое 3,3-вольтовое управление TM1640 при питании 5 В может быть нестабильным; вариант выбран по вашему требованию без HCT-буфера.</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="3440" viewBox="0 0 1600 3440">
+<title>ESP32 complete electrical schematic</title>
+<desc>Three conventional schematic sheets: ESP32 peripherals, TM1640 and LED modules</desc>
+<rect width="100%" height="100%" fill="#dce3ec"/>
+<g transform="translate(0 0)">
+<rect width="1600" height="1120" fill="#ffffff"/>
+<rect x="20" y="20" width="1560" height="1080" rx="0" stroke="#172033" fill="none" stroke-width="2"/>
+<text x="50" y="65" font-family="DejaVu Sans,Arial,sans-serif" font-size="28" font-weight="700" text-anchor="start" fill="#172033">Часы ESP32 · Лист 1/3 — контроллер и периферия</text>
+<text x="50" y="96" font-family="DejaVu Sans,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="start" fill="#526079">Стандартные УГО · линии одного имени электрически соединены · серых условных проводников нет</text>
+<text x="1550" y="64" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="end" fill="#526079">Рев. 2 · 2026-11-08</text>
+<rect x="425" y="155" width="350" height="785" rx="0" stroke="#172033" fill="#e7f0fa" stroke-width="2"/>
+<text x="600.0" y="187" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="700" text-anchor="middle" fill="#172033">U1 · ESP32-WROOM-32D</text>
+<line x1="775" y1="220.0" x2="793" y2="220.0" stroke="#087f5b" stroke-width="2"/>
+<text x="763" y="225.0" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="end" fill="#172033">[18]  GPIO18</text>
+<line x1="775" y1="297.77777777777777" x2="793" y2="297.77777777777777" stroke="#087f5b" stroke-width="2"/>
+<text x="763" y="302.77777777777777" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="end" fill="#172033">[23]  GPIO23</text>
+<line x1="775" y1="375.55555555555554" x2="793" y2="375.55555555555554" stroke="#087f5b" stroke-width="2"/>
+<text x="763" y="380.55555555555554" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="end" fill="#172033">[5]  GPIO5</text>
+<line x1="775" y1="453.33333333333337" x2="793" y2="453.33333333333337" stroke="#087f5b" stroke-width="2"/>
+<text x="763" y="458.33333333333337" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="end" fill="#172033">[15]  GPIO15</text>
+<line x1="775" y1="531.1111111111111" x2="793" y2="531.1111111111111" stroke="#087f5b" stroke-width="2"/>
+<text x="763" y="536.1111111111111" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="end" fill="#172033">[4]  GPIO4</text>
+<line x1="775" y1="608.8888888888889" x2="793" y2="608.8888888888889" stroke="#087f5b" stroke-width="2"/>
+<text x="763" y="613.8888888888889" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="end" fill="#172033">[21]  GPIO21</text>
+<line x1="775" y1="686.6666666666667" x2="793" y2="686.6666666666667" stroke="#087f5b" stroke-width="2"/>
+<text x="763" y="691.6666666666667" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="end" fill="#172033">[22]  GPIO22</text>
+<line x1="775" y1="764.4444444444445" x2="793" y2="764.4444444444445" stroke="#087f5b" stroke-width="2"/>
+<text x="763" y="769.4444444444445" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="end" fill="#172033">[25]  GPIO25</text>
+<line x1="775" y1="842.2222222222222" x2="793" y2="842.2222222222222" stroke="#087f5b" stroke-width="2"/>
+<text x="763" y="847.2222222222222" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="end" fill="#172033">[26]  GPIO26</text>
+<line x1="775" y1="920.0" x2="793" y2="920.0" stroke="#087f5b" stroke-width="2"/>
+<text x="763" y="925.0" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="end" fill="#172033">[32]  GPIO32</text>
+<line x1="425" y1="235" x2="397" y2="235" stroke="#087f5b" stroke-width="2"/>
+<text x="389" y="240" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#d6336c">+5V</text>
+<text x="439" y="240" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" fill="#172033">5V</text>
+<line x1="425" y1="285" x2="397" y2="285" stroke="#087f5b" stroke-width="2"/>
+<text x="389" y="290" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#172033">GND</text>
+<text x="439" y="290" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" fill="#172033">GND</text>
+<line x1="793" y1="220.0" x2="821" y2="220.0" stroke="#087f5b" stroke-width="2"/>
+<text x="829" y="225.0" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">TFT_SCLK</text>
+<line x1="793" y1="297.77777777777777" x2="821" y2="297.77777777777777" stroke="#087f5b" stroke-width="2"/>
+<text x="829" y="302.77777777777777" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">TFT_MOSI</text>
+<line x1="793" y1="375.55555555555554" x2="821" y2="375.55555555555554" stroke="#087f5b" stroke-width="2"/>
+<text x="829" y="380.55555555555554" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">TFT_CS</text>
+<line x1="793" y1="453.33333333333337" x2="821" y2="453.33333333333337" stroke="#087f5b" stroke-width="2"/>
+<text x="829" y="458.33333333333337" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">TFT_DC</text>
+<line x1="793" y1="531.1111111111111" x2="821" y2="531.1111111111111" stroke="#087f5b" stroke-width="2"/>
+<text x="829" y="536.1111111111111" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">TFT_RST</text>
+<line x1="793" y1="608.8888888888889" x2="821" y2="608.8888888888889" stroke="#087f5b" stroke-width="2"/>
+<text x="829" y="613.8888888888889" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">I2C_SDA</text>
+<line x1="793" y1="686.6666666666667" x2="821" y2="686.6666666666667" stroke="#087f5b" stroke-width="2"/>
+<text x="829" y="691.6666666666667" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">I2C_SCL</text>
+<line x1="793" y1="764.4444444444445" x2="821" y2="764.4444444444445" stroke="#087f5b" stroke-width="2"/>
+<text x="829" y="769.4444444444445" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">TM_CLK</text>
+<line x1="793" y1="842.2222222222222" x2="821" y2="842.2222222222222" stroke="#087f5b" stroke-width="2"/>
+<text x="829" y="847.2222222222222" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">TM_DIN</text>
+<line x1="793" y1="920.0" x2="821" y2="920.0" stroke="#087f5b" stroke-width="2"/>
+<text x="829" y="925.0" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">CITY_WIFI_BTN</text>
+<rect x="1050" y="145" width="300" height="340" rx="0" stroke="#172033" fill="#e7f0fa" stroke-width="2"/>
+<text x="1200.0" y="177" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="700" text-anchor="middle" fill="#172033">A1 · ST7789 284×76</text>
+<line x1="1032" y1="210.0" x2="1050" y2="210.0" stroke="#087f5b" stroke-width="2"/>
+<text x="1062" y="215.0" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" fill="#172033">SCLK  [SCLK]</text>
+<line x1="1032" y1="252.5" x2="1050" y2="252.5" stroke="#087f5b" stroke-width="2"/>
+<text x="1062" y="257.5" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" fill="#172033">MOSI/SDA  [MOSI/SDA]</text>
+<line x1="1032" y1="295.0" x2="1050" y2="295.0" stroke="#087f5b" stroke-width="2"/>
+<text x="1062" y="300.0" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" fill="#172033">CS  [CS]</text>
+<line x1="1032" y1="337.5" x2="1050" y2="337.5" stroke="#087f5b" stroke-width="2"/>
+<text x="1062" y="342.5" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" fill="#172033">DC  [DC]</text>
+<line x1="1032" y1="380.0" x2="1050" y2="380.0" stroke="#087f5b" stroke-width="2"/>
+<text x="1062" y="385.0" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" fill="#172033">RST/RES  [RST/RES]</text>
+<line x1="1032" y1="422.5" x2="1050" y2="422.5" stroke="#087f5b" stroke-width="2"/>
+<text x="1062" y="427.5" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" fill="#172033">VCC  [VCC]</text>
+<line x1="1032" y1="465.0" x2="1050" y2="465.0" stroke="#087f5b" stroke-width="2"/>
+<text x="1062" y="470.0" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" fill="#172033">GND  [GND]</text>
+<line x1="1032" y1="210.0" x2="1004" y2="210.0" stroke="#087f5b" stroke-width="2"/>
+<text x="996" y="215.0" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#1769aa">TFT_SCLK</text>
+<line x1="1032" y1="252.5" x2="1004" y2="252.5" stroke="#087f5b" stroke-width="2"/>
+<text x="996" y="257.5" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#1769aa">TFT_MOSI</text>
+<line x1="1032" y1="295.0" x2="1004" y2="295.0" stroke="#087f5b" stroke-width="2"/>
+<text x="996" y="300.0" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#1769aa">TFT_CS</text>
+<line x1="1032" y1="337.5" x2="1004" y2="337.5" stroke="#087f5b" stroke-width="2"/>
+<text x="996" y="342.5" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#1769aa">TFT_DC</text>
+<line x1="1032" y1="380.0" x2="1004" y2="380.0" stroke="#087f5b" stroke-width="2"/>
+<text x="996" y="385.0" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#1769aa">TFT_RST</text>
+<line x1="1032" y1="422.5" x2="1004" y2="422.5" stroke="#087f5b" stroke-width="2"/>
+<text x="996" y="427.5" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#d6336c">VCC_ST7789</text>
+<line x1="1032" y1="465.0" x2="1004" y2="465.0" stroke="#087f5b" stroke-width="2"/>
+<text x="996" y="470.0" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#1769aa">GND</text>
+<rect x="1050" y="555" width="300" height="240" rx="0" stroke="#172033" fill="#e7f0fa" stroke-width="2"/>
+<text x="1200.0" y="587" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="700" text-anchor="middle" fill="#172033">U3 · DS3231 RTC</text>
+<line x1="1032" y1="620.0" x2="1050" y2="620.0" stroke="#087f5b" stroke-width="2"/>
+<text x="1062" y="625.0" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" fill="#172033">SDA  [SDA]</text>
+<line x1="1032" y1="671.6666666666666" x2="1050" y2="671.6666666666666" stroke="#087f5b" stroke-width="2"/>
+<text x="1062" y="676.6666666666666" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" fill="#172033">SCL  [SCL]</text>
+<line x1="1032" y1="723.3333333333334" x2="1050" y2="723.3333333333334" stroke="#087f5b" stroke-width="2"/>
+<text x="1062" y="728.3333333333334" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" fill="#172033">VCC  [VCC]</text>
+<line x1="1032" y1="775.0" x2="1050" y2="775.0" stroke="#087f5b" stroke-width="2"/>
+<text x="1062" y="780.0" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" fill="#172033">GND  [GND]</text>
+<line x1="1032" y1="620.0" x2="1004" y2="620.0" stroke="#087f5b" stroke-width="2"/>
+<text x="996" y="625.0" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#1769aa">I2C_SDA</text>
+<line x1="1032" y1="671.6666666666666" x2="1004" y2="671.6666666666666" stroke="#087f5b" stroke-width="2"/>
+<text x="996" y="676.6666666666666" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#1769aa">I2C_SCL</text>
+<line x1="1032" y1="723.3333333333334" x2="1004" y2="723.3333333333334" stroke="#087f5b" stroke-width="2"/>
+<text x="996" y="728.3333333333334" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#d6336c">VCC_RTC</text>
+<line x1="1032" y1="775.0" x2="1004" y2="775.0" stroke="#087f5b" stroke-width="2"/>
+<text x="996" y="780.0" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#1769aa">GND</text>
+<line x1="900" y1="900" x2="872" y2="900" stroke="#087f5b" stroke-width="2"/>
+<text x="864" y="905" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#1769aa">CITY_WIFI_BTN</text>
+<line x1="900" y1="900" x2="1010" y2="900" stroke="#087f5b" stroke-width="2"/>
+<circle cx="1015" cy="900" r="5" stroke="#172033" fill="#ffffff" stroke-width="2"/>
+<circle cx="1080" cy="900" r="5" stroke="#172033" fill="#ffffff" stroke-width="2"/>
+<line x1="1018" y1="895" x2="1075" y2="870" stroke="#172033" stroke-width="3"/>
+<line x1="1085" y1="900" x2="1130" y2="900" stroke="#087f5b" stroke-width="2"/>
+<line x1="1130" y1="900" x2="1130" y2="916" stroke="#087f5b" stroke-width="2"/>
+<line x1="1112" y1="916" x2="1148" y2="916" stroke="#172033" stroke-width="2"/>
+<line x1="1118" y1="924" x2="1142" y2="924" stroke="#172033" stroke-width="2"/>
+<line x1="1124" y1="932" x2="1136" y2="932" stroke="#172033" stroke-width="2"/>
+<text x="1158" y="928" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" fill="#172033">GND</text>
+<text x="1048" y="845" font-family="DejaVu Sans,Arial,sans-serif" font-size="17" font-weight="700" text-anchor="middle" fill="#172033">SW1 · город / Wi-Fi</text>
+<text x="1048" y="955" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="middle" fill="#526079">Коротко: следующий город</text>
+<text x="1048" y="982" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="middle" fill="#526079">Удержание 5 с: настройка Wi-Fi</text>
+<text x="1048" y="1009" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="middle" fill="#526079">Внутренняя подтяжка GPIO32 включена</text>
+<text x="70" y="170" font-family="DejaVu Sans,Arial,sans-serif" font-size="18" font-weight="700" text-anchor="start" fill="#172033">J1 · вход питания</text>
+<line x1="100" y1="230" x2="128" y2="230" stroke="#087f5b" stroke-width="2"/>
+<text x="136" y="235" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#d6336c">+5V</text>
+<line x1="100" y1="285" x2="128" y2="285" stroke="#087f5b" stroke-width="2"/>
+<text x="136" y="290" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#172033">GND</text>
+<text x="70" y="365" font-family="DejaVu Sans,Arial,sans-serif" font-size="18" font-weight="700" text-anchor="start" fill="#7048e8">Питание и примечания</text>
+<text x="70" y="410" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#526079">• U1 5V и TM1640 VDD: +5 В; GND общий.</text>
+<text x="70" y="450" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#526079">• VCC_ST7789: по спецификации модуля.</text>
+<text x="70" y="490" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#526079">• Подсветка ST7789 включена постоянно.</text>
+<text x="70" y="530" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#526079">• VCC_RTC: по спецификации модуля DS3231.</text>
+<text x="70" y="570" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#526079">• DS3231: I²C, адрес 0x68.</text>
+<text x="70" y="610" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#526079">• TM_CLK/TM_DIN продолжены на листе 2.</text>
+<text x="70" y="650" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#526079">• Внешний резистор для SW1 не нужен.</text>
+<text x="70" y="770" font-family="DejaVu Sans,Arial,sans-serif" font-size="18" font-weight="700" text-anchor="start" fill="#7048e8">Обозначения цепей</text>
+<text x="70" y="812" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#526079">TFT_* — дисплей ST7789</text>
+<text x="70" y="850" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#526079">I2C_* — часы реального времени</text>
+<text x="70" y="888" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#526079">TM_* — драйвер большого табло</text>
+<text x="70" y="926" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#526079">CITY_WIFI_BTN — существующая кнопка</text>
+</g>
+<g transform="translate(0 1160)">
+<rect width="1600" height="1120" fill="#ffffff"/>
+<rect x="20" y="20" width="1560" height="1080" rx="0" stroke="#172033" fill="none" stroke-width="2"/>
+<text x="50" y="65" font-family="DejaVu Sans,Arial,sans-serif" font-size="28" font-weight="700" text-anchor="start" fill="#172033">Часы ESP32 · Лист 2/3 — драйвер TM1640</text>
+<text x="50" y="96" font-family="DejaVu Sans,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="start" fill="#526079">Прямое управление от ESP32 · DP отсутствует · R1…R7 = ОМЛТ 510 Ω · выходы на лист 3</text>
+<text x="1550" y="64" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="end" fill="#526079">Рев. 2 · 2026-11-08</text>
+<rect x="370" y="145" width="450" height="865" rx="0" stroke="#172033" fill="#e7f0fa" stroke-width="2"/>
+<text x="595" y="180" font-family="DejaVu Sans,Arial,sans-serif" font-size="22" font-weight="700" text-anchor="middle" fill="#172033">U2 · TM1640 SOP28</text>
+<line x1="352" y1="260" x2="370" y2="260" stroke="#087f5b" stroke-width="2"/>
+<text x="388" y="265" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#172033">VDD [17]</text>
+<line x1="352" y1="260" x2="324" y2="260" stroke="#087f5b" stroke-width="2"/>
+<text x="316" y="265" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#d6336c">+5V</text>
+<line x1="352" y1="360" x2="370" y2="360" stroke="#087f5b" stroke-width="2"/>
+<text x="388" y="365" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#172033">GND [6]</text>
+<line x1="352" y1="360" x2="324" y2="360" stroke="#087f5b" stroke-width="2"/>
+<text x="316" y="365" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#1769aa">GND</text>
+<line x1="352" y1="460" x2="370" y2="460" stroke="#087f5b" stroke-width="2"/>
+<text x="388" y="465" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#172033">DIN [7]</text>
+<line x1="352" y1="460" x2="324" y2="460" stroke="#087f5b" stroke-width="2"/>
+<text x="316" y="465" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#1769aa">TM_DIN</text>
+<line x1="352" y1="560" x2="370" y2="560" stroke="#087f5b" stroke-width="2"/>
+<text x="388" y="565" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#172033">SCLK [8]</text>
+<line x1="352" y1="560" x2="324" y2="560" stroke="#087f5b" stroke-width="2"/>
+<text x="316" y="565" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#1769aa">TM_CLK</text>
+<line x1="820" y1="205" x2="838" y2="205" stroke="#087f5b" stroke-width="2"/>
+<text x="802" y="210" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="400" text-anchor="end" fill="#172033">[9] SEG1</text>
+<line x1="838" y1="205" x2="866" y2="205" stroke="#087f5b" stroke-width="2"/>
+<text x="874" y="210" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">SEG1_DRV</text>
+<line x1="820" y1="237" x2="838" y2="237" stroke="#087f5b" stroke-width="2"/>
+<text x="802" y="242" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="400" text-anchor="end" fill="#172033">[10] SEG2</text>
+<line x1="838" y1="237" x2="866" y2="237" stroke="#087f5b" stroke-width="2"/>
+<text x="874" y="242" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">SEG2_DRV</text>
+<line x1="820" y1="269" x2="838" y2="269" stroke="#087f5b" stroke-width="2"/>
+<text x="802" y="274" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="400" text-anchor="end" fill="#172033">[11] SEG3</text>
+<line x1="838" y1="269" x2="866" y2="269" stroke="#087f5b" stroke-width="2"/>
+<text x="874" y="274" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">SEG3_DRV</text>
+<line x1="820" y1="301" x2="838" y2="301" stroke="#087f5b" stroke-width="2"/>
+<text x="802" y="306" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="400" text-anchor="end" fill="#172033">[12] SEG4</text>
+<line x1="838" y1="301" x2="866" y2="301" stroke="#087f5b" stroke-width="2"/>
+<text x="874" y="306" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">SEG4_DRV</text>
+<line x1="820" y1="333" x2="838" y2="333" stroke="#087f5b" stroke-width="2"/>
+<text x="802" y="338" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="400" text-anchor="end" fill="#172033">[13] SEG5</text>
+<line x1="838" y1="333" x2="866" y2="333" stroke="#087f5b" stroke-width="2"/>
+<text x="874" y="338" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">SEG5_DRV</text>
+<line x1="820" y1="365" x2="838" y2="365" stroke="#087f5b" stroke-width="2"/>
+<text x="802" y="370" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="400" text-anchor="end" fill="#172033">[14] SEG6</text>
+<line x1="838" y1="365" x2="866" y2="365" stroke="#087f5b" stroke-width="2"/>
+<text x="874" y="370" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">SEG6_DRV</text>
+<line x1="820" y1="397" x2="838" y2="397" stroke="#087f5b" stroke-width="2"/>
+<text x="802" y="402" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="400" text-anchor="end" fill="#172033">[15] SEG7</text>
+<line x1="838" y1="397" x2="866" y2="397" stroke="#087f5b" stroke-width="2"/>
+<text x="874" y="402" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">SEG7_DRV</text>
+<line x1="820" y1="429" x2="838" y2="429" stroke="#087f5b" stroke-width="2"/>
+<text x="802" y="434" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="400" text-anchor="end" fill="#172033">[16] SEG8</text>
+<text x="850" y="434" font-family="DejaVu Sans,Arial,sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#526079">NC</text>
+<line x1="820" y1="461" x2="838" y2="461" stroke="#087f5b" stroke-width="2"/>
+<text x="802" y="466" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="400" text-anchor="end" fill="#172033">[18] GRID1</text>
+<line x1="838" y1="461" x2="866" y2="461" stroke="#087f5b" stroke-width="2"/>
+<text x="874" y="466" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">GRID1</text>
+<line x1="820" y1="493" x2="838" y2="493" stroke="#087f5b" stroke-width="2"/>
+<text x="802" y="498" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="400" text-anchor="end" fill="#172033">[19] GRID2</text>
+<line x1="838" y1="493" x2="866" y2="493" stroke="#087f5b" stroke-width="2"/>
+<text x="874" y="498" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">GRID2</text>
+<line x1="820" y1="525" x2="838" y2="525" stroke="#087f5b" stroke-width="2"/>
+<text x="802" y="530" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="400" text-anchor="end" fill="#172033">[20] GRID3</text>
+<line x1="838" y1="525" x2="866" y2="525" stroke="#087f5b" stroke-width="2"/>
+<text x="874" y="530" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">GRID3</text>
+<line x1="820" y1="557" x2="838" y2="557" stroke="#087f5b" stroke-width="2"/>
+<text x="802" y="562" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="400" text-anchor="end" fill="#172033">[21] GRID4</text>
+<line x1="838" y1="557" x2="866" y2="557" stroke="#087f5b" stroke-width="2"/>
+<text x="874" y="562" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">GRID4</text>
+<line x1="820" y1="589" x2="838" y2="589" stroke="#087f5b" stroke-width="2"/>
+<text x="802" y="594" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="400" text-anchor="end" fill="#172033">[22] GRID5</text>
+<line x1="838" y1="589" x2="866" y2="589" stroke="#087f5b" stroke-width="2"/>
+<text x="874" y="594" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">GRID5</text>
+<line x1="820" y1="621" x2="838" y2="621" stroke="#087f5b" stroke-width="2"/>
+<text x="802" y="626" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="400" text-anchor="end" fill="#172033">[23] GRID6</text>
+<line x1="838" y1="621" x2="866" y2="621" stroke="#087f5b" stroke-width="2"/>
+<text x="874" y="626" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">GRID6</text>
+<line x1="820" y1="653" x2="838" y2="653" stroke="#087f5b" stroke-width="2"/>
+<text x="802" y="658" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="400" text-anchor="end" fill="#172033">[24] GRID7</text>
+<line x1="838" y1="653" x2="866" y2="653" stroke="#087f5b" stroke-width="2"/>
+<text x="874" y="658" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">GRID7</text>
+<line x1="820" y1="685" x2="838" y2="685" stroke="#087f5b" stroke-width="2"/>
+<text x="802" y="690" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="400" text-anchor="end" fill="#172033">[25] GRID8</text>
+<line x1="838" y1="685" x2="866" y2="685" stroke="#087f5b" stroke-width="2"/>
+<text x="874" y="690" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">GRID8</text>
+<line x1="820" y1="717" x2="838" y2="717" stroke="#087f5b" stroke-width="2"/>
+<text x="802" y="722" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="400" text-anchor="end" fill="#172033">[26] GRID9</text>
+<text x="850" y="722" font-family="DejaVu Sans,Arial,sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#526079">NC</text>
+<line x1="820" y1="749" x2="838" y2="749" stroke="#087f5b" stroke-width="2"/>
+<text x="802" y="754" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="400" text-anchor="end" fill="#172033">[27] GRID10</text>
+<text x="850" y="754" font-family="DejaVu Sans,Arial,sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#526079">NC</text>
+<line x1="820" y1="781" x2="838" y2="781" stroke="#087f5b" stroke-width="2"/>
+<text x="802" y="786" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="400" text-anchor="end" fill="#172033">[28] GRID11</text>
+<text x="850" y="786" font-family="DejaVu Sans,Arial,sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#526079">NC</text>
+<line x1="820" y1="813" x2="838" y2="813" stroke="#087f5b" stroke-width="2"/>
+<text x="802" y="818" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="400" text-anchor="end" fill="#172033">[1] GRID12</text>
+<text x="850" y="818" font-family="DejaVu Sans,Arial,sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#526079">NC</text>
+<line x1="820" y1="845" x2="838" y2="845" stroke="#087f5b" stroke-width="2"/>
+<text x="802" y="850" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="400" text-anchor="end" fill="#172033">[2] GRID13</text>
+<text x="850" y="850" font-family="DejaVu Sans,Arial,sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#526079">NC</text>
+<line x1="820" y1="877" x2="838" y2="877" stroke="#087f5b" stroke-width="2"/>
+<text x="802" y="882" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="400" text-anchor="end" fill="#172033">[3] GRID14</text>
+<text x="850" y="882" font-family="DejaVu Sans,Arial,sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#526079">NC</text>
+<line x1="820" y1="909" x2="838" y2="909" stroke="#087f5b" stroke-width="2"/>
+<text x="802" y="914" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="400" text-anchor="end" fill="#172033">[4] GRID15</text>
+<text x="850" y="914" font-family="DejaVu Sans,Arial,sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#526079">NC</text>
+<line x1="820" y1="941" x2="838" y2="941" stroke="#087f5b" stroke-width="2"/>
+<text x="802" y="946" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="400" text-anchor="end" fill="#172033">[5] GRID16</text>
+<text x="850" y="946" font-family="DejaVu Sans,Arial,sans-serif" font-size="12" font-weight="400" text-anchor="start" fill="#526079">NC</text>
+<line x1="1120" y1="205" x2="1092" y2="205" stroke="#087f5b" stroke-width="2"/>
+<text x="1084" y="210" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#1769aa">SEG1_DRV</text>
+<line x1="1120" y1="205" x2="1155" y2="205" stroke="#087f5b" stroke-width="2"/>
+<rect x="1155" y="194" width="70" height="22" rx="0" stroke="#172033" fill="#ffffff" stroke-width="2"/>
+<line x1="1225" y1="205" x2="1260" y2="205" stroke="#087f5b" stroke-width="2"/>
+<line x1="1260" y1="205" x2="1288" y2="205" stroke="#087f5b" stroke-width="2"/>
+<text x="1296" y="210" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">SEG1</text>
+<text x="1190" y="183" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="middle" fill="#172033">R1 · ОМЛТ 510 Ω</text>
+<line x1="1120" y1="275" x2="1092" y2="275" stroke="#087f5b" stroke-width="2"/>
+<text x="1084" y="280" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#1769aa">SEG2_DRV</text>
+<line x1="1120" y1="275" x2="1155" y2="275" stroke="#087f5b" stroke-width="2"/>
+<rect x="1155" y="264" width="70" height="22" rx="0" stroke="#172033" fill="#ffffff" stroke-width="2"/>
+<line x1="1225" y1="275" x2="1260" y2="275" stroke="#087f5b" stroke-width="2"/>
+<line x1="1260" y1="275" x2="1288" y2="275" stroke="#087f5b" stroke-width="2"/>
+<text x="1296" y="280" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">SEG2</text>
+<text x="1190" y="253" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="middle" fill="#172033">R2 · ОМЛТ 510 Ω</text>
+<line x1="1120" y1="345" x2="1092" y2="345" stroke="#087f5b" stroke-width="2"/>
+<text x="1084" y="350" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#1769aa">SEG3_DRV</text>
+<line x1="1120" y1="345" x2="1155" y2="345" stroke="#087f5b" stroke-width="2"/>
+<rect x="1155" y="334" width="70" height="22" rx="0" stroke="#172033" fill="#ffffff" stroke-width="2"/>
+<line x1="1225" y1="345" x2="1260" y2="345" stroke="#087f5b" stroke-width="2"/>
+<line x1="1260" y1="345" x2="1288" y2="345" stroke="#087f5b" stroke-width="2"/>
+<text x="1296" y="350" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">SEG3</text>
+<text x="1190" y="323" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="middle" fill="#172033">R3 · ОМЛТ 510 Ω</text>
+<line x1="1120" y1="415" x2="1092" y2="415" stroke="#087f5b" stroke-width="2"/>
+<text x="1084" y="420" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#1769aa">SEG4_DRV</text>
+<line x1="1120" y1="415" x2="1155" y2="415" stroke="#087f5b" stroke-width="2"/>
+<rect x="1155" y="404" width="70" height="22" rx="0" stroke="#172033" fill="#ffffff" stroke-width="2"/>
+<line x1="1225" y1="415" x2="1260" y2="415" stroke="#087f5b" stroke-width="2"/>
+<line x1="1260" y1="415" x2="1288" y2="415" stroke="#087f5b" stroke-width="2"/>
+<text x="1296" y="420" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">SEG4</text>
+<text x="1190" y="393" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="middle" fill="#172033">R4 · ОМЛТ 510 Ω</text>
+<line x1="1120" y1="485" x2="1092" y2="485" stroke="#087f5b" stroke-width="2"/>
+<text x="1084" y="490" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#1769aa">SEG5_DRV</text>
+<line x1="1120" y1="485" x2="1155" y2="485" stroke="#087f5b" stroke-width="2"/>
+<rect x="1155" y="474" width="70" height="22" rx="0" stroke="#172033" fill="#ffffff" stroke-width="2"/>
+<line x1="1225" y1="485" x2="1260" y2="485" stroke="#087f5b" stroke-width="2"/>
+<line x1="1260" y1="485" x2="1288" y2="485" stroke="#087f5b" stroke-width="2"/>
+<text x="1296" y="490" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">SEG5</text>
+<text x="1190" y="463" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="middle" fill="#172033">R5 · ОМЛТ 510 Ω</text>
+<line x1="1120" y1="555" x2="1092" y2="555" stroke="#087f5b" stroke-width="2"/>
+<text x="1084" y="560" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#1769aa">SEG6_DRV</text>
+<line x1="1120" y1="555" x2="1155" y2="555" stroke="#087f5b" stroke-width="2"/>
+<rect x="1155" y="544" width="70" height="22" rx="0" stroke="#172033" fill="#ffffff" stroke-width="2"/>
+<line x1="1225" y1="555" x2="1260" y2="555" stroke="#087f5b" stroke-width="2"/>
+<line x1="1260" y1="555" x2="1288" y2="555" stroke="#087f5b" stroke-width="2"/>
+<text x="1296" y="560" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">SEG6</text>
+<text x="1190" y="533" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="middle" fill="#172033">R6 · ОМЛТ 510 Ω</text>
+<line x1="1120" y1="625" x2="1092" y2="625" stroke="#087f5b" stroke-width="2"/>
+<text x="1084" y="630" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#1769aa">SEG7_DRV</text>
+<line x1="1120" y1="625" x2="1155" y2="625" stroke="#087f5b" stroke-width="2"/>
+<rect x="1155" y="614" width="70" height="22" rx="0" stroke="#172033" fill="#ffffff" stroke-width="2"/>
+<line x1="1225" y1="625" x2="1260" y2="625" stroke="#087f5b" stroke-width="2"/>
+<line x1="1260" y1="625" x2="1288" y2="625" stroke="#087f5b" stroke-width="2"/>
+<text x="1296" y="630" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">SEG7</text>
+<text x="1190" y="603" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="middle" fill="#172033">R7 · ОМЛТ 510 Ω</text>
+<line x1="1100" y1="735" x2="1128" y2="735" stroke="#087f5b" stroke-width="2"/>
+<text x="1136" y="740" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#7048e8">GRID1</text>
+<line x1="1100" y1="773" x2="1128" y2="773" stroke="#087f5b" stroke-width="2"/>
+<text x="1136" y="778" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#7048e8">GRID2</text>
+<line x1="1100" y1="811" x2="1128" y2="811" stroke="#087f5b" stroke-width="2"/>
+<text x="1136" y="816" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#7048e8">GRID3</text>
+<line x1="1100" y1="849" x2="1128" y2="849" stroke="#087f5b" stroke-width="2"/>
+<text x="1136" y="854" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#7048e8">GRID4</text>
+<line x1="1100" y1="887" x2="1128" y2="887" stroke="#087f5b" stroke-width="2"/>
+<text x="1136" y="892" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#7048e8">GRID5</text>
+<line x1="1100" y1="925" x2="1128" y2="925" stroke="#087f5b" stroke-width="2"/>
+<text x="1136" y="930" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#7048e8">GRID6</text>
+<line x1="1100" y1="963" x2="1128" y2="963" stroke="#087f5b" stroke-width="2"/>
+<text x="1136" y="968" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#7048e8">GRID7</text>
+<line x1="1100" y1="1001" x2="1128" y2="1001" stroke="#087f5b" stroke-width="2"/>
+<text x="1136" y="1006" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#7048e8">GRID8</text>
+<text x="70" y="175" font-family="DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="700" text-anchor="start" fill="#7048e8">Связь с U1</text>
+<text x="70" y="200" font-family="DejaVu Sans,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="start" fill="#526079">GPIO25 → TM_CLK → SCLK [8]</text>
+<text x="70" y="230" font-family="DejaVu Sans,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="start" fill="#526079">GPIO26 → TM_DIN → DIN [7]</text>
+<text x="70" y="305" font-family="DejaVu Sans,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="start" fill="#526079">+5V → VDD [17]</text>
+<text x="70" y="340" font-family="DejaVu Sans,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="start" fill="#526079">GND → GND [6]</text>
+<line x1="120" y1="455" x2="92" y2="455" stroke="#087f5b" stroke-width="2"/>
+<text x="84" y="460" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#d6336c">+5V</text>
+<line x1="120" y1="455" x2="168" y2="455" stroke="#087f5b" stroke-width="2"/>
+<line x1="168" y1="439" x2="168" y2="471" stroke="#172033" stroke-width="2"/>
+<line x1="192" y1="439" x2="192" y2="471" stroke="#172033" stroke-width="2"/>
+<line x1="192" y1="455" x2="230" y2="455" stroke="#087f5b" stroke-width="2"/>
+<line x1="230" y1="455" x2="230" y2="480" stroke="#087f5b" stroke-width="2"/>
+<line x1="230" y1="480" x2="230" y2="496" stroke="#087f5b" stroke-width="2"/>
+<line x1="212" y1="496" x2="248" y2="496" stroke="#172033" stroke-width="2"/>
+<line x1="218" y1="504" x2="242" y2="504" stroke="#172033" stroke-width="2"/>
+<line x1="224" y1="512" x2="236" y2="512" stroke="#172033" stroke-width="2"/>
+<text x="258" y="508" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" fill="#172033">GND</text>
+<text x="180" y="427" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="middle" fill="#172033">C1 · 100 нФ</text>
+<line x1="120" y1="570" x2="92" y2="570" stroke="#087f5b" stroke-width="2"/>
+<text x="84" y="575" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#d6336c">+5V</text>
+<line x1="120" y1="570" x2="168" y2="570" stroke="#087f5b" stroke-width="2"/>
+<line x1="168" y1="554" x2="168" y2="586" stroke="#172033" stroke-width="2"/>
+<line x1="192" y1="554" x2="192" y2="586" stroke="#172033" stroke-width="2"/>
+<line x1="192" y1="570" x2="230" y2="570" stroke="#087f5b" stroke-width="2"/>
+<line x1="230" y1="570" x2="230" y2="595" stroke="#087f5b" stroke-width="2"/>
+<line x1="230" y1="595" x2="230" y2="611" stroke="#087f5b" stroke-width="2"/>
+<line x1="212" y1="611" x2="248" y2="611" stroke="#172033" stroke-width="2"/>
+<line x1="218" y1="619" x2="242" y2="619" stroke="#172033" stroke-width="2"/>
+<line x1="224" y1="627" x2="236" y2="627" stroke="#172033" stroke-width="2"/>
+<text x="258" y="623" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" fill="#172033">GND</text>
+<text x="180" y="542" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="middle" fill="#172033">C2 · 47–100 мкФ</text>
+<text x="70" y="710" font-family="DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="700" text-anchor="start" fill="#d6336c">Важно</text>
+<text x="70" y="752" font-family="DejaVu Sans,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="start" fill="#d6336c">Питание U2: 5 В.</text>
+<text x="70" y="787" font-family="DejaVu Sans,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="start" fill="#d6336c">Входной уровень 3,3 В</text>
+<text x="70" y="822" font-family="DejaVu Sans,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="start" fill="#d6336c">не гарантирован datasheet.</text>
+<text x="70" y="880" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#526079">C1/C2 разместить у U2.</text>
+<text x="70" y="915" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#526079">SEG8 и GRID9…16: NC.</text>
+<text x="70" y="950" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#526079">HCT-буфер не используется.</text>
+</g>
+<g transform="translate(0 2320)">
+<rect width="1600" height="1120" fill="#ffffff"/>
+<rect x="20" y="20" width="1560" height="1080" rx="0" stroke="#172033" fill="none" stroke-width="2"/>
+<text x="50" y="65" font-family="DejaVu Sans,Arial,sans-serif" font-size="28" font-weight="700" text-anchor="start" fill="#172033">Часы ESP32 · Лист 3/3 — цифры и двоеточия</text>
+<text x="50" y="96" font-family="DejaVu Sans,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="start" fill="#526079">Одна типовая цифра повторяется 6 раз · всего 46 LED · катоды объединяются только внутри своего GRID</text>
+<text x="1550" y="64" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="end" fill="#526079">Рев. 2 · 2026-11-08</text>
+<text x="90" y="145" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="700" text-anchor="start" fill="#7048e8">Типовая цифра DGx</text>
+<text x="90" y="175" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#526079">n — первый номер LED из таблицы ниже</text>
+<line x1="300" y1="240" x2="272" y2="240" stroke="#087f5b" stroke-width="2"/>
+<text x="264" y="245" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#1769aa">SEG1</text>
+<line x1="300" y1="240" x2="365" y2="240" stroke="#087f5b" stroke-width="2"/>
+<polygon points="365,224 365,256 402,240" stroke="#172033" fill="#ffffff" stroke-width="2"/>
+<line x1="407" y1="222" x2="407" y2="258" stroke="#172033" stroke-width="2"/>
+<line x1="407" y1="240" x2="475" y2="240" stroke="#087f5b" stroke-width="2"/>
+<line x1="388" y1="220" x2="403" y2="205" stroke="#e03131" stroke-width="1.5"/>
+<polygon points="403,205 396,207 402,213" stroke="#e03131" fill="#e03131" stroke-width="1"/>
+<text x="387" y="192" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#172033">D(n+0) · a</text>
+<text x="348" y="246" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="400" text-anchor="end" fill="#526079">A</text>
+<text x="419" y="246" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="400" text-anchor="start" fill="#526079">K</text>
+<line x1="475" y1="240" x2="650" y2="240" stroke="#087f5b" stroke-width="2"/>
+<circle cx="650" cy="240" r="5" stroke="#087f5b" fill="#087f5b" stroke-width="1"/>
+<line x1="300" y1="322" x2="272" y2="322" stroke="#087f5b" stroke-width="2"/>
+<text x="264" y="327" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#1769aa">SEG2</text>
+<line x1="300" y1="322" x2="365" y2="322" stroke="#087f5b" stroke-width="2"/>
+<polygon points="365,306 365,338 402,322" stroke="#172033" fill="#ffffff" stroke-width="2"/>
+<line x1="407" y1="304" x2="407" y2="340" stroke="#172033" stroke-width="2"/>
+<line x1="407" y1="322" x2="475" y2="322" stroke="#087f5b" stroke-width="2"/>
+<line x1="388" y1="302" x2="403" y2="287" stroke="#e03131" stroke-width="1.5"/>
+<polygon points="403,287 396,289 402,295" stroke="#e03131" fill="#e03131" stroke-width="1"/>
+<text x="387" y="274" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#172033">D(n+1) · b</text>
+<text x="348" y="328" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="400" text-anchor="end" fill="#526079">A</text>
+<text x="419" y="328" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="400" text-anchor="start" fill="#526079">K</text>
+<line x1="475" y1="322" x2="650" y2="322" stroke="#087f5b" stroke-width="2"/>
+<circle cx="650" cy="322" r="5" stroke="#087f5b" fill="#087f5b" stroke-width="1"/>
+<line x1="300" y1="404" x2="272" y2="404" stroke="#087f5b" stroke-width="2"/>
+<text x="264" y="409" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#1769aa">SEG3</text>
+<line x1="300" y1="404" x2="365" y2="404" stroke="#087f5b" stroke-width="2"/>
+<polygon points="365,388 365,420 402,404" stroke="#172033" fill="#ffffff" stroke-width="2"/>
+<line x1="407" y1="386" x2="407" y2="422" stroke="#172033" stroke-width="2"/>
+<line x1="407" y1="404" x2="475" y2="404" stroke="#087f5b" stroke-width="2"/>
+<line x1="388" y1="384" x2="403" y2="369" stroke="#e03131" stroke-width="1.5"/>
+<polygon points="403,369 396,371 402,377" stroke="#e03131" fill="#e03131" stroke-width="1"/>
+<text x="387" y="356" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#172033">D(n+2) · c</text>
+<text x="348" y="410" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="400" text-anchor="end" fill="#526079">A</text>
+<text x="419" y="410" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="400" text-anchor="start" fill="#526079">K</text>
+<line x1="475" y1="404" x2="650" y2="404" stroke="#087f5b" stroke-width="2"/>
+<circle cx="650" cy="404" r="5" stroke="#087f5b" fill="#087f5b" stroke-width="1"/>
+<line x1="300" y1="486" x2="272" y2="486" stroke="#087f5b" stroke-width="2"/>
+<text x="264" y="491" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#1769aa">SEG4</text>
+<line x1="300" y1="486" x2="365" y2="486" stroke="#087f5b" stroke-width="2"/>
+<polygon points="365,470 365,502 402,486" stroke="#172033" fill="#ffffff" stroke-width="2"/>
+<line x1="407" y1="468" x2="407" y2="504" stroke="#172033" stroke-width="2"/>
+<line x1="407" y1="486" x2="475" y2="486" stroke="#087f5b" stroke-width="2"/>
+<line x1="388" y1="466" x2="403" y2="451" stroke="#e03131" stroke-width="1.5"/>
+<polygon points="403,451 396,453 402,459" stroke="#e03131" fill="#e03131" stroke-width="1"/>
+<text x="387" y="438" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#172033">D(n+3) · d</text>
+<text x="348" y="492" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="400" text-anchor="end" fill="#526079">A</text>
+<text x="419" y="492" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="400" text-anchor="start" fill="#526079">K</text>
+<line x1="475" y1="486" x2="650" y2="486" stroke="#087f5b" stroke-width="2"/>
+<circle cx="650" cy="486" r="5" stroke="#087f5b" fill="#087f5b" stroke-width="1"/>
+<line x1="300" y1="568" x2="272" y2="568" stroke="#087f5b" stroke-width="2"/>
+<text x="264" y="573" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#1769aa">SEG5</text>
+<line x1="300" y1="568" x2="365" y2="568" stroke="#087f5b" stroke-width="2"/>
+<polygon points="365,552 365,584 402,568" stroke="#172033" fill="#ffffff" stroke-width="2"/>
+<line x1="407" y1="550" x2="407" y2="586" stroke="#172033" stroke-width="2"/>
+<line x1="407" y1="568" x2="475" y2="568" stroke="#087f5b" stroke-width="2"/>
+<line x1="388" y1="548" x2="403" y2="533" stroke="#e03131" stroke-width="1.5"/>
+<polygon points="403,533 396,535 402,541" stroke="#e03131" fill="#e03131" stroke-width="1"/>
+<text x="387" y="520" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#172033">D(n+4) · e</text>
+<text x="348" y="574" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="400" text-anchor="end" fill="#526079">A</text>
+<text x="419" y="574" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="400" text-anchor="start" fill="#526079">K</text>
+<line x1="475" y1="568" x2="650" y2="568" stroke="#087f5b" stroke-width="2"/>
+<circle cx="650" cy="568" r="5" stroke="#087f5b" fill="#087f5b" stroke-width="1"/>
+<line x1="300" y1="650" x2="272" y2="650" stroke="#087f5b" stroke-width="2"/>
+<text x="264" y="655" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#1769aa">SEG6</text>
+<line x1="300" y1="650" x2="365" y2="650" stroke="#087f5b" stroke-width="2"/>
+<polygon points="365,634 365,666 402,650" stroke="#172033" fill="#ffffff" stroke-width="2"/>
+<line x1="407" y1="632" x2="407" y2="668" stroke="#172033" stroke-width="2"/>
+<line x1="407" y1="650" x2="475" y2="650" stroke="#087f5b" stroke-width="2"/>
+<line x1="388" y1="630" x2="403" y2="615" stroke="#e03131" stroke-width="1.5"/>
+<polygon points="403,615 396,617 402,623" stroke="#e03131" fill="#e03131" stroke-width="1"/>
+<text x="387" y="602" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#172033">D(n+5) · f</text>
+<text x="348" y="656" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="400" text-anchor="end" fill="#526079">A</text>
+<text x="419" y="656" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="400" text-anchor="start" fill="#526079">K</text>
+<line x1="475" y1="650" x2="650" y2="650" stroke="#087f5b" stroke-width="2"/>
+<circle cx="650" cy="650" r="5" stroke="#087f5b" fill="#087f5b" stroke-width="1"/>
+<line x1="300" y1="732" x2="272" y2="732" stroke="#087f5b" stroke-width="2"/>
+<text x="264" y="737" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#1769aa">SEG7</text>
+<line x1="300" y1="732" x2="365" y2="732" stroke="#087f5b" stroke-width="2"/>
+<polygon points="365,716 365,748 402,732" stroke="#172033" fill="#ffffff" stroke-width="2"/>
+<line x1="407" y1="714" x2="407" y2="750" stroke="#172033" stroke-width="2"/>
+<line x1="407" y1="732" x2="475" y2="732" stroke="#087f5b" stroke-width="2"/>
+<line x1="388" y1="712" x2="403" y2="697" stroke="#e03131" stroke-width="1.5"/>
+<polygon points="403,697 396,699 402,705" stroke="#e03131" fill="#e03131" stroke-width="1"/>
+<text x="387" y="684" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#172033">D(n+6) · g</text>
+<text x="348" y="738" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="400" text-anchor="end" fill="#526079">A</text>
+<text x="419" y="738" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="400" text-anchor="start" fill="#526079">K</text>
+<line x1="475" y1="732" x2="650" y2="732" stroke="#087f5b" stroke-width="2"/>
+<circle cx="650" cy="732" r="5" stroke="#087f5b" fill="#087f5b" stroke-width="1"/>
+<line x1="650" y1="240" x2="650" y2="797" stroke="#087f5b" stroke-width="3"/>
+<line x1="650" y1="797" x2="678" y2="797" stroke="#087f5b" stroke-width="2"/>
+<text x="686" y="802" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#7048e8">GRIDx</text>
+<text x="90" y="855" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="700" text-anchor="start" fill="#7048e8">Двоеточие COLx</text>
+<line x1="190" y1="930" x2="162" y2="930" stroke="#087f5b" stroke-width="2"/>
+<text x="154" y="935" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#1769aa">SEG1</text>
+<line x1="190" y1="930" x2="255" y2="930" stroke="#087f5b" stroke-width="2"/>
+<polygon points="255,914 255,946 292,930" stroke="#172033" fill="#ffffff" stroke-width="2"/>
+<line x1="297" y1="912" x2="297" y2="948" stroke="#172033" stroke-width="2"/>
+<line x1="297" y1="930" x2="365" y2="930" stroke="#087f5b" stroke-width="2"/>
+<line x1="278" y1="910" x2="293" y2="895" stroke="#e03131" stroke-width="1.5"/>
+<polygon points="293,895 286,897 292,903" stroke="#e03131" fill="#e03131" stroke-width="1"/>
+<text x="277" y="882" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#172033">D(c) · upper</text>
+<text x="238" y="936" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="400" text-anchor="end" fill="#526079">A</text>
+<text x="309" y="936" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="400" text-anchor="start" fill="#526079">K</text>
+<line x1="190" y1="1020" x2="162" y2="1020" stroke="#087f5b" stroke-width="2"/>
+<text x="154" y="1025" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#1769aa">SEG2</text>
+<line x1="190" y1="1020" x2="255" y2="1020" stroke="#087f5b" stroke-width="2"/>
+<polygon points="255,1004 255,1036 292,1020" stroke="#172033" fill="#ffffff" stroke-width="2"/>
+<line x1="297" y1="1002" x2="297" y2="1038" stroke="#172033" stroke-width="2"/>
+<line x1="297" y1="1020" x2="365" y2="1020" stroke="#087f5b" stroke-width="2"/>
+<line x1="278" y1="1000" x2="293" y2="985" stroke="#e03131" stroke-width="1.5"/>
+<polygon points="293,985 286,987 292,993" stroke="#e03131" fill="#e03131" stroke-width="1"/>
+<text x="277" y="972" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#172033">D(c+1) · lower</text>
+<text x="238" y="1026" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="400" text-anchor="end" fill="#526079">A</text>
+<text x="309" y="1026" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="400" text-anchor="start" fill="#526079">K</text>
+<line x1="365" y1="930" x2="560" y2="930" stroke="#087f5b" stroke-width="2"/>
+<line x1="365" y1="1020" x2="560" y2="1020" stroke="#087f5b" stroke-width="2"/>
+<line x1="560" y1="930" x2="560" y2="1020" stroke="#087f5b" stroke-width="3"/>
+<circle cx="560" cy="930" r="5" stroke="#087f5b" fill="#087f5b" stroke-width="1"/>
+<circle cx="560" cy="1020" r="5" stroke="#087f5b" fill="#087f5b" stroke-width="1"/>
+<line x1="560" y1="1020" x2="588" y2="1020" stroke="#087f5b" stroke-width="2"/>
+<text x="596" y="1025" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#7048e8">GRIDx</text>
+<text x="900" y="150" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="700" text-anchor="start" fill="#7048e8">Назначение модулей и LED</text>
+<text x="900" y="195" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#172033">Модуль</text>
+<text x="1100" y="195" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#172033">GRID</text>
+<text x="1200" y="195" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#172033">RAM</text>
+<text x="1320" y="195" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#172033">LED / n или c</text>
+<rect x="885" y="215" width="650" height="42" rx="0" stroke="none" fill="#f5f7fb" stroke-width="0"/>
+<text x="900" y="240" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#172033">H1</text>
+<text x="1100" y="240" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#172033">1</text>
+<text x="1200" y="240" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#172033">0</text>
+<text x="1320" y="240" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#172033">D1…D7 / n=1</text>
+<text x="900" y="295" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#172033">H2</text>
+<text x="1100" y="295" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#172033">2</text>
+<text x="1200" y="295" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#172033">1</text>
+<text x="1320" y="295" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#172033">D8…D14 / n=8</text>
+<rect x="885" y="325" width="650" height="42" rx="0" stroke="none" fill="#f5f7fb" stroke-width="0"/>
+<text x="900" y="350" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#172033">C1</text>
+<text x="1100" y="350" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#172033">3</text>
+<text x="1200" y="350" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#172033">2</text>
+<text x="1320" y="350" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#172033">D15,D16 / c=15</text>
+<text x="900" y="405" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#172033">M1</text>
+<text x="1100" y="405" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#172033">4</text>
+<text x="1200" y="405" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#172033">3</text>
+<text x="1320" y="405" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#172033">D17…D23 / n=17</text>
+<rect x="885" y="435" width="650" height="42" rx="0" stroke="none" fill="#f5f7fb" stroke-width="0"/>
+<text x="900" y="460" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#172033">M2</text>
+<text x="1100" y="460" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#172033">5</text>
+<text x="1200" y="460" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#172033">4</text>
+<text x="1320" y="460" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#172033">D24…D30 / n=24</text>
+<text x="900" y="515" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#172033">C2</text>
+<text x="1100" y="515" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#172033">6</text>
+<text x="1200" y="515" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#172033">5</text>
+<text x="1320" y="515" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#172033">D31,D32 / c=31</text>
+<rect x="885" y="545" width="650" height="42" rx="0" stroke="none" fill="#f5f7fb" stroke-width="0"/>
+<text x="900" y="570" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#172033">S1</text>
+<text x="1100" y="570" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#172033">7</text>
+<text x="1200" y="570" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#172033">6</text>
+<text x="1320" y="570" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#172033">D33…D39 / n=33</text>
+<text x="900" y="625" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#172033">S2</text>
+<text x="1100" y="625" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#172033">8</text>
+<text x="1200" y="625" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#172033">7</text>
+<text x="1320" y="625" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#172033">D40…D46 / n=40</text>
+<text x="900" y="745" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="700" text-anchor="start" fill="#7048e8">Правила монтажа</text>
+<text x="900" y="790" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#526079">• SEG1…7 = a,b,c,d,e,f,g.</text>
+<text x="900" y="828" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#526079">• Анод каждого LED — на свой SEG после R.</text>
+<text x="900" y="866" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#526079">• Катоды цифры — на её GRID, не на GND.</text>
+<text x="900" y="904" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#526079">• Двоеточие: upper=SEG1, lower=SEG2.</text>
+<text x="900" y="942" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#526079">• Включено: RAM[colon]=0x03.</text>
+<text x="900" y="980" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#526079">• Выключено: RAM[colon]=0x00.</text>
+<text x="900" y="1018" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#526079">• SEG8/DP и GRID9…16 не используются.</text>
+</g>
 </svg>

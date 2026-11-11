@@ -42,7 +42,7 @@ FONT_BOLD = find_font(False)
 pdfmetrics.registerFont(TTFont("DV", FONT))
 pdfmetrics.registerFont(TTFont("DVB", FONT_BOLD))
 
-W, H = 2400, 1980
+W, H = 1600, 1120
 SEGMENTS = ("a", "b", "c", "d", "e", "f", "g")
 GROUPS = ("H1", "H2", "C1", "M1", "M2", "C2", "S1", "S2")
 GROUP_TITLES = {
@@ -71,7 +71,15 @@ assert len(LEDS) == 46
 TM_LEFT = [("VDD", "17"), ("GND", "6"), ("DIN", "7"), ("SCLK", "8")]
 TM_RIGHT = [(f"SEG{i}", str(i + 8)) for i in range(1, 9)] + [(f"GRID{i}", str(17 + i)) for i in range(1, 9)] + [("GRID9", "26"), ("GRID10", "27"), ("GRID11", "28"), ("GRID12", "1"), ("GRID13", "2"), ("GRID14", "3"), ("GRID15", "4"), ("GRID16", "5")]
 ESP_LEFT = [("5V", "5V"), ("GND", "GND")]
-ESP_RIGHT = [("GPIO25", "25"), ("GPIO26", "26"), ("GPIO32", "32")]
+ESP_RIGHT = [
+    ("GPIO18", "18"), ("GPIO23", "23"), ("GPIO5", "5"),
+    ("GPIO15", "15"), ("GPIO4", "4"), ("GPIO21", "21"),
+    ("GPIO22", "22"), ("GPIO25", "25"), ("GPIO26", "26"),
+    ("GPIO32", "32"),
+]
+TFT_PINS = [("SCLK", "SCLK"), ("MOSI", "SDA"), ("CS", "CS"), ("DC", "DC"),
+            ("RST", "RST"), ("VCC", "VCC"), ("GND", "GND")]
+RTC_PINS = [("SDA", "SDA"), ("SCL", "SCL"), ("VCC", "VCC"), ("GND", "GND")]
 
 
 class Scene:
@@ -101,75 +109,8 @@ class Scene:
                   "end" if side == "left" else "start")
 
 
-def rgb(value):
-    value = COLORS.get(value, value)
-    if value == "none":
-        return None
-    value = value.lstrip("#")
-    return tuple(int(value[i:i + 2], 16) / 255 for i in (0, 2, 4))
-
-
-def write_svg(scene, path):
-    out = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">',
-           '<title>ESP32 TM1640 HH:MM:SS schematic</title>',
-           '<desc>Pictorial crossing-free wiring diagram with ESP32, TM1640 and 46 LEDs</desc>',
-           '<rect width="100%" height="100%" fill="#ffffff"/>']
-    for kind, p in scene.items:
-        if kind == "line":
-            dash = f' stroke-dasharray="{p["dash"]}"' if p["dash"] else ""
-            out.append(f'<line x1="{p["x1"]}" y1="{p["y1"]}" x2="{p["x2"]}" y2="{p["y2"]}" stroke="{COLORS.get(p["color"], p["color"])}" stroke-width="{p["width"]}"{dash}/>')
-        elif kind == "rect":
-            out.append(f'<rect x="{p["x"]}" y="{p["y"]}" width="{p["w"]}" height="{p["h"]}" rx="{p["rx"]}" stroke="{COLORS.get(p["stroke"], p["stroke"])}" fill="{COLORS.get(p["fill"], p["fill"])}" stroke-width="{p["width"]}"/>')
-        elif kind == "circle":
-            out.append(f'<circle cx="{p["x"]}" cy="{p["y"]}" r="{p["r"]}" stroke="{COLORS.get(p["stroke"], p["stroke"])}" fill="{COLORS.get(p["fill"], p["fill"])}" stroke-width="{p["width"]}"/>')
-        elif kind == "polygon":
-            pts = " ".join(f'{x},{y}' for x, y in p["points"])
-            out.append(f'<polygon points="{pts}" stroke="{COLORS.get(p["stroke"], p["stroke"])}" fill="{COLORS.get(p["fill"], p["fill"])}" stroke-width="{p["width"]}"/>')
-        elif kind == "text":
-            weight = "700" if p["bold"] else "400"
-            value = html.escape(str(p["value"]))
-            out.append(f'<text x="{p["x"]}" y="{p["y"]}" font-family="DejaVu Sans,Arial,sans-serif" font-size="{p["size"]}" font-weight="{weight}" text-anchor="{p["anchor"]}" fill="{COLORS.get(p["color"], p["color"])}">{value}</text>')
-    out.append("</svg>")
-    path.write_text("\n".join(out) + "\n", encoding="utf-8")
-
-
-def write_pdf(scene, path):
-    c = pdfcanvas.Canvas(str(path), pagesize=(W, H), pageCompression=1)
-    c.setTitle("ESP32 + TM1640 HH:MM:SS — electrical schematic")
-    c.setAuthor("Clock project")
-    for kind, p in scene.items:
-        if kind == "line":
-            c.setStrokeColorRGB(*rgb(p["color"])); c.setLineWidth(p["width"])
-            if p["dash"]: c.setDash(p["dash"].split(","))
-            c.line(p["x1"], H - p["y1"], p["x2"], H - p["y2"])
-            if p["dash"]: c.setDash()
-        elif kind == "rect":
-            c.setStrokeColorRGB(*rgb(p["stroke"])); c.setLineWidth(p["width"])
-            fill = rgb(p["fill"])
-            if fill: c.setFillColorRGB(*fill)
-            c.roundRect(p["x"], H - p["y"] - p["h"], p["w"], p["h"], p["rx"], stroke=1, fill=1 if fill else 0)
-        elif kind == "circle":
-            c.setStrokeColorRGB(*rgb(p["stroke"])); c.setLineWidth(p["width"])
-            fill = rgb(p["fill"])
-            if fill: c.setFillColorRGB(*fill)
-            c.circle(p["x"], H - p["y"], p["r"], stroke=1, fill=1 if fill else 0)
-        elif kind == "polygon":
-            c.setStrokeColorRGB(*rgb(p["stroke"])); c.setLineWidth(p["width"])
-            fill = rgb(p["fill"])
-            if fill: c.setFillColorRGB(*fill)
-            path_obj = c.beginPath()
-            path_obj.moveTo(p["points"][0][0], H - p["points"][0][1])
-            for x, y in p["points"][1:]: path_obj.lineTo(x, H - y)
-            path_obj.close(); c.drawPath(path_obj, stroke=1, fill=1 if fill else 0)
-        elif kind == "text":
-            c.setFillColorRGB(*rgb(p["color"])); c.setFont("DVB" if p["bold"] else "DV", p["size"])
-            if p["anchor"] == "middle": c.drawCentredString(p["x"], H - p["y"], str(p["value"]))
-            elif p["anchor"] == "end": c.drawRightString(p["x"], H - p["y"], str(p["value"]))
-            else: c.drawString(p["x"], H - p["y"], str(p["value"]))
-    c.showPage(); c.save()
-
-
-from wiring_scene import build_scene
+from electrical_scene import build_scenes
+from electrical_render import write_pdf, write_svg
 
 
 # --------------------------- KiCad generator ---------------------------
@@ -224,6 +165,8 @@ def generate_kicad():
     specs = [
         ("clock:ESP32_MODULE", "U", "ESP32-WROOM-32D", ESP_LEFT, ESP_RIGHT, 40, None, None),
         ("clock:TM1640", "U", "TM1640", TM_LEFT, TM_RIGHT, 55, None, None),
+        ("clock:ST7789_MODULE", "A", "ST7789 284x76", TFT_PINS, [], 35, None, None),
+        ("clock:DS3231_MODULE", "U", "DS3231 RTC", RTC_PINS, [], 30, None, None),
         ("clock:R", "R", "OMLT 510R", [], [], 10, None, "R"),
         ("clock:LED", "D", "LED", [], [], 10, None, "LED"),
         ("clock:C", "C", "C", [], [], 10, None, "C"),
@@ -267,14 +210,21 @@ def generate_kicad():
             nets.append((refdes, pin_name, number, net))
 
     add("clock:ESP32_MODULE", "U1", "ESP32-WROOM-32D", 60, 60,
-        {"5V": "+5V", "GND": "GND", "25": "TM_CLK", "26": "TM_DIN", "32": "COLON_BTN"})
+        {"5V": "+5V", "GND": "GND", "18": "TFT_SCLK", "23": "TFT_MOSI",
+         "5": "TFT_CS", "15": "TFT_DC", "4": "TFT_RST", "21": "I2C_SDA",
+         "22": "I2C_SCL", "25": "TM_CLK", "26": "TM_DIN", "32": "CITY_WIFI_BTN"})
     add("clock:TM1640", "U2", "TM1640", 250, 110,
         {"VDD": "+5V", "GND": "GND", "DIN": "TM_DIN", "SCLK": "TM_CLK", **{f"SEG{i}": f"SEG{i}_DRV" for i in range(1, 8)}, **{f"GRID{i}": f"GRID{i}" for i in range(1, 9)}},
         nc={f"GRID{i}" for i in range(9, 17)} | {"SEG8"})
     add("clock:CONN2", "J1", "+5V input", 30, 110, {"1": "+5V", "2": "GND"})
     add("clock:C", "C1", "100nF", 315, 55, {"1": "+5V", "2": "GND"})
     add("clock:C", "C2", "47-100uF", 315, 75, {"1": "+5V", "2": "GND"})
-    add("clock:SW", "SW1", "Colon mode", 330, 100, {"1": "COLON_BTN", "2": "GND"})
+    add("clock:SW", "SW1", "City / Wi-Fi setup", 330, 100, {"1": "CITY_WIFI_BTN", "2": "GND"})
+    add("clock:ST7789_MODULE", "A1", "ST7789 284x76", 450, 65,
+        {"SCLK": "TFT_SCLK", "MOSI": "TFT_MOSI", "CS": "TFT_CS", "DC": "TFT_DC",
+         "RST": "TFT_RST", "VCC": "VCC_ST7789", "GND": "GND"})
+    add("clock:DS3231_MODULE", "U3", "DS3231 RTC", 560, 65,
+        {"SDA": "I2C_SDA", "SCL": "I2C_SCL", "VCC": "VCC_RTC", "GND": "GND"})
 
     for i in range(7):
         # Driver and LED sides are distinct nets joined only through the resistor.
@@ -298,6 +248,8 @@ def generate_kicad():
         (35, 465, "+5V: U1 5V and U2 VDD. Common GND. C1/C2 next to U2. Direct 3.3V control per user request."),
         (35, 475, "SEG1...7 = a,b,c,d,e,f,g. Colon RAM values: 0x03 ON, 0x00 OFF. DP is omitted."),
         (35, 485, "TM1640 SEG8 and GRID9...16 are not connected. No 74HCT245 is used in this variant."),
+        (35, 495, "A1 ST7789: 18/23/5/15/4. U3 DS3231: SDA21/SCL22, I2C 0x68. VCC per module specification."),
+        (35, 505, "SW1: GPIO32 to GND. Short press selects city; hold 5 s opens Wi-Fi setup; internal pull-up enabled."),
     ]
     for x, y, value in notes: out.append(f'  (text {q(value)} (at {x} {y} 0) {effects(2.5, "left bottom")} (uuid {uid("note-" + value)}))')
     out.append(")")
@@ -339,9 +291,9 @@ def check_sexpr(text):
 
 
 if __name__ == "__main__":
-    scene = build_scene(Scene, LEDS, GROUPS, GROUP_TITLES)
-    write_svg(scene, ROOT / "ESP32_TM1640_HHMMSS.svg")
-    write_pdf(scene, ROOT / "ESP32_TM1640_HHMMSS.pdf")
+    scenes = build_scenes(Scene, TM_LEFT, TM_RIGHT)
+    write_svg(scenes, ROOT / "ESP32_TM1640_HHMMSS.svg", W, H, COLORS)
+    write_pdf(scenes, ROOT / "ESP32_TM1640_HHMMSS.pdf", W, H, COLORS)
     sch, components, nets = generate_kicad()
     check_sexpr(sch.read_text(encoding="utf-8"))
     print(f"Generated PDF/SVG and KiCad schematic: {len(components)} components, {len(LEDS)} LEDs")
