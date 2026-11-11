@@ -1,17 +1,19 @@
 #!/usr/bin/env python3
-"""Generate the breadboard ESP32/DS3231/ST7789/TM1640 Wokwi project."""
+"""Regenerate the complete 52-LED Wokwi diagram (standard library only)."""
 
 import json
 from pathlib import Path
 
 OUT = Path(__file__).with_name("diagram.json")
-parts, connections = [], []
+parts = []
+connections = []
 
 
 def part(part_id, part_type, left, top, attrs=None, rotate=None):
-    item = {"id": part_id, "type": part_type, "left": left, "top": top, "attrs": attrs or {}}
+    item = {"id": part_id, "type": part_type, "left": left, "top": top}
     if rotate is not None:
         item["rotate"] = rotate
+    item["attrs"] = attrs or {}
     parts.append(item)
 
 
@@ -23,108 +25,98 @@ def text(part_id, value, left, top):
     part(part_id, "wokwi-text", left, top, {"text": value})
 
 
-text("title", "ESP32 clock on breadboards — ST7789 + DS3231 + TM1640", 70, 0)
-text("subtitle", "46 LEDs, no DP, 7x OMLT 510R, direct GPIO25/26, button GPIO32-GND", 70, 30)
+text("title", "ESP32 + TM1640 — HH:MM:SS, 52 LEDs", 100, 0)
+text("subtitle", "SEG1…SEG8 = a…g,DP  |  GRID3/6 = colons", 100, 30)
 
-# Controller and peripheral breadboard.
-part("esp", "board-esp32-devkit-c-v4", 20, 800)
-part("bbMain", "wokwi-breadboard-half", 30, 430)
-part("display", "wokwi-st7789", 370, 820,
-     {"width": 284, "height": 76, "offsetX": 0, "offsetY": 0, "rotate": 0, "invertColors": False, "bgr": False})
-part("rtc", "wokwi-ds3231", 740, 820)
-part("cityButton", "wokwi-pushbutton", 980, 830,
-     {"color": "orange", "label": "City / hold 5s Wi-Fi", "key": "C", "bounce": "0"})
-text("mainLabel", "BB1: ESP32 peripherals and button", 45, 400)
+part("esp", "board-esp32-devkit-c-v4", 40, 650)
+part("level", "chip-hct245", 390, 690)
+part("driver", "chip-tm1640", 760, 620)
+part("colonButton", "wokwi-pushbutton", 1120, 670,
+     {"color": "orange", "label": "C: colon mode", "key": "C", "bounce": "0"})
+part("dpButton", "wokwi-pushbutton", 1120, 800,
+     {"color": "blue", "label": "D: decimal points", "key": "D", "bounce": "0"})
+text("powerNote", "Real hardware: 5 V, common GND, 100 nF + 100 uF near TM1640", 390, 970)
+text("buttonsNote", "C: steady / 1 Hz / off\nD: decimal points", 1120, 900)
 
-# Driver breadboard and custom TM1640.
-part("bbDriver", "wokwi-breadboard-half", 650, 430)
-part("driver", "chip-tm1640", 1030, 440)
-part("displayNote", "wokwi-text", 1030, 710, {"text": "BB2: TM1640, 7 resistors, SEG/GRID harness"})
-text("warning", "Real hardware: direct 3.3 V control is not guaranteed at TM1640 VDD=5 V", 1030, 745)
+segment_colors = [
+    "#e53935", "#fb8c00", "#fdd835", "#43a047",
+    "#1e88e5", "#8e24aa", "#d81b60", "#90a4ae",
+]
+segments = ("a", "b", "c", "d", "e", "f", "g", "DP")
+for index, segment in enumerate(segments, 1):
+    part(f"seg{index}", "wokwi-resistor", 100 + (index - 1) * 125, 470,
+         {"value": "330"}, rotate=90)
+    text(f"segLabel{index}", f"SEG{index} / {segment}", 80 + (index - 1) * 125, 430)
+    wire(f"driver:SEG{index}", f"seg{index}:1", segment_colors[index - 1])
 
-# Seven resistors across the central gap of BB2, rows 1...7.
-for i in range(7):
-    part(f"seg{i + 1}", "wokwi-resistor", 650 + i * 85, 760, {"value": "510"}, rotate=90)
-    wire(f"driver:SEG{i + 1}", f"bbDriver:{i + 1}t.a", "#e53935")
-    wire(f"bbDriver:{i + 1}t.e", f"seg{i + 1}:1", "#e53935")
-    wire(f"seg{i + 1}:2", f"bbDriver:{i + 1}b.f", "#e53935")
-
-# Power rails and direct TM1640 signals through breadboard rows.
-wire("esp:5V", "bbMain:tp.1", "red")
-wire("bbMain:tp.2", "bbDriver:tp.1", "red")
-wire("bbDriver:tp.17", "driver:VDD", "red")
-wire("esp:GND", "bbMain:tn.1", "black")
-wire("bbMain:tn.2", "bbDriver:tn.1", "black")
-wire("bbDriver:tn.6", "driver:GND", "black")
-wire("esp:25", "bbMain:5t.a", "#1e88e5")
-wire("bbMain:5t.e", "bbDriver:25t.a", "#1e88e5")
-wire("bbDriver:25t.e", "driver:SCLK", "#1e88e5")
-wire("esp:26", "bbMain:6t.a", "#8e24aa")
-wire("bbMain:6t.e", "bbDriver:26t.a", "#8e24aa")
-wire("bbDriver:26t.e", "driver:DIN", "#8e24aa")
-
-# DS3231 on I2C rows 10/11 of BB1.
-wire("esp:21", "bbMain:10t.a", "green")
-wire("bbMain:10t.e", "rtc:SDA", "green")
-wire("esp:22", "bbMain:11t.a", "#1e88e5")
-wire("bbMain:11t.e", "rtc:SCL", "#1e88e5")
-wire("bbMain:tp.10", "rtc:VCC", "red")
-wire("bbMain:tn.10", "rtc:GND", "black")
-
-# ST7789 on rows 12...16 of BB1. VCC/backlight are 3.3 V in this virtual module.
-for gpio, row, pin, color in ((18, 12, "SCLK", "#fb8c00"), (23, 13, "MOSI", "#1e88e5"),
-                              (5, 14, "CS", "#fdd835"), (15, 15, "DC", "#43a047"), (4, 16, "RST", "#8e24aa")):
-    wire(f"esp:{gpio}", f"bbMain:{row}t.a", color)
-    wire(f"bbMain:{row}t.e", f"display:{pin}", color)
-wire("esp:3V3", "display:VCC", "red")
-wire("esp:3V3", "display:BLK", "red")
-wire("bbMain:tn.16", "display:GND", "black")
-
-# Existing button: short press selects a city; holding five seconds shows Wi-Fi setup.
-wire("esp:32", "bbMain:20t.a", "#fb8c00")
-wire("bbMain:20t.e", "cityButton:1.l", "#fb8c00")
-wire("cityButton:2.l", "bbMain:tn.20", "black")
-
-# LED scoreboard: GRID1/2 H1/H2, GRID3 colon, GRID4/5 M1/M2,
-# GRID6 colon, GRID7/8 S1/S2. No decimal points.
-segments = ("a", "b", "c", "d", "e", "f", "g")
-segment_positions = {
-    "a": (45, 0, 90), "f": (0, 42, 0), "b": (85, 42, 0),
-    "g": (45, 76, 90), "e": (0, 115, 0), "c": (85, 115, 0),
-    "d": (45, 150, 0),
-}
-segment_colors = ("#e53935", "#fb8c00", "#fdd835", "#43a047", "#1e88e5", "#8e24aa", "#d81b60")
-items = ("H1", "H2", "C1", "M1", "M2", "C2", "S1", "S2")
-x = 70
-led_count = 0
+# Placement and RAM mapping: H1,H2,colon,M1,M2,colon,S1,S2 = GRID1…GRID8.
+items = ["H1", "H2", "C1", "M1", "M2", "C2", "S1", "S2"]
+x = 100
+positions = {}
 for grid, name in enumerate(items, 1):
-    text(f"label{name}", f"{name} / GRID{grid}", x, 65)
+    positions[name] = (x, grid)
     if name.startswith("C"):
-        for suffix, dy, seg in (("upper", 65, 1), ("lower", 115, 2)):
-            led_id = f"{name}_{suffix}"
-            part(led_id, "wokwi-led", x, 90 + dy, {"color": "red", "label": suffix})
-            wire(f"bbDriver:{seg}b.j", f"{led_id}:A", segment_colors[seg - 1])
-            wire(f"{led_id}:C", f"bbDriver:{9 + grid}t.e", "green")
-            led_count += 1
+        text(f"label{name}", name, x - 5, 55)
         x += 75
+    else:
+        text(f"label{name}", name, x + 35, 55)
+        x += 145
+
+segment_positions = {
+    "a": (45, 0, 90),
+    "f": (0, 42, 0),
+    "b": (85, 42, 0),
+    "g": (45, 76, 90),
+    "e": (0, 115, 0),
+    "c": (85, 115, 0),
+    "d": (45, 150, 90),
+    "DP": (105, 150, 0),
+}
+led_count = 0
+for name, (base_x, grid) in positions.items():
+    if name.startswith("C"):
+        # Both dots share GRID3/6; upper dot uses SEG1 and lower dot SEG2.
+        for suffix, dx, dy, seg_index in (("upper", 0, 65, 1), ("lower", 0, 115, 2)):
+            led_id = f"{name}_{suffix}"
+            part(led_id, "wokwi-led", base_x, 90 + dy,
+                 {"color": "red", "label": suffix})
+            wire(f"seg{seg_index}:2", f"{led_id}:A", segment_colors[seg_index - 1])
+            wire(f"{led_id}:C", f"driver:GRID{grid}", "green")
+            led_count += 1
         continue
-    for seg, segment in enumerate(segments, 1):
+
+    for seg_index, segment in enumerate(segments, 1):
         dx, dy, rotation = segment_positions[segment]
         led_id = f"{name}_{segment}"
-        part(led_id, "wokwi-led", x + dx, 90 + dy,
+        part(led_id, "wokwi-led", base_x + dx, 90 + dy,
              {"color": "red", "label": segment}, rotate=rotation)
-        wire(f"bbDriver:{seg}b.j", f"{led_id}:A", segment_colors[seg - 1])
-        wire(f"{led_id}:C", f"bbDriver:{9 + grid}t.e", "green")
+        wire(f"seg{seg_index}:2", f"{led_id}:A", segment_colors[seg_index - 1])
+        wire(f"{led_id}:C", f"driver:GRID{grid}", "green")
         led_count += 1
-    x += 145
 
-# GRID inputs from TM1640 into the corresponding BB2 rows.
-for grid in range(1, 9):
-    wire(f"driver:GRID{grid}", f"bbDriver:{9 + grid}t.a", "green")
+# Power and the two HCT-buffered TM1640 signals.
+wire("esp:5V", "level:VCC", "red")
+wire("esp:5V", "driver:VDD", "red")
+wire("esp:GND", "level:GND", "black")
+wire("esp:GND", "driver:GND", "black")
+wire("esp:5V", "level:DIR", "red")
+wire("esp:GND", "level:OE", "black")
+wire("esp:25", "level:A1", "#1e88e5")
+wire("esp:26", "level:A2", "#8e24aa")
+wire("level:B1", "driver:SCLK", "#1e88e5")
+wire("level:B2", "driver:DIN", "#8e24aa")
+for index in range(3, 9):
+    wire("esp:GND", f"level:A{index}", "black")
 
+wire("esp:32", "colonButton:1.l", "#fb8c00")
+wire("esp:GND", "colonButton:2.l", "black")
+wire("esp:33", "dpButton:1.l", "#1e88e5")
+wire("esp:GND", "dpButton:2.l", "black")
 wire("esp:TX", "$serialMonitor:RX", "", [])
 wire("esp:RX", "$serialMonitor:TX", "", [])
-assert led_count == 46
+
+assert led_count == 52, led_count
+assert len(parts) == 3 + 2 + 8 + 52 + 20, len(parts)
 
 diagram = {
     "version": 1,
@@ -135,4 +127,4 @@ diagram = {
     "serialMonitor": {"display": "always", "newline": "lf"},
 }
 OUT.write_text(json.dumps(diagram, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-print(f"Wrote {OUT.name}: 2 breadboards, {led_count} LEDs, {len(parts)} parts, {len(connections)} connections")
+print(f"Wrote {OUT.name}: {led_count} LEDs, {len(parts)} parts, {len(connections)} connections")
