@@ -5,9 +5,12 @@
 ## Открыть и запустить
 
 1. Откройте [Wokwi](https://wokwi.com/), создайте **New Project → ESP32**.
-2. Замените `diagram.json` и `sketch.ino` файлами этого каталога.
-3. Добавьте `libraries.txt`, `tm1640.chip.json` и `tm1640.chip.c` в проект. Модель TM1640 — собственный custom chip, исходники включены в ZIP.
-4. Нажмите **Start simulation**.
+2. В редакторе схемы нажмите синюю **«+» → Custom Chip → C**, введите имя **`tm1640`**. Этот шаг обязателен: он регистрирует custom chip в проекте.
+3. Замените содержимое созданных `tm1640.chip.json` и `tm1640.chip.c` файлами этого каталога.
+4. Замените `diagram.json` и `sketch.ino`, добавьте `libraries.txt`.
+5. Нажмите **Start simulation**.
+
+**Не достаточно просто скопировать два файла TM1640 в пустой проект:** сначала создайте custom chip через «+», как описано выше. Иначе Wokwi может не скомпилировать модель, и LED-табло не заработает.
 
 Альтернативно распакуйте `clock-tm1640-wokwi.zip` и импортируйте эти файлы через редактор проекта. Для локального Wokwi CLI `diagram.json` и custom chip используются непосредственно; firmware/ELF в CLI задаётся вашей Arduino/PlatformIO-сборкой.
 
@@ -19,6 +22,14 @@
 - Serial Monitor показывает действия и состояние RTC.
 
 Это демонстрационная Arduino-прошивка Wokwi, не замена основной ESP-IDF-прошивки: Wi-Fi/captive portal, NTP и полноценная многоязычная логика реализованы в `main/clock.c`.
+
+### Если экран пустой
+
+1. Нажмите **Stop**, затем **Start simulation** после сохранения всех файлов.
+2. Serial Monitor должен сразу показать `Breadboard clock starting...`, затем `ST7789 initialized...`. На TFT до обращения к RTC появляется оранжевая надпись **`CLOCK START`**.
+3. Откройте вкладку **Chips Console**. Исправно загруженная модель выводит `TM1640 custom chip initialized`, затем `RAM data received` и `display ON`.
+4. Если сообщения `custom chip initialized` нет, повторите регистрацию через **«+» → Custom Chip → C → tm1640** и замените созданные файлы. Ошибки компиляции отображаются в Chips Console.
+5. Если нет даже первого сообщения Serial Monitor, проверьте, что выбран `sketch.ino` этого проекта и нет ошибок компиляции Arduino-библиотек.
 
 ## Макетные платы
 
