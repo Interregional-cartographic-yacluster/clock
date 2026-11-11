@@ -121,9 +121,21 @@ void update_button() {
 
 void setup() {
   Serial.begin(115200);
+  Serial.println();
+  Serial.println(F("Breadboard clock starting..."));
   pinMode(PIN_CITY_BUTTON, INPUT_PULLUP);
   pinMode(PIN_SCLK, OUTPUT); pinMode(PIN_DIN, OUTPUT);
   digitalWrite(PIN_SCLK, HIGH); digitalWrite(PIN_DIN, HIGH);
+
+  // Paint the TFT before touching the RTC: a visible startup screen also
+  // distinguishes a missing/stalled RTC from a display wiring problem.
+  tft.init(284, 76);
+  tft.setSPISpeed(40000000);
+  tft.setRotation(0);
+  tft.fillScreen(ST77XX_BLACK);
+  tft.setTextColor(ST77XX_ORANGE, ST77XX_BLACK);
+  tft.setTextSize(2); tft.setCursor(8, 24); tft.print(F("CLOCK START"));
+  Serial.println(F("ST7789 initialized; connecting to DS3231..."));
 
   Wire.begin(21, 22);
   rtcAvailable = rtc.begin();
@@ -131,10 +143,6 @@ void setup() {
     rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
     Serial.println(F("DS3231 time set from build timestamp"));
   }
-
-  tft.init(284, 76);
-  tft.setSPISpeed(40000000);
-  tft.setRotation(0);
 
   tm1640_command(TM1640_DATA_AUTO);
   const uint8_t lampTest[8] = {0x7f, 0x7f, 0x03, 0x7f, 0x7f, 0x03, 0x7f, 0x7f};
