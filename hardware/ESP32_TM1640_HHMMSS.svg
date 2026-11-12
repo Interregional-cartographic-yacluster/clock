@@ -315,78 +315,78 @@
 <text x="802" y="860" font-family="DejaVu Sans,Arial,sans-serif" font-size="13" font-weight="400" text-anchor="end" fill="#172033">[15] SEG7</text>
 <line x1="838" y1="855" x2="866" y2="855" stroke="#087f5b" stroke-width="2"/>
 <text x="874" y="860" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">SEG7_DRV</text>
-<line x1="1120" y1="205" x2="1092" y2="205" stroke="#087f5b" stroke-width="2"/>
-<text x="1084" y="210" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#1769aa">SEG1_DRV</text>
-<line x1="1120" y1="205" x2="1155" y2="205" stroke="#087f5b" stroke-width="2"/>
-<rect x="1155" y="194" width="70" height="22" rx="0" stroke="#172033" fill="#ffffff" stroke-width="2"/>
-<line x1="1225" y1="205" x2="1260" y2="205" stroke="#087f5b" stroke-width="2"/>
-<line x1="1260" y1="205" x2="1288" y2="205" stroke="#087f5b" stroke-width="2"/>
-<text x="1296" y="210" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">SEG1</text>
-<text x="1190" y="183" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="middle" fill="#172033">R1 · ОМЛТ 510 Ω</text>
-<line x1="1120" y1="275" x2="1092" y2="275" stroke="#087f5b" stroke-width="2"/>
-<text x="1084" y="280" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#1769aa">SEG2_DRV</text>
-<line x1="1120" y1="275" x2="1155" y2="275" stroke="#087f5b" stroke-width="2"/>
-<rect x="1155" y="264" width="70" height="22" rx="0" stroke="#172033" fill="#ffffff" stroke-width="2"/>
-<line x1="1225" y1="275" x2="1260" y2="275" stroke="#087f5b" stroke-width="2"/>
-<line x1="1260" y1="275" x2="1288" y2="275" stroke="#087f5b" stroke-width="2"/>
-<text x="1296" y="280" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">SEG2</text>
-<text x="1190" y="253" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="middle" fill="#172033">R2 · ОМЛТ 510 Ω</text>
-<line x1="1120" y1="345" x2="1092" y2="345" stroke="#087f5b" stroke-width="2"/>
-<text x="1084" y="350" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#1769aa">SEG3_DRV</text>
-<line x1="1120" y1="345" x2="1155" y2="345" stroke="#087f5b" stroke-width="2"/>
-<rect x="1155" y="334" width="70" height="22" rx="0" stroke="#172033" fill="#ffffff" stroke-width="2"/>
-<line x1="1225" y1="345" x2="1260" y2="345" stroke="#087f5b" stroke-width="2"/>
-<line x1="1260" y1="345" x2="1288" y2="345" stroke="#087f5b" stroke-width="2"/>
-<text x="1296" y="350" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">SEG3</text>
-<text x="1190" y="323" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="middle" fill="#172033">R3 · ОМЛТ 510 Ω</text>
-<line x1="1120" y1="415" x2="1092" y2="415" stroke="#087f5b" stroke-width="2"/>
-<text x="1084" y="420" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#1769aa">SEG4_DRV</text>
-<line x1="1120" y1="415" x2="1155" y2="415" stroke="#087f5b" stroke-width="2"/>
-<rect x="1155" y="404" width="70" height="22" rx="0" stroke="#172033" fill="#ffffff" stroke-width="2"/>
-<line x1="1225" y1="415" x2="1260" y2="415" stroke="#087f5b" stroke-width="2"/>
-<line x1="1260" y1="415" x2="1288" y2="415" stroke="#087f5b" stroke-width="2"/>
-<text x="1296" y="420" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">SEG4</text>
-<text x="1190" y="393" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="middle" fill="#172033">R4 · ОМЛТ 510 Ω</text>
-<line x1="1120" y1="485" x2="1092" y2="485" stroke="#087f5b" stroke-width="2"/>
-<text x="1084" y="490" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#1769aa">SEG5_DRV</text>
-<line x1="1120" y1="485" x2="1155" y2="485" stroke="#087f5b" stroke-width="2"/>
-<rect x="1155" y="474" width="70" height="22" rx="0" stroke="#172033" fill="#ffffff" stroke-width="2"/>
-<line x1="1225" y1="485" x2="1260" y2="485" stroke="#087f5b" stroke-width="2"/>
-<line x1="1260" y1="485" x2="1288" y2="485" stroke="#087f5b" stroke-width="2"/>
-<text x="1296" y="490" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">SEG5</text>
-<text x="1190" y="463" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="middle" fill="#172033">R5 · ОМЛТ 510 Ω</text>
-<line x1="1120" y1="555" x2="1092" y2="555" stroke="#087f5b" stroke-width="2"/>
-<text x="1084" y="560" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#1769aa">SEG6_DRV</text>
-<line x1="1120" y1="555" x2="1155" y2="555" stroke="#087f5b" stroke-width="2"/>
-<rect x="1155" y="544" width="70" height="22" rx="0" stroke="#172033" fill="#ffffff" stroke-width="2"/>
-<line x1="1225" y1="555" x2="1260" y2="555" stroke="#087f5b" stroke-width="2"/>
-<line x1="1260" y1="555" x2="1288" y2="555" stroke="#087f5b" stroke-width="2"/>
-<text x="1296" y="560" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">SEG6</text>
-<text x="1190" y="533" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="middle" fill="#172033">R6 · ОМЛТ 510 Ω</text>
-<line x1="1120" y1="625" x2="1092" y2="625" stroke="#087f5b" stroke-width="2"/>
-<text x="1084" y="630" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#1769aa">SEG7_DRV</text>
-<line x1="1120" y1="625" x2="1155" y2="625" stroke="#087f5b" stroke-width="2"/>
-<rect x="1155" y="614" width="70" height="22" rx="0" stroke="#172033" fill="#ffffff" stroke-width="2"/>
-<line x1="1225" y1="625" x2="1260" y2="625" stroke="#087f5b" stroke-width="2"/>
-<line x1="1260" y1="625" x2="1288" y2="625" stroke="#087f5b" stroke-width="2"/>
-<text x="1296" y="630" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">SEG7</text>
-<text x="1190" y="603" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="middle" fill="#172033">R7 · ОМЛТ 510 Ω</text>
-<line x1="1100" y1="735" x2="1128" y2="735" stroke="#087f5b" stroke-width="2"/>
-<text x="1136" y="740" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#7048e8">GRID1</text>
-<line x1="1100" y1="773" x2="1128" y2="773" stroke="#087f5b" stroke-width="2"/>
-<text x="1136" y="778" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#7048e8">GRID2</text>
-<line x1="1100" y1="811" x2="1128" y2="811" stroke="#087f5b" stroke-width="2"/>
-<text x="1136" y="816" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#7048e8">GRID3</text>
-<line x1="1100" y1="849" x2="1128" y2="849" stroke="#087f5b" stroke-width="2"/>
-<text x="1136" y="854" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#7048e8">GRID4</text>
-<line x1="1100" y1="887" x2="1128" y2="887" stroke="#087f5b" stroke-width="2"/>
-<text x="1136" y="892" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#7048e8">GRID5</text>
-<line x1="1100" y1="925" x2="1128" y2="925" stroke="#087f5b" stroke-width="2"/>
-<text x="1136" y="930" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#7048e8">GRID6</text>
-<line x1="1100" y1="963" x2="1128" y2="963" stroke="#087f5b" stroke-width="2"/>
-<text x="1136" y="968" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#7048e8">GRID7</text>
-<line x1="1100" y1="1001" x2="1128" y2="1001" stroke="#087f5b" stroke-width="2"/>
-<text x="1136" y="1006" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#7048e8">GRID8</text>
+<line x1="1210" y1="205" x2="1182" y2="205" stroke="#087f5b" stroke-width="2"/>
+<text x="1174" y="210" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#1769aa">SEG1_DRV</text>
+<line x1="1210" y1="205" x2="1245" y2="205" stroke="#087f5b" stroke-width="2"/>
+<rect x="1245" y="194" width="70" height="22" rx="0" stroke="#172033" fill="#ffffff" stroke-width="2"/>
+<line x1="1315" y1="205" x2="1350" y2="205" stroke="#087f5b" stroke-width="2"/>
+<line x1="1350" y1="205" x2="1378" y2="205" stroke="#087f5b" stroke-width="2"/>
+<text x="1386" y="210" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">SEG1</text>
+<text x="1280" y="183" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#172033">R1 · 510 Ω</text>
+<line x1="1210" y1="275" x2="1182" y2="275" stroke="#087f5b" stroke-width="2"/>
+<text x="1174" y="280" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#1769aa">SEG2_DRV</text>
+<line x1="1210" y1="275" x2="1245" y2="275" stroke="#087f5b" stroke-width="2"/>
+<rect x="1245" y="264" width="70" height="22" rx="0" stroke="#172033" fill="#ffffff" stroke-width="2"/>
+<line x1="1315" y1="275" x2="1350" y2="275" stroke="#087f5b" stroke-width="2"/>
+<line x1="1350" y1="275" x2="1378" y2="275" stroke="#087f5b" stroke-width="2"/>
+<text x="1386" y="280" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">SEG2</text>
+<text x="1280" y="253" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#172033">R2 · 510 Ω</text>
+<line x1="1210" y1="345" x2="1182" y2="345" stroke="#087f5b" stroke-width="2"/>
+<text x="1174" y="350" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#1769aa">SEG3_DRV</text>
+<line x1="1210" y1="345" x2="1245" y2="345" stroke="#087f5b" stroke-width="2"/>
+<rect x="1245" y="334" width="70" height="22" rx="0" stroke="#172033" fill="#ffffff" stroke-width="2"/>
+<line x1="1315" y1="345" x2="1350" y2="345" stroke="#087f5b" stroke-width="2"/>
+<line x1="1350" y1="345" x2="1378" y2="345" stroke="#087f5b" stroke-width="2"/>
+<text x="1386" y="350" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">SEG3</text>
+<text x="1280" y="323" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#172033">R3 · 510 Ω</text>
+<line x1="1210" y1="415" x2="1182" y2="415" stroke="#087f5b" stroke-width="2"/>
+<text x="1174" y="420" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#1769aa">SEG4_DRV</text>
+<line x1="1210" y1="415" x2="1245" y2="415" stroke="#087f5b" stroke-width="2"/>
+<rect x="1245" y="404" width="70" height="22" rx="0" stroke="#172033" fill="#ffffff" stroke-width="2"/>
+<line x1="1315" y1="415" x2="1350" y2="415" stroke="#087f5b" stroke-width="2"/>
+<line x1="1350" y1="415" x2="1378" y2="415" stroke="#087f5b" stroke-width="2"/>
+<text x="1386" y="420" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">SEG4</text>
+<text x="1280" y="393" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#172033">R4 · 510 Ω</text>
+<line x1="1210" y1="485" x2="1182" y2="485" stroke="#087f5b" stroke-width="2"/>
+<text x="1174" y="490" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#1769aa">SEG5_DRV</text>
+<line x1="1210" y1="485" x2="1245" y2="485" stroke="#087f5b" stroke-width="2"/>
+<rect x="1245" y="474" width="70" height="22" rx="0" stroke="#172033" fill="#ffffff" stroke-width="2"/>
+<line x1="1315" y1="485" x2="1350" y2="485" stroke="#087f5b" stroke-width="2"/>
+<line x1="1350" y1="485" x2="1378" y2="485" stroke="#087f5b" stroke-width="2"/>
+<text x="1386" y="490" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">SEG5</text>
+<text x="1280" y="463" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#172033">R5 · 510 Ω</text>
+<line x1="1210" y1="555" x2="1182" y2="555" stroke="#087f5b" stroke-width="2"/>
+<text x="1174" y="560" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#1769aa">SEG6_DRV</text>
+<line x1="1210" y1="555" x2="1245" y2="555" stroke="#087f5b" stroke-width="2"/>
+<rect x="1245" y="544" width="70" height="22" rx="0" stroke="#172033" fill="#ffffff" stroke-width="2"/>
+<line x1="1315" y1="555" x2="1350" y2="555" stroke="#087f5b" stroke-width="2"/>
+<line x1="1350" y1="555" x2="1378" y2="555" stroke="#087f5b" stroke-width="2"/>
+<text x="1386" y="560" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">SEG6</text>
+<text x="1280" y="533" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#172033">R6 · 510 Ω</text>
+<line x1="1210" y1="625" x2="1182" y2="625" stroke="#087f5b" stroke-width="2"/>
+<text x="1174" y="630" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#1769aa">SEG7_DRV</text>
+<line x1="1210" y1="625" x2="1245" y2="625" stroke="#087f5b" stroke-width="2"/>
+<rect x="1245" y="614" width="70" height="22" rx="0" stroke="#172033" fill="#ffffff" stroke-width="2"/>
+<line x1="1315" y1="625" x2="1350" y2="625" stroke="#087f5b" stroke-width="2"/>
+<line x1="1350" y1="625" x2="1378" y2="625" stroke="#087f5b" stroke-width="2"/>
+<text x="1386" y="630" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">SEG7</text>
+<text x="1280" y="603" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#172033">R7 · 510 Ω</text>
+<line x1="1060" y1="750" x2="1088" y2="750" stroke="#087f5b" stroke-width="2"/>
+<text x="1096" y="755" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#7048e8">GRID1</text>
+<line x1="1060" y1="786" x2="1088" y2="786" stroke="#087f5b" stroke-width="2"/>
+<text x="1096" y="791" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#7048e8">GRID2</text>
+<line x1="1060" y1="822" x2="1088" y2="822" stroke="#087f5b" stroke-width="2"/>
+<text x="1096" y="827" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#7048e8">GRID3</text>
+<line x1="1060" y1="858" x2="1088" y2="858" stroke="#087f5b" stroke-width="2"/>
+<text x="1096" y="863" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#7048e8">GRID4</text>
+<line x1="1060" y1="894" x2="1088" y2="894" stroke="#087f5b" stroke-width="2"/>
+<text x="1096" y="899" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#7048e8">GRID5</text>
+<line x1="1060" y1="930" x2="1088" y2="930" stroke="#087f5b" stroke-width="2"/>
+<text x="1096" y="935" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#7048e8">GRID6</text>
+<line x1="1060" y1="966" x2="1088" y2="966" stroke="#087f5b" stroke-width="2"/>
+<text x="1096" y="971" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#7048e8">GRID7</text>
+<line x1="1060" y1="1002" x2="1088" y2="1002" stroke="#087f5b" stroke-width="2"/>
+<text x="1096" y="1007" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#7048e8">GRID8</text>
 <text x="70" y="175" font-family="DejaVu Sans,Arial,sans-serif" font-size="19" font-weight="700" text-anchor="start" fill="#7048e8">Связь с U1</text>
 <text x="70" y="200" font-family="DejaVu Sans,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="start" fill="#526079">GPIO25 → TM_CLK → SCLK [8]</text>
 <text x="70" y="230" font-family="DejaVu Sans,Arial,sans-serif" font-size="16" font-weight="400" text-anchor="start" fill="#526079">GPIO26 → TM_DIN → DIN [7]</text>
@@ -885,7 +885,7 @@
 <text x="390" y="690" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#526079">a = SEG1 — верхний</text>
 <text x="390" y="725" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#526079">b = SEG2 — верхний правый</text>
 <text x="390" y="760" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#526079">c = SEG3 — нижний правый</text>
-<text x="390" y="795" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#526079">d = SEG5 — нижний</text>
+<text x="390" y="795" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#526079">d = SEG4 — нижний</text>
 <text x="390" y="830" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#526079">e = SEG5 — нижний левый</text>
 <text x="390" y="865" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#526079">f = SEG6 — верхний левый</text>
 <text x="390" y="900" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="400" text-anchor="start" fill="#526079">g = SEG7 — средний</text>

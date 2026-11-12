@@ -43,7 +43,7 @@ def resistor(s, x, y, refdes, left_net, right_net):
     s.rect(x - 35, y - 11, 70, 22, "ink", "paper", 2)
     s.line(x + 35, y, x + 70, y, "wire", 2)
     net(s, x + 70, y, right_net, "right")
-    s.text(x, y - 22, f"{refdes} · ОМЛТ 510 Ω", 15, "ink", "middle", True)
+    s.text(x, y - 22, f"{refdes} · 510 Ω", 14, "ink", "middle", True)
 
 
 def capacitor(s, x, y, refdes, value):
@@ -181,8 +181,8 @@ def page_driver(Scene, tm_left, tm_right):
         if net_name != "NC": net(s, 838, y, net_name, "right")
         else: s.text(850, y + 5, "NC", 12, "muted")
 
-    for i in range(7): resistor(s, 1190, 205 + i * 70, f"R{i + 1}", f"SEG{i + 1}_DRV", f"SEG{i + 1}")
-    for i in range(8): net(s, 1100, 735 + i * 38, f"GRID{i + 1}", "right", "accent")
+    for i in range(7): resistor(s, 1280, 205 + i * 70, f"R{i + 1}", f"SEG{i + 1}_DRV", f"SEG{i + 1}")
+    for i in range(8): net(s, 1060, 750 + i * 36, f"GRID{i + 1}", "right", "accent")
     s.text(70, 175, "Связь с U1", 19, "accent", bold=True)
     s.text(70, 200, "GPIO25 → TM_CLK → SCLK [8]", 16, "muted")
     s.text(70, 230, "GPIO26 → TM_DIN → DIN [7]", 16, "muted")
@@ -261,7 +261,7 @@ def page_display(Scene):
     s.text(390, 690, "a = SEG1 — верхний", 15, "muted")
     s.text(390, 725, "b = SEG2 — верхний правый", 15, "muted")
     s.text(390, 760, "c = SEG3 — нижний правый", 15, "muted")
-    s.text(390, 795, "d = SEG5 — нижний", 15, "muted")
+    s.text(390, 795, "d = SEG4 — нижний", 15, "muted")
     s.text(390, 830, "e = SEG5 — нижний левый", 15, "muted")
     s.text(390, 865, "f = SEG6 — верхний левый", 15, "muted")
     s.text(390, 900, "g = SEG7 — средний", 15, "muted")
