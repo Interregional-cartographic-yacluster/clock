@@ -244,10 +244,17 @@ def generate_kicad():
             {"1": f"SEG{i + 1}_DRV", "2": f"SEG{i + 1}"})
 
     positions = {}
-    for i, group in enumerate(GROUPS):
-        for j, d in enumerate([x for x in LEDS if x["group"] == group]):
-            x = 35 + i * 140 + (j // 4) * 55
-            y = 320 + (j % 4) * 30
+    # Physical H1 H2 : M1 M2 : S1 S2 arrangement, matching the PDF/SVG sheet.
+    digit_origins = {"H1": 40, "H2": 165, "M1": 335, "M2": 460, "S1": 630, "S2": 755}
+    colon_origins = {"C1": 280, "C2": 580}
+    segment_offsets = {"a": (45, 0), "f": (0, 30), "b": (90, 30), "g": (45, 60),
+                       "e": (0, 90), "c": (90, 90), "d": (45, 120),
+                       "upper": (0, 45), "lower": (0, 95)}
+    for group in GROUPS:
+        for d in [x for x in LEDS if x["group"] == group]:
+            dx, dy = segment_offsets[d["name"]]
+            x = (digit_origins.get(group) or colon_origins[group]) + dx
+            y = 315 + dy
             positions[d["ref"]] = (x, y)
             add("clock:LED", d["ref"], f'{group}_{d["name"]}', x, y, {"A": f'SEG{d["seg"]}', "K": f'GRID{d["grid"]}'})
 
