@@ -1055,10 +1055,20 @@ static void wifi_event_handler(void *arg, esp_event_base_t event_base,
             esp_timer_start_once(wifi_setup_timer, 45000000ULL);
         }
     } else if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_DISCONNECTED) {
+        const wifi_event_sta_disconnected_t *event = (const wifi_event_sta_disconnected_t *)event_data;
+        ESP_LOGW(TAG, "Wi-Fi disconnected, reason %u; reconnect scheduled", event ? event->reason : 0);
         xEventGroupClearBits(wifi_event_group, WIFI_CONNECTED_BIT);
         wifi_gateway_addr.addr = 0;
         wifi_latency_ms = -1;
         schedule_wifi_reconnect();
+    } else if (event_base == IP_EVENT && event_id == IP_EVENT_STA_LOST_IP) {
+        // A DHCP lease can disappear while the radio remains associated. Force
+        // a fresh association/DHCP cycle instead of leaving the panel offline.
+        ESP_LOGW(TAG, "DHCP address lost; restarting Wi-Fi association");
+        xEventGroupClearBits(wifi_event_group, WIFI_CONNECTED_BIT);
+        wifi_gateway_addr.addr = 0;
+        wifi_latency_ms = -1;
+        if (esp_wifi_disconnect() != ESP_OK) schedule_wifi_reconnect();
     } else if (event_base == IP_EVENT && event_id == IP_EVENT_STA_GOT_IP) {
         const ip_event_got_ip_t *event = (ip_event_got_ip_t *)event_data;
         wifi_connection_ready(&event->ip_info);
@@ -1108,6 +1118,9 @@ static void wifi_init(void)
 
     wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
     ESP_ERROR_CHECK(esp_wifi_init(&cfg));
+    // Modem sleep causes missed beacons and disconnects with some access points.
+    // These clocks are mains powered, so reliability is preferable to radio sleep.
+    ESP_ERROR_CHECK(esp_wifi_set_ps(WIFI_PS_NONE));
 
     const esp_timer_create_args_t reconnect_args = {
         .callback = wifi_reconnect_cb,
