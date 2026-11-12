@@ -10,55 +10,114 @@
 <text x="1550" y="64" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="end" fill="#526079">Рев. 2 · 2026-11-08</text>
 <rect x="425" y="155" width="350" height="785" rx="0" stroke="#172033" fill="#e7f0fa" stroke-width="2"/>
 <text x="600.0" y="187" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="700" text-anchor="middle" fill="#172033">U1 · ESP32-WROOM-32D</text>
+<line x1="407" y1="220.0" x2="425" y2="220.0" stroke="#087f5b" stroke-width="2"/>
+<text x="437" y="225.0" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" fill="#172033">3V3  [3V3]</text>
+<line x1="407" y1="258.8888888888889" x2="425" y2="258.8888888888889" stroke="#087f5b" stroke-width="2"/>
+<text x="437" y="263.8888888888889" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" fill="#172033">EN  [EN]</text>
+<line x1="407" y1="297.77777777777777" x2="425" y2="297.77777777777777" stroke="#087f5b" stroke-width="2"/>
+<text x="437" y="302.77777777777777" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" fill="#172033">SVP  [GPIO36]</text>
+<line x1="407" y1="336.6666666666667" x2="425" y2="336.6666666666667" stroke="#087f5b" stroke-width="2"/>
+<text x="437" y="341.6666666666667" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" fill="#172033">SVN  [GPIO39]</text>
+<line x1="407" y1="375.55555555555554" x2="425" y2="375.55555555555554" stroke="#087f5b" stroke-width="2"/>
+<text x="437" y="380.55555555555554" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" fill="#172033">P34  [GPIO34]</text>
+<line x1="407" y1="414.44444444444446" x2="425" y2="414.44444444444446" stroke="#087f5b" stroke-width="2"/>
+<text x="437" y="419.44444444444446" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" fill="#172033">P35  [GPIO35]</text>
+<line x1="407" y1="453.33333333333337" x2="425" y2="453.33333333333337" stroke="#087f5b" stroke-width="2"/>
+<text x="437" y="458.33333333333337" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" fill="#172033">P32  [GPIO32]</text>
+<line x1="407" y1="492.22222222222223" x2="425" y2="492.22222222222223" stroke="#087f5b" stroke-width="2"/>
+<text x="437" y="497.22222222222223" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" fill="#172033">P33  [GPIO33]</text>
+<line x1="407" y1="531.1111111111111" x2="425" y2="531.1111111111111" stroke="#087f5b" stroke-width="2"/>
+<text x="437" y="536.1111111111111" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" fill="#172033">P25  [GPIO25]</text>
+<line x1="407" y1="570.0" x2="425" y2="570.0" stroke="#087f5b" stroke-width="2"/>
+<text x="437" y="575.0" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" fill="#172033">P26  [GPIO26]</text>
+<line x1="407" y1="608.8888888888889" x2="425" y2="608.8888888888889" stroke="#087f5b" stroke-width="2"/>
+<text x="437" y="613.8888888888889" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" fill="#172033">P27  [GPIO27]</text>
+<line x1="407" y1="647.7777777777778" x2="425" y2="647.7777777777778" stroke="#087f5b" stroke-width="2"/>
+<text x="437" y="652.7777777777778" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" fill="#172033">P14  [GPIO14]</text>
+<line x1="407" y1="686.6666666666667" x2="425" y2="686.6666666666667" stroke="#087f5b" stroke-width="2"/>
+<text x="437" y="691.6666666666667" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" fill="#172033">P12  [GPIO12]</text>
+<line x1="407" y1="725.5555555555555" x2="425" y2="725.5555555555555" stroke="#087f5b" stroke-width="2"/>
+<text x="437" y="730.5555555555555" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" fill="#172033">GND  [GND]</text>
+<line x1="407" y1="764.4444444444445" x2="425" y2="764.4444444444445" stroke="#087f5b" stroke-width="2"/>
+<text x="437" y="769.4444444444445" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" fill="#172033">P13  [GPIO13]</text>
+<line x1="407" y1="803.3333333333334" x2="425" y2="803.3333333333334" stroke="#087f5b" stroke-width="2"/>
+<text x="437" y="808.3333333333334" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" fill="#172033">SD2  [GPIO9]</text>
+<line x1="407" y1="842.2222222222222" x2="425" y2="842.2222222222222" stroke="#087f5b" stroke-width="2"/>
+<text x="437" y="847.2222222222222" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" fill="#172033">SD3  [GPIO10]</text>
+<line x1="407" y1="881.1111111111111" x2="425" y2="881.1111111111111" stroke="#087f5b" stroke-width="2"/>
+<text x="437" y="886.1111111111111" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" fill="#172033">CMD  [GPIO11]</text>
+<line x1="407" y1="920.0" x2="425" y2="920.0" stroke="#087f5b" stroke-width="2"/>
+<text x="437" y="925.0" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" fill="#172033">5V  [5V]</text>
+<rect x="425" y="155" width="350" height="785" rx="0" stroke="#172033" fill="#e7f0fa" stroke-width="2"/>
+<text x="600.0" y="187" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="700" text-anchor="middle" fill="#172033"> · </text>
 <line x1="775" y1="220.0" x2="793" y2="220.0" stroke="#087f5b" stroke-width="2"/>
-<text x="763" y="225.0" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="end" fill="#172033">[18]  GPIO18</text>
+<text x="763" y="225.0" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="end" fill="#172033">[GND]  GND</text>
+<line x1="775" y1="258.8888888888889" x2="793" y2="258.8888888888889" stroke="#087f5b" stroke-width="2"/>
+<text x="763" y="263.8888888888889" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="end" fill="#172033">[GPIO23]  P23</text>
 <line x1="775" y1="297.77777777777777" x2="793" y2="297.77777777777777" stroke="#087f5b" stroke-width="2"/>
-<text x="763" y="302.77777777777777" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="end" fill="#172033">[23]  GPIO23</text>
+<text x="763" y="302.77777777777777" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="end" fill="#172033">[GPIO22]  P22</text>
+<line x1="775" y1="336.6666666666667" x2="793" y2="336.6666666666667" stroke="#087f5b" stroke-width="2"/>
+<text x="763" y="341.6666666666667" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="end" fill="#172033">[GPIO1]  TX</text>
 <line x1="775" y1="375.55555555555554" x2="793" y2="375.55555555555554" stroke="#087f5b" stroke-width="2"/>
-<text x="763" y="380.55555555555554" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="end" fill="#172033">[5]  GPIO5</text>
+<text x="763" y="380.55555555555554" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="end" fill="#172033">[GPIO3]  RX</text>
+<line x1="775" y1="414.44444444444446" x2="793" y2="414.44444444444446" stroke="#087f5b" stroke-width="2"/>
+<text x="763" y="419.44444444444446" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="end" fill="#172033">[GPIO21]  P21</text>
 <line x1="775" y1="453.33333333333337" x2="793" y2="453.33333333333337" stroke="#087f5b" stroke-width="2"/>
-<text x="763" y="458.33333333333337" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="end" fill="#172033">[15]  GPIO15</text>
+<text x="763" y="458.33333333333337" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="end" fill="#172033">[GND]  GND</text>
+<line x1="775" y1="492.22222222222223" x2="793" y2="492.22222222222223" stroke="#087f5b" stroke-width="2"/>
+<text x="763" y="497.22222222222223" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="end" fill="#172033">[GPIO19]  P19</text>
 <line x1="775" y1="531.1111111111111" x2="793" y2="531.1111111111111" stroke="#087f5b" stroke-width="2"/>
-<text x="763" y="536.1111111111111" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="end" fill="#172033">[4]  GPIO4</text>
+<text x="763" y="536.1111111111111" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="end" fill="#172033">[GPIO18]  P18</text>
+<line x1="775" y1="570.0" x2="793" y2="570.0" stroke="#087f5b" stroke-width="2"/>
+<text x="763" y="575.0" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="end" fill="#172033">[GPIO5]  P5</text>
 <line x1="775" y1="608.8888888888889" x2="793" y2="608.8888888888889" stroke="#087f5b" stroke-width="2"/>
-<text x="763" y="613.8888888888889" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="end" fill="#172033">[21]  GPIO21</text>
+<text x="763" y="613.8888888888889" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="end" fill="#172033">[GPIO17]  P17</text>
+<line x1="775" y1="647.7777777777778" x2="793" y2="647.7777777777778" stroke="#087f5b" stroke-width="2"/>
+<text x="763" y="652.7777777777778" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="end" fill="#172033">[GPIO16]  P16</text>
 <line x1="775" y1="686.6666666666667" x2="793" y2="686.6666666666667" stroke="#087f5b" stroke-width="2"/>
-<text x="763" y="691.6666666666667" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="end" fill="#172033">[22]  GPIO22</text>
+<text x="763" y="691.6666666666667" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="end" fill="#172033">[GPIO4]  P4</text>
+<line x1="775" y1="725.5555555555555" x2="793" y2="725.5555555555555" stroke="#087f5b" stroke-width="2"/>
+<text x="763" y="730.5555555555555" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="end" fill="#172033">[GPIO0]  P0</text>
 <line x1="775" y1="764.4444444444445" x2="793" y2="764.4444444444445" stroke="#087f5b" stroke-width="2"/>
-<text x="763" y="769.4444444444445" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="end" fill="#172033">[25]  GPIO25</text>
+<text x="763" y="769.4444444444445" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="end" fill="#172033">[GPIO2]  P2</text>
+<line x1="775" y1="803.3333333333334" x2="793" y2="803.3333333333334" stroke="#087f5b" stroke-width="2"/>
+<text x="763" y="808.3333333333334" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="end" fill="#172033">[GPIO15]  P15</text>
 <line x1="775" y1="842.2222222222222" x2="793" y2="842.2222222222222" stroke="#087f5b" stroke-width="2"/>
-<text x="763" y="847.2222222222222" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="end" fill="#172033">[26]  GPIO26</text>
+<text x="763" y="847.2222222222222" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="end" fill="#172033">[GPIO7]  CD0</text>
+<line x1="775" y1="881.1111111111111" x2="793" y2="881.1111111111111" stroke="#087f5b" stroke-width="2"/>
+<text x="763" y="886.1111111111111" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="end" fill="#172033">[GPIO8]  CD1</text>
 <line x1="775" y1="920.0" x2="793" y2="920.0" stroke="#087f5b" stroke-width="2"/>
-<text x="763" y="925.0" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="end" fill="#172033">[32]  GPIO32</text>
-<line x1="425" y1="235" x2="397" y2="235" stroke="#087f5b" stroke-width="2"/>
-<text x="389" y="240" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#d6336c">+5V</text>
-<text x="439" y="240" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" fill="#172033">5V</text>
-<line x1="425" y1="285" x2="397" y2="285" stroke="#087f5b" stroke-width="2"/>
-<text x="389" y="290" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#d6336c">+3V3</text>
-<text x="439" y="290" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" fill="#172033">3V3</text>
-<line x1="425" y1="335" x2="397" y2="335" stroke="#087f5b" stroke-width="2"/>
-<text x="389" y="340" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#172033">GND</text>
-<text x="439" y="340" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="start" fill="#172033">GND</text>
+<text x="763" y="925.0" font-family="DejaVu Sans,Arial,sans-serif" font-size="14" font-weight="400" text-anchor="end" fill="#172033">[GPIO6]  CLK</text>
+<line x1="407" y1="220.0" x2="379" y2="220.0" stroke="#087f5b" stroke-width="2"/>
+<text x="371" y="225.0" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#d6336c">+3V3</text>
+<line x1="407" y1="453.33333333333337" x2="379" y2="453.33333333333337" stroke="#087f5b" stroke-width="2"/>
+<text x="371" y="458.33333333333337" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#1769aa">CITY_WIFI_BTN</text>
+<line x1="407" y1="531.1111111111111" x2="379" y2="531.1111111111111" stroke="#087f5b" stroke-width="2"/>
+<text x="371" y="536.1111111111111" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#1769aa">TM_CLK</text>
+<line x1="407" y1="570.0" x2="379" y2="570.0" stroke="#087f5b" stroke-width="2"/>
+<text x="371" y="575.0" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#1769aa">TM_DIN</text>
+<line x1="407" y1="725.5555555555555" x2="379" y2="725.5555555555555" stroke="#087f5b" stroke-width="2"/>
+<text x="371" y="730.5555555555555" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#1769aa">GND</text>
+<line x1="407" y1="920.0" x2="379" y2="920.0" stroke="#087f5b" stroke-width="2"/>
+<text x="371" y="925.0" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="end" fill="#d6336c">+5V</text>
 <line x1="793" y1="220.0" x2="821" y2="220.0" stroke="#087f5b" stroke-width="2"/>
-<text x="829" y="225.0" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">TFT_SCLK</text>
+<text x="829" y="225.0" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">GND</text>
+<line x1="793" y1="258.8888888888889" x2="821" y2="258.8888888888889" stroke="#087f5b" stroke-width="2"/>
+<text x="829" y="263.8888888888889" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">TFT_MOSI</text>
 <line x1="793" y1="297.77777777777777" x2="821" y2="297.77777777777777" stroke="#087f5b" stroke-width="2"/>
-<text x="829" y="302.77777777777777" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">TFT_MOSI</text>
-<line x1="793" y1="375.55555555555554" x2="821" y2="375.55555555555554" stroke="#087f5b" stroke-width="2"/>
-<text x="829" y="380.55555555555554" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">TFT_CS</text>
+<text x="829" y="302.77777777777777" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">I2C_SCL</text>
+<line x1="793" y1="414.44444444444446" x2="821" y2="414.44444444444446" stroke="#087f5b" stroke-width="2"/>
+<text x="829" y="419.44444444444446" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">I2C_SDA</text>
 <line x1="793" y1="453.33333333333337" x2="821" y2="453.33333333333337" stroke="#087f5b" stroke-width="2"/>
-<text x="829" y="458.33333333333337" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">TFT_DC</text>
+<text x="829" y="458.33333333333337" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">GND</text>
 <line x1="793" y1="531.1111111111111" x2="821" y2="531.1111111111111" stroke="#087f5b" stroke-width="2"/>
-<text x="829" y="536.1111111111111" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">TFT_RST</text>
-<line x1="793" y1="608.8888888888889" x2="821" y2="608.8888888888889" stroke="#087f5b" stroke-width="2"/>
-<text x="829" y="613.8888888888889" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">I2C_SDA</text>
+<text x="829" y="536.1111111111111" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">TFT_SCLK</text>
+<line x1="793" y1="570.0" x2="821" y2="570.0" stroke="#087f5b" stroke-width="2"/>
+<text x="829" y="575.0" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">TFT_CS</text>
 <line x1="793" y1="686.6666666666667" x2="821" y2="686.6666666666667" stroke="#087f5b" stroke-width="2"/>
-<text x="829" y="691.6666666666667" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">I2C_SCL</text>
-<line x1="793" y1="764.4444444444445" x2="821" y2="764.4444444444445" stroke="#087f5b" stroke-width="2"/>
-<text x="829" y="769.4444444444445" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">TM_CLK</text>
-<line x1="793" y1="842.2222222222222" x2="821" y2="842.2222222222222" stroke="#087f5b" stroke-width="2"/>
-<text x="829" y="847.2222222222222" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">TM_DIN</text>
-<line x1="793" y1="920.0" x2="821" y2="920.0" stroke="#087f5b" stroke-width="2"/>
-<text x="829" y="925.0" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">CITY_WIFI_BTN</text>
+<text x="829" y="691.6666666666667" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">TFT_RST</text>
+<line x1="793" y1="803.3333333333334" x2="821" y2="803.3333333333334" stroke="#087f5b" stroke-width="2"/>
+<text x="829" y="808.3333333333334" font-family="DejaVu Sans,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1769aa">TFT_DC</text>
 <rect x="1050" y="145" width="300" height="340" rx="0" stroke="#172033" fill="#e7f0fa" stroke-width="2"/>
 <text x="1200.0" y="177" font-family="DejaVu Sans,Arial,sans-serif" font-size="20" font-weight="700" text-anchor="middle" fill="#172033">A1 · ST7789 284×76</text>
 <line x1="1032" y1="210.0" x2="1050" y2="210.0" stroke="#087f5b" stroke-width="2"/>
