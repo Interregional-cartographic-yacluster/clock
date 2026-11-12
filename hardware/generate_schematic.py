@@ -68,8 +68,15 @@ for grid, group in enumerate(GROUPS, 1):
         ref += 1
 assert len(LEDS) == 46
 
-TM_LEFT = [("VDD", "17"), ("GND", "6"), ("DIN", "7"), ("SCLK", "8")]
-TM_RIGHT = [(f"SEG{i}", str(i + 8)) for i in range(1, 9)] + [(f"GRID{i}", str(17 + i)) for i in range(1, 9)] + [("GRID9", "26"), ("GRID10", "27"), ("GRID11", "28"), ("GRID12", "1"), ("GRID13", "2"), ("GRID14", "3"), ("GRID15", "4"), ("GRID16", "5")]
+# TM1640 SOP28 in physical package order: left 1...14, right 28...15.
+TM_LEFT = [("GRID12", "1"), ("GRID13", "2"), ("GRID14", "3"), ("GRID15", "4"),
+           ("GRID16", "5"), ("GND", "6"), ("DIN", "7"), ("SCLK", "8"),
+           ("SEG1", "9"), ("SEG2", "10"), ("SEG3", "11"), ("SEG4", "12"),
+           ("SEG5", "13"), ("SEG6", "14")]
+TM_RIGHT = [("GRID11", "28"), ("GRID10", "27"), ("GRID9", "26"), ("GRID8", "25"),
+            ("GRID7", "24"), ("GRID6", "23"), ("GRID5", "22"), ("GRID4", "21"),
+            ("GRID3", "20"), ("GRID2", "19"), ("GRID1", "18"), ("VDD", "17"),
+            ("SEG8", "16"), ("SEG7", "15")]
 # Physical order of the user's ESP32-WROOM-32D development board.
 ESP_LEFT = [
     ("3V3", "3V3"), ("EN", "EN"), ("SVP", "GPIO36"), ("SVN", "GPIO39"),
