@@ -19,7 +19,8 @@ def ground(s, x, y):
 
 def module(s, x, y, w, h, refdes, value, pins, side="left"):
     s.rect(x, y, w, h, "ink", "box", 2, 0)
-    s.text(x + w / 2, y + 32, f"{refdes} · {value}", 20, "ink", "middle", True)
+    if refdes or value:
+        s.text(x + w / 2, y + 32, f"{refdes} · {value}", 20, "ink", "middle", True)
     result = {}
     usable = h - 85
     for i, (label, number, net_name) in enumerate(pins):
@@ -98,26 +99,28 @@ def page_control(Scene):
                     "SVP": "GPIO36", "SVN": "GPIO39", "TX": "GPIO1", "RX": "GPIO3",
                     "SD2": "GPIO9", "SD3": "GPIO10", "CMD": "GPIO11",
                     "CD0": "GPIO7", "CD1": "GPIO8", "CLK": "GPIO6"}
-    module(s, 425, 155, 350, 785, "U1", "ESP32-WROOM-32D",
+    module(s, 525, 155, 350, 785, "U1", "ESP32-WROOM-32D",
            [(label, gpio_numbers.get(label, label), net_name or "NC") for label, net_name in left_order], "left")
-    module(s, 425, 155, 350, 785, "", "", [(label, gpio_numbers.get(label, label), net_name or "NC") for label, net_name in right_order], "right")
+    module(s, 525, 155, 350, 785, "", "", [(label, gpio_numbers.get(label, label), net_name or "NC") for label, net_name in right_order], "right")
     for label, net_name in left_order:
         if net_name:
             index = [x[0] for x in left_order].index(label)
             y = 220 + 700 * index / 18
-            net(s, 407, y, net_name, "left", "power" if net_name.startswith("+") else "blue")
+            net(s, 507, y, net_name, "left", "power" if net_name.startswith("+") else "blue")
+    short_names = {"TFT_SCLK": "SCLK", "TFT_MOSI": "MOSI", "TFT_CS": "CS",
+                   "TFT_DC": "DC", "TFT_RST": "RST", "I2C_SDA": "SDA", "I2C_SCL": "SCL"}
     for index, (label, net_name) in enumerate(right_order):
         if net_name:
             y = 220 + 700 * index / 18
-            net(s, 793, y, net_name, "right")
+            net(s, 893, y, short_names.get(net_name, net_name), "right")
 
     tft_pins = [(x, x, n) for x, n in (("SCLK", "TFT_SCLK"), ("MOSI/SDA", "TFT_MOSI"), ("CS", "TFT_CS"), ("DC", "TFT_DC"), ("RST/RES", "TFT_RST"), ("VCC", "+3V3"), ("BL", "GND"), ("GND", "GND"))]
-    tft = module(s, 1050, 145, 300, 340, "A1", "ST7789 284×76", tft_pins)
-    for label, (x, y, net_name) in tft.items(): net(s, x - 18, y, net_name, "left", "power" if label == "VCC" else "blue")
+    tft = module(s, 1150, 145, 300, 340, "A1", "ST7789 284×76", tft_pins)
+    for label, (x, y, net_name) in tft.items(): net(s, x - 18, y, short_names.get(net_name, net_name), "left", "power" if label == "VCC" else "blue")
 
     rtc_pins = [(x, x, n) for x, n in (("SDA", "I2C_SDA"), ("SCL", "I2C_SCL"), ("VCC", "+3V3"), ("GND", "GND"))]
-    rtc = module(s, 1050, 555, 300, 240, "U3", "DS3231 RTC", rtc_pins)
-    for label, (x, y, net_name) in rtc.items(): net(s, x - 18, y, net_name, "left", "power" if label == "VCC" else "blue")
+    rtc = module(s, 1150, 555, 300, 240, "U3", "DS3231 RTC", rtc_pins)
+    for label, (x, y, net_name) in rtc.items(): net(s, x - 18, y, short_names.get(net_name, net_name), "left", "power" if label == "VCC" else "blue")
 
     # Existing front-panel button: normally open, internal ESP32 pull-up enabled.
     net(s, 900, 900, "CITY_WIFI_BTN", "left")
@@ -136,9 +139,9 @@ def page_control(Scene):
     s.text(70, 365, "Питание и примечания", 18, "accent", bold=True)
     notes = [
         "• U1 5V и TM1640 VDD: +5 В; GND общий.",
-        "• ST7789 VCC и DS3231 VCC: +3,3 В от ESP32.",
-        "• ST7789 BL подключён к GND: подсветка постоянно включена.",
-        "• DS3231: SDA → GPIO21, SCL → GPIO22.",
+        "• ST7789 VCC, RTC VCC: 3,3 В.",
+        "• ST7789 BL → GND.",
+        "• RTC: SDA → P21, SCL → P22.",
         "• DS3231: I²C, адрес 0x68.",
         "• TM_CLK/TM_DIN продолжены на листе 2.",
         "• Внешний резистор для SW1 не нужен.",
@@ -193,58 +196,88 @@ def page_driver(Scene, tm_left, tm_right):
     return s
 
 
+def display_led(s, x, y, refdes, segment, grid):
+    """Compact conventional LED placed at its physical seven-segment position."""
+    s.line(x - 24, y, x - 12, y, "wire", 1.5)
+    s.polygon([(x - 12, y - 8), (x - 12, y + 8), (x + 5, y)], "ink", "paper", 1.5)
+    s.line(x + 9, y - 9, x + 9, y + 9, "ink", 1.5)
+    s.line(x + 9, y, x + 24, y, "wire", 1.5)
+    s.line(x + 1, y - 11, x + 8, y - 18, "led", 1)
+    s.polygon([(x + 8, y - 18), (x + 4, y - 17), (x + 8, y - 14)], "led", "led", 0.8)
+    s.text(x, y - 26, f"{refdes} · {segment}", 12, "ink", "middle", True)
+    s.text(x - 28, y + 4, segment, 11, "blue", "end", True)
+    s.text(x + 28, y + 4, f"G{grid}", 10, "accent")
+
+
 def page_display(Scene):
     s = Scene()
-    title(s, 3, "цифры и двоеточия", "Одна типовая цифра повторяется 6 раз · всего 46 LED · катоды объединяются только внутри своего GRID")
-    s.text(90, 145, "Типовая цифра DGx", 20, "accent", bold=True)
-    s.text(90, 175, "n — первый номер LED из таблицы ниже", 15, "muted")
-    rail_x = 650
-    ys = []
-    for i, segment in enumerate(("a", "b", "c", "d", "e", "f", "g"), 1):
-        y = 240 + (i - 1) * 82
-        led(s, 390, y, f"D(n+{i - 1}) · {segment}", i)
-        s.line(475, y, rail_x, y, "wire", 2)
-        s.circle(rail_x, y, 5, "wire", "wire", 1)
-        ys.append(y)
-    s.line(rail_x, ys[0], rail_x, ys[-1] + 65, "wire", 3)
-    net(s, rail_x, ys[-1] + 65, "GRIDx", "right", "accent")
-    s.text(90, 855, "Двоеточие COLx", 20, "accent", bold=True)
-    led(s, 280, 930, "D(c) · upper", 1)
-    led(s, 280, 1020, "D(c+1) · lower", 2)
-    s.line(365, 930, 560, 930, "wire", 2); s.line(365, 1020, 560, 1020, "wire", 2)
-    s.line(560, 930, 560, 1020, "wire", 3)
-    s.circle(560, 930, 5, "wire", "wire", 1); s.circle(560, 1020, 5, "wire", "wire", 1)
-    net(s, 560, 1020, "GRIDx", "right", "accent")
+    title(s, 3, "полное LED-табло", "46 LED в физическом порядке · слева анод/SEG · справа катод: G1…G8 = GRID1…GRID8")
 
-    s.text(900, 150, "Назначение модулей и LED", 20, "accent", bold=True)
-    headers = ("Модуль", "GRID", "RAM", "LED / n или c")
-    xs = (900, 1100, 1200, 1320)
-    for x, value in zip(xs, headers): s.text(x, 195, value, 15, "ink", bold=True)
+    positions = {
+        "a": (0, 0), "f": (-55, 55), "b": (55, 55), "g": (0, 110),
+        "e": (-55, 165), "c": (55, 165), "d": (0, 220),
+    }
+    digits = [
+        ("H1", 120, 1, 1), ("H2", 310, 2, 8),
+        ("M1", 590, 4, 17), ("M2", 780, 5, 24),
+        ("S1", 1060, 7, 33), ("S2", 1250, 8, 40),
+    ]
+    for name, cx, grid, first in digits:
+        s.text(cx, 165, f"{name} · GRID{grid}", 17, "accent", "middle", True)
+        s.text(cx, 190, f"D{first}…D{first + 6}", 13, "muted", "middle")
+        # Thin segment guides show the physical digit shape; they are not wires.
+        s.rect(cx - 83, 218, 166, 278, "light", "none", 1, 8)
+        for i, segment in enumerate(("a", "b", "c", "d", "e", "f", "g")):
+            dx, dy = positions[segment]
+            display_led(s, cx + dx, 260 + dy, f"D{first + i}", segment, grid)
+
+    for name, cx, grid, first in (("C1", 450, 3, 15), ("C2", 920, 6, 31)):
+        s.text(cx, 230, f"{name} · GRID{grid}", 15, "accent", "middle", True)
+        display_led(s, cx, 350, f"D{first}", "upper", grid)
+        display_led(s, cx, 450, f"D{first + 1}", "lower", grid)
+
+    # Large segment-name key, spatially identical to every digit above.
+    s.text(80, 610, "Обозначения сегментов", 20, "accent", bold=True)
+    kx, ky = 210, 680
+    s.text(kx, ky - 35, "a — верхний", 14, "ink", "middle")
+    s.line(kx - 45, ky, kx + 45, ky, "ink", 5)
+    s.text(kx, ky + 20, "a / SEG1", 14, "blue", "middle", True)
+    s.line(kx - 55, ky + 20, kx - 55, ky + 85, "ink", 5)
+    s.text(kx - 75, ky + 58, "f", 15, "blue", "middle", True)
+    s.line(kx + 55, ky + 20, kx + 55, ky + 85, "ink", 5)
+    s.text(kx + 75, ky + 58, "b", 15, "blue", "middle", True)
+    s.line(kx - 45, ky + 105, kx + 45, ky + 105, "ink", 5)
+    s.text(kx, ky + 100, "g / SEG7", 14, "blue", "middle", True)
+    s.line(kx - 55, ky + 125, kx - 55, ky + 190, "ink", 5)
+    s.text(kx - 75, ky + 163, "e", 15, "blue", "middle", True)
+    s.line(kx + 55, ky + 125, kx + 55, ky + 190, "ink", 5)
+    s.text(kx + 75, ky + 163, "c", 15, "blue", "middle", True)
+    s.line(kx - 45, ky + 210, kx + 45, ky + 210, "ink", 5)
+    s.text(kx, ky + 235, "d / SEG4", 14, "blue", "middle", True)
+    s.text(390, 690, "a = SEG1 — верхний", 15, "muted")
+    s.text(390, 725, "b = SEG2 — верхний правый", 15, "muted")
+    s.text(390, 760, "c = SEG3 — нижний правый", 15, "muted")
+    s.text(390, 795, "d = SEG5 — нижний", 15, "muted")
+    s.text(390, 830, "e = SEG5 — нижний левый", 15, "muted")
+    s.text(390, 865, "f = SEG6 — верхний левый", 15, "muted")
+    s.text(390, 900, "g = SEG7 — средний", 15, "muted")
+
+    s.text(850, 610, "Назначение цифр и двоеточий", 20, "accent", bold=True)
+    headers = ("Модуль", "GRID", "RAM", "LED")
+    xs = (850, 1030, 1160, 1320)
+    for x, value in zip(xs, headers): s.text(x, 650, value, 14, "ink", bold=True)
     rows = [
-        ("H1", "1", "0", "D1…D7 / n=1"),
-        ("H2", "2", "1", "D8…D14 / n=8"),
-        ("C1", "3", "2", "D15,D16 / c=15"),
-        ("M1", "4", "3", "D17…D23 / n=17"),
-        ("M2", "5", "4", "D24…D30 / n=24"),
-        ("C2", "6", "5", "D31,D32 / c=31"),
-        ("S1", "7", "6", "D33…D39 / n=33"),
-        ("S2", "8", "7", "D40…D46 / n=40"),
+        ("H1", "1", "0", "D1…D7"), ("H2", "2", "1", "D8…D14"),
+        ("C1", "3", "2", "D15,D16"), ("M1", "4", "3", "D17…D23"),
+        ("M2", "5", "4", "D24…D30"), ("C2", "6", "5", "D31,D32"),
+        ("S1", "7", "6", "D33…D39"), ("S2", "8", "7", "D40…D46"),
     ]
     for row, values in enumerate(rows):
-        y = 240 + row * 55
-        if row % 2 == 0: s.rect(885, y - 25, 650, 42, "none", "light", 0)
-        for x, value in zip(xs, values): s.text(x, y, value, 15, "ink")
-    s.text(900, 745, "Правила монтажа", 20, "accent", bold=True)
-    rules = [
-        "• SEG1…7 = a,b,c,d,e,f,g.",
-        "• Анод каждого LED — на свой SEG после R.",
-        "• Катоды цифры — на её GRID, не на GND.",
-        "• Двоеточие: upper=SEG1, lower=SEG2.",
-        "• Включено: RAM[colon]=0x03.",
-        "• Выключено: RAM[colon]=0x00.",
-        "• SEG8/DP и GRID9…16 не используются.",
-    ]
-    for i, value in enumerate(rules): s.text(900, 790 + i * 38, value, 15, "muted")
+        y = 690 + row * 40
+        if row % 2 == 0: s.rect(835, y - 23, 690, 34, "none", "light", 0)
+        for x, value in zip(xs, values): s.text(x, y, value, 14, "ink")
+    s.text(850, 1035, "Двоеточия: upper = SEG1, lower = SEG2; RAM 0x03 / 0x00.", 14, "muted")
+    s.text(80, 1035, "Катоды каждой цифры — только на её GRID, не на GND. DP отсутствует.", 14, "power")
     return s
 
 
