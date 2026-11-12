@@ -89,14 +89,15 @@ def page_control(Scene):
     ]
     esp = module(s, 425, 155, 350, 785, "U1", "ESP32-WROOM-32D", esp_pins, "right")
     net(s, 425, 235, "+5V", "left", "power"); s.text(439, 240, "5V", 14, "ink")
-    net(s, 425, 285, "GND", "left", "ink"); s.text(439, 290, "GND", 14, "ink")
+    net(s, 425, 285, "+3V3", "left", "power"); s.text(439, 290, "3V3", 14, "ink")
+    net(s, 425, 335, "GND", "left", "ink"); s.text(439, 340, "GND", 14, "ink")
     for label, (x, y, net_name) in esp.items(): net(s, x + 18, y, net_name, "right")
 
-    tft_pins = [(x, x, n) for x, n in (("SCLK", "TFT_SCLK"), ("MOSI/SDA", "TFT_MOSI"), ("CS", "TFT_CS"), ("DC", "TFT_DC"), ("RST/RES", "TFT_RST"), ("VCC", "VCC_ST7789"), ("GND", "GND"))]
+    tft_pins = [(x, x, n) for x, n in (("SCLK", "TFT_SCLK"), ("MOSI/SDA", "TFT_MOSI"), ("CS", "TFT_CS"), ("DC", "TFT_DC"), ("RST/RES", "TFT_RST"), ("VCC", "+3V3"), ("BL", "GND"), ("GND", "GND"))]
     tft = module(s, 1050, 145, 300, 340, "A1", "ST7789 284×76", tft_pins)
     for label, (x, y, net_name) in tft.items(): net(s, x - 18, y, net_name, "left", "power" if label == "VCC" else "blue")
 
-    rtc_pins = [(x, x, n) for x, n in (("SDA", "I2C_SDA"), ("SCL", "I2C_SCL"), ("VCC", "VCC_RTC"), ("GND", "GND"))]
+    rtc_pins = [(x, x, n) for x, n in (("SDA", "I2C_SDA"), ("SCL", "I2C_SCL"), ("VCC", "+3V3"), ("GND", "GND"))]
     rtc = module(s, 1050, 555, 300, 240, "U3", "DS3231 RTC", rtc_pins)
     for label, (x, y, net_name) in rtc.items(): net(s, x - 18, y, net_name, "left", "power" if label == "VCC" else "blue")
 
@@ -117,9 +118,9 @@ def page_control(Scene):
     s.text(70, 365, "Питание и примечания", 18, "accent", bold=True)
     notes = [
         "• U1 5V и TM1640 VDD: +5 В; GND общий.",
-        "• VCC_ST7789: по спецификации модуля.",
-        "• Подсветка ST7789 включена постоянно.",
-        "• VCC_RTC: по спецификации модуля DS3231.",
+        "• ST7789 VCC и DS3231 VCC: +3,3 В от ESP32.",
+        "• ST7789 BL подключён к GND: подсветка постоянно включена.",
+        "• DS3231: SDA → GPIO21, SCL → GPIO22.",
         "• DS3231: I²C, адрес 0x68.",
         "• TM_CLK/TM_DIN продолжены на листе 2.",
         "• Внешний резистор для SW1 не нужен.",

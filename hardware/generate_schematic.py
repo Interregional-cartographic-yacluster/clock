@@ -70,7 +70,7 @@ assert len(LEDS) == 46
 
 TM_LEFT = [("VDD", "17"), ("GND", "6"), ("DIN", "7"), ("SCLK", "8")]
 TM_RIGHT = [(f"SEG{i}", str(i + 8)) for i in range(1, 9)] + [(f"GRID{i}", str(17 + i)) for i in range(1, 9)] + [("GRID9", "26"), ("GRID10", "27"), ("GRID11", "28"), ("GRID12", "1"), ("GRID13", "2"), ("GRID14", "3"), ("GRID15", "4"), ("GRID16", "5")]
-ESP_LEFT = [("5V", "5V"), ("GND", "GND")]
+ESP_LEFT = [("5V", "5V"), ("3V3", "3V3"), ("GND", "GND")]
 ESP_RIGHT = [
     ("GPIO18", "18"), ("GPIO23", "23"), ("GPIO5", "5"),
     ("GPIO15", "15"), ("GPIO4", "4"), ("GPIO21", "21"),
@@ -78,7 +78,7 @@ ESP_RIGHT = [
     ("GPIO32", "32"),
 ]
 TFT_PINS = [("SCLK", "SCLK"), ("MOSI", "SDA"), ("CS", "CS"), ("DC", "DC"),
-            ("RST", "RST"), ("VCC", "VCC"), ("GND", "GND")]
+            ("RST", "RST"), ("VCC", "VCC"), ("BL", "BL"), ("GND", "GND")]
 RTC_PINS = [("SDA", "SDA"), ("SCL", "SCL"), ("VCC", "VCC"), ("GND", "GND")]
 
 
@@ -210,7 +210,7 @@ def generate_kicad():
             nets.append((refdes, pin_name, number, net))
 
     add("clock:ESP32_MODULE", "U1", "ESP32-WROOM-32D", 60, 60,
-        {"5V": "+5V", "GND": "GND", "18": "TFT_SCLK", "23": "TFT_MOSI",
+        {"5V": "+5V", "3V3": "+3V3", "GND": "GND", "18": "TFT_SCLK", "23": "TFT_MOSI",
          "5": "TFT_CS", "15": "TFT_DC", "4": "TFT_RST", "21": "I2C_SDA",
          "22": "I2C_SCL", "25": "TM_CLK", "26": "TM_DIN", "32": "CITY_WIFI_BTN"})
     add("clock:TM1640", "U2", "TM1640", 250, 110,
@@ -222,9 +222,9 @@ def generate_kicad():
     add("clock:SW", "SW1", "City / Wi-Fi setup", 330, 100, {"1": "CITY_WIFI_BTN", "2": "GND"})
     add("clock:ST7789_MODULE", "A1", "ST7789 284x76", 450, 65,
         {"SCLK": "TFT_SCLK", "MOSI": "TFT_MOSI", "CS": "TFT_CS", "DC": "TFT_DC",
-         "RST": "TFT_RST", "VCC": "VCC_ST7789", "GND": "GND"})
+         "RST": "TFT_RST", "VCC": "+3V3", "BL": "GND", "GND": "GND"})
     add("clock:DS3231_MODULE", "U3", "DS3231 RTC", 560, 65,
-        {"SDA": "I2C_SDA", "SCL": "I2C_SCL", "VCC": "VCC_RTC", "GND": "GND"})
+        {"SDA": "I2C_SDA", "SCL": "I2C_SCL", "VCC": "+3V3", "GND": "GND"})
 
     for i in range(7):
         # Driver and LED sides are distinct nets joined only through the resistor.
@@ -245,10 +245,10 @@ def generate_kicad():
         (35, 250, "SEG CURRENT-LIMITING RESISTORS"),
         (35, 295, "46-LED DISPLAY, NO DP: H1 H2 C1 M1 M2 C2 S1 S2"),
         (35, 455, "All cathodes connect to their assigned GRID. Never connect a digit common cathode directly to GND."),
-        (35, 465, "+5V: U1 5V and U2 VDD. Common GND. C1/C2 next to U2. Direct 3.3V control per user request."),
+        (35, 465, "+5V: U1 5V and U2 VDD. +3V3: A1 VCC and U3 VCC. A1 BL=GND. Common GND. C1/C2 next to U2."),
         (35, 475, "SEG1...7 = a,b,c,d,e,f,g. Colon RAM values: 0x03 ON, 0x00 OFF. DP is omitted."),
         (35, 485, "TM1640 SEG8 and GRID9...16 are not connected. No 74HCT245 is used in this variant."),
-        (35, 495, "A1 ST7789: 18/23/5/15/4. U3 DS3231: SDA21/SCL22, I2C 0x68. VCC per module specification."),
+        (35, 495, "A1 ST7789: 18/23/5/15/4, VCC=3V3, BL=GND. U3 DS3231: SDA21/SCL22, VCC=3V3, I2C 0x68."),
         (35, 505, "SW1: GPIO32 to GND. Short press selects city; hold 5 s opens Wi-Fi setup; internal pull-up enabled."),
     ]
     for x, y, value in notes: out.append(f'  (text {q(value)} (at {x} {y} 0) {effects(2.5, "left bottom")} (uuid {uid("note-" + value)}))')
