@@ -158,21 +158,25 @@ def page_control(Scene):
 def page_driver(Scene, tm_left, tm_right):
     s = Scene()
     title(s, 2, "драйвер TM1640", "Прямое управление от ESP32 · DP отсутствует · R1…R7 = ОМЛТ 510 Ω · выходы на лист 3")
-    left = [(name, number, {"VDD": "+5V", "GND": "GND", "DIN": "TM_DIN", "SCLK": "TM_CLK"}[name]) for name, number in tm_left]
-    right = []
-    for name, number in tm_right:
-        if name.startswith("SEG") and int(name[3:]) <= 7: net_name = name + "_DRV"
-        elif name.startswith("GRID") and int(name[4:]) <= 8: net_name = name
-        else: net_name = "NC"
-        right.append((name, number, net_name))
+    def tm_net(name):
+        if name == "VDD": return "+5V"
+        if name == "GND": return "GND"
+        if name == "DIN": return "TM_DIN"
+        if name == "SCLK": return "TM_CLK"
+        if name.startswith("SEG") and int(name[3:]) <= 7: return name + "_DRV"
+        if name.startswith("GRID") and int(name[4:]) <= 8: return name
+        return "NC"
+    left = [(name, number, tm_net(name)) for name, number in tm_left]
+    right = [(name, number, tm_net(name)) for name, number in tm_right]
     s.rect(370, 145, 450, 865, "ink", "box", 2)
     s.text(595, 180, "U2 · TM1640 SOP28", 22, "ink", "middle", True)
     for i, (name, number, net_name) in enumerate(left):
-        y = 260 + i * 100
+        y = 205 + i * 50
         s.line(352, y, 370, y, "wire", 2); s.text(388, y + 5, f"{name} [{number}]", 15, "ink")
-        net(s, 352, y, net_name, "left", "power" if net_name == "+5V" else "blue")
+        if net_name != "NC": net(s, 352, y, net_name, "left", "power" if net_name == "+5V" else "blue")
+        else: s.text(340, y + 5, "NC", 12, "muted", "end")
     for i, (name, number, net_name) in enumerate(right):
-        y = 205 + i * 32
+        y = 205 + i * 50
         s.line(820, y, 838, y, "wire", 2); s.text(802, y + 5, f"[{number}] {name}", 13, "ink", "end")
         if net_name != "NC": net(s, 838, y, net_name, "right")
         else: s.text(850, y + 5, "NC", 12, "muted")
@@ -184,12 +188,12 @@ def page_driver(Scene, tm_left, tm_right):
     s.text(70, 230, "GPIO26 → TM_DIN → DIN [7]", 16, "muted")
     s.text(70, 305, "+5V → VDD [17]", 16, "muted")
     s.text(70, 340, "GND → GND [6]", 16, "muted")
-    capacitor(s, 180, 455, "C1", "100 нФ")
-    capacitor(s, 180, 570, "C2", "47–100 мкФ")
+    capacitor(s, 130, 455, "C1", "100 нФ")
+    capacitor(s, 130, 530, "C2", "47–100 мкФ")
     s.text(70, 710, "Важно", 19, "power", bold=True)
     s.text(70, 752, "Питание U2: 5 В.", 16, "power")
     s.text(70, 787, "Входной уровень 3,3 В", 16, "power")
-    s.text(70, 822, "не гарантирован datasheet.", 16, "power")
+    s.text(70, 822, "не гарантирован.", 16, "power")
     s.text(70, 880, "C1/C2 разместить у U2.", 15, "muted")
     s.text(70, 915, "SEG8 и GRID9…16: NC.", 15, "muted")
     s.text(70, 950, "HCT-буфер не используется.", 15, "muted")
