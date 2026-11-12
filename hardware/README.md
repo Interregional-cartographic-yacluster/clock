@@ -11,7 +11,7 @@
 - **`kicad/ESP32_TM1640_Clock.kicad_pro`** — редактируемый проект KiCad;
 - **`ESP32_TM1640_KiCad.zip`** — архив проекта KiCad;
 - `bom.csv` — 61 компонент;
-- `connections.csv` — 156 подписанных подключений;
+- `connections.csv` — 158 подписанных подключений;
 - `generate_schematic.py`, `electrical_scene.py`, `electrical_render.py` — генераторы документов.
 
 ## Лист 1 — контроллер и периферия
@@ -25,9 +25,11 @@
 | CS | GPIO5 | TFT_CS |
 | DC | GPIO15 | TFT_DC |
 | RST/RES | GPIO4 | TFT_RST |
+| VCC | 3V3 | +3V3 |
+| BL | GND | GND |
 | GND | GND | GND |
 
-`VCC_ST7789` и постоянная подсветка подключаются по спецификации конкретного модуля.
+Подсветка `BL` соединена с GND и включена постоянно; программного управления подсветкой нет.
 
 ### DS3231
 
@@ -35,9 +37,10 @@
 |---|---|---|
 | SDA | GPIO21 | I2C_SDA |
 | SCL | GPIO22 | I2C_SCL |
+| VCC | 3V3 | +3V3 |
 | GND | GND | GND |
 
-Адрес RTC на I²C — `0x68`. `VCC_RTC` выбирается по спецификации модуля DS3231.
+Адрес RTC на I²C — `0x68`. Модуль RTC питается от вывода **3V3 ESP32**.
 
 ### Существующая кнопка SW1
 

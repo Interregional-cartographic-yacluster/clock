@@ -5,7 +5,6 @@
 #include "wokwi-api.h"
 #include <stdbool.h>
 #include <stdint.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -27,8 +26,6 @@ typedef struct {
   bool receiving;
   bool awaiting_command;
   bool display_on;
-  bool reported_display_on;
-  bool reported_ram_data;
 } chip_state_t;
 
 static const char *const SEG_NAMES[8] = {
@@ -81,10 +78,6 @@ static void receive_byte(chip_state_t *chip, uint8_t value) {
       case 0x80: // Display control: 0x80…0x8f.
         chip->display_on = (value & 0x08) != 0;
         chip->brightness = value & 0x07;
-        if (chip->display_on && !chip->reported_display_on) {
-          chip->reported_display_on = true;
-          printf("TM1640: display ON, brightness %u\n", chip->brightness);
-        }
         if (!chip->display_on) {
           clear_outputs(chip);
         }
@@ -107,10 +100,6 @@ static void receive_byte(chip_state_t *chip, uint8_t value) {
   }
 
   chip->ram[chip->address] = value;
-  if (!chip->reported_ram_data) {
-    chip->reported_ram_data = true;
-    printf("TM1640: RAM data received, address 0x%02x\n", chip->address);
-  }
   // 0x44 selects fixed-address mode; 0x40 auto-increments the address.
   if ((chip->data_mode & 0x04) == 0) {
     chip->address = (chip->address + 1) & 0x0f;
@@ -155,7 +144,6 @@ static void on_sclk_change(void *user_data, pin_t pin, uint32_t value) {
 }
 
 void chip_init(void) {
-  printf("TM1640 custom chip initialized\n");
   chip_state_t *chip = calloc(1, sizeof(chip_state_t));
   chip->data_mode = 0x40;
   chip->din = pin_init("DIN", INPUT);
