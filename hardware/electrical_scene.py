@@ -80,18 +80,36 @@ def title(s, page, name, subtitle):
 def page_control(Scene):
     s = Scene()
     title(s, 1, "контроллер и периферия", "Стандартные УГО · линии одного имени электрически соединены · серых условных проводников нет")
-    esp_pins = [
-        ("GPIO18", "18", "TFT_SCLK"), ("GPIO23", "23", "TFT_MOSI"),
-        ("GPIO5", "5", "TFT_CS"), ("GPIO15", "15", "TFT_DC"),
-        ("GPIO4", "4", "TFT_RST"), ("GPIO21", "21", "I2C_SDA"),
-        ("GPIO22", "22", "I2C_SCL"), ("GPIO25", "25", "TM_CLK"),
-        ("GPIO26", "26", "TM_DIN"), ("GPIO32", "32", "CITY_WIFI_BTN"),
+    left_order = [
+        ("3V3", "+3V3"), ("EN", None), ("SVP", None), ("SVN", None),
+        ("P34", None), ("P35", None), ("P32", "CITY_WIFI_BTN"), ("P33", None),
+        ("P25", "TM_CLK"), ("P26", "TM_DIN"), ("P27", None), ("P14", None),
+        ("P12", None), ("GND", "GND"), ("P13", None), ("SD2", None),
+        ("SD3", None), ("CMD", None), ("5V", "+5V"),
     ]
-    esp = module(s, 425, 155, 350, 785, "U1", "ESP32-WROOM-32D", esp_pins, "right")
-    net(s, 425, 235, "+5V", "left", "power"); s.text(439, 240, "5V", 14, "ink")
-    net(s, 425, 285, "+3V3", "left", "power"); s.text(439, 290, "3V3", 14, "ink")
-    net(s, 425, 335, "GND", "left", "ink"); s.text(439, 340, "GND", 14, "ink")
-    for label, (x, y, net_name) in esp.items(): net(s, x + 18, y, net_name, "right")
+    right_order = [
+        ("GND", "GND"), ("P23", "TFT_MOSI"), ("P22", "I2C_SCL"),
+        ("TX", None), ("RX", None), ("P21", "I2C_SDA"), ("GND", "GND"),
+        ("P19", None), ("P18", "TFT_SCLK"), ("P5", "TFT_CS"),
+        ("P17", None), ("P16", None), ("P4", "TFT_RST"), ("P0", None),
+        ("P2", None), ("P15", "TFT_DC"), ("CD0", None), ("CD1", None), ("CLK", None),
+    ]
+    gpio_numbers = {**{f"P{i}": f"GPIO{i}" for i in range(40)},
+                    "SVP": "GPIO36", "SVN": "GPIO39", "TX": "GPIO1", "RX": "GPIO3",
+                    "SD2": "GPIO9", "SD3": "GPIO10", "CMD": "GPIO11",
+                    "CD0": "GPIO7", "CD1": "GPIO8", "CLK": "GPIO6"}
+    module(s, 425, 155, 350, 785, "U1", "ESP32-WROOM-32D",
+           [(label, gpio_numbers.get(label, label), net_name or "NC") for label, net_name in left_order], "left")
+    module(s, 425, 155, 350, 785, "", "", [(label, gpio_numbers.get(label, label), net_name or "NC") for label, net_name in right_order], "right")
+    for label, net_name in left_order:
+        if net_name:
+            index = [x[0] for x in left_order].index(label)
+            y = 220 + 700 * index / 18
+            net(s, 407, y, net_name, "left", "power" if net_name.startswith("+") else "blue")
+    for index, (label, net_name) in enumerate(right_order):
+        if net_name:
+            y = 220 + 700 * index / 18
+            net(s, 793, y, net_name, "right")
 
     tft_pins = [(x, x, n) for x, n in (("SCLK", "TFT_SCLK"), ("MOSI/SDA", "TFT_MOSI"), ("CS", "TFT_CS"), ("DC", "TFT_DC"), ("RST/RES", "TFT_RST"), ("VCC", "+3V3"), ("BL", "GND"), ("GND", "GND"))]
     tft = module(s, 1050, 145, 300, 340, "A1", "ST7789 284×76", tft_pins)

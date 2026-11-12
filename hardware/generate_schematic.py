@@ -70,12 +70,22 @@ assert len(LEDS) == 46
 
 TM_LEFT = [("VDD", "17"), ("GND", "6"), ("DIN", "7"), ("SCLK", "8")]
 TM_RIGHT = [(f"SEG{i}", str(i + 8)) for i in range(1, 9)] + [(f"GRID{i}", str(17 + i)) for i in range(1, 9)] + [("GRID9", "26"), ("GRID10", "27"), ("GRID11", "28"), ("GRID12", "1"), ("GRID13", "2"), ("GRID14", "3"), ("GRID15", "4"), ("GRID16", "5")]
-ESP_LEFT = [("5V", "5V"), ("3V3", "3V3"), ("GND", "GND")]
+# Physical order of the user's ESP32-WROOM-32D development board.
+ESP_LEFT = [
+    ("3V3", "3V3"), ("EN", "EN"), ("SVP", "GPIO36"), ("SVN", "GPIO39"),
+    ("P34", "GPIO34"), ("P35", "GPIO35"), ("P32", "GPIO32"),
+    ("P33", "GPIO33"), ("P25", "GPIO25"), ("P26", "GPIO26"),
+    ("P27", "GPIO27"), ("P14", "GPIO14"), ("P12", "GPIO12"),
+    ("GND", "GND1"), ("P13", "GPIO13"), ("SD2", "GPIO9"),
+    ("SD3", "GPIO10"), ("CMD", "GPIO11"), ("5V", "5V"),
+]
 ESP_RIGHT = [
-    ("GPIO18", "18"), ("GPIO23", "23"), ("GPIO5", "5"),
-    ("GPIO15", "15"), ("GPIO4", "4"), ("GPIO21", "21"),
-    ("GPIO22", "22"), ("GPIO25", "25"), ("GPIO26", "26"),
-    ("GPIO32", "32"),
+    ("GND", "GND2"), ("P23", "GPIO23"), ("P22", "GPIO22"),
+    ("TX", "GPIO1"), ("RX", "GPIO3"), ("P21", "GPIO21"), ("GND", "GND3"),
+    ("P19", "GPIO19"), ("P18", "GPIO18"), ("P5", "GPIO5"),
+    ("P17", "GPIO17"), ("P16", "GPIO16"), ("P4", "GPIO4"),
+    ("P0", "GPIO0"), ("P2", "GPIO2"), ("P15", "GPIO15"),
+    ("CD0", "GPIO7"), ("CD1", "GPIO8"), ("CLK", "GPIO6"),
 ]
 TFT_PINS = [("SCLK", "SCLK"), ("MOSI", "SDA"), ("CS", "CS"), ("DC", "DC"),
             ("RST", "RST"), ("VCC", "VCC"), ("BL", "BL"), ("GND", "GND")]
@@ -209,10 +219,12 @@ def generate_kicad():
             out.append(f'  (label {q(net)} (at {lx} {wy} 0) {effects(justify=justify)} (uuid {uid(key + "-label-" + number)}))')
             nets.append((refdes, pin_name, number, net))
 
-    add("clock:ESP32_MODULE", "U1", "ESP32-WROOM-32D", 60, 60,
-        {"5V": "+5V", "3V3": "+3V3", "GND": "GND", "18": "TFT_SCLK", "23": "TFT_MOSI",
-         "5": "TFT_CS", "15": "TFT_DC", "4": "TFT_RST", "21": "I2C_SDA",
-         "22": "I2C_SCL", "25": "TM_CLK", "26": "TM_DIN", "32": "CITY_WIFI_BTN"})
+    esp_nets = {"5V": "+5V", "3V3": "+3V3", "GND1": "GND", "GND2": "GND", "GND3": "GND",
+                "GPIO18": "TFT_SCLK", "GPIO23": "TFT_MOSI", "GPIO5": "TFT_CS",
+                "GPIO15": "TFT_DC", "GPIO4": "TFT_RST", "GPIO21": "I2C_SDA",
+                "GPIO22": "I2C_SCL", "GPIO25": "TM_CLK", "GPIO26": "TM_DIN", "GPIO32": "CITY_WIFI_BTN"}
+    esp_unused = {number for _, number in ESP_LEFT + ESP_RIGHT} - set(esp_nets)
+    add("clock:ESP32_MODULE", "U1", "ESP32-WROOM-32D", 60, 60, esp_nets, nc=esp_unused)
     add("clock:TM1640", "U2", "TM1640", 250, 110,
         {"VDD": "+5V", "GND": "GND", "DIN": "TM_DIN", "SCLK": "TM_CLK", **{f"SEG{i}": f"SEG{i}_DRV" for i in range(1, 8)}, **{f"GRID{i}": f"GRID{i}" for i in range(1, 9)}},
         nc={f"GRID{i}" for i in range(9, 17)} | {"SEG8"})
